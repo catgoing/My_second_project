@@ -170,3 +170,4 @@
 .metadata/.mylyn/repositories.xml.zip
 .metadata/.log
 .metadata/.lock
+/.metadata/

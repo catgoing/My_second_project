@@ -7,14 +7,18 @@
 		<setting name="jdbcTypeForNull" value="NULL"/>
 	</settings>
 
+  <typeAliases>
+  	<typeAlias type="com.savanna.model.vo.MemberVO" alias="MemberVO"/>
+  </typeAliases>
+
   <environments default="development">
     <environment id="development">
       <transactionManager type="JDBC"/>
       <dataSource type="POOLED">
         <property name="driver" value="oracle.jdbc.OracleDriver"/>
-        <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+        <property name="url" value="jdbc:oracle:thin:@114.204.160.132:3693:xe"/>
         <property name="username" value="mystudy"/>
-        <property name="password" value="mystudypw"/>
+        <property name="password" value="mystudypwd"/>
       </dataSource>
     </environment>
   </environments>

@@ -21,17 +21,19 @@ public class DoSignInCommand implements Command{
 		
 		String id = request.getParameter("id");
 		String pwd = request.getParameter("pwd");
-		System.out.println("id: " + id + " pwd: " + pwd);
+//		System.out.println("id: " + id + " pwd: " + pwd);
 		MemberVO vo1 = new MemberVO();
 		vo1.setId(id);
 		vo1.setPwd(pwd);
 		
 		
 		MemberVO vo = DAO.signIn(vo1);
-		System.out.println("vo: " + vo);
+//		System.out.println("vo: " + vo);
 		
+		//세션 생성
 		HttpSession httpSession = request.getSession(true);
 		
+		//세션에 현재 로그인 정보 저장
 		httpSession.setAttribute("user", vo);
 		
 		
@@ -39,7 +41,7 @@ public class DoSignInCommand implements Command{
 		if(vo != null && pwd.equals(vo.getPwd().toString())) {
 			request.setAttribute("vo", vo);
 			
-			return "main_sign_in.jsp";
+			return "mainSignIn.jsp";
 		}
 		
 		else {

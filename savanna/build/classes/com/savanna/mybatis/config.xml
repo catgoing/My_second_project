@@ -7,11 +7,7 @@
 		<setting name="jdbcTypeForNull" value="NULL"/>
 	</settings>
 	
-<<<<<<< Updated upstream:src/com/savanna/mybatis/config.xml
-	  <typeAliases>
-=======
   <typeAliases>
->>>>>>> Stashed changes:savanna/src/com/savanna/mybatis/config.xml
   	<typeAlias type="com.savanna.model.vo.MemberVO" alias="MemberVO"/>
   </typeAliases>
 

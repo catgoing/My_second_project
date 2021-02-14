@@ -20,10 +20,6 @@ public class MemberVO {
 		this.regdate = regdate;
 	}
 	
-//	public void SignIn(String id, String pwd) {
-//		this.id = id;
-//		this.pwd = pwd;
-//	}
 
 	public String getId() {
 		return id;

@@ -50,6 +50,5 @@
 		</tr>		
 	</table>
 	</form>
-	<p>${user.name }</p>
 </body>
 </html>

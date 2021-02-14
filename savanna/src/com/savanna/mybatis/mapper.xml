@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mystudy">
+
+	<select id="booklist" resultType="com.savanna.model.vo.BookVO">
+		SELECT * FROM BOOKS ORDER BY BOOK_NO
+	</select>
+	
+	<!-- 동적 검색 -->
+	<select id="search" parameterType="map"
+			resultType="com.savanna.model.vo.BookVO">
+		SELECT *
+		  FROM BOOKS
+		<choose>
+			<when test="idx == 0">
+				WHERE BOOK_NO = #{keyword}
+			</when>
+			<when test="idx == 1">
+				WHERE BOOK_NAME= INITCAP(#{keyword}) 
+			</when>
+			<when test="idx == 2">
+				WHERE WRITER = UPPER(#{keyword})
+			</when>
+			<when test="idx == 3">
+				WHERE PUBLISHER = #{keyword}
+			</when>
+			<otherwise>
+				WHERE 1 = 2
+			</otherwise>
+		</choose>
+		ORDER BY BOOK_NO	
+	
+	</select>
+	
+		<!-- 회원가입 -->
+	<select id="sign_up" parameterType="MemberVO">
+		INSERT INTO MEMBERS
+		(ID, PWD, NAME, ADDR, PHONE, EMAIL, MEM_NO, REGDATE)
+		VALUES (#{id}, #{pwd}, #{name}, #{addr}, #{phone}, #{email}, MEM_NO_SEQ.NEXTVAL, SYSDATE)
+	</select>
+	
+	<!-- 로그인-->
+	<select id="sign_in" parameterType="MemberVO" resultType="MemberVO">
+		SELECT ID, PWD, NAME, ADDR, PHONE, EMAIL, MEM_NO, REGDATE 
+		FROM MEMBERS
+		WHERE ID = #{id}
+		AND PWD = #{pwd}
+	</select>
+	
+	<!-- 아이디 중복 체크 -->
+	<select id="id_check" parameterType="MemberVO" resultType="int">
+		SELECT COUNT(*)
+		FROM MEMBERS
+		WHERE ID = #{id}
+	</select>
+	
+	<!-- 정보 수정 시 패스워드 체크 -->
+	<select id="pwd_check" parameterType="MemberVO" resultType="int">
+		SELECT COUNT(*) 
+		FROM MEMBERS
+		WHERE ID = #{id}
+		AND PWD = #{pwd}
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+

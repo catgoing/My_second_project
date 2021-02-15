@@ -10,6 +10,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.savanna.model.command.BookListCommand;
 import com.savanna.model.command.Command;
+import com.savanna.model.command.DoSignInCommand;
+import com.savanna.model.command.DoSignUpCommand;
+import com.savanna.model.command.IdCheckCommand;
+import com.savanna.model.command.LogoutCommand;
+import com.savanna.model.command.MyInfoCommand;
+import com.savanna.model.command.PwdCheckCommand;
+import com.savanna.model.command.SignInCommand;
+import com.savanna.model.command.SignUpCommand;
+
 
 @WebServlet("/controller")
 public class FrontController extends HttpServlet {
@@ -25,9 +34,31 @@ public class FrontController extends HttpServlet {
 		if ("booklist".equals(type)) {
 			command = new BookListCommand();
 			//아래의 else if 조건식란에 해당되는 명령어를 type과 equals 처리해 주세요
-		} else if (1 == 2) {
-			System.out.print("error test");
+		} 
+		else if ("signUp".equals(type)) {
+			command = new SignUpCommand();
+		} 
+		else if ("doSignUp".equals(type)) {
+			command = new DoSignUpCommand();
+		} 
+		else if ("signIn".equals(type)) {
+			command = new SignInCommand();
 		}
+		else if ("doSignIn".equals(type)) {
+			command = new DoSignInCommand();
+		} 
+		else if ("myInfo".equals(type)) {
+			command = new MyInfoCommand();
+		}
+		else if ("pwdCheck".equals(type)) {
+			command = new PwdCheckCommand();
+		}
+		else if ("logout".equals(type)) {
+			command = new LogoutCommand();
+		}
+		
+		
+		
 		String path = command.execute(request, response);
 		request.getRequestDispatcher(path).forward(request, response);
 	}

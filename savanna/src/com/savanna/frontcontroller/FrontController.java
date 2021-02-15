@@ -8,8 +8,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.savanna.model.command.BookListCommand;
+import com.savanna.model.command.AdminLoginCommand;
+import com.savanna.model.command.CardListCommand;
 import com.savanna.model.command.Command;
+import com.savanna.model.command.DeleteBookCommand;
+import com.savanna.model.command.GoEntryBookViewCommand;
+import com.savanna.model.command.InsertBookCommand;
+import com.savanna.model.command.ShowBookDetailCommand;
 
 @WebServlet("/controller")
 public class FrontController extends HttpServlet {
@@ -22,10 +27,26 @@ public class FrontController extends HttpServlet {
 		
 		//작업 요청에 대한 처리
 		Command command = null;
-		if ("booklist".equals(type)) {
-			command = new BookListCommand();
-			//아래의 else if 조건식란에 해당되는 명령어를 type과 equals 처리해 주세요
-		} else if (1 == 2) {
+		if("cardlist".equals(type)) {
+			System.out.println("showing cardlist");
+			command = new CardListCommand();
+		} else if("adminlogin".equals(type)) {
+			command = new AdminLoginCommand();
+		} else if("insertbook".equals(type)) {
+			command = new InsertBookCommand();
+		} else if("goentrybook".equals(type)) {
+			System.out.println("going entrybook");
+			command = new GoEntryBookViewCommand();
+		} else if("showdetail".equals(type)) {
+			System.out.print("showing detail of");
+			System.out.println(request.getParameter("book_no"));
+			command = new ShowBookDetailCommand();
+		} else if("deletebook".equals(type)) {
+			System.out.print("deleting book which is");
+			System.out.println(request.getParameter("book_no"));
+			command = new DeleteBookCommand();
+		}
+		else {
 			System.out.print("error test");
 		}
 		String path = command.execute(request, response);

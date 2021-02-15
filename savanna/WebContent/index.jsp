@@ -3,30 +3,25 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="UTF-8">
 <title>작업선택</title>
 <script>
-	function booklist_search(frm) {
-		frm.action = "controller?type=booklist";
+	function getcardlist(frm) {
+		frm.action = "controller?type=cardlist";
 		frm.submit();
 	}
-	/* function search_go(frm) {
-		frm.action = "controller?type=search";
+	 function admin_login(frm) {
+		frm.action = "controller?type=adminlogin";
 		frm.submit();
 	}
-	*/
-	
 </script>
 </head>
 <body>
 	<h1>작업선택</h1>
 	<form method="post">
-		<input type="button" value="책 리스트" onclick="booklist_search(this.form)">
+		<input type="button" value="카드 리스트" onclick="getcardlist(this.form)">
+		<input type="button" value="관리자 로그인" onclick="admin_login(this.form)">
 	</form>
-	
-	
-	
-	
-	
 </body>
 </html>

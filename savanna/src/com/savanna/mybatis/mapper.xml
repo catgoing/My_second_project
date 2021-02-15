@@ -7,6 +7,39 @@
 	<select id="booklist" resultType="com.savanna.model.vo.BookVO">
 		SELECT * FROM BOOKS ORDER BY BOOK_NO
 	</select>
+	<insert id="insertbook" parameterType="com.savanna.model.vo.BookVO">
+		INSERT INTO BOOKS (book_no
+						, book_name
+						, writer
+						, publisher
+						, pub_date
+						, price
+						, book_desc
+						, stock
+						, category)
+		VALUES (book_no_seq.nextval
+			 , #{book_name }, #{writer }, #{publisher }, #{pub_date }, #{price }, #{book_desc }, #{stock }, #{category })
+	</insert>
+	<delete id="deletebook" parameterType="int">
+		DELETE 
+		FROM BOOKS
+		WHERE book_no = #{book_no}
+	</delete>
+	
+	<select id="bookdetail" parameterType="int" resultType="com.savanna.model.vo.BookVO">
+		SELECT book_no
+			, book_name
+			, writer
+			, publisher
+			, pub_date
+			, price
+			, book_desc
+			, stock
+			, category
+		FROM BOOKS
+		WHERE book_no = #{book_no}
+	</select>
+	
 	
 	<!-- 동적 검색 -->
 	<select id="search" parameterType="map"

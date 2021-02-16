@@ -12,6 +12,10 @@ import com.savanna.model.command.BookListCommand;
 import com.savanna.model.command.Command;
 import com.savanna.model.command.DoSignInCommand;
 import com.savanna.model.command.DoSignUpCommand;
+<<<<<<< HEAD
+=======
+import com.savanna.model.command.IdCheckCommand;
+>>>>>>> dev2
 import com.savanna.model.command.LogoutCommand;
 import com.savanna.model.command.MyInfoCommand;
 import com.savanna.model.command.PwdCheckCommand;
@@ -33,10 +37,14 @@ public class FrontController extends HttpServlet {
 		if ("booklist".equals(type)) {
 			command = new BookListCommand();
 			//아래의 else if 조건식란에 해당되는 명령어를 type과 equals 처리해 주세요
+<<<<<<< HEAD
 		} else if (1 == 2) {
 			System.out.print("error test");
 		}
 		
+=======
+		} 
+>>>>>>> dev2
 		else if ("signUp".equals(type)) {
 			command = new SignUpCommand();
 		} 
@@ -59,6 +67,11 @@ public class FrontController extends HttpServlet {
 			command = new LogoutCommand();
 		}
 		
+<<<<<<< HEAD
+=======
+		
+		
+>>>>>>> dev2
 		String path = command.execute(request, response);
 		request.getRequestDispatcher(path).forward(request, response);
 	}

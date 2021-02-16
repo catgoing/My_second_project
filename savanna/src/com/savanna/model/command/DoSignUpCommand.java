@@ -26,6 +26,7 @@ public class DoSignUpCommand implements Command{
 		vo.setPhone(request.getParameter("phone"));
 		vo.setEmail(request.getParameter("email"));
 		
+		
 		DAO.signUp(vo);
 			
 		return "doSignUp.jsp";

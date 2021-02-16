@@ -5,6 +5,15 @@
 <head>
 <meta charset="UTF-8">
 <title>로그인</title>
+<script>
+	function idInquiry(){
+		location.href = "inquiryId.jsp";
+	}
+	
+	function qwdInquiry(){
+		location.href = "";
+	}
+</script>
 </head>
 <body>
 <h1>로그인</h1>
@@ -25,10 +34,10 @@
             </tr>
             <tr>
                 <td>
-                    <input type="button" value="아이디 찾기">
+                    <input type="button" value="아이디 찾기" onclick="idInquiry()">
                 </td>
                 <td>
-                    <input type="button" value="비밀번호 찾기">
+                    <input type="button" value="비밀번호 찾기" onclick="">
                 </td>
             </tr>
         </table> 

@@ -153,7 +153,7 @@
         <table>
             <tr>
                 <td>아이디</td>
-                <td><input type="text" name="id" id="id" maxlength="12"> <!--onchange="check_id()"  --></td>
+                <td><input type="text" name="id" id="id" maxlength="12"></td>
             </tr>
             <tr>
                 <td colspan=2><span id="id_check"></span>
@@ -195,10 +195,7 @@
             </tr>
         </table> 
         </form>
-        <script>
-
-        </script>
-        
+         
 
 </body>
 </html>

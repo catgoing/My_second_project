@@ -17,7 +17,7 @@ public class DoSignInCommand implements Command{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("doSignIn 시작");
+//		System.out.println("doSignIn 시작");
 		
 		String id = request.getParameter("id");
 		String pwd = request.getParameter("pwd");
@@ -30,19 +30,17 @@ public class DoSignInCommand implements Command{
 		MemberVO vo = DAO.signIn(vo1);
 //		System.out.println("vo: " + vo);
 		
-		
+		// 로그인 시 세션 생성
 		HttpSession httpSession = request.getSession(true);
-		
 		
 		// 로그인 정보 세션에 저장
 		httpSession.setAttribute("user", vo);
 		
 		
-		
 		if(vo != null && pwd.equals(vo.getPwd().toString())) {
 			request.setAttribute("vo", vo);
-			
-			return "mainSignIn.jsp";
+
+				return "main.jsp";
 		}
 		
 		else {

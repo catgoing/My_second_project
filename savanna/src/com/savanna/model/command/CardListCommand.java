@@ -7,9 +7,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.savanna.model.BookDAO;
 import com.savanna.model.vo.BookVO;
 
-public class BookListCommand implements Command {
+public class CardListCommand implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)

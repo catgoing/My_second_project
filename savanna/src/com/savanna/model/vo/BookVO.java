@@ -1,7 +1,7 @@
 package com.savanna.model.vo;
 
 public class BookVO {
-	private int bookNo;
+	private int book_no;
 	private String book_name;
 	private String writer;
 	private String publisher;
@@ -10,23 +10,17 @@ public class BookVO {
 	private String book_desc;
 	private int stock;
 	private String category;
-	@Override
-	public String toString() {
-		return "Book [bookNo=" + bookNo + ", bookName=" + book_name + ", writer=" + writer + ", publisher=" + publisher
-				+ ", pubDate=" + pub_date + ", price=" + price + ", bookDesc=" + book_desc + ", stock=" + stock
-				+ ", category=" + category + "]";
+	public int getBook_no() {
+		return book_no;
 	}
-	public int getBookNo() {
-		return bookNo;
+	public void setBook_no(int book_no) {
+		this.book_no = book_no;
 	}
-	public void setBookNo(int bookNo) {
-		this.bookNo = bookNo;
-	}
-	public String getBookName() {
+	public String getBook_name() {
 		return book_name;
 	}
-	public void setBookName(String bookName) {
-		this.book_name = bookName;
+	public void setBook_name(String book_name) {
+		this.book_name = book_name;
 	}
 	public String getWriter() {
 		return writer;
@@ -40,11 +34,11 @@ public class BookVO {
 	public void setPublisher(String publisher) {
 		this.publisher = publisher;
 	}
-	public String getPubDate() {
+	public String getPub_date() {
 		return pub_date;
 	}
-	public void setPubDate(String pubDate) {
-		this.pub_date = pubDate;
+	public void setPub_date(String pub_date) {
+		this.pub_date = pub_date;
 	}
 	public int getPrice() {
 		return price;
@@ -52,11 +46,11 @@ public class BookVO {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	public String getBookDesc() {
+	public String getBook_desc() {
 		return book_desc;
 	}
-	public void setBookDesc(String bookDesc) {
-		this.book_desc = bookDesc;
+	public void setBook_desc(String book_desc) {
+		this.book_desc = book_desc;
 	}
 	public int getStock() {
 		return stock;
@@ -70,20 +64,17 @@ public class BookVO {
 	public void setCategory(String category) {
 		this.category = category;
 	}
-	public BookVO(int bookNo, String bookName, String writer, String publisher, String pubDate, int price,
-			String bookDesc, int stock, String category) {
+	public BookVO(int book_no, String book_name, String writer, String publisher, String pub_date, int price,
+			String book_desc, int stock, String category) {
 		super();
-		this.bookNo = bookNo;
-		this.book_name = bookName;
+		this.book_no = book_no;
+		this.book_name = book_name;
 		this.writer = writer;
 		this.publisher = publisher;
-		this.pub_date = pubDate;
+		this.pub_date = pub_date;
 		this.price = price;
-		this.book_desc = bookDesc;
+		this.book_desc = book_desc;
 		this.stock = stock;
 		this.category = category;
 	}
-	public BookVO() {
-	}
-	
 }

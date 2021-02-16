@@ -10,9 +10,22 @@
 	}
 </style>
 <script>
-function insertbook(frm) {
-	frm.action = "controller?type=insertbook";
+function createBook(frm) {
+	frm.action = "controller?type=createbook";
 	frm.submit();
+}
+function createDummyBook(frm) {
+	var bookInputs = document.getElementsByTagName("input");
+	bookInputs["book_name"].value="dummy";
+	bookInputs["writer"].value="dummy";
+	bookInputs["publisher"].value="dummy";
+	bookInputs["pub_date"].value= "1999-09-09";
+	alert(bookInputs["pub_date"].value);
+	bookInputs["price"].value="999";
+	bookInputs["book_desc"].value="dummy";
+	bookInputs["stock"].value="1";
+	bookInputs["category"].value="dummy";
+	createBook(frm);
 }
 </script>
 <meta charset="UTF-8">
@@ -44,7 +57,7 @@ function insertbook(frm) {
 			</tr>
 			<tr>
 				<td><label for="pub_date">출판일</label></td>
-				<td><input type="month" id="pub_date" name="pub_date"></td>
+				<td><input type="date" id="pub_date" name="pub_date"></td>
 			</tr>
 			<tr>
 				<td><label for="price">가격</label></td>
@@ -65,7 +78,8 @@ function insertbook(frm) {
 			</tbody>
 			<tfoot>
 				<tr><td colspan="2">
-					<input type="submit" value="등록" onclick="insertbook(this.form)">
+					<input type="submit" value="등록" onclick="createBook(this.form)">
+					<input type="submit" value="더미등록" onclick="createDummyBook(this.form)">
 					<input type="button" value="돌아가기" onclick="history.back()">
 				</td></tr>
 			</tfoot>

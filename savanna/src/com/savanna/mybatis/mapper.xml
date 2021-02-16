@@ -4,9 +4,76 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mystudy">
 
-	<select id="booklist" resultType="com.savanna.model.vo.BookVO">
-		SELECT * FROM BOOKS ORDER BY BOOK_NO
+	
+	<select id="bookCount" resultType="int">
+		SELECT COUNT(*) FROM BOOKS
 	</select>
+	
+	<select id="booklist" resultType="com.savanna.model.vo.BookVO">
+		SELECT book_no
+				, book_name
+				, writer
+				, publisher
+				, pub_date
+				, price
+				, book_desc
+				, stock
+				, category
+				FROM BOOKS ORDER BY BOOK_NO
+	</select>
+	
+	<select id="pagedBookList" resultType="com.savanna.model.vo.BookVO"
+			parameterType="Map">
+		SELECT *
+		  FROM (SELECT ROWNUM AS PAGING_INDEX, ORDERED_BOOKS.*
+		          FROM (SELECT book_no
+							, book_name
+							, writer
+							, publisher
+							, pub_date
+							, price
+							, book_desc
+							, stock
+							, category
+		                  FROM BOOKS
+		                 ORDER BY BOOK_NO DESC
+		               ) ORDERED_BOOKS
+		       )
+		 WHERE PAGING_INDEX BETWEEN #{begin} AND #{end}
+	</select>
+	
+	<select id="pagedDatelessBookList" resultType="com.savanna.model.vo.BookVO"
+			parameterType="Map">
+		SELECT *
+		  FROM (SELECT ROWNUM AS PAGING_INDEX, ORDERED_BOOKS.*
+		          FROM (SELECT book_no
+							, book_name
+							, writer
+							, publisher
+							, price
+							, book_desc
+							, stock
+							, category
+		                  FROM BOOKS
+		                 ORDER BY BOOK_NO DESC
+		               ) ORDERED_BOOKS
+		       )
+		 WHERE PAGING_INDEX BETWEEN #{begin} AND #{end}
+	</select>
+	
+	<update id="updatebook" parameterType="com.savanna.model.vo.BookVO">
+		UPDATE BOOKS
+		SET  book_name = #{book_name }
+			, writer = #{writer }
+			, publisher = #{publisher }
+			, pub_date = #{pub_date }
+			, price = #{price }
+			, book_desc = #{book_desc }
+			, stock = #{stock }
+			, category = #{category }
+		WHERE book_no = #{book_no }
+	</update>
+	
 	<insert id="insertbook" parameterType="com.savanna.model.vo.BookVO">
 		INSERT INTO BOOKS (book_no
 						, book_name
@@ -20,12 +87,12 @@
 		VALUES (book_no_seq.nextval
 			 , #{book_name }, #{writer }, #{publisher }, #{pub_date }, #{price }, #{book_desc }, #{stock }, #{category })
 	</insert>
+	
 	<delete id="deletebook" parameterType="int">
 		DELETE 
 		FROM BOOKS
 		WHERE book_no = #{book_no}
 	</delete>
-	
 	<select id="bookdetail" parameterType="int" resultType="com.savanna.model.vo.BookVO">
 		SELECT book_no
 			, book_name

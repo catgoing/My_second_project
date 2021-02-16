@@ -25,10 +25,39 @@
 		height: 15vh;
 		border-radius: 50%;
 	}
+	
+		.paging { list-style: none; }
+	.paging li {
+		float: left;
+		margin-right: 8px;
+	}
+	.paging li a {
+		text-decoration: none;
+		display: block;
+		padding: 3px 7px;
+		border: 1px solid #00B3DC;
+		font-weight: bold;
+		color: black;
+	}
+	.paging .disable {
+		border: 1px solid silver;
+		padding: 3px 7px;
+		color: silver;
+	}
+	.paging .now {
+		border: 1px solid #ff4aa5;
+		padding: 3px 7px;
+		background-color: #ff4aa5;
+	}
+	.paging li a:hover {
+		background-color: #00B3DC;
+		color: white;
+	}
+	
 </style>
 <script>
-	function goEntryBookView(frm) {
-		frm.action = "controller?type=goentrybook";
+	function enterCreateBookView(frm) {
+		frm.action = "controller?type=EnterCreateBook";
 		frm.submit();
 	}
 </script>
@@ -56,26 +85,62 @@
 				<div class="img-placeholder"></div>
 			</td>
 			<td>
-				<a href="controller?type=showdetail&book_no=${vo.book_no }">
+				<a href="controller?type=EnterDetail&book_no=${vo.book_no }">
 				${vo.book_name }
 				</a>
 			</td>
 			<td>${vo.writer }</td>
 			<td>${vo.publisher }</td>
 			<td>${vo.price }</td>
-			<td>&lt;&lt;${vo.stock }&gt;&gt;</td>
+			<td class="stock">&lt;&lt;${vo.stock }&gt;&gt;</td>
 		</tr>
 	</c:forEach>
 	</tbody>
 	<tfoot>
 		<tr><td colspan="8">
 			<form method="post">
-				<input type="text" value="test">
-				<input type="button" value="신규 등록" onclick="goEntryBookView(this.form)">
+				<input type="button" value="신규 등록" onclick="enterCreateBookView(this.form)">
 				<input type="button" value="재고 수정(카트방식)">
 				<input type="button" value="돌아가기" onclick="history.back()">
 			</form>
 		</td>
+		</tr>
+			<tr>
+			<td colspan="8">
+				<ol class="paging">
+			<%--[이전으로]에 대한 사용여부 처리 시작페이지번호가 1인 경우 비활성화 --%>
+			<c:choose>
+				<c:when test="${pvo.curBlockBeginIdx == 1 }">		
+					<li class="disable">이전으로</li>
+				</c:when>
+				<c:otherwise>
+					<li><a href="controller?type=PagedAdminLogin&cPage=${pvo.curBlockBeginIdx - 1}">이전으로</a></li>
+				</c:otherwise>	
+			</c:choose>		
+			<%-- 블록내에 표시할 페이지 태그 작성(시작페이지 ~ 끝페이지)
+				현재페이지와 페이지 번호 같으면 현재페이지 처리--%>
+			<c:forEach var="pageNo" begin="${pvo.curBlockBeginIdx }" end="${pvo.curBlockEndIdx }">
+				<c:if test="${pageNo == pvo.curPage }">
+					<li class="now">${pageNo }</li>
+				</c:if>
+				<c:if test="${pageNo != pvo.curPage }">
+					<li>
+						<a href="controller?type=PagedAdminLogin&cPage=${pageNo }">${pageNo }</a>
+					</li>
+				</c:if>		
+			</c:forEach>		
+				<%--[다음으로]에 대한 사용여부 처리
+				endPage가 전체페이지수(totalPage)보다 작은경우 활성화 --%>	
+				<c:if test="${pvo.curBlockEndIdx < pvo.totalPage }">	
+					<li>
+						<a href="controller?type=PagedAdminLogin&cPage=${pvo.curBlockEndIdx + 1}">다음으로</a>
+					</li>
+				</c:if>
+				<c:if test="${pvo.curBlockEndIdx >= pvo.totalPage }">	
+					<li class="disable">다음으로</li>
+				</c:if>
+				</ol>
+			</td>
 		</tr>
 	</tfoot>
 	</table>

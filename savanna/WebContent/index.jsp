@@ -11,8 +11,8 @@
 		frm.action = "controller?type=cardlist";
 		frm.submit();
 	}
-	 function admin_login(frm) {
-		frm.action = "controller?type=adminlogin";
+	 function adminLogin(frm) {
+		frm.action = "controller?type=PagedAdminLogin";
 		frm.submit();
 	}
 </script>
@@ -21,7 +21,7 @@
 	<h1>작업선택</h1>
 	<form method="post">
 		<input type="button" value="카드 리스트" onclick="getcardlist(this.form)">
-		<input type="button" value="관리자 로그인" onclick="admin_login(this.form)">
+		<input type="button" value="관리자 로그인" onclick="adminLogin(this.form)">
 	</form>
 </body>
 </html>

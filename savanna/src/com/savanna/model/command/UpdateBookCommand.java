@@ -9,13 +9,15 @@ import javax.servlet.http.HttpServletResponse;
 import com.savanna.model.BookDAO;
 import com.savanna.model.vo.BookVO;
 
-public class InsertBookCommand implements Command {
+public class UpdateBookCommand implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("insert");
-		BookVO vo = new BookVO(Integer.parseInt("0")
+		System.out.println("UPDATING Book");
+		System.out.println(request.getParameter("pub_date"));
+
+		BookVO vo = new BookVO(Integer.parseInt(request.getParameter("book_no"))
 							, request.getParameter("book_name")
 							, request.getParameter("writer")
 							, request.getParameter("publisher")
@@ -25,8 +27,8 @@ public class InsertBookCommand implements Command {
 							, Integer.parseInt(request.getParameter("stock"))
 							, request.getParameter("category")
 							);
-		int result = BookDAO.insertBook(vo);
+		int result = BookDAO.updateBook(vo);
 		System.out.println(result);
-		return "controller?type=adminlogin";
+		return "controller?type=PagedAdminLogin";
 	}
 }

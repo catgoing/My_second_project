@@ -18,6 +18,6 @@ public class DeleteBookCommand implements Command {
 		int result = BookDAO.deleteBook(book_no);
 		System.out.println(result);
 
-		return "controller?type=adminlogin";
+		return "controller?type=PagedAdminLogin";
 	}
 }

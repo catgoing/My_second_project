@@ -77,6 +77,4 @@ public class BookVO {
 		this.stock = stock;
 		this.category = category;
 	}
-	
-	
 }

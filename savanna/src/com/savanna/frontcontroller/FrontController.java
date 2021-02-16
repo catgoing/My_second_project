@@ -11,10 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 import com.savanna.model.command.AdminLoginCommand;
 import com.savanna.model.command.CardListCommand;
 import com.savanna.model.command.Command;
+import com.savanna.model.command.CreateBookCommand;
 import com.savanna.model.command.DeleteBookCommand;
-import com.savanna.model.command.GoEntryBookViewCommand;
-import com.savanna.model.command.InsertBookCommand;
-import com.savanna.model.command.ShowBookDetailCommand;
+import com.savanna.model.command.ListPagingCommand;
+import com.savanna.model.command.UpdateBookCommand;
+import com.savanna.model.command.viewDispatchCommand.EnterBookDetailCommand;
+import com.savanna.model.command.viewDispatchCommand.EnterCreateBookViewCommand;
+import com.savanna.model.command.viewDispatchCommand.EnterUpdateBookViewCommand;
 
 @WebServlet("/controller")
 public class FrontController extends HttpServlet {
@@ -30,24 +33,37 @@ public class FrontController extends HttpServlet {
 		if("cardlist".equals(type)) {
 			System.out.println("showing cardlist");
 			command = new CardListCommand();
-		} else if("adminlogin".equals(type)) {
+		} else if("AdminLogin".equals(type)) {
 			command = new AdminLoginCommand();
-		} else if("insertbook".equals(type)) {
-			command = new InsertBookCommand();
-		} else if("goentrybook".equals(type)) {
-			System.out.println("going entrybook");
-			command = new GoEntryBookViewCommand();
-		} else if("showdetail".equals(type)) {
+		} else if("PagedAdminLogin".equals(type)) {
+			System.out.print("Expect:PagedAdminLogin");
+
+			command = new ListPagingCommand();
+		} else if("createbook".equals(type)) {
+			command = new CreateBookCommand();
+		} else if("EnterCreateBook".equals(type)) {
+			command = new EnterCreateBookViewCommand();
+		} else if("EnterDetail".equals(type)) {
 			System.out.print("showing detail of");
 			System.out.println(request.getParameter("book_no"));
-			command = new ShowBookDetailCommand();
-		} else if("deletebook".equals(type)) {
+			
+			command = new EnterBookDetailCommand();
+		} else if("DeleteBook".equals(type)) {
 			System.out.print("deleting book which is");
 			System.out.println(request.getParameter("book_no"));
+			
 			command = new DeleteBookCommand();
+		} else if("EnterUpdateBook".equals(type)) {
+			System.out.print("expect:EnterUpdateMode");
+			
+			command = new EnterUpdateBookViewCommand();
+		} else if("UpdateBook".equals(type)) {
+			System.out.print("expect:UpdateBook");
+			
+			command = new UpdateBookCommand();
 		}
 		else {
-			System.out.print("error test");
+			System.out.print("Command Error");
 		}
 		String path = command.execute(request, response);
 		request.getRequestDispatcher(path).forward(request, response);

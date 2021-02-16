@@ -1,6 +1,7 @@
 package com.savanna.model;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -14,6 +15,20 @@ public class BookDAO {
 		List<BookVO> list = ss.selectList("mystudy.booklist");
 		ss.close();
 		return list;
+	}
+	
+	public static List<BookVO> getPagedList(Map<String, Integer> map) {
+		SqlSession ss = DBService.getFactory().openSession();
+		List<BookVO> list = ss.selectList("mystudy.pagedDatelessBookList", map);
+		ss.close();
+		return list;
+	}
+	
+	public static int getBookCount() {
+		SqlSession ss = DBService.getFactory().openSession();
+		int totalCount = ss.selectOne("mystudy.bookCount");
+		ss.close();
+		return totalCount;
 	}
 	
 	public static BookVO getBookDetail(int book_no) {
@@ -37,6 +52,12 @@ public class BookDAO {
 		return result;
 	}
 	
+	public static int updateBook(BookVO vo) {
+		SqlSession ss = DBService.getFactory().openSession(true);
+		int result = ss.insert("mystudy.updatebook", vo);
+		ss.close();
+		return result;
+	}
 }
 
 

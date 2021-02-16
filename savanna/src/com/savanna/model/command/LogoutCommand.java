@@ -12,10 +12,9 @@ public class LogoutCommand implements Command{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		// 로그아웃 시 세션 초기화
 		HttpSession httpSession = request.getSession(true);
-		
-		
-		// 세션 초기화
 		httpSession.invalidate();
 		
 		return "main.jsp";

@@ -12,35 +12,25 @@ import com.savanna.model.dao.DAO;
 import com.savanna.model.vo.MemberVO;
 
 
-public class DoSignInCommand implements Command{
+public class InquiryPwdCommand implements Command{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-//		System.out.println("doSignIn 시작");
 		
 		String id = request.getParameter("id");
-		String pwd = request.getParameter("pwd");
-//		System.out.println("id: " + id + " pwd: " + pwd);
+		String name = request.getParameter("name");
+
 		MemberVO vo1 = new MemberVO();
 		vo1.setId(id);
-		vo1.setPwd(pwd);
+		vo1.setName(name);
 		
+		String pwd = DAO.inquiryPwd(vo1);
 		
-		MemberVO vo = DAO.signIn(vo1);
-//		System.out.println("vo: " + vo);
-		
-		// 로그인 시 세션 생성
-		HttpSession httpSession = request.getSession(true);
-		
-		// 로그인 정보 세션에 저장
-		httpSession.setAttribute("user", vo);
-		
-		
-		if(vo != null && pwd.equals(vo.getPwd().toString())) {
-			request.setAttribute("vo", vo);
-
-				return "main.jsp";
+		if(id != null) {
+			request.setAttribute("pwd", pwd);
+			
+			return "inquiryPwdResult.jsp";
 		}
 		
 		else {

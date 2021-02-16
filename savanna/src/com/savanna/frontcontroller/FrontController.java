@@ -8,19 +8,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.savanna.model.command.AdminUpdateCommand;
+import com.savanna.model.command.AdminWithdrawalCommand;
 import com.savanna.model.command.BookListCommand;
 import com.savanna.model.command.Command;
 import com.savanna.model.command.DoSignInCommand;
 import com.savanna.model.command.DoSignUpCommand;
-<<<<<<< HEAD
-=======
-import com.savanna.model.command.IdCheckCommand;
->>>>>>> dev2
+import com.savanna.model.command.InquiryIdCommand;
+import com.savanna.model.command.InquiryPwdCommand;
 import com.savanna.model.command.LogoutCommand;
+import com.savanna.model.command.MemDetailCommand;
+import com.savanna.model.command.MemListCommand;
 import com.savanna.model.command.MyInfoCommand;
 import com.savanna.model.command.PwdCheckCommand;
 import com.savanna.model.command.SignInCommand;
 import com.savanna.model.command.SignUpCommand;
+import com.savanna.model.command.UpdateCommand;
+import com.savanna.model.command.WithdrawalCommand;
 
 
 @WebServlet("/controller")
@@ -37,14 +41,11 @@ public class FrontController extends HttpServlet {
 		if ("booklist".equals(type)) {
 			command = new BookListCommand();
 			//아래의 else if 조건식란에 해당되는 명령어를 type과 equals 처리해 주세요
-<<<<<<< HEAD
+
 		} else if (1 == 2) {
 			System.out.print("error test");
 		}
-		
-=======
-		} 
->>>>>>> dev2
+
 		else if ("signUp".equals(type)) {
 			command = new SignUpCommand();
 		} 
@@ -66,12 +67,37 @@ public class FrontController extends HttpServlet {
 		else if ("logout".equals(type)) {
 			command = new LogoutCommand();
 		}
+		else if ("update".equals(type)) {
+			command = new UpdateCommand();
+		}
+		else if ("withdrawal".equals(type)) {
+			command = new WithdrawalCommand();
+		}
+		else if ("memList".equals(type.substring(0, 7))) {
+			if(type.length()==7) {
+				command = new MemListCommand("1");
+			} else
+			command = new MemListCommand(type.substring(14));
+		}
+		else if ("inquiryId".equals(type)) {
+			command = new InquiryIdCommand();
+		}
+		else if ("inquiryPwd".equals(type)) {
+			command = new InquiryPwdCommand();
+		}
+		else if ("memDetail".equals(type.substring(0, 9))) {
+			command = new MemDetailCommand(type.substring(13));
+		}
 		
-<<<<<<< HEAD
-=======
+		else if ("adminUpdate".equals(type)) {
+			command = new AdminUpdateCommand();
+		}
+		else if ("adminWithdrawal".equals(type)) {
+			command = new AdminWithdrawalCommand();
+		}
 		
 		
->>>>>>> dev2
+		
 		String path = command.execute(request, response);
 		request.getRequestDispatcher(path).forward(request, response);
 	}

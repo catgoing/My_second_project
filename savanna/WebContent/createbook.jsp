@@ -20,7 +20,6 @@ function createDummyBook(frm) {
 	bookInputs["writer"].value="dummy";
 	bookInputs["publisher"].value="dummy";
 	bookInputs["pub_date"].value= "1999-09-09";
-	alert(bookInputs["pub_date"].value);
 	bookInputs["price"].value="999";
 	bookInputs["book_desc"].value="dummy";
 	bookInputs["stock"].value="1";

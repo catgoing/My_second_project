@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.savanna.model.dao.DAO;
+import com.savanna.model.DAO;
 import com.savanna.model.vo.MemberVO;
 
 public class WithdrawalCommand implements Command{

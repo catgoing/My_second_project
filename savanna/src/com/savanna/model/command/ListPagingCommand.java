@@ -9,7 +9,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.savanna.model.ReviewDAO;
 import com.savanna.model.vo.PageVO;
 import com.savanna.model.vo.ReviewVO;
 

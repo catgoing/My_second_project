@@ -39,7 +39,15 @@
  		frm.action = "controller?type=signUp";
  		frm.submit();
  	}
-
+ 	
+ 	function temp_bookinsert(frm) {
+		frm.action = "controller?type=tempBookInsert";
+		frm.submit();
+	}
+ 	function cartList_search(frm) {
+		frm.action = "controller?type=cartList";
+		frm.submit();
+	}
 </script>
 </head>
 <body>
@@ -66,6 +74,9 @@
 		<input type="button" value="내정보" onclick="myInfo(this.form)">
 		<input type="button" value="내역확인" onclick="myHistory(this.form)">
 		<input type="button" value="로그아웃" onclick="logout(this.form)">
+		
+		<input type="button" value="책 리스트" onclick="temp_bookinsert(this.form)">
+		<input type="button" value="장바구니" onclick="cartList_search(this.form)">
 	</form>
 	</c:otherwise>
 	</c:choose>

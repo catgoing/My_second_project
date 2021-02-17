@@ -17,7 +17,7 @@
 				, pub_date
 				, price
 				, book_desc
-				, stock
+				, NVL(stock, 0)
 				, category
 				FROM BOOKS ORDER BY BOOK_NO
 	</select>
@@ -107,6 +107,11 @@
 		WHERE book_no = #{book_no}
 	</select>
 	
+    <!-- 책번호로 책 한권 검색 -->
+	<select id="onebook" parameterType="int" 
+			resultType="com.savanna.model.vo.BookVO">
+		SELECT * FROM BOOKS WHERE BOOK_NO = #{book_no }
+	</select>
 	
 	<!-- 동적 검색 -->
 	<select id="search" parameterType="map"
@@ -135,7 +140,7 @@
 	</select>
 	
 	<!-- 회원가입 -->
-	<select id="sign_up" parameterType="MemberVO">
+	<select id="signUp" parameterType="MemberVO">
 		INSERT INTO MEMBERS
 		(ID, PWD, NAME, ADDR, PHONE, EMAIL, MEM_NO, REGDATE)
 		VALUES (#{id}, #{pwd}, #{name}, #{addr}, #{phone}, #{email}, MEM_NO_SEQ.NEXTVAL, SYSDATE)
@@ -250,6 +255,78 @@
 		WHERE ID = #{id}
 	</select>	
 	
+    
+    <!-- 주소를 가져오기 위한 회원정보조회 -->
+	<select id="getmemaddr" parameterType="string" resultType="string">
+		SELECT ADDR FROM MEMBERS WHERE ID = #{id}
+	</select>
+	
+	<!-- 장바구니 전체 조회 -->
+	<select id="cartlist" parameterType="string"
+			resultType="com.savanna.model.vo.CartVO">
+		SELECT * 
+		 FROM CART
+		 WHERE ID = #{id} 
+	</select>
+	
+	<!--  장바구니에서 책번호로 조회 -->
+	<select id="cartone" parameterType="map"
+			resultType="com.savanna.model.vo.CartVO">
+		SELECT * 
+		 FROM CART 
+		 WHERE BOOK_NO = #{book_no } 
+		 AND ID = #{id}
+	</select>
+	
+	<!-- 장바구니에서 중복상품 조회 : 중복없으면 count=(result) -->
+	<select id="jungbok" parameterType="map" resultType="int">
+		SELECT COUNT(*) 
+		 FROM CART 
+		 WHERE ID = #{id} 
+		 AND BOOK_NO = #{book_no }
+	</select>
+	
+	<!-- 장바구니 내부 전체금액 조회 -->
+	<select id="totprice" parameterType="string" resultType="int">
+		SELECT NVL(SUM(CART_PRICE * CART_QUAN), 0)
+		 FROM CART 
+		 WHERE ID = #{id }
+	</select>
+
+	<!--  장바구니 물건 추가 -->
+	<insert id="insertcart" parameterType="com.savanna.model.vo.CartVO">
+		INSERT INTO CART (CART_NO, ID, BOOK_NO, BOOK_NAME, ADDR, 
+				CART_PRICE, CART_QUAN)
+		VALUES (CARTNO_SEQ.NEXTVAL, #{id}, #{book_no}, #{book_name}, #{addr}, 
+				#{cart_price}, #{cart_quan})
+	</insert>
+	
+	<!--  장바구니 수량 변경 -->
+	<update id="cartquanupdate" parameterType="map">
+		UPDATE CART
+		 SET CART_QUAN = #{cart_quan}
+	 	 WHERE id = #{id} 
+	 	 AND BOOK_NO = #{book_no}
+	</update>
+	
+	<!--  장바구니 내부 물건 삭제 -->
+	<delete id="deleteincart" parameterType="map">
+		DELETE FROM CART WHERE BOOK_NO = #{book_no} AND ID = #{id}
+	</delete>
+
+	<!-- 장바구니 삭제(구매하면 장바구니에서 삭제)--> 
+	<delete id="clearcart" parameterType="string">
+		DELETE FROM CART WHERE ID = #{id }
+	</delete>
+	
+	<!-- 구매내역에 입력 -->
+	<insert id="sendorder" parameterType="com.savanna.model.vo.CartVO">
+		INSERT INTO BUY_LIST(BUYLIST_NO, CART_NO, BOOK_NO, BOOK_NAME ,QUAN ,
+				PRICE ,ADDR ,ID ,PUR_DATE)
+		VALUES (BUYLIST_NO_SEQ.NEXTVAL, #{cart_no}, #{book_no}, #{book_name}, #{cart_quan},
+				#{totalPrice}, #{addr}, #{id}, SYSDATE)
+	</insert>	
+    
 </mapper>
 
 

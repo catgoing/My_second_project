@@ -254,6 +254,80 @@
 		FROM MEMBERS
 		WHERE ID = #{id}
 	</select>	
+
+	<!-- 페이지에 표시할 데이터 조회 
+		parameterType="Map" : begin, end 값 전달 용도
+		key-value 형태의 Map 사용 바인드변수명 key가 됨 -->
+	<select id="list" resultType="com.savanna.model.vo.ReviewVO" parameterType="Map">
+		SELECT *
+		  FROM (SELECT ROWNUM AS R_NUM, B.*
+		          FROM (SELECT *
+		                  FROM REVIEWS
+		                 ORDER BY REV_NO DESC
+		               ) B 
+		       )
+		 WHERE R_NUM BETWEEN #{begin} AND #{end}
+	</select>
+
+	<!-- 전체 게시글 수 조회 -->
+	<select id="totalCount" resultType="int">
+		SELECT COUNT(*) AS CNT FROM REVIEWS
+	</select>	
+
+	<!-- 게시글 하나 조회(REV_NO 값으로) -->
+	<select id="one" parameterType="String" resultType="com.savanna.model.vo.ReviewVO">
+		SELECT 
+			REV_NO, ID, BOOK_NO, REV_CONTENT, REV_DATE, REV_PWD
+		FROM REVIEWS
+		WHERE REV_NO = #{rev_no}
+	</select>
+	
+	<select id="review_read" resultType="com.savanna.model.vo.ReviewVO">
+		 SELECT 
+		   (REV_NO, ID, BOOK_NO, REV_CONTENT, REV_DATE, REV_PWD)
+		 FROM REVIEWS
+		 WHERE REV_NO = #{rev_no}
+	 </select>	
+	
+	<!-- 게시글 작성 -->
+	<insert id="review_insert" parameterType="ReviewVO">
+		INSERT INTO REVIEWS
+			   (REV_NO, ID, BOOK_NO, REV_CONTENT, REV_DATE, REV_PWD)
+		VALUES (REVIEWS_SEQ.NEXTVAL, #{id}, #{book_no}, #{rev_content}, SYSDATE, #{rev_pwd})			   
+	</insert>
+	
+	<!-- 게시글 수정 -->
+	<update id="review_update">
+		UPDATE REVIEWS SET BOOK_NO =#{book_no}, REV_CONTENT =#{rev_content} 
+		WHERE REV_NO = #{rev_no}
+	</update>
+	
+	<!-- 게시글 삭제 -->
+	<delete id="review_delete" parameterType="int">
+		DELETE FROM REVIEWS WHERE REV_NO = #{rev_no}
+	</delete>
+	
+	<!-- ========== 댓글처리 ================ -->
+	<!-- 게시글에 달린 댓글 조회 -->
+	<select id="commList" parameterType="string"
+			resultType="com.savanna.model.vo.CommVO">
+		SELECT *
+		  FROM COMMENTS
+		 WHERE REV_NO = #{rev_no}
+		 ORDER BY COMM_NO 
+	</select>
+	
+	<!-- 댓글 입력 -->
+	<insert id="comm_insert" parameterType="com.savanna.model.vo.CommVO">
+		INSERT INTO COMMENTS
+		       (COMM_NO, REV_NO, ID, COMM_CONTENT, COMM_DATE, COMM_PWD)
+		VALUES (COMMENTS_SEQ.NEXTVAL, #{rev_no}, #{id}, #{comm_content}, SYSDATE, #{comm_pwd})
+	</insert>
+	
+	<!-- 댓글 삭제 -->
+	<delete id="comm_delete" parameterType="int">
+		DELETE FROM COMMENTS WHERE COMM_NO = #{comm_no}
+	</delete>	
 	
     
     <!-- 주소를 가져오기 위한 회원정보조회 -->

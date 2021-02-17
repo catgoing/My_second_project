@@ -41,11 +41,11 @@
  	}
  	
  	function temp_bookinsert(frm) {
-		frm.action = "controller?type=tempBookInsert";
+		frm.action = "/savanna/controller?type=tempBookInsert";
 		frm.submit();
 	}
  	function cartList_search(frm) {
-		frm.action = "controller?type=cartList";
+		frm.action = "/savanna/controller?type=cartList";
 		frm.submit();
 	}
 </script>

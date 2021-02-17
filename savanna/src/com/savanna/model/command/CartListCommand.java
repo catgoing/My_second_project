@@ -48,6 +48,6 @@ public class CartListCommand implements Command {
 		request.setAttribute("cvo", cvo); 
 		request.setAttribute("cartlist", list);
 		
-		return "cartList.jsp";
+		return "/cart/cartList.jsp";
 	}
 }

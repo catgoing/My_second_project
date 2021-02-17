@@ -10,12 +10,12 @@
 <title>:: savanna : 장바구니 ::</title>
 <script>
 	function order_go(frm){
-		frm.action = "controller?type=orderGo";
+		frm.action = "/savanna/controller?type=orderGo";
 		frm.method = "post";
 		frm.submit();
 	}
 	function clear_cart(frm){
-		frm.action = "controller?type=clearCart";
+		frm.action = "/savanna/controller?type=clearCart";
 		frm.method = "post";
 		frm.submit();
 	}
@@ -47,7 +47,7 @@
 				<td>${cvo.book_name  }</td>
 				<td><fmt:formatNumber value="${cvo.cart_price  }" pattern="###,###"/>원</td>
 				<td>
-					<form action="controller?type=editQuan" method="post">
+					<form action="/savanna/controller?type=editQuan" method="post">
 					<input type="number" name="quant" size="3" min="1" max="10"
 							value="${cvo.cart_quan }">
 					<input type="submit" value="수정">
@@ -55,7 +55,7 @@
 				</form>
 				</td>
 				<td>
-				<form action="controller?type=deleteInCart" method="post">
+				<form action="/savanna/controller?type=deleteInCart" method="post">
 					<input type="submit" value="삭제">
 					<input type="hidden" name="book_no" value="${cvo.book_no }">
 				</form>	
@@ -86,6 +86,6 @@
 		</table>
 		<input type="button" value="index" onclick="javascript:location.href='main.jsp'">
 	</div>
-	<%@include file="footer.jspf" %>
+	<%@include file="/footer.jspf" %>
 </body>
 </html>

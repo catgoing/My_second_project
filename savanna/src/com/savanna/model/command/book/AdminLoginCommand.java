@@ -1,4 +1,4 @@
-package com.savanna.model.command;
+package com.savanna.model.command.book;
 
 import java.io.IOException;
 import java.util.List;

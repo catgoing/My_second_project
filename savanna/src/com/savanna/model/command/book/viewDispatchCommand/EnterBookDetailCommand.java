@@ -1,4 +1,4 @@
-package com.savanna.model.command;
+package com.savanna.model.command.book.viewDispatchCommand;
 
 import java.io.IOException;
 import java.util.List;
@@ -11,23 +11,15 @@ import com.savanna.model.BookDAO;
 import com.savanna.model.command.Command;
 import com.savanna.model.vo.BookVO;
 
-public class AdminLoginCommand implements Command {
+public class EnterBookDetailCommand implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		if(!isLoginValidate()) {
-			System.out.println("invalid login attempt");
-			return null;
-		}
+		int book_no = Integer.parseInt(request.getParameter("book_no")); //parseint 사전처리
+		BookVO vo = BookDAO.getBookDetail(book_no);
+		request.setAttribute("vo", vo);
 
-		System.out.println("login success");
-		List<BookVO> list = BookDAO.getBookList();
-		request.setAttribute("list", list);
-		return "bookList.jsp";
-	}
-	
-	public boolean isLoginValidate() {
-		return true;
+		return "BookDetail.jsp";
 	}
 }

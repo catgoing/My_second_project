@@ -5,20 +5,22 @@
 <head>
 <meta charset="UTF-8">
 <title>회원정보</title>
+<link href="/savanna/css/menu.css" rel="stylesheet" type="text/css">
 </head>
 <script>
 	
 	function withdrawal(frm){
-		frm.action = "controller?type=adminWithdrawal";
+		frm.action = "/savanna/controller?type=adminWithdrawal";
 		frm.submit();
 	}
 	
 	function main(){
-		location.href = "mainSignIn.jsp"
+		location.href = "/savanna/main.jsp"
 	}
 
 </script>
 <body>
+	<%@ include file="/common/menu.jspf" %>
 	<h1>회원정보</h1>
 	
 	<form action="controller?type=adminUpdate" method="post" id="fr_info">

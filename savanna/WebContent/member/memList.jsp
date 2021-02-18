@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원목록</title>
+<link href="/savanna/css/menu.css" rel="stylesheet" type="text/css">
 <style>
 	/***** 페이지 표시 부분 스타일(시작) ****/
 	.paging { list-style: none; }
@@ -48,6 +49,7 @@
 </script>
 </head>
 <body>
+	<%@ include file="/common/menu.jspf" %>
 <h1>회원목록</h1>
 	<table>
 		<caption>회원 전체 목록</caption>
@@ -66,7 +68,7 @@
 		<tbody>
 			<c:forEach var="vo" items="${list }">
 				<a href="main.jsp"></a>
-				<tr class="list" onclick="location.href = 'controller?type=memDetail?id=${vo.id }'">
+				<tr class="list" onclick="location.href = '/savanna/controller?type=memDetail?id=${vo.id }'">
 					<td >${vo.mem_no }</td>
 					<td>${vo.id }</td>
 					<td>${vo.pwd }</td>
@@ -89,7 +91,7 @@
 				</c:if>
 				<c:if test="${pageNo != pvo.nowPage }">
 					<li>
-						<a href="memList?cPage=${pageNo }">${pageNo }</a>
+						<a href="/savanna/controller?type=memList?cPage=${pageNo }">${pageNo }</a>
 					</li>
 				</c:if>		
 			</c:forEach>

@@ -22,6 +22,7 @@ import com.savanna.model.command.member.AdminUpdateCommand;
 import com.savanna.model.command.member.AdminWithdrawalCommand;
 import com.savanna.model.command.member.DoSignInCommand;
 import com.savanna.model.command.member.DoSignUpCommand;
+import com.savanna.model.command.member.IdCheckCommand;
 import com.savanna.model.command.member.InquiryIdCommand;
 import com.savanna.model.command.member.InquiryPwdCommand;
 import com.savanna.model.command.member.LogoutCommand;
@@ -65,7 +66,7 @@ public class FrontController extends HttpServlet {
 			command = new UpdateCommand();
 		} else if ("withdrawal".equals(type)) {
 			command = new WithdrawalCommand();
-		} else if ("memList".equals(type.substring(0, 7))) {
+		} else if (type.indexOf("memList") == 0) {
 			if(type.length()==7) {
 				command = new MemListCommand("1");
 			} else
@@ -74,8 +75,10 @@ public class FrontController extends HttpServlet {
 			command = new InquiryIdCommand();
 		} else if ("inquiryPwd".equals(type)) {
 			command = new InquiryPwdCommand();
-		} else if ("memDetail".equals(type.substring(0, 9))) {
+		} else if (type.indexOf("memDetail") == 0) {
 			command = new MemDetailCommand(type.substring(13));
+		} else if (type.indexOf("idCheck") == 0) {
+			command = new IdCheckCommand(type.substring(11));
 		} else if ("adminUpdate".equals(type)) {
 			command = new AdminUpdateCommand();
 		} else if ("adminWithdrawal".equals(type)) {
@@ -111,7 +114,10 @@ public class FrontController extends HttpServlet {
 		}
 
 		String path = command.execute(request, response);
-		request.getRequestDispatcher(path).forward(request, response);
+		
+		if(type.indexOf("idCheck") != 0) {
+			request.getRequestDispatcher(path).forward(request, response); // 데이터 포워딩하는 부분
+		}
 	}
 
 	@Override

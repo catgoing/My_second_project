@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.savanna.model.command.Command;
-import com.savanna.model.dao.DAO;
+import com.savanna.model.dao.MemberDAO;
 import com.savanna.model.vo.MemberVO;
 import com.savanna.model.vo.Paging;
 
@@ -33,7 +33,7 @@ public class MemListCommand implements Command{
 		Paging p = new Paging();
 
 		//1. 전체 게시물의 수를 구하기
-		p.setTotalMember(DAO.getTotalCount());
+		p.setTotalMember(MemberDAO.getTotalCount());
 		p.setTotalPage();
 //		System.out.println("> 전체 회원 수 : " + p.getTotalMember());
 //		System.out.println("> 전체 페이지 수 : " + p.getTotalPage());
@@ -87,7 +87,7 @@ public class MemListCommand implements Command{
 		
 		
 		//DB에서 현재페이지 표시할 게시글 조회
-		List<MemberVO> list = DAO.getList(map);
+		List<MemberVO> list = MemberDAO.getList(map);
 //		System.out.println("> 현재 페이지 글목록(list) : " + list);
 		
 
@@ -98,7 +98,7 @@ public class MemListCommand implements Command{
 		request.setAttribute("cPage", cPage);
 		
 		
-		return "memList.jsp";
+		return "member/memList.jsp";
 	}
 
 

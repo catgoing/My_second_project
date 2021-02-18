@@ -14,7 +14,7 @@ import com.savanna.model.command.paging.PagingFactory;
 import com.savanna.model.dao.BookDAO;
 import com.savanna.model.vo.PageVO;
 
-public class ListPagingCommand implements Command {
+public class BookListPagingCommand implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)

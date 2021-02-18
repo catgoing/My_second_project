@@ -10,13 +10,13 @@ import com.savanna.model.command.Command;
 import com.savanna.model.command.paging.ListPaging;
 import com.savanna.model.dao.BookDAO;
 import com.savanna.model.vo.BookVO;
-
+	
 public class BookListPagingCommand implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		new ListPaging<BookVO>().PagingDistributor(new BookDAO<>(), request);
+		new ListPaging<BookVO>().PagingDistributor(new BookDAO(), request);
 		return "book/bookList.jsp";
 	}
 

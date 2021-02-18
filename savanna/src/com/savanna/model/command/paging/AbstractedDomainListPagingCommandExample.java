@@ -15,7 +15,7 @@ public class AbstractedDomainListPagingCommandExample implements Command {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		new ListPaging<BookVO>().PagingDistributor(new BookDAO<>(), request);
+		new ListPaging<BookVO>().PagingDistributor(new BookDAO(), request);
 		return "book/bookList.jsp";
 	}
 

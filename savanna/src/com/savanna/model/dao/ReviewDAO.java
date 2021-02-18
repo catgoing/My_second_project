@@ -10,14 +10,14 @@ import com.savanna.model.vo.ReviewVO;
 import com.savanna.mybatis.DBService;
 
 
-public class ReviewDAO<T> implements SuperDAO {
+public class ReviewDAO implements SuperDAO {
 	@Override
 	public int getTotalCount() {
 		return this.getReivewCount();
 	}
 
 	@Override
-	public List<T> getPagedList(Map map) {
+	public List getPagedList(Map map) {
 		return this.getList(map);
 	}
 	

@@ -26,22 +26,14 @@ public class InquiryIdCommand implements Command{
 		vo1.setName(name);
 		vo1.setPhone(phone);
 		
-		
 		String id = MemberDAO.inquiryId(vo1);
 		
 		if(id != null) {
 			request.setAttribute("id", id);
-			
 			return "member/inquiryIdResult.jsp";
 		}
-		
 		else {
 			return "member/error.jsp";
 		}
-		
-		
 	}
-	
-	
-
 }

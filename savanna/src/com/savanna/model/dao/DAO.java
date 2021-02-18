@@ -11,14 +11,6 @@ import com.savanna.mybatis.DBService;
 
 public class DAO {
 
-	//직원 전체 목록 조회
-	public static List<BookVO> getBookList() {
-		SqlSession ss = DBService.getFactory().openSession();
-		List<BookVO> list = ss.selectList("mystudy.booklist");
-		ss.close();
-		return list;
-	}
-	
 	//회원가입
 	public static int signUp(MemberVO vo) {
 		SqlSession ss = DBService.getFactory().openSession(true);
@@ -84,7 +76,7 @@ public class DAO {
 	// 전체 회원수 조회
 	public static int getTotalCount() {
 		SqlSession ss = DBService.getFactory().openSession();
-		int totalCount = ss.selectOne("mystudy.totalCount");
+		int totalCount = ss.selectOne("mystudy.reviewCount");
 		ss.close();
 		return totalCount;
 	}
@@ -92,7 +84,7 @@ public class DAO {
 	// 페이지에 해당하는 회원목록 가져오기
 	public static List<MemberVO> getList(Map<String, Integer> map) {
 		SqlSession ss = DBService.getFactory().openSession();
-		List<MemberVO> list = ss.selectList("mystudy.list", map);
+		List<MemberVO> list = ss.selectList("mystudy.memberList", map);
 		ss.close();
 		return list;
 	}
@@ -120,8 +112,6 @@ public class DAO {
 		ss.close();
 		return vo;
 	}
-	
-	
 }
 
 

@@ -1,4 +1,4 @@
-package com.savanna.model;
+package com.savanna.model.dao;
 
 import java.util.List;
 import java.util.Map;
@@ -15,7 +15,7 @@ public class ReviewDAO {
 	// 게시글(REVIEWS)의 전체 건수 조회
 	public static int getTotalCount() {
 		SqlSession ss = DBService.getFactory().openSession();
-		int totalCount = ss.selectOne("mystudy.totalCount");
+		int totalCount = ss.selectOne("mystudy.reviewCount");
 		ss.close();
 		return totalCount;
 	}
@@ -23,7 +23,7 @@ public class ReviewDAO {
 	//페이지에 해당하는 글목록(게시글) 가져오기
 	public static List<ReviewVO> getList(Map<String, Integer> map) {
 		SqlSession ss = DBService.getFactory().openSession();
-		List<ReviewVO> list = ss.selectList("mystudy.list", map);
+		List<ReviewVO> list = ss.selectList("mystudy.reviewList", map);
 		ss.close();
 		return list;
 	}

@@ -1,43 +1,40 @@
-package com.savanna.model.command;
+package com.savanna.model.command.cart;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.savanna.model.command.Command;
 import com.savanna.model.dao.CartDAO;
-import com.savanna.model.vo.CartVO;
 import com.savanna.model.vo.MemberVO;
 
-public class OrderGoCommand implements Command {
+public class CartInsertCommand implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		System.out.println("카트 입력 실행!");
+
 		HttpSession session = request.getSession();
-		
 		MemberVO mvo = (MemberVO)session.getAttribute("user");
 		String id = mvo.getId();
 		System.out.println(id);
 		
-		//id, 책번호를 이용하여 CartVO정보를 가져오고 구매이력에 전달
-		List<CartVO> list = CartDAO.cartList(id);
+		System.out.println("bookno : " + request.getParameter("book_no"));
+		int book_no = Integer.parseInt(request.getParameter("book_no"));
 		
-		for(CartVO vo : list) {
-			vo.setTotalPrice(vo.getCart_price());
-			System.out.println(vo.getTotalPrice());
-			System.out.println(vo.toString());
-			CartDAO.sendOrder(vo);
+		boolean result = CartDAO.insertCart(book_no, id);
+		
+		String path = "";
+		if(result) {
+			path = "jungbok.jsp";
+		} else {
+			path = "controller?type=cartList";
 		}
-		
-		//장바구니 비우기~~
-		CartDAO.clearCart(id);
-		
-		return "main.jsp";
+		return path;
 	}
 
 }

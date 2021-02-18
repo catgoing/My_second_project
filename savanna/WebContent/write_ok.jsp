@@ -1,6 +1,5 @@
-<%@page import="com.savanna.model.ReviewDAO"%>
+<%@page import="com.savanna.model.dao.ReviewDAO"%>
 <%@page import="com.savanna.model.vo.ReviewVO"%>
-<%@page import="com.savanna.model.DAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%-- 전달받은 파라미터 값을 DB에 입력하고 list.jsp 이동 --%>

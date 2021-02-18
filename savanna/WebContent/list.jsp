@@ -2,7 +2,7 @@
 <%@page import="java.util.List"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.HashMap"%>
-<%@page import="com.savanna.model.ReviewDAO"%>
+<%@page import="com.savanna.model.dao.ReviewDAO"%>
 <%@page import="com.savanna.model.vo.ReviewVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  

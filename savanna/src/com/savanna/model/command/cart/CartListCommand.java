@@ -1,4 +1,4 @@
-package com.savanna.model.command;
+package com.savanna.model.command.cart;
 
 import java.io.IOException;
 import java.util.List;
@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.savanna.model.command.Command;
 import com.savanna.model.dao.CartDAO;
 import com.savanna.model.vo.CartVO;
 import com.savanna.model.vo.MemberVO;

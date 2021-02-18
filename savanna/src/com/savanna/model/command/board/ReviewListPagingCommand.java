@@ -1,4 +1,4 @@
-package com.savanna.model.command.book;
+package com.savanna.model.command.board;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -10,11 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.savanna.model.command.Command;
-import com.savanna.model.dao.BookDAO;
-import com.savanna.model.vo.BookVO;
+import com.savanna.model.dao.ReviewDAO;
 import com.savanna.model.vo.PageVO;
+import com.savanna.model.vo.ReviewVO;
 
-public class ListPagingCommand implements Command {
+public class ReviewListPagingCommand implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
@@ -22,7 +22,7 @@ public class ListPagingCommand implements Command {
 
 		PageVO page = new PageVO();
 
-		page.setTotalRecord(BookDAO.getBookCount());
+		page.setTotalRecord(ReviewDAO.getTotalCount());
 		page.setTotalPage();
 
 		page.initPage();
@@ -54,7 +54,7 @@ public class ListPagingCommand implements Command {
 		map.put("end", page.getCurPageRecordEndIdx());
 
 		//DB에서 현재페이지 표시할 게시글 조회
-		List<BookVO> list = BookDAO.getPagedList(map);
+		List<ReviewVO> list = ReviewDAO.getList(map);
 
 		request.setAttribute("list", list);
 		request.setAttribute("pvo", page);

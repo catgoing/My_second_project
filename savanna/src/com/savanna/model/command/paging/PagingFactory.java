@@ -1,11 +1,5 @@
 package com.savanna.model.command.paging;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import com.savanna.model.dao.BookDAO;
-import com.savanna.model.vo.BookVO;
 import com.savanna.model.vo.PageVO;
 
 public interface PagingFactory {

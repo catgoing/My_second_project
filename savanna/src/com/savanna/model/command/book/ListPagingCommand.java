@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.savanna.model.command.Command;
 import com.savanna.model.command.paging.PagingFactory;
 import com.savanna.model.dao.BookDAO;
-import com.savanna.model.vo.BookVO;
 import com.savanna.model.vo.PageVO;
 
 public class ListPagingCommand implements Command {
@@ -21,17 +20,19 @@ public class ListPagingCommand implements Command {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		PageVO page = PagingFactory.getPage(BookDAO.getBookCount(), request.getParameter("cPage"));
-
-		Map<String, Integer> map = new HashMap<>();
-		map.put("begin", page.getCurPageRecordBeginIdx());
-		map.put("end", page.getCurPageRecordEndIdx());
-
-		//DB에서 현재페이지 표시할 게시글 조회
-		List<BookVO> list = BookDAO.getPagedList(map);
-
-		request.setAttribute("list", list);
 		request.setAttribute("pvo", page);
+		
+		List<?> list = BookDAO.getPagedBookList(getRecordRange(page.getCurPageRecordBeginIdx(), page.getCurPageRecordEndIdx()));
+		request.setAttribute("list", list);
+		
 		return "book/bookList.jsp";
+	}
+	
+	public Map<String, Integer> getRecordRange(int recordBeginIdx, int recordEndIdx) {
+		return new HashMap<String, Integer>() {{
+					put("begin", recordBeginIdx);
+					put("end", recordEndIdx);
+				}};
 	}
 
 	public boolean isLoginValidate() {

@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.savanna.model.command.Command;
 import com.savanna.model.command.paging.ListPaging;
 import com.savanna.model.dao.ReviewDAO;
-import com.savanna.model.vo.BookVO;
+import com.savanna.model.vo.ReviewVO;
 
 public class ReviewListPagingCommand implements Command {
 

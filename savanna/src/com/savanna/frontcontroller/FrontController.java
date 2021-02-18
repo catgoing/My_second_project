@@ -116,13 +116,7 @@ public class FrontController extends HttpServlet {
 		} else if("UpdateBook".equals(type)) {
 			System.out.print("expect:UpdateBook");
 			command = new UpdateBookCommand();
-<<<<<<< HEAD
 		} else if("reviewPage".equals(type) || "reviewList".equals(type)) {
-=======
-		} else if("reviewPage".equals(type)) {
-			command = new ReviewListPagingCommand();
-		} else if("reviewList".equals(type)) {
->>>>>>> main
 			command = new ReviewListPagingCommand();
 		} else if("reviewInsert".equals(type)) {
 			command = new ReviewInsertCommand();

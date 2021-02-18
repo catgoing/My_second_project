@@ -18,21 +18,32 @@ public class PageVO {
 	private int curBlockBeginIdx = 0; //현재 블록의 시작 페이지 번호
 	private int curBlockEndIdx = 0; //현재 블록의 끝 페이지 번호
 
-	public void setTotalPage() {
-		totalPage = totalRecord / recordPerPage;
-		if (totalRecord % recordPerPage > 0) totalPage++;
+	public void initPage(int recordCount) {
+		this.setRecordScale(recordCount);
+		this.setRangeOfPageNo();
+		this.setRangeOfBlockNo();
+		this.logging();
 	}
-	public void initPage() {
+	public void setRecordScale(int recordCount) {
+		this.setTotalRecord(recordCount);
+		this.setTotalPage();
+	}
+	public void setTotalPage() {
+		this.setTotalPage(this.getTotalRecord() % this.getRecordPerPage() > 0
+						? (this.getTotalRecord() / this.getRecordPerPage())+1
+						: this.getTotalRecord() / this.getRecordPerPage());
+	}
+	public void setRangeOfPageNo() {
 		this.setCurPageRecordBeginIdx((this.getCurPage()-1) * this.getRecordPerPage() + 1);
 		this.setCurPageRecordEndIdx(this.getCurPageRecordEndIdx() > this.getTotalRecord()
 									? this.getTotalRecord()
 									: this.getCurPage() * this.getRecordPerPage());
-		
-		this.setCurBlockBeginIdx((this.getCurPage()-1) / this.getPagePerBlock() * this.getPagePerBlock() + 1);
+	}
+	public void setRangeOfBlockNo() {
+		this.setCurBlockBeginIdx((int)((this.getCurPage()-1) / this.getPagePerBlock()) * this.getPagePerBlock() + 1);
 		this.setCurBlockEndIdx(this.getCurBlockEndIdx() > this.getTotalPage()
 								? this.getTotalPage()
 								: this.getCurBlockBeginIdx() + this.getPagePerBlock() - 1);
-		this.logging();
 	}
 	public void logging() {
 		System.out.println("--------------");

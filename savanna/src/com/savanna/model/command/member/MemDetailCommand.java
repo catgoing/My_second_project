@@ -29,6 +29,4 @@ public class MemDetailCommand implements Command{
 		
 		return "member/memDetail.jsp";
 	}
-
-
 }

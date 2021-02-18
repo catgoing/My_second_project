@@ -126,6 +126,9 @@ public class FrontController extends HttpServlet {
 
 		String path = command.execute(request, response);
 
+		if(type.indexOf("List") != 0) {
+			request.setAttribute("curList", type);
+		}
 		if(type.indexOf("idCheck") != 0) {
 			request.getRequestDispatcher(path).forward(request, response); // 데이터 포워딩하는 부분
 		}

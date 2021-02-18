@@ -8,17 +8,17 @@
 <script>
 
  	function myInfo(frm){
- 		frm.action = "controller?type=pwdCheck";
+ 		frm.action = "/savanna/controller?type=pwdCheck";
  		frm.submit();
  	}
  	
  	function myHistory(frm) {
- 		frm.action = "controller?type=myHistory";
+ 		frm.action = "/savanna/controller?type=myHistory";
  		frm.submit();
  	}
  	
  	function logout(frm) {
- 		frm.action = "controller?type=logout";
+ 		frm.action = "/savanna/controller?type=logout";
  		frm.submit();
  	}
 

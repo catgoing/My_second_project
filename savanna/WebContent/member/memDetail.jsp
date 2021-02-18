@@ -9,12 +9,12 @@
 <script>
 	
 	function withdrawal(frm){
-		frm.action = "controller?type=adminWithdrawal";
+		frm.action = "/savanna/controller?type=adminWithdrawal";
 		frm.submit();
 	}
 	
 	function main(){
-		location.href = "mainSignIn.jsp"
+		location.href = "/savanna/main.jsp"
 	}
 
 </script>

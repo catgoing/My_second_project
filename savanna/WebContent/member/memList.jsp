@@ -66,7 +66,7 @@
 		<tbody>
 			<c:forEach var="vo" items="${list }">
 				<a href="main.jsp"></a>
-				<tr class="list" onclick="location.href = 'controller?type=memDetail?id=${vo.id }'">
+				<tr class="list" onclick="location.href = '/savanna/controller?type=memDetail?id=${vo.id }'">
 					<td >${vo.mem_no }</td>
 					<td>${vo.id }</td>
 					<td>${vo.pwd }</td>
@@ -89,7 +89,7 @@
 				</c:if>
 				<c:if test="${pageNo != pvo.nowPage }">
 					<li>
-						<a href="memList?cPage=${pageNo }">${pageNo }</a>
+						<a href="/savanna/controller?type=memList?cPage=${pageNo }">${pageNo }</a>
 					</li>
 				</c:if>		
 			</c:forEach>

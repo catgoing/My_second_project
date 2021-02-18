@@ -11,13 +11,13 @@
 	}
 	
 	function qwdInquiry(){
-		location.href = "";
+		location.href = "inquiryPwd.jsp";
 	}
 </script>
 </head>
 <body>
 <h1>로그인</h1>
-	    <form action="controller?type=doSignIn" method="post">
+	    <form action="/savanna/controller?type=doSignIn" method="post">
         <table>
             <tr>
                 <td>아이디</td>
@@ -37,7 +37,7 @@
                     <input type="button" value="아이디 찾기" onclick="idInquiry()">
                 </td>
                 <td>
-                    <input type="button" value="비밀번호 찾기" onclick="">
+                    <input type="button" value="비밀번호 찾기" onclick="qwdInquiry()">
                 </td>
             </tr>
         </table> 

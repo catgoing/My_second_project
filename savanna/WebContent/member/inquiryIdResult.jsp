@@ -9,6 +9,6 @@
 <body>
 <h1>회원님의 아이디는</h1>
 <p>${id }입니다</p>
-<p><a href="signIn.jsp">로그인</a></p>
+<p><a href="member/signIn.jsp">로그인</a></p>
 </body>
 </html>

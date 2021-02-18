@@ -8,7 +8,7 @@
 </head>
 <body>
 <h1>패스워드 찾기</h1>
-<form action="controller?type=inquiryPwd" method="post">
+<form action="/savanna/controller?type=inquiryPwd" method="post">
 	<table>
 		<tr>
 		<td>아이디</td>

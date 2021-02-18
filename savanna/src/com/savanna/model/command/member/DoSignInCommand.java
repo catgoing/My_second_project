@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.savanna.model.command.Command;
-import com.savanna.model.dao.DAO;
+import com.savanna.model.dao.MemberDAO;
 import com.savanna.model.vo.MemberVO;
 
 
@@ -28,7 +28,7 @@ public class DoSignInCommand implements Command{
 		vo1.setPwd(pwd);
 		
 		
-		MemberVO vo = DAO.signIn(vo1);
+		MemberVO vo = MemberDAO.signIn(vo1);
 //		System.out.println("vo: " + vo);
 		
 		// 로그인 시 세션 생성
@@ -45,7 +45,7 @@ public class DoSignInCommand implements Command{
 		}
 		
 		else {
-			return "error.jsp";
+			return "member/error.jsp";
 		}
 		
 		

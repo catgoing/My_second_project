@@ -8,7 +8,7 @@
 </head>
 <body>
 <h1>아이디 찾기</h1>
-<form action="controller?type=inquiryId" method="post">
+<form action="/savanna/controller?type=inquiryId" method="post">
 	<table>
 		<tr>
 		<td>이름</td>

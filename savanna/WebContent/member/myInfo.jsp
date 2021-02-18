@@ -9,18 +9,18 @@
 <script>
 	
 	function withdrawal(){
-		location.href = "withdrawal.jsp"
+		location.href = "member/withdrawal.jsp"
 	}
 	
 	function main(){
-		location.href = "mainSignIn.jsp"
+		location.href = "/savanna/main.jsp"
 	}
 
 </script>
 <body>
 	<h1>내정보</h1>
 	
-	<form action="controller?type=update" method="post" id="fr_info">
+	<form action="/savanna/controller?type=update" method="post" id="fr_info">
 	<table id="info_t">
 		<tr>
 			<th>이름</th>

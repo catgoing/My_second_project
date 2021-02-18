@@ -9,7 +9,7 @@ import com.savanna.model.vo.BookVO;
 import com.savanna.model.vo.MemberVO;
 import com.savanna.mybatis.DBService;
 
-public class DAO {
+public class MemberDAO {
 
 	//회원가입
 	public static int signUp(MemberVO vo) {

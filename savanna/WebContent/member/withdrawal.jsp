@@ -19,7 +19,7 @@ $(function (){
 		var pwdchk = $('#pwdchk').val();
 		
 		$.ajax({
-			url : 'doPwdCheck?id=' + id + '&pwd=' + pwdchk,
+			url : '/savanna/doPwdCheck?id=' + id + '&pwd=' + pwdchk,
 			type : 'get',
 			success : function(data){
 				console.log(data);
@@ -30,7 +30,7 @@ $(function (){
 					 
 				} else {
 					var form = document.forms[0];
-					form.action = "controller?type=withdrawal"
+					form.action = "/savanna/controller?type=withdrawal"
 					form.submit();
 				}
 				

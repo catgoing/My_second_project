@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.savanna.model.command.Command;
-import com.savanna.model.dao.DAO;
+import com.savanna.model.dao.MemberDAO;
 import com.savanna.model.vo.MemberVO;
 
 public class AdminWithdrawalCommand implements Command{
@@ -23,8 +23,8 @@ public class AdminWithdrawalCommand implements Command{
 		vo.setId(request.getParameter("id"));
 		
 //		System.out.println(vo);
-		DAO.withdrawal1(vo); // 회원정보 탈퇴테이블에 복사
-		DAO.withdrawal2(vo); // 회원정보 삭제
-		return "controller?type=memList";
+		MemberDAO.withdrawal1(vo); // 회원정보 탈퇴테이블에 복사
+		MemberDAO.withdrawal2(vo); // 회원정보 삭제
+		return "/savanna/controller?type=memList";
 	}
 }

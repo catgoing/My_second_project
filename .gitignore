@@ -176,3 +176,5 @@
 /.metadata/
 /bin/
 >>>>>>> Stashed changes
+savanna/build/classes/com/savanna/mybatis/config.xml
+savanna/build/classes/com/savanna/mybatis/mapper.xml

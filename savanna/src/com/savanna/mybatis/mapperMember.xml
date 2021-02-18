@@ -121,7 +121,13 @@
 		FROM MEMBERS
 		WHERE ID = #{id}
 	</select>	
-		
+	
+	<!-- 구매내역 리스트-->
+	<select id="buyList" parameterType="string" resultType="BuyVO">
+		SELECT BOOK_NAME, QUAN, PRICE, PUR_DATE
+		FROM BUY_LIST
+		WHERE ID = #{id}
+	</select>			
 
 </mapper>
 

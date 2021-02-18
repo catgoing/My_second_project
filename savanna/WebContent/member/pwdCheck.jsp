@@ -20,7 +20,7 @@ $(function (){
 		var pwdchk = $('#pwdchk').val();
 		
 		$.ajax({
-			url : 'doPwdCheck?id=' + id + '&pwd=' + pwdchk,
+			url : '/savanna/controller?type=doPwdCheck?id=' + id + '&pwd=' + pwdchk,
 			type : 'get',
 			success : function(data){
 				console.log(data);
@@ -29,7 +29,7 @@ $(function (){
 						'패스워드가 일치하지 않습니다';
 					 document.getElementById('error').style.color='red';
 					 
-				} else location.href = "controller?type=myInfo";
+				} else location.href = "/savanna/controller?type=myInfo";
 				
 			}
 		})
@@ -37,19 +37,7 @@ $(function (){
 
 })
 
-	/*
-	$(function pwd_check(frm){
-		var pwdchk = $("pwdchk").val();
-		
-		if( ${user.pwd } == pwdchk ){
-			frm.action = "controller?type=myInfo.jsp";
-		} else {
-			document.getElementById('error').innerHTML='비밀번호가 일치하지 않습니다';
-			document.getElementById('check2').style.color='red';
-		}
-	}
-	);
-	*/
+
 	
 </script>
 <body>
@@ -59,7 +47,7 @@ $(function (){
 <form name="fr">
 	<p>패스워드를 입력해주세요</p>
 	<input type="password" id="pwdchk">
-	<input type="button" id="btn" value="확인" onclick="pwd_check(this.form)">
+	<input type="button" id="btn" value="확인">
 	<p id="error"></p>
 </form>
 

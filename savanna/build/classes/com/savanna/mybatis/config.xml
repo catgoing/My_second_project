@@ -11,6 +11,7 @@
   	<typeAlias type="com.savanna.model.vo.MemberVO" alias="MemberVO"/>
   	<typeAlias type="com.savanna.model.vo.ReviewVO" alias="ReviewVO"/>
   	<typeAlias type="com.savanna.model.vo.CommVO" alias="CommVO"/>
+  	<typeAlias type="com.savanna.model.vo.BuyVO" alias="BuyVO"/>
   </typeAliases>
 
   <environments default="development">

@@ -28,6 +28,7 @@ public class ListPagingCommand implements Command {
 
 		//DB에서 현재페이지 표시할 게시글 조회
 		List<BookVO> list = BookDAO.getPagedList(map);
+		System.out.println("list: " + list);
 
 		request.setAttribute("list", list);
 		request.setAttribute("pvo", page);

@@ -9,11 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.savanna.model.command.Command;
+import com.savanna.model.command.book.AbstractedBookListPagingCommand;
 import com.savanna.model.command.book.AdminLoginCommand;
 import com.savanna.model.command.book.CardListCommand;
 import com.savanna.model.command.book.CreateBookCommand;
 import com.savanna.model.command.book.DeleteBookCommand;
-import com.savanna.model.command.book.ListPagingCommand;
 import com.savanna.model.command.book.UpdateBookCommand;
 import com.savanna.model.command.book.viewDispatchCommand.EnterBookDetailCommand;
 import com.savanna.model.command.book.viewDispatchCommand.EnterCreateBookViewCommand;
@@ -54,6 +54,7 @@ public class FrontController extends HttpServlet {
 		} else if ("doSignUp".equals(type)) {
 			command = new DoSignUpCommand();
 		} else if ("signIn".equals(type)) {
+			System.out.print("expect:SignIn");
 			command = new SignInCommand();
 		} else if ("doSignIn".equals(type)) {
 			command = new DoSignInCommand();
@@ -93,8 +94,8 @@ public class FrontController extends HttpServlet {
 			command = new AdminLoginCommand();
 		} else if("PagedAdminLogin".equals(type)) {
 			System.out.print("Expect:PagedAdminLogin");
-			command = new ListPagingCommand();
-		} else if("createbook".equals(type)) {
+			command = new AbstractedBookListPagingCommand();
+		} else if("CreateBook".equals(type)) {
 			command = new CreateBookCommand();
 		} else if("EnterCreateBook".equals(type)) {
 			command = new EnterCreateBookViewCommand();

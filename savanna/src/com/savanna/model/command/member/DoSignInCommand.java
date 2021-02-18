@@ -38,7 +38,7 @@ public class DoSignInCommand implements Command{
 
 		if(vo != null && pwd.equals(vo.getPwd().toString())) {
 			request.setAttribute("vo", vo);
-				return "member/main.jsp";
+				return "main.jsp";
 		}
 		else {
 			return "member/error.jsp";

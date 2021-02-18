@@ -24,7 +24,7 @@ public class AdminLoginCommand implements Command {
 		System.out.println("login success");
 		List<BookVO> list = BookDAO.getBookList();
 		request.setAttribute("list", list);
-		return "bookList.jsp";
+		return "book/bookList.jsp";
 	}
 	
 	public boolean isLoginValidate() {

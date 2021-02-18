@@ -1,4 +1,4 @@
-package com.savanna.model.command.book;
+package com.savanna.model.command.member;
 
 import java.io.IOException;
 import java.io.PrintWriter;

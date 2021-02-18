@@ -18,7 +18,7 @@ public class EnterCreateBookViewCommand implements Command {
 			throws ServletException, IOException {
 		
 		System.out.println("EnterCreateBook");
-		return "createbook.jsp";
+		return "book/createbook.jsp";
 	}
 	
 }

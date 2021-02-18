@@ -19,7 +19,7 @@ public class CardListCommand implements Command {
 		List<BookVO> list = BookDAO.getBookList();
 		request.setAttribute("list", list);
 
-		return "CardList.jsp";
+		return "book/cardList.jsp";
 	}
 
 }

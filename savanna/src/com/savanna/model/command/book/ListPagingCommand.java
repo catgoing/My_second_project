@@ -45,7 +45,7 @@ public class ListPagingCommand implements Command {
 		
 		request.setAttribute("list", list);
 		request.setAttribute("pvo", page);
-		return "bookList.jsp";
+		return "book/bookList.jsp";
 	}
 	
 	public boolean isLoginValidate() {

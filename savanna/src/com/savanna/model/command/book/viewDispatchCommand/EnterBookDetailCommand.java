@@ -20,6 +20,6 @@ public class EnterBookDetailCommand implements Command {
 		BookVO vo = BookDAO.getBookDetail(book_no);
 		request.setAttribute("vo", vo);
 
-		return "BookDetail.jsp";
+		return "book/bookDetail.jsp";
 	}
 }

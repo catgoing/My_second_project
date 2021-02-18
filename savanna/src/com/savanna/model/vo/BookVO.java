@@ -10,6 +10,10 @@ public class BookVO {
 	private String book_desc;
 	private int stock;
 	private String category;
+	public BookVO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	public int getBook_no() {
 		return book_no;
 	}

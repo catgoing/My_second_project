@@ -1,7 +1,7 @@
 <%@page import="java.util.List"%>
 <%@page import="com.savanna.model.vo.ReviewVO"%>
 <%@page import="com.savanna.model.vo.CommVO"%>
-<%@page import="com.savanna.model.ReviewDAO"%>
+<%@page import="com.savanna.model.dao.ReviewDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>

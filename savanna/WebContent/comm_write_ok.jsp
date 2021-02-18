@@ -1,6 +1,5 @@
 <%@page import="com.savanna.model.vo.CommVO"%>
-<%@page import="com.savanna.model.ReviewDAO"%>
-<%@page import="com.savanna.model.DAO"%>
+<%@page import="com.savanna.model.dao.ReviewDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 

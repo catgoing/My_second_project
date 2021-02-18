@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>작업선택</title>
 <script>
-	function getcardlist(frm) {
+	function getCardlist(frm) {
 		frm.action = "controller?type=cardlist";
 		frm.submit();
 	}
@@ -28,7 +28,7 @@
 <body>
 	<h1>작업선택</h1>
 	<form method="post">
-		<input type="button" value="카드 리스트" onclick="getcardlist(this.form)">
+		<input type="button" value="카드 리스트" onclick="getCardlist(this.form)">
 		<input type="button" value="관리자 로그인" onclick="adminLogin(this.form)">
         <input type="button" value="책 리스트" onclick="temp_bookinsert(this.form)">
 		<input type="button" value="장바구니" onclick="cartList_search(this.form)">

@@ -42,7 +42,7 @@ public class FrontController extends HttpServlet {
 		System.out.println(">> FrontController.doGet() 실행~~");
 		String type = request.getParameter("type");
 		System.out.println("> type : "+ type);
-		
+
 		Command command = null;
 		if (1 == 2) {
 			System.out.print("error test");
@@ -108,11 +108,11 @@ public class FrontController extends HttpServlet {
 		} else {
 			System.out.print("Command Error");
 		}
-		
+
 		String path = command.execute(request, response);
 		request.getRequestDispatcher(path).forward(request, response);
 	}
-	
+
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println(">> FrontController.doPost() 실행~~");

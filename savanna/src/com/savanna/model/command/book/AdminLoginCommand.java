@@ -26,7 +26,7 @@ public class AdminLoginCommand implements Command {
 		request.setAttribute("list", list);
 		return "book/bookList.jsp";
 	}
-	
+
 	public boolean isLoginValidate() {
 		return true;
 	}

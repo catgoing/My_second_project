@@ -8,9 +8,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.savanna.model.command.Command;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import com.savanna.model.dao.ReviewDAO;
 import com.savanna.model.vo.PageVO;
 import com.savanna.model.vo.ReviewVO;
+=======
+import com.savanna.model.command.paging.ListPaging;
+import com.savanna.model.dao.ReviewDAO;
+import com.savanna.model.vo.BookVO;
+>>>>>>> Stashed changes
 =======
 import com.savanna.model.command.paging.ListPaging;
 import com.savanna.model.dao.ReviewDAO;
@@ -22,6 +28,7 @@ public class ReviewListPagingCommand implements Command {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 
 		PageVO page = new PageVO();
@@ -62,6 +69,8 @@ public class ReviewListPagingCommand implements Command {
 		request.setAttribute("pvo", page);
 		return "book/bookList.jsp";
 =======
+=======
+>>>>>>> Stashed changes
 		new ListPaging<BookVO>().PagingDistributor(new ReviewDAO<>(), request);
 		return "board/list.jsp";
 >>>>>>> Stashed changes

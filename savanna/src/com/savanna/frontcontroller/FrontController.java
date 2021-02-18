@@ -18,6 +18,9 @@ import com.savanna.model.command.board.ReviewInsertCommand;
 import com.savanna.model.command.board.ReviewListPagingCommand;
 import com.savanna.model.command.board.ReviewModifyCommand;
 import com.savanna.model.command.book.BookListPagingCommand;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 import com.savanna.model.command.book.CardListCommand;
 import com.savanna.model.command.book.CreateBookCommand;
@@ -122,7 +125,10 @@ public class FrontController extends HttpServlet {
 			System.out.print("expect:UpdateBook");
 			command = new UpdateBookCommand();
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 		} else if("reviewPage".equals(type) || "reviewList".equals(type)) {
 			command = new ReviewListPagingCommand();
 		} else if("reviewInsert".equals(type)) {

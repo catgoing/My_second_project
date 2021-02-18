@@ -40,7 +40,7 @@ public class MemListCommand implements Command{
 		
 		//2. 현재 페이지 구하기
 		
-//		System.out.println("cpage: " + cPage);
+		System.out.println("cpage: " + cPage);
 		
 		
 		if (cPage != null) {

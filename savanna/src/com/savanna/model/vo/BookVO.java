@@ -1,6 +1,6 @@
 package com.savanna.model.vo;
 
-public class BookVO {
+public class BookVO implements SuperVO {
 	private int book_no;
 	private String book_name;
 	private String writer;
@@ -10,10 +10,7 @@ public class BookVO {
 	private String book_desc;
 	private int stock;
 	private String category;
-	public BookVO() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	
 	public int getBook_no() {
 		return book_no;
 	}
@@ -80,5 +77,8 @@ public class BookVO {
 		this.book_desc = book_desc;
 		this.stock = stock;
 		this.category = category;
+	}
+	public BookVO() {
+		super();
 	}
 }

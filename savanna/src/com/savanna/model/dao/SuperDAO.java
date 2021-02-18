@@ -1,5 +1,9 @@
 package com.savanna.model.dao;
 
-public interface SuperDAO {
+import java.util.List;
+import java.util.Map;
 
+public interface SuperDAO<T> {
+	int getTotalCount();
+	List<T> getPagedList(Map<String, Integer> map);
 }

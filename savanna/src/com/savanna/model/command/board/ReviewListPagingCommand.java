@@ -1,24 +1,28 @@
 package com.savanna.model.command.board;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.savanna.model.command.Command;
+<<<<<<< Updated upstream
 import com.savanna.model.dao.ReviewDAO;
 import com.savanna.model.vo.PageVO;
 import com.savanna.model.vo.ReviewVO;
+=======
+import com.savanna.model.command.paging.ListPaging;
+import com.savanna.model.dao.ReviewDAO;
+import com.savanna.model.vo.BookVO;
+>>>>>>> Stashed changes
 
 public class ReviewListPagingCommand implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+<<<<<<< Updated upstream
 
 		PageVO page = new PageVO();
 
@@ -57,10 +61,12 @@ public class ReviewListPagingCommand implements Command {
 		request.setAttribute("list", list);
 		request.setAttribute("pvo", page);
 		return "book/bookList.jsp";
+=======
+		new ListPaging<BookVO>().PagingDistributor(new ReviewDAO<>(), request);
+		return "board/list.jsp";
+>>>>>>> Stashed changes
 	}
-
 	public boolean isLoginValidate() {
 		return true;
 	}
-
 }

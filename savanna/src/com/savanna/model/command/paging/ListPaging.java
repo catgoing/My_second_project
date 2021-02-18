@@ -11,7 +11,7 @@ import com.savanna.model.dao.BookDAO;
 import com.savanna.model.dao.SuperDAO;
 import com.savanna.model.vo.PageVO;
 
-public class ListPagingCommand<T> {
+public class ListPaging<T> {
 
 	public void PagingDistributor(SuperDAO<T> dao, HttpServletRequest request)
 			throws ServletException, IOException {

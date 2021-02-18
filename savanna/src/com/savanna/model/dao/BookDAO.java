@@ -16,7 +16,7 @@ public class BookDAO<T> implements SuperDAO<T> {
 	}
 	@Override
 	public List<T> getPagedList(Map<String, Integer> map) {
-		return (List<T>) getPagedBookList(map);
+		return (List<T>) this.getPagedBookList(map);
 	}
 
 	public static List<BookVO> getBookList() {
@@ -28,7 +28,7 @@ public class BookDAO<T> implements SuperDAO<T> {
 	
 	public List<BookVO> getPagedBookList(Map<String, Integer> map) {
 		SqlSession ss = DBService.getFactory().openSession();
-		List<BookVO> list = ss.selectList("mystudy.pagedDatelessBookList", map);
+		List<BookVO> list = ss.selectList("mystudy.pagedBookList", map);
 		ss.close();
 		return list;
 	}

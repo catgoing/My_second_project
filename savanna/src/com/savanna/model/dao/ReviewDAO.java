@@ -10,10 +10,19 @@ import com.savanna.model.vo.ReviewVO;
 import com.savanna.mybatis.DBService;
 
 
-public class ReviewDAO {
+public class ReviewDAO<T> implements SuperDAO {
+	@Override
+	public int getTotalCount() {
+		return this.getReivewCount();
+	}
 
+	@Override
+	public List<T> getPagedList(Map map) {
+		return this.getList(map);
+	}
+	
 	// 게시글(REVIEWS)의 전체 건수 조회
-	public static int getTotalCount() {
+	private int getReivewCount() {
 		SqlSession ss = DBService.getFactory().openSession();
 		int totalCount = ss.selectOne("mystudy.reviewCount");
 		ss.close();
@@ -21,7 +30,7 @@ public class ReviewDAO {
 	}
 	
 	//페이지에 해당하는 글목록(게시글) 가져오기
-	public static List<ReviewVO> getList(Map<String, Integer> map) {
+	private List<ReviewVO> getList(Map<String, Integer> map) {
 		SqlSession ss = DBService.getFactory().openSession();
 		List<ReviewVO> list = ss.selectList("mystudy.reviewList", map);
 		ss.close();
@@ -83,5 +92,4 @@ public class ReviewDAO {
 		ss.close();
 		return result;
 	}
-	
 }

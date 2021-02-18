@@ -76,7 +76,7 @@ public class MemberDAO {
 	// 전체 회원수 조회
 	public static int getTotalCount() {
 		SqlSession ss = DBService.getFactory().openSession();
-		int totalCount = ss.selectOne("member.reviewCount");
+		int totalCount = ss.selectOne("member.totalCount");
 		ss.close();
 		return totalCount;
 	}
@@ -84,7 +84,7 @@ public class MemberDAO {
 	// 페이지에 해당하는 회원목록 가져오기
 	public static List<MemberVO> getList(Map<String, Integer> map) {
 		SqlSession ss = DBService.getFactory().openSession();
-		List<MemberVO> list = ss.selectList("member.memberList", map);
+		List<MemberVO> list = ss.selectList("member.list", map);
 		ss.close();
 		return list;
 	}

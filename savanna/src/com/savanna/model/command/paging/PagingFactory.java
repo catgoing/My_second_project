@@ -1,43 +1,26 @@
-package com.savanna.model.command.book;
+package com.savanna.model.command.paging;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import com.savanna.model.command.Command;
-import com.savanna.model.command.paging.PagingFactory;
 import com.savanna.model.dao.BookDAO;
 import com.savanna.model.vo.BookVO;
 import com.savanna.model.vo.PageVO;
 
-public class ListPagingCommand implements Command {
-
-	@Override
-	public String execute(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+public interface PagingFactory {
+	public static PageVO getPage(String cPage){
 		PageVO page = new PageVO();
 
+		page.setCurPage(isCurPageNotNull(cPage) ? Integer.parseInt(cPage) : 1);
 		page.setTotalRecord(BookDAO.getBookCount());
 		page.setTotalPage();
-
 		page.initPage();
-
-		String cPage = request.getParameter("cPage");
-		if (cPage != null) {
-			page.setCurPage(Integer.parseInt(cPage));
-		}
-
-		page.setCurPageRecordEndIdx(page.getCurPage() * page.getRecordPerPage()); //현재페이지번호 * 페이지당 글수
+		page.setCurPageRecordEndIdx(page.getCurPage() * page.getRecordPerPage());
 		page.setCurPageRecordBeginIdx(page.getCurPageRecordEndIdx() - page.getRecordPerPage() + 1);
-
 		if (page.getCurPageRecordEndIdx() > page.getTotalRecord()) {
 			page.setCurPageRecordBeginIdx(page.getTotalRecord());
-		}
+		   }
 
 		int curPage = page.getCurPage();
 		int curBlockBeginIdx = (curPage - 1) / page.getPagePerBlock() * page.getPagePerBlock() + 1;
@@ -48,21 +31,13 @@ public class ListPagingCommand implements Command {
 			page.setCurBlockEndIdx(page.getTotalPage());
 		}
 
-
 		Map<String, Integer> map = new HashMap<>();
 		map.put("begin", page.getCurPageRecordBeginIdx());
 		map.put("end", page.getCurPageRecordEndIdx());
 
-		//DB에서 현재페이지 표시할 게시글 조회
-		List<BookVO> list = BookDAO.getPagedList(map);
-
-		request.setAttribute("list", list);
-		request.setAttribute("pvo", page);
-		return "book/bookList.jsp";
+		return page;
 	}
-
-	public boolean isLoginValidate() {
-		return true;
+	static boolean isCurPageNotNull(String cPage) {
+		return cPage != null ? true : false;
 	}
-
 }

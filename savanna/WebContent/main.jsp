@@ -31,12 +31,12 @@
  	}
  	
  	function signIn(frm){
- 		frm.action = "controller?type=signIn";
+ 		frm.action = "/savanna/controller?type=signIn";
  		frm.submit();
  	}
  	
  	function signUp(frm) {
- 		frm.action = "controller?type=signUp";
+ 		frm.action = "/savanna/controller?type=signUp";
  		frm.submit();
  	}
  	

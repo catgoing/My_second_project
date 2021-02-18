@@ -12,7 +12,6 @@ import com.savanna.model.command.Command;
 import com.savanna.model.dao.DAO;
 import com.savanna.model.vo.MemberVO;
 
-
 public class DoSignInCommand implements Command{
 
 	@Override
@@ -27,7 +26,6 @@ public class DoSignInCommand implements Command{
 		vo1.setId(id);
 		vo1.setPwd(pwd);
 		
-		
 		MemberVO vo = DAO.signIn(vo1);
 //		System.out.println("vo: " + vo);
 		
@@ -37,20 +35,12 @@ public class DoSignInCommand implements Command{
 		// 로그인 정보 세션에 저장
 		httpSession.setAttribute("user", vo);
 		
-		
 		if(vo != null && pwd.equals(vo.getPwd().toString())) {
 			request.setAttribute("vo", vo);
-
-				return "main.jsp";
+				return "member/main.jsp";
 		}
-		
 		else {
-			return "error.jsp";
+			return "member/error.jsp";
 		}
-		
-		
 	}
-	
-	
-
 }

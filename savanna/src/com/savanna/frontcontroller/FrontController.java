@@ -51,6 +51,7 @@ public class FrontController extends HttpServlet {
 		} else if ("doSignUp".equals(type)) {
 			command = new DoSignUpCommand();
 		} else if ("signIn".equals(type)) {
+			System.out.print("expect:SignIn");
 			command = new SignInCommand();
 		} else if ("doSignIn".equals(type)) {
 			command = new DoSignInCommand();
@@ -87,7 +88,7 @@ public class FrontController extends HttpServlet {
 		} else if("PagedAdminLogin".equals(type)) {
 			System.out.print("Expect:PagedAdminLogin");
 			command = new ListPagingCommand();
-		} else if("createbook".equals(type)) {
+		} else if("CreateBook".equals(type)) {
 			command = new CreateBookCommand();
 		} else if("EnterCreateBook".equals(type)) {
 			command = new EnterCreateBookViewCommand();

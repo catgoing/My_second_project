@@ -13,8 +13,6 @@ public class SignInCommand implements Command{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		return "signIn.jsp";
+		return "member/signIn.jsp";
 	}
-
 }

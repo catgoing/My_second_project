@@ -15,6 +15,6 @@
 <body>
 	<%@ include file="common/menu.jspf" %>
 
-	
+
 </body>
 </html>

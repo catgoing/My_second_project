@@ -8,17 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import com.savanna.model.vo.BookVO;
 import com.savanna.mybatis.DBService;
 
-public class BookDAO<T> implements SuperDAO<T> {
-	
-	@Override
-	public int getTotalCount() {
-		return BookDAO.getBookCount();
-	}
-	@Override
-	public List<T> getPagedList(Map<String, Integer> map) {
-		return (List<T>) getPagedBookList(map);
-	}
-
+public class StaticBookDAO {
 	public static List<BookVO> getBookList() {
 		SqlSession ss = DBService.getFactory().openSession();
 		List<BookVO> list = ss.selectList("mystudy.booklist");
@@ -26,7 +16,7 @@ public class BookDAO<T> implements SuperDAO<T> {
 		return list;
 	}
 	
-	public List<BookVO> getPagedBookList(Map<String, Integer> map) {
+	public static List<BookVO> getPagedBookList(Map<String, Integer> map) {
 		SqlSession ss = DBService.getFactory().openSession();
 		List<BookVO> list = ss.selectList("mystudy.pagedDatelessBookList", map);
 		ss.close();

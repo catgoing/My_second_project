@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.savanna.model.command.Command;
+import com.savanna.model.command.book.AbstractedBookListPagingCommand;
 import com.savanna.model.command.book.AdminLoginCommand;
-import com.savanna.model.command.book.BookListPagingCommand;
 import com.savanna.model.command.book.CardListCommand;
 import com.savanna.model.command.book.CreateBookCommand;
 import com.savanna.model.command.book.DeleteBookCommand;
@@ -90,7 +90,7 @@ public class FrontController extends HttpServlet {
 			command = new AdminLoginCommand();
 		} else if("PagedAdminLogin".equals(type)) {
 			System.out.print("Expect:PagedAdminLogin");
-			command = new BookListPagingCommand();
+			command = new AbstractedBookListPagingCommand();
 		} else if("CreateBook".equals(type)) {
 			command = new CreateBookCommand();
 		} else if("EnterCreateBook".equals(type)) {

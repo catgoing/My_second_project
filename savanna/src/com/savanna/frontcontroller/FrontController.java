@@ -9,6 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.savanna.model.command.Command;
+import com.savanna.model.command.board.ReviewDeleteCommand;
+import com.savanna.model.command.board.ReviewInsertCommand;
+import com.savanna.model.command.board.ReviewListCommand;
+import com.savanna.model.command.board.ReviewListPagingCommand;
+import com.savanna.model.command.board.ReviewModifyCommand;
 import com.savanna.model.command.book.AdminLoginCommand;
 import com.savanna.model.command.book.CardListCommand;
 import com.savanna.model.command.book.CreateBookCommand;
@@ -109,9 +114,19 @@ public class FrontController extends HttpServlet {
 		} else if("UpdateBook".equals(type)) {
 			System.out.print("expect:UpdateBook");
 			command = new UpdateBookCommand();
+		} else if("reviewPage".equals(type)) {
+			command = new ReviewListPagingCommand();
+		} else if("reviewList".equals(type)) {
+			command = new ReviewListPagingCommand();
+		} else if("reviewInsert".equals(type)) {
+			command = new ReviewInsertCommand();
+		} else if("reviewModify".equals(type)) {
+			command = new ReviewModifyCommand();
+		} else if("reviewDelete".equals(type)) {
+			command = new ReviewDeleteCommand();
 		} else {
 			System.out.print("Command Error");
-		}
+		} 
 
 		String path = command.execute(request, response);
 		

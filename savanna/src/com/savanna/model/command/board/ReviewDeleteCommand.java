@@ -18,6 +18,6 @@ public class ReviewDeleteCommand implements Command{
 		int result = ReviewDAO.delete(rev_no);
 		System.out.println(result);
 
-		return "controller?type=PagedAdminLogin";
+		return "../controller?type=reviewList";
 	}
 }

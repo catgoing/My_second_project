@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.savanna.model.command.Command;
-import com.savanna.model.dao.DAO;
+import com.savanna.model.dao.MemberDAO;
 import com.savanna.model.vo.MemberVO;
 
 public class AdminUpdateCommand implements Command{
@@ -34,9 +34,9 @@ public class AdminUpdateCommand implements Command{
 		vo.setMem_no(request.getParameter("mem_no"));
 		
 		
-		DAO.update(vo);
+		MemberDAO.update(vo);
 			
-		return "doUpdate.jsp";
+		return "member/doUpdate.jsp";
 	}
 	
 	

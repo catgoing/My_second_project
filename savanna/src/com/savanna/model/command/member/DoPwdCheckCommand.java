@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.savanna.model.dao.DAO;
+import com.savanna.model.dao.MemberDAO;
 import com.savanna.model.vo.MemberVO;
 
 @WebServlet("/doPwdCheck")
@@ -34,7 +34,7 @@ public class DoPwdCheckCommand extends HttpServlet{
 		vo1.setPwd(pwd);
 //		System.out.println(vo1);
 		
-		result = DAO.pwdCheck(vo1);
+		result = MemberDAO.pwdCheck(vo1);
 //		System.out.println("pwdcheck: " + result);
 
 		

@@ -11,10 +11,10 @@
 	<script>
 		alert("정보가 수정되었습니다");
 		if('${user.id}' == 'a'){
-			location.href = "controller?type=memList";
+			location.href = "/savanna/controller?type=memList";
 		}
 		if('${user.id}' != 'a'){
-		location.href = "myInfo.jsp";
+		location.href = "member/myInfo.jsp";
 		}
 	</script>
 </body>

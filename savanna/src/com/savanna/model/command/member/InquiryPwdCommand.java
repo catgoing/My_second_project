@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.savanna.model.command.Command;
-import com.savanna.model.dao.DAO;
+import com.savanna.model.dao.MemberDAO;
 import com.savanna.model.vo.MemberVO;
 
 
@@ -26,16 +26,16 @@ public class InquiryPwdCommand implements Command{
 		vo1.setId(id);
 		vo1.setName(name);
 		
-		String pwd = DAO.inquiryPwd(vo1);
+		String pwd = MemberDAO.inquiryPwd(vo1);
 		
 		if(id != null) {
 			request.setAttribute("pwd", pwd);
 			
-			return "inquiryPwdResult.jsp";
+			return "member/inquiryPwdResult.jsp";
 		}
 		
 		else {
-			return "error.jsp";
+			return "member/error.jsp";
 		}
 		
 		

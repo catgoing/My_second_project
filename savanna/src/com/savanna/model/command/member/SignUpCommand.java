@@ -14,7 +14,7 @@ public class SignUpCommand implements Command{
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		return "signUp.jsp";
+		return "member/signUp.jsp";
 	}
 
 }

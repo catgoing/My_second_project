@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.savanna.model.command.Command;
-import com.savanna.model.dao.DAO;
+import com.savanna.model.dao.MemberDAO;
 import com.savanna.model.vo.MemberVO;
 import com.savanna.model.vo.Paging;
 
@@ -30,14 +30,14 @@ public class MemDetailCommand implements Command{
 		
 
 		
-		MemberVO vo = DAO.memDetail(id);
+		MemberVO vo = MemberDAO.memDetail(id);
 //		System.out.println(vo);
 
 		request.setAttribute("vo", vo);
 
 		
 		
-		return "memDetail.jsp";
+		return "member/memDetail.jsp";
 	}
 
 

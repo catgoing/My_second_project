@@ -5,19 +5,21 @@
 <head>
 <meta charset="UTF-8">
 <title>로그인</title>
+<link href="/savanna/css/menu.css" rel="stylesheet" type="text/css">
 <script>
 	function idInquiry(){
 		location.href = "inquiryId.jsp";
 	}
 	
 	function qwdInquiry(){
-		location.href = "";
+		location.href = "inquiryPwd.jsp";
 	}
 </script>
 </head>
 <body>
+	<%@ include file="/common/menu.jspf" %>
 <h1>로그인</h1>
-	    <form action="controller?type=doSignIn" method="post">
+	    <form action="/savanna/controller?type=doSignIn" method="post">
         <table>
             <tr>
                 <td>아이디</td>
@@ -37,7 +39,7 @@
                     <input type="button" value="아이디 찾기" onclick="idInquiry()">
                 </td>
                 <td>
-                    <input type="button" value="비밀번호 찾기" onclick="">
+                    <input type="button" value="비밀번호 찾기" onclick="qwdInquiry()">
                 </td>
             </tr>
         </table> 

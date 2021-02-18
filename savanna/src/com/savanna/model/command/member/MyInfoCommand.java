@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.savanna.model.command.Command;
-import com.savanna.model.dao.DAO;
+import com.savanna.model.dao.MemberDAO;
 import com.savanna.model.vo.MemberVO;
 
 public class MyInfoCommand implements Command{
@@ -21,11 +21,11 @@ public class MyInfoCommand implements Command{
 		MemberVO vo1 = new MemberVO();
 		vo1.setId(id);
 
-		MemberVO vo = DAO.signIn(vo1);
+		MemberVO vo = MemberDAO.signIn(vo1);
 
 		request.setAttribute("vo", vo);
 
-		return "myInfo.jsp";
+		return "member/myInfo.jsp";
 
 	}
 

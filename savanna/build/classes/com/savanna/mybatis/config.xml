@@ -27,6 +27,7 @@
   
   <mappers>
     <mapper resource="com/savanna/mybatis/mapper.xml"/>
+    <mapper resource="com/savanna/mybatis/mapperMember.xml"/>
   </mappers>
 </configuration>
 

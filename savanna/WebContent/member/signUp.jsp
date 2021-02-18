@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
+<link href="/savanna/css/menu.css" rel="stylesheet" type="text/css">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script>
 		
@@ -13,7 +14,7 @@
 			$('#id').keyup(function(){
 				var id = $('#id').val();
 				$.ajax({
-					url : 'idCheck?id=' + id,
+					url : '/savanna/controller?type=idCheck?id=' + id,
 					type : 'get',
 					success : function(data){
 						console.log(data);
@@ -148,8 +149,9 @@
 </script>
 </head>
 <body>
+	<%@ include file="/common/menu.jspf" %>
 	<h1>회원가입</h1>
-  	<form action="controller?type=doSignUp" method="post" name="fr" onsubmit="return null_check()">
+  	<form action="/savanna/controller?type=doSignUp" method="post" name="fr" onsubmit="return null_check()">
         <table>
             <tr>
                 <td>아이디</td>

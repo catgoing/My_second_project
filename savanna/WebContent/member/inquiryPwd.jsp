@@ -5,10 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>패스워드 찾기</title>
+<link href="/savanna/css/menu.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <h1>패스워드 찾기</h1>
-<form action="controller?type=inquiryPwd" method="post">
+<form action="/savanna/controller?type=inquiryPwd" method="post">
 	<table>
 		<tr>
 		<td>아이디</td>

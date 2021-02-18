@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.savanna.model.command.Command;
-import com.savanna.model.dao.DAO;
+import com.savanna.model.dao.MemberDAO;
 import com.savanna.model.vo.MemberVO;
 
 public class DoSignUpCommand implements Command{
@@ -28,9 +28,9 @@ public class DoSignUpCommand implements Command{
 		vo.setEmail(request.getParameter("email"));
 		
 		
-		DAO.signUp(vo);
+		MemberDAO.signUp(vo);
 			
-		return "doSignUp.jsp";
+		return "member/doSignUp.jsp";
 	}
 	
 	

@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.savanna.model.command.Command;
-import com.savanna.model.dao.DAO;
+import com.savanna.model.dao.MemberDAO;
 import com.savanna.model.vo.MemberVO;
 
 public class WithdrawalCommand implements Command{
@@ -26,8 +26,8 @@ public class WithdrawalCommand implements Command{
 
 //		System.out.println(vo);
 
-		DAO.withdrawal1(vo); // 회원정보 탈퇴테이블에 복사
-		DAO.withdrawal2(vo); // 회원정보 삭제
+		MemberDAO.withdrawal1(vo); // 회원정보 탈퇴테이블에 복사
+		MemberDAO.withdrawal2(vo); // 회원정보 삭제
 
 		// 세션 초기화
 		HttpSession httpSession = request.getSession(true);

@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.savanna.model.command.Command;
-import com.savanna.model.dao.DAO;
+import com.savanna.model.dao.MemberDAO;
 import com.savanna.model.vo.MemberVO;
 
 public class UpdateCommand implements Command{
@@ -39,9 +39,9 @@ public class UpdateCommand implements Command{
 		//수정된 정보 세션에 저장
 		httpSession.setAttribute("user", vo);
 		
-		DAO.update(vo);
+		MemberDAO.update(vo);
 			
-		return "doUpdate.jsp";
+		return "member/doUpdate.jsp";
 	}
 	
 	

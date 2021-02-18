@@ -20,7 +20,7 @@ public class AbstractedBookListPagingCommand implements Command {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		new ListPagingCommand<BookVO>().PagingDistributor(new BookDAO(), request);
 		return "book/bookList.jsp";
 	}

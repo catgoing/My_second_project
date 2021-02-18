@@ -70,12 +70,7 @@
 	}
 	/***** 페이지 표시 부분 스타일(끝) ****/
 </style>
-<script>
-	function enterCreateBookView(frm) {
-		frm.action = "controller?type=reviewlist";
-		frm.submit();
-	}
-</script>
+
 </head>
 <body>
 
@@ -105,7 +100,7 @@
 			<td>${vo.rev_no }</td>
 			<td>${vo.book_no }</td>
 			<td class="align-left">
-				<a href="view.jsp?rev_no=${vo.rev_no }&cPage=${pvo.curPage}">${vo.rev_content }</a>
+				<a href="board/view.jsp?rev_no=${vo.rev_no }&cPage=${pvo.curPage}">${vo.rev_content }</a>
 			</td>
 			<td>${vo.id }</td>			
 			<td>${vo.rev_date }</td>
@@ -124,7 +119,7 @@
 					<li class="disable">이전으로</li>
 				</c:when>
 				<c:otherwise>
-					<li><a href="list.jsp?cPage=${pvo.curBlockBeginIdx - 1}">이전으로</a></li>
+					<li><a href="controller?type=reviewList&cPage=${pvo.curBlockBeginIdx - 1}">이전으로</a></li>
 				</c:otherwise>	
 			</c:choose>		
 			<%-- 블록내에 표시할 페이지 태그 작성(시작페이지 ~ 끝페이지)
@@ -135,7 +130,7 @@
 				</c:if>
 				<c:if test="${pageNo != pvo.curPage }">
 					<li>
-						<a href="controller?type=PagedAdminLogin&cPage=${pageNo }">${pageNo }</a>
+						<a href="controller?type=reviewList&cPage=${pageNo }">${pageNo }</a>
 					</li>
 				</c:if>		
 			</c:forEach>		
@@ -143,7 +138,7 @@
 				curBlockEndIdx가 전체페이지수(totalPage)보다 작은경우 활성화 --%>	
 				<c:if test="${pvo.curBlockEndIdx < pvo.totalPage }">	
 					<li>
-						<a href="controller?type=PagedAdminLogin&cPage=${pvo.curBlockEndIdx + 1}">다음으로</a>
+						<a href="controller?type=reviewList&cPage=${pvo.curBlockEndIdx + 1}">다음으로</a>
 					</li>
 				</c:if>
 				<c:if test="${pvo.curBlockEndIdx >= pvo.totalPage }">	
@@ -153,7 +148,7 @@
 			</td>
 			<td>
 				<input type="button" value="글쓰기"
-					onclick="javascript:location.href='write.jsp'">
+					onclick="javascript:location.href='board/write.jsp'">
 			</td>
 		</tr>
 	</tfoot>

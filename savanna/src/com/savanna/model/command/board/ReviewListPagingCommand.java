@@ -16,7 +16,7 @@ public class ReviewListPagingCommand implements Command {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		new ListPaging<BookVO>().PagingDistributor(new ReviewDAO(), request);
+		new ListPaging<ReviewVO>().PagingDistributor(new ReviewDAO(), request);
 		return "board/list.jsp";
 	}
 	public boolean isLoginValidate() {

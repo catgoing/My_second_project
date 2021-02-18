@@ -6,6 +6,27 @@
 	
 
 	<c:choose>
+	
+	<c:when test="${user.id == 'a' }">
+	<header>
+        <nav>
+            <ul>
+                <li><a href="">내역조회</a></li>
+                <div class="dropdown" style="float:right"> 
+                <li><a href="#news">마이페이지</a></li>
+                    <div class="dropdown-content">
+                        <a href="#">구매내역</a>
+                        <a href="#">찜리스트</a>
+                    </div>
+                </div>    
+                <li><a href="/savanna/controller?type=logout">로그아웃</a></li>
+                <li><a href="/savanna/controller?type=memList">회원목록</a></li>
+                <li><a>관리자 로그인</a></li>
+                <li style="float:left"><a class="active home" href="/savanna/main.jsp">홈</a></li>
+            </ul>
+        </nav>
+    </header>
+	</c:when>
 	<c:when test="${null == user.id }">
 	<header>
         <nav>

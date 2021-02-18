@@ -116,7 +116,13 @@ public class FrontController extends HttpServlet {
 		} else if("UpdateBook".equals(type)) {
 			System.out.print("expect:UpdateBook");
 			command = new UpdateBookCommand();
+<<<<<<< HEAD
 		} else if("reviewPage".equals(type) || "reviewList".equals(type)) {
+=======
+		} else if("reviewPage".equals(type)) {
+			command = new ReviewListPagingCommand();
+		} else if("reviewList".equals(type)) {
+>>>>>>> main
 			command = new ReviewListPagingCommand();
 		} else if("reviewInsert".equals(type)) {
 			command = new ReviewInsertCommand();
@@ -129,7 +135,7 @@ public class FrontController extends HttpServlet {
 		}
 
 		String path = command.execute(request, response);
-		
+
 		if(type.indexOf("idCheck") != 0) {
 			request.getRequestDispatcher(path).forward(request, response); // 데이터 포워딩하는 부분
 		}

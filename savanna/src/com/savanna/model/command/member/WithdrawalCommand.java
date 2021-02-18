@@ -19,13 +19,10 @@ public class WithdrawalCommand implements Command{
 			throws ServletException, IOException {
 
 		request.setCharacterEncoding("UTF-8");
-
 		MemberVO vo = new MemberVO();
-
 		vo.setId(request.getParameter("id"));
 
 //		System.out.println(vo);
-
 		MemberDAO.withdrawal1(vo); // 회원정보 탈퇴테이블에 복사
 		MemberDAO.withdrawal2(vo); // 회원정보 삭제
 
@@ -33,10 +30,6 @@ public class WithdrawalCommand implements Command{
 		HttpSession httpSession = request.getSession(true);
 		httpSession.invalidate();
 
-
 		return "main.jsp";
 	}
-
-
-
 }

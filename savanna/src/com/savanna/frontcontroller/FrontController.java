@@ -14,11 +14,11 @@ import com.savanna.model.command.board.ReviewInsertCommand;
 import com.savanna.model.command.board.ReviewListCommand;
 import com.savanna.model.command.board.ReviewListPagingCommand;
 import com.savanna.model.command.board.ReviewModifyCommand;
+import com.savanna.model.command.book.AbstractedBookListPagingCommand;
 import com.savanna.model.command.book.AdminLoginCommand;
 import com.savanna.model.command.book.CardListCommand;
 import com.savanna.model.command.book.CreateBookCommand;
 import com.savanna.model.command.book.DeleteBookCommand;
-import com.savanna.model.command.book.ListPagingCommand;
 import com.savanna.model.command.book.UpdateBookCommand;
 import com.savanna.model.command.book.viewDispatchCommand.EnterBookDetailCommand;
 import com.savanna.model.command.book.viewDispatchCommand.EnterCreateBookViewCommand;
@@ -95,7 +95,7 @@ public class FrontController extends HttpServlet {
 			command = new AdminLoginCommand();
 		} else if("PagedAdminLogin".equals(type)) {
 			System.out.print("Expect:PagedAdminLogin");
-			command = new ListPagingCommand();
+			command = new AbstractedBookListPagingCommand();
 		} else if("CreateBook".equals(type)) {
 			command = new CreateBookCommand();
 		} else if("EnterCreateBook".equals(type)) {
@@ -126,10 +126,10 @@ public class FrontController extends HttpServlet {
 			command = new ReviewDeleteCommand();
 		} else {
 			System.out.print("Command Error");
-		} 
+		}
 
 		String path = command.execute(request, response);
-		
+
 		if(type.indexOf("idCheck") != 0) {
 			request.getRequestDispatcher(path).forward(request, response); // 데이터 포워딩하는 부분
 		}

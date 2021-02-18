@@ -39,9 +39,7 @@ public class MemListCommand implements Command{
 //		System.out.println("> 전체 페이지 수 : " + p.getTotalPage());
 		
 		//2. 현재 페이지 구하기
-		
 //		System.out.println("cpage: " + cPage);
-		
 		
 		if (cPage != null) {
 			p.setNowPage(Integer.parseInt(cPage));
@@ -77,7 +75,6 @@ public class MemListCommand implements Command{
 //		System.out.println(">>시작페이지(beginPage) : " + p.getBeginPage());
 //		System.out.println(">>끝페이지(endPage) : " + p.getEndPage());
 		
-		
 		//=====================================
 		//현재 페이지 기준으로 DB데이터(게시글) 가져오기
 		//시작글번호, 끝글번호 저장용 Map 만들기(전달할 파라미터 저장용)
@@ -85,11 +82,9 @@ public class MemListCommand implements Command{
 		map.put("begin", p.getBegin());
 		map.put("end", p.getEnd());
 		
-		
 		//DB에서 현재페이지 표시할 게시글 조회
 		List<MemberVO> list = MemberDAO.getList(map);
 //		System.out.println("> 현재 페이지 글목록(list) : " + list);
-		
 
 //		List<MemberVO> list = DAO.getMemList();
 //		
@@ -97,9 +92,6 @@ public class MemListCommand implements Command{
 		request.setAttribute("pvo", p);
 		request.setAttribute("cPage", cPage);
 		
-		
 		return "member/memList.jsp";
 	}
-
-
 }

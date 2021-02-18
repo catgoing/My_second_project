@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>탈퇴 확인</title>
+<link href="/savanna/css/menu.css" rel="stylesheet" type="text/css">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>    
 </head>
 <script>
@@ -43,6 +44,7 @@ $(function (){
 	
 </script>
 <body>
+	<%@ include file="/common/menu.jspf" %>
 <h1>패스워드 확인</h1>
 
 <form method="post" name="fr">

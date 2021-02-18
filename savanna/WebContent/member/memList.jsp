@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원목록</title>
+<link href="/savanna/css/menu.css" rel="stylesheet" type="text/css">
 <style>
 	/***** 페이지 표시 부분 스타일(시작) ****/
 	.paging { list-style: none; }
@@ -48,6 +49,7 @@
 </script>
 </head>
 <body>
+	<%@ include file="/common/menu.jspf" %>
 <h1>회원목록</h1>
 	<table>
 		<caption>회원 전체 목록</caption>

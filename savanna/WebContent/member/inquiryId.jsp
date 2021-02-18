@@ -5,8 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>아이디 찾기</title>
+<link href="/savanna/css/menu.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+	<%@ include file="/common/menu.jspf" %>
 <h1>아이디 찾기</h1>
 <form action="/savanna/controller?type=inquiryId" method="post">
 	<table>

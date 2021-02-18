@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>로그인</title>
+<link href="/savanna/css/menu.css" rel="stylesheet" type="text/css">
 <script>
 	function idInquiry(){
 		location.href = "inquiryId.jsp";
@@ -16,6 +17,7 @@
 </script>
 </head>
 <body>
+	<%@ include file="/common/menu.jspf" %>
 <h1>로그인</h1>
 	    <form action="/savanna/controller?type=doSignIn" method="post">
         <table>

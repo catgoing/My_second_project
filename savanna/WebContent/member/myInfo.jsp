@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>내정보</title>
+<link href="/savanna/css/menu.css" rel="stylesheet" type="text/css">
 </head>
 <script>
 	
@@ -18,6 +19,7 @@
 
 </script>
 <body>
+	<%@ include file="/common/menu.jspf" %>
 	<h1>내정보</h1>
 	
 	<form action="/savanna/controller?type=update" method="post" id="fr_info">

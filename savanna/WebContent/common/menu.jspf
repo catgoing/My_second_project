@@ -10,7 +10,7 @@
 	<header>
         <nav>
             <ul>
-                <li><a href="cart/cartList.jsp">장바구니</a></li>
+                <li><a href="/savanna/cart/cartList.jsp">장바구니</a></li>
                 <div class="dropdown" style="float:right"> 
                 <li><a href="#news">마이페이지</a></li>
                     <div class="dropdown-content">
@@ -18,9 +18,9 @@
                         <a href="#">찜리스트</a>
                     </div>
                 </div>    
-                <li><a href="member/signUp.jsp">회원가입</a></li>
-                <li><a href="member/signIn.jsp">로그인</a></li>
-                <li style="float:left"><a class="active home" href="main.jsp">홈</a></li>
+                <li><a href="/savanna/member/signUp.jsp">회원가입</a></li>
+                <li><a href="/savanna/member/signIn.jsp">로그인</a></li>
+                <li style="float:left"><a class="active home" href="/savanna/main.jsp">홈</a></li>
             </ul>
         </nav>
     </header>
@@ -29,7 +29,7 @@
 		<header>
         <nav>
             <ul>
-                <li><a href="cart/cartList.jsp">장바구니</a></li>
+                <li><a href="/savanna/cart/cartList.jsp">장바구니</a></li>
                 <div class="dropdown" style="float:right"> 
                 <li><a href="#news">마이페이지</a></li>
                     <div class="dropdown-content">
@@ -40,7 +40,7 @@
                 <li><a href="/savanna/controller?type=logout">로그아웃</a></li>
                 <li><a href="/savanna/controller?type=myInfo">내정보</a></li>
                 <li>${user.name }님 환영합니다</li>
-                <li style="float:left"><a class="active home" href="main.jsp">홈</a></li>
+                <li style="float:left"><a class="active home" href="/savanna/main.jsp">홈</a></li>
             </ul>
         </nav>
     </header>

@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>패스워드 찾기 결과</title>
+<link href="/savanna/css/menu.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <h1>회원님의 패스워드는</h1>

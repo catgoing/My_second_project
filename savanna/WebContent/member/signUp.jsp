@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
+<link href="/savanna/css/menu.css" rel="stylesheet" type="text/css">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script>
 		
@@ -148,6 +149,7 @@
 </script>
 </head>
 <body>
+	<%@ include file="/common/menu.jspf" %>
 	<h1>회원가입</h1>
   	<form action="/savanna/controller?type=doSignUp" method="post" name="fr" onsubmit="return null_check()">
         <table>

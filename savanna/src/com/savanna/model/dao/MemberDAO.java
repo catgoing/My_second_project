@@ -115,7 +115,7 @@ public class MemberDAO implements SuperDAO{
 
 	@Override
 	public int getTotalCount() {
-		return this.getTotalCount();
+		return this.getMemberCount();
 	}
 
 	@Override

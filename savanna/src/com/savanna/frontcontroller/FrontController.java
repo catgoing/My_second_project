@@ -14,7 +14,6 @@ import com.savanna.model.command.board.ReviewInsertCommand;
 import com.savanna.model.command.board.ReviewListPagingCommand;
 import com.savanna.model.command.board.ReviewModifyCommand;
 import com.savanna.model.command.book.BookListPagingCommand;
-import com.savanna.model.command.book.CardListCommand;
 import com.savanna.model.command.book.CreateBookCommand;
 import com.savanna.model.command.book.DeleteBookCommand;
 import com.savanna.model.command.book.EnterCardListCommand;
@@ -90,13 +89,10 @@ public class FrontController extends HttpServlet {
 			command = new AdminUpdateCommand();
 		} else if ("adminWithdrawal".equals(type)) {
 			command = new AdminWithdrawalCommand();
-		} else if("cardlist".equals(type)) {
-			System.out.println("showing cardlist");
-			command = new CardListCommand();
-		} else if("AdminLogin".equals(type)) {
+		} else if("StockList".equals(type)) {
 			command = new EnterCardListCommand();
-		} else if("PagedAdminLogin".equals(type)) {
-			System.out.print("Expect:PagedAdminLogin");
+		} else if("StockManagerPage".equals(type)) {
+			System.out.print("Expect:StockManagerPage");
 			command = new BookListPagingCommand();
 		} else if("CreateBook".equals(type)) {
 			command = new CreateBookCommand();

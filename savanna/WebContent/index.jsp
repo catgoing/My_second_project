@@ -8,11 +8,11 @@
 <title>작업선택</title>
 <script>
 	function getCardlist(frm) {
-		frm.action = "controller?type=cardlist";
+		frm.action = "controller?type=StockList";
 		frm.submit();
 	}
 	 function adminLogin(frm) {
-		frm.action = "controller?type=PagedAdminLogin";
+		frm.action = "controller?type=StockManagerPage";
 		frm.submit();
 	}
     function temp_bookinsert(frm) {

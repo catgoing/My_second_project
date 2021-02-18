@@ -45,6 +45,24 @@ public class PageVO {
 								? this.getTotalPage()
 								: this.getCurBlockBeginIdx() + this.getPagePerBlock() - 1);
 	}
+	
+	//delegate lagacy
+	public int getBegin() {
+		return this.getCurPageRecordBeginIdx();
+	}		
+	public int getEnd() {
+		return this.getCurPageRecordEndIdx();
+	}
+	public int getBeginPage() {
+		return this.getCurBlockBeginIdx();
+	}
+	public int getEndPage() {
+		return this.getCurBlockEndIdx();
+	}
+	public int getNowPage() {
+		return this.getCurPage();
+	}
+	
 	public void logging() {
 		System.out.println("--------------");
 		System.out.println("> 전체 게시글 수 : " + this.getTotalRecord());

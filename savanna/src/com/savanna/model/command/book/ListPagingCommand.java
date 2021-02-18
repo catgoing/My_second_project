@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.savanna.model.command.Command;
+import com.savanna.model.command.paging.PagingFactory;
 import com.savanna.model.dao.BookDAO;
 import com.savanna.model.vo.BookVO;
 import com.savanna.model.vo.PageVO;
@@ -19,35 +20,7 @@ public class ListPagingCommand implements Command {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		PageVO page = new PageVO();
-
-		page.setTotalRecord(BookDAO.getBookCount());
-		page.setTotalPage();
-
-		page.initPage();
-
-		String cPage = request.getParameter("cPage");
-		if (cPage != null) {
-			page.setCurPage(Integer.parseInt(cPage));
-		}
-
-		page.setCurPageRecordEndIdx(page.getCurPage() * page.getRecordPerPage()); //현재페이지번호 * 페이지당 글수
-		page.setCurPageRecordBeginIdx(page.getCurPageRecordEndIdx() - page.getRecordPerPage() + 1);
-
-		if (page.getCurPageRecordEndIdx() > page.getTotalRecord()) {
-			page.setCurPageRecordBeginIdx(page.getTotalRecord());
-		   }
-
-		int curPage = page.getCurPage();
-		int curBlockBeginIdx = (curPage - 1) / page.getPagePerBlock() * page.getPagePerBlock() + 1;
-		page.setCurBlockBeginIdx(curBlockBeginIdx);
-		page.setCurBlockEndIdx(page.getCurBlockBeginIdx() + page.getPagePerBlock() - 1);
-
-		if (page.getCurBlockEndIdx() > page.getTotalPage()) {
-			page.setCurBlockEndIdx(page.getTotalPage());
-		}
-
+		PageVO page = PagingFactory.getPage(BookDAO.getBookCount(), request.getParameter("cPage"));
 
 		Map<String, Integer> map = new HashMap<>();
 		map.put("begin", page.getCurPageRecordBeginIdx());

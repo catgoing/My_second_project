@@ -25,8 +25,6 @@ public class ReviewListPagingCommand implements Command {
 		page.setTotalRecord(ReviewDAO.getTotalCount());
 		page.setTotalPage();
 
-		page.initPage();
-
 		String cPage = request.getParameter("cPage");
 		if (cPage != null) {
 			page.setCurPage(Integer.parseInt(cPage));

@@ -18,6 +18,13 @@ public class PageVO {
 	private int curBlockBeginIdx = 0; //현재 블록의 시작 페이지 번호
 	private int curBlockEndIdx = 0; //현재 블록의 끝 페이지 번호
 
+	public PageVO(int recordPerPage, int pagePerBlock) {
+		this.setPageScale(recordPerPage, pagePerBlock);
+	}
+	public void setPageScale(int recordPerPage, int pagePerBlock) {
+		this.setRecordPerPage(recordPerPage);
+		this.setPagePerBlock(pagePerBlock);
+	}
 	public void initPage(int recordCount) {
 		this.setRecordScale(recordCount);
 		this.setRangeOfPageNo();

@@ -5,8 +5,10 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.savanna.model.command.Command;
+import com.savanna.model.dao.ReviewDAO;
 
 public class CommDeleteCommand implements Command{
 	@Override

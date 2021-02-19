@@ -18,7 +18,7 @@ public class DomainListPagingCommandExample implements Command {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		PageVO page = PageFactory.getPage(StaticBookDAO.getBookCount(), request.getParameter("cPage"));
+		PageVO page = PageFactory.getPage(StaticBookDAO.getBookCount(), request.getParameter("cPage"), 3, 3);
 		request.setAttribute("pvo", page);
 		request.setAttribute("list", StaticBookDAO.getPagedBookList(
 										getRecordRange(page.getCurPageRecordBeginIdx(), page.getCurPageRecordEndIdx())

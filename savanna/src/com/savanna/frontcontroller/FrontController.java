@@ -124,7 +124,11 @@ public class FrontController extends HttpServlet {
 			command = new ReviewModifyCommand();
 		} else if("reviewDelete".equals(type)) {
 			command = new ReviewDeleteCommand();
-		} else {
+		} else if("commInsert".equals(type)) {
+			command = new CommInsertCommand();
+		} else if("commDelete".equals(type)) {
+			command = new CommDeleteCommand();
+		}else {
 			System.out.print("Command Error");
 		}
 

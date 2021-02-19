@@ -15,11 +15,7 @@ public class ListPaging<T> {
 
 	public void PagingDistributor(SuperDAO<T> dao, HttpServletRequest request)
 			throws ServletException, IOException {
-		PagingDistributor(dao, request, 3, 3);
-	}
-	public void PagingDistributor(SuperDAO<T> dao, HttpServletRequest request, int recordPerPage, int pagePerBlock)
-			throws ServletException, IOException {
-		PageVO page = PageFactory.getPage(dao.getTotalCount(), request.getParameter("cPage"), recordPerPage, pagePerBlock);
+		PageVO page = PageFactory.getPage(dao.getTotalCount(), request.getParameter("cPage"));
 		request.setAttribute("pvo", page);
 		request.setAttribute("list", dao.getPagedList(
 										getRecordRange(page.getCurPageRecordBeginIdx(), page.getCurPageRecordEndIdx())

@@ -75,10 +75,6 @@ public class FrontController extends HttpServlet {
 		} else if ("withdrawal".equals(type)) {
 			command = new WithdrawalCommand();
 		} else if (type.indexOf("memList") == 0) {
-//			if(type.length()==7) {
-//				command = new MemListCommand("1");
-//			} else
-//			command = new MemListCommand(type.substring(14));
 			command = type.length()==7
 					? new MemListCommand("1")
 					: new MemListCommand(type.substring(14));

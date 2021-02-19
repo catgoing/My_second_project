@@ -12,7 +12,8 @@
 </style>
 </head>
 <script>
-	$(function(){
+	// 입력하고 다음 입력폼으로 커서 옮기기
+	$(function(){ 
 		$('.cardinfo1').keyup (function(){
 			var maxlen = $(this).attr("maxlength");
 			console.log(maxlen);

@@ -30,7 +30,7 @@
 		}
 	}
 	
-	function check_delete(){
+	/* function check_delete(){ //선택된 상품 삭제
 		$(function(){
 			$(".cbclass").click(function(){
 				var checkValues = "";
@@ -39,7 +39,7 @@
 				});
 			});
 		});
-	} 
+	} */ 
 	
 	function clear_cart(frm){
 		frm.action = "/savanna/controller?type=clearCart";
@@ -57,11 +57,11 @@
 	<table border>
 		<thead>
 			<tr>
-				<td>
+				<!-- <td>
 					<form>
 					<input type="button" value="선택삭제" onclick="check_delete()">
 					</form>
-				</td>
+				</td> -->
 				<td colspan="4">장바구니</td>
 			</tr>
 			<tr>
@@ -76,9 +76,9 @@
 		<c:if test="${not empty cartlist }">
 		<c:forEach var = "cvo" items="${cartlist }">
 			<tr>
-				<td>
+				<!-- <td>
 					<input type="checkbox" name="check" class="cbclass" value="{$cvo.book_no}">
-				</td>
+				</td> -->
 				<td>${cvo.book_name  }</td>
 				<td><fmt:formatNumber value="${cvo.cart_price  }" pattern="###,###"/>원</td>
 				<td>

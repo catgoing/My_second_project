@@ -46,15 +46,18 @@ ul>li {
 	<h1>신간</h1>
 	<div class="container">
 		<c:forEach var="vo" items="${list }">
-		<ul class="card">
-			<li class="img-container">
-				<div class="img-placeholder"></div>
-				</li>
-			<li>${vo.book_name }</li>
-			<li>${vo.writer }</li>
-			<li>${vo.publisher }</li>
-			<li>${vo.price }<li>
-			<li>${vo.stock }</li>
-		</ul>
+			<ul class="card">
+			<a href="controller?type=EnterDetail&book_no=${vo.book_no }">
+			
+				<li class="img-container">
+					<div class="img-placeholder"></div>
+					</li>
+				<li>${vo.book_name }</li>
+				<li>${vo.writer }</li>
+				<li>${vo.publisher }</li>
+				<li>${vo.price }<li>
+				<li>${vo.stock }</li>
+			</a>
+			</ul>
 		</c:forEach>	
 	</div>

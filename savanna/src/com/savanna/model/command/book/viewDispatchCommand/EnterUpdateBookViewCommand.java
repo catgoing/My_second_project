@@ -22,7 +22,7 @@ public class EnterUpdateBookViewCommand implements Command {
 		vo.setPub_date(parsePubDate(vo.getPub_date()));
 		request.setAttribute("vo", vo);
 		
-		return "book/updatebook.jsp";
+		return "book/updateBook.jsp";
 	}
 	private String parsePubDate(String PUB_DATE) {
 		return PUB_DATE.substring(0, 10);

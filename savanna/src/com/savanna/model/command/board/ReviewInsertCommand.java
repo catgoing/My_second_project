@@ -27,7 +27,7 @@ public class ReviewInsertCommand implements Command {
 		
 		int result = ReviewDAO.insert(rvo);
 		System.out.println(result);
-		return "controller?type=PagedAdminLogin";
+		return "controller?type=reviewList";
 	}
 
 }

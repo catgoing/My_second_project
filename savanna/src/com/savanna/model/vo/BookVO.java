@@ -1,6 +1,6 @@
 package com.savanna.model.vo;
 
-public class BookVO implements SuperVO {
+public class BookVO {
 	private int book_no;
 	private String book_name;
 	private String writer;

@@ -10,7 +10,7 @@ import com.savanna.model.vo.BuyVO;
 import com.savanna.model.vo.MemberVO;
 import com.savanna.mybatis.DBService;
 
-public class MemberDAO {
+public class MemberDAO implements SuperDAO{
 
 	//회원가입
 	public static int signUp(MemberVO vo) {
@@ -75,7 +75,7 @@ public class MemberDAO {
 	}
 	
 	// 전체 회원수 조회
-	public static int getTotalCount() {
+	public static int getMemberCount() {
 		SqlSession ss = DBService.getFactory().openSession();
 		int totalCount = ss.selectOne("member.totalCount");
 		ss.close();
@@ -113,6 +113,7 @@ public class MemberDAO {
 		ss.close();
 		return vo;
 	}
+
 	
 	// 구매목록
 	public static List<BuyVO> buyList(Map<String, Integer> map) {
@@ -120,6 +121,18 @@ public class MemberDAO {
 		List<BuyVO> list = ss.selectList("member.buyList", map);
 		ss.close();
 		return list;
+}
+
+
+	@Override
+	public int getTotalCount() {
+		return this.getMemberCount();
+	}
+
+	@Override
+	public List getPagedList(Map map) {
+		return this.getList(map);
+
 	}
 }
 

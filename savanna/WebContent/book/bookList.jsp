@@ -114,26 +114,22 @@
 					<li class="disable">이전으로</li>
 				</c:when>
 				<c:otherwise>
-					<li><a href="controller?type=PagedAdminLogin&cPage=${pvo.curBlockBeginIdx - 1}">이전으로</a></li>
+					<li><a href="controller?type=${curList }&cPage=${pvo.curBlockBeginIdx - 1}">이전으로</a></li>
 				</c:otherwise>	
 			</c:choose>		
-			<%-- 블록내에 표시할 페이지 태그 작성(시작페이지 ~ 끝페이지)
-				현재페이지와 페이지 번호 같으면 현재페이지 처리--%>
 			<c:forEach var="pageNo" begin="${pvo.curBlockBeginIdx }" end="${pvo.curBlockEndIdx }">
 				<c:if test="${pageNo == pvo.curPage }">
 					<li class="now">${pageNo }</li>
 				</c:if>
 				<c:if test="${pageNo != pvo.curPage }">
 					<li>
-						<a href="controller?type=PagedAdminLogin&cPage=${pageNo }">${pageNo }</a>
+						<a href="controller?type=${curList }&cPage=${pageNo }">${pageNo }</a>
 					</li>
 				</c:if>		
 			</c:forEach>		
-				<%--[다음으로]에 대한 사용여부 처리
-				endPage가 전체페이지수(totalPage)보다 작은경우 활성화 --%>	
 				<c:if test="${pvo.curBlockEndIdx < pvo.totalPage }">	
 					<li>
-						<a href="controller?type=PagedAdminLogin&cPage=${pvo.curBlockEndIdx + 1}">다음으로</a>
+						<a href="controller?type=${curList }&cPage=${pvo.curBlockEndIdx + 1}">다음으로</a>
 					</li>
 				</c:if>
 				<c:if test="${pvo.curBlockEndIdx >= pvo.totalPage }">	

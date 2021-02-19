@@ -58,15 +58,15 @@
 <script>
 
 	function modify_go(frm) {
-		frm.action = "controller?type=modify";
+		frm.action = "../controller?type=modify";
 		frm.submit();
 	}
 	function delete_go(frm) {
-		frm.action = "controller?type=delete";
+		frm.action = "../controller?type=delete";
 		frm.submit();
 	}
 	function list_go(frm) {
-		frm.action = "controller?type=reviewlist";
+		frm.action = "../controller?type=reviewPage";
 		frm.submit();
 	}
 </script>
@@ -95,7 +95,7 @@
 		<tfoot>
 			<tr>
 				<td colspan="2">
-					<input type="button" value="수정" onclick="modify_go(this.form)">
+					<input type="button" value="수정" onclick="javascript:location.href='modify.jsp'">
 					<input type="button" value="삭제" onclick="delete_go(this.form)">
 					<input type="button" value="목록" onclick="list_go(this.form)">
 					<input type="hidden" name="cPage" value="${cPage }">

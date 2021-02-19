@@ -14,8 +14,13 @@
 	tbody { margin-bottom : 30px; }
 </style>
 <script>
+	function reviewInsert(frm) {
+		frm.action = "../controller?type=reviewInsert";
+		frm.submit();
+	}
+
 	function list_go(frm) {
-		frm.action = "controller?type=reviewlist";
+		frm.action = "controller?type=reviewPage";
 		frm.submit();
 	}
 	
@@ -36,7 +41,7 @@
 <body>
 <h1>[리뷰를 작성해 주세요]</h1>
 <div>
-<form action="controller?type=write" method="post">
+<form action="../controller?type=reviewInsert" method="post">
 	<table>
 		<tbody>
 			<tr>
@@ -61,7 +66,7 @@
 		<tfoot>
 			<tr>
 				<td colspan="2">
-					<input type="button" value="저장" onclick="sendData()">
+					<input type="button" value="저장" onclick="reviewInsert(this.form)">
 					<input type="reset" value="다시작성">
 					<input type="button" value="목록" onclick="list_go(this.form)">
 				</td>

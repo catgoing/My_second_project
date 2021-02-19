@@ -17,16 +17,14 @@ public class CommInsertCommand implements Command{
 		request.setCharacterEncoding("UTF-8");
 		
 		CommVO cvo = new CommVO();
-		cvo.setComm_no(Integer.parseInt(request.getParameter("comm_no")));
 		cvo.setRev_no((Integer.parseInt(request.getParameter("rev_no"))));
 		cvo.setId(request.getParameter("id"));
 		cvo.setComm_content(request.getParameter("comm_content"));
-		cvo.setComm_date(request.getParameter("comm_date"));
 		cvo.setComm_pwd(request.getParameter("comm_pwd"));
 		
 		
 		ReviewDAO.insertComment(cvo);
 			
-		return "write_ok.jsp";
+		return "controller?type=reviewList";
 	}
 }

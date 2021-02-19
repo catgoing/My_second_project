@@ -35,13 +35,14 @@
 		}
 		document.myForm.submit();
 	}
+	
 	function modify(frm) {
-		frm.action = "controller?type=modify";
+		frm.action = "../controller?type=modify";
 		frm.submit();
 	}
 	
 	function list_go(frm) {
-		frm.action = "controller?type=PagedAdminLogin";
+		frm.action = "../controller?type=reviewPage";
 		frm.submit();
 	}
 </script>

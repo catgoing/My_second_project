@@ -63,6 +63,5 @@
             </ul>
         </nav>
     </header>
-
 	</c:otherwise>
 	</c:choose>

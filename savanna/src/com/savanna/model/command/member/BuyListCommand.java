@@ -11,7 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.savanna.model.command.Command;
+import com.savanna.model.command.paging.ListPaging;
+import com.savanna.model.dao.BookDAO;
 import com.savanna.model.dao.MemberDAO;
+import com.savanna.model.vo.BookVO;
 import com.savanna.model.vo.BuyVO;
 import com.savanna.model.vo.Paging;
 
@@ -97,7 +100,7 @@ public class BuyListCommand implements Command{
 		request.setAttribute("pvo", p);
 		request.setAttribute("cPage", cPage);
 		
-		
-		return "member/memList.jsp";
+		new ListPaging<BuyVO>().PagingDistributor(new MemberDAO(), request, 10, 5);
+		return "member/buyList.jsp";
 	}
 }

@@ -12,7 +12,6 @@
 </script>
 </head>
 <body>
-
 	<%@ include file="common/menu.jspf" %>
 	<aside>
 	</aside>

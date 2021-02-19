@@ -9,12 +9,20 @@
 <link href="css/menu.css" rel="stylesheet" type="text/css">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script>
-
 </script>
 </head>
 <body>
+
 	<%@ include file="common/menu.jspf" %>
-
-
+	<aside>
+	</aside>
+	<section>
+		<article>
+			<%@ include file="book/CardList.jsp" %>
+		</article>
+		<article>
+			<%@ include file="book/CardList.jsp" %>
+		</article>
+	</section>
 </body>
 </html>

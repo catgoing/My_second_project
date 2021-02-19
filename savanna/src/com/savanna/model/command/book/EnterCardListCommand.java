@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.savanna.model.command.Command;
+import com.savanna.model.command.paging.ListPaging;
 import com.savanna.model.dao.BookDAO;
 import com.savanna.model.vo.BookVO;
 
@@ -21,9 +22,9 @@ public class EnterCardListCommand implements Command {
 			return null;
 		}
 		System.out.println("login success");
-		List<BookVO> list = BookDAO.getBookList();
+		List<BookVO> list = new BookDAO().getPagedList(new ListPaging<BookVO>().getRecordRange(0, 10));
 		request.setAttribute("list", list);
-		return "book/bookList.jsp";
+		return "book/CardList.jsp";
 	}
 	public boolean isLoginValidate() {
 		return true;

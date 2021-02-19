@@ -25,7 +25,7 @@ public class ListPaging<T> {
 										getRecordRange(page.getCurPageRecordBeginIdx(), page.getCurPageRecordEndIdx())
 									));
 	}
-	public Map<String, Integer> getRecordRange(int recordBeginIdx, int recordEndIdx) {
+	public static Map<String, Integer> getRecordRange(int recordBeginIdx, int recordEndIdx) {
 		return new HashMap<String, Integer>() {{
 					put("begin", recordBeginIdx);
 					put("end", recordEndIdx);

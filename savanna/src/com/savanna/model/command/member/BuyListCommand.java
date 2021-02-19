@@ -100,6 +100,4 @@ public class BuyListCommand implements Command{
 		
 		return "member/memList.jsp";
 	}
-
-
 }

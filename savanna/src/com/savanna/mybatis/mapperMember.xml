@@ -8,13 +8,13 @@
 	<!-- 회원가입 -->
 	<select id="signUp" parameterType="MemberVO">
 		INSERT INTO MEMBERS
-		(ID, PWD, NAME, ADDR, PHONE, EMAIL, MEM_NO, REGDATE)
-		VALUES (#{id}, #{pwd}, #{name}, #{addr}, #{phone}, #{email}, MEM_NO_SEQ.NEXTVAL, SYSDATE)
+		(ID, PWD, NAME, ADDR, PHONE, EMAIL, MEM_NO, REGDATE, STATUS, SEL_ACCEPT)
+		VALUES (#{id}, #{pwd}, #{name}, #{addr}, #{phone}, #{email}, MEM_NO_SEQ.NEXTVAL, SYSDATE, 0, #{sel_accept})
 	</select>
 	
 	<!-- 로그인-->
 	<select id="signIn" parameterType="MemberVO" resultType="MemberVO">
-		SELECT ID, PWD, NAME, ADDR, PHONE, EMAIL, MEM_NO, REGDATE 
+		SELECT ID, PWD, NAME, ADDR, PHONE, EMAIL, MEM_NO, REGDATE, SEL_ACCEPT
 		FROM MEMBERS
 		WHERE ID = #{id}
 		AND PWD = #{pwd}
@@ -43,7 +43,8 @@
 			PWD = #{pwd},
 			ADDR = #{addr},
 			PHONE = #{phone},
-			EMAIL = #{email}
+			EMAIL = #{email},
+			SEL_ACCEPT = #{sel_accept}
 		WHERE ID = #{id}	
 	</select>
 	
@@ -64,7 +65,8 @@
 			PHONE = NULL,
 			EMAIL = NULL,
 			REGDATE = NULL,
-			STATUS = 1
+			STATUS = 1,
+			SEL_ACCEPT = NULL
 		WHERE ID = #{id}	
 	</select>
 	
@@ -88,7 +90,7 @@
 	
 	<!-- 모든 회원 출력 -->
 	<select id="memList" resultType="MemberVO">
-	 	SELECT ID, PWD, NAME, ADDR, PHONE, EMAIL, MEM_NO, REGDATE, STATUS
+	 	SELECT ID, PWD, NAME, ADDR, PHONE, EMAIL, MEM_NO, REGDATE, STATUS, SEL_ACCEPT
 		FROM MEMBERS
 		WHERE STATUS = 0
 		ORDER BY ID
@@ -117,7 +119,7 @@
 	
 	<!-- 회원 상세정보-->
 	<select id="memDetail" parameterType="string" resultType="MemberVO">
-		SELECT ID, PWD, NAME, ADDR, PHONE, EMAIL, MEM_NO, REGDATE 
+		SELECT ID, PWD, NAME, ADDR, PHONE, EMAIL, MEM_NO, REGDATE, SEL_ACCEPT, STATUS
 		FROM MEMBERS
 		WHERE ID = #{id}
 	</select>	

@@ -10,10 +10,10 @@
 
 	$(function (){
 		$('#id_allchk').click(function(){
-			if($("#id_allchk").prop("checked")) { //해당화면에 전체 checkbox들을 체크해준다 
-				$("input[type=checkbox]").prop("checked",true); // 전체선택 체크박스가 해제된 경우 
-				} else { //해당화면에 모든 checkbox들의 체크를해제시킨다. 
-					$("input[type=checkbox]").prop("checked",false); 
+			if($("#id_allchk").prop("checked")) { // 전체선택이 체크됐을 때
+				$("input[type=checkbox]").prop("checked",true); // 전체 checkbox들을 체크 
+				} else { // 전체선택 체크박스가 해제된 경우 
+					$("input[type=checkbox]").prop("checked",false); // 모든 checkbox들의 체크를 해제
 				}
 		});
 	});

@@ -19,6 +19,13 @@
 <title>회원정보</title>
 </head>
 <script>
+
+	var sel_accept = '${vo.sel_accept }';
+	$(function (){
+		if( sel_accept == 'on'){
+			$("input[type=checkbox]").prop("checked",true);
+		}
+	});
 	
 	function withdrawal(frm){
 		frm.action = "/savanna/controller?type=adminWithdrawal";
@@ -67,6 +74,10 @@
 		<tr>
 			<th>가입일</th>
 			<td><input type="text" name="regdate" id="regdate" readonly value=${vo.regdate } ></td>
+		</tr>
+		<tr>
+			<th>선택약관 동의</th>
+			<td><input type="checkbox" name=sel_accept id="sel_accept"></td>
 		</tr>
 		<tr>
 			<td>

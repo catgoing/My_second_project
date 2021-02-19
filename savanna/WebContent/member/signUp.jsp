@@ -164,7 +164,7 @@
 <body>
 	<%@ include file="/common/menu.jspf" %>
 	<h1>회원가입</h1>
-  	<form action="/savanna/controller?type=doSignUp" method="get" name="fr" onsubmit="return null_check()">
+  	<form action="/savanna/controller?type=doSignUp" method="post" name="fr" onsubmit="return null_check()">
         <table>
             <tr>
                 <td>아이디</td>
@@ -205,8 +205,8 @@
             </tr>            
             <tr>
                 <td>
-                    <input type="submit" name="sbm" value="확인">
                     <input type="hidden" name="sel_accept" value="<%=sel_accept %>">
+                    <input type="submit" name="sbm" value="확인">
                 </td>
             </tr>
         </table> 

@@ -24,6 +24,13 @@ import com.savanna.model.command.book.UpdateBookCommand;
 import com.savanna.model.command.book.viewDispatchCommand.EnterBookDetailCommand;
 import com.savanna.model.command.book.viewDispatchCommand.EnterCreateBookViewCommand;
 import com.savanna.model.command.book.viewDispatchCommand.EnterUpdateBookViewCommand;
+import com.savanna.model.command.cart.CartInsertCommand;
+import com.savanna.model.command.cart.CartListCommand;
+import com.savanna.model.command.cart.ClearCartCommand;
+import com.savanna.model.command.cart.DeleteInCartCommand;
+import com.savanna.model.command.cart.EditQuantCommand;
+import com.savanna.model.command.cart.OrderGoCommand;
+import com.savanna.model.command.cart.TempBookInsertCommand;
 import com.savanna.model.command.member.AdminUpdateCommand;
 import com.savanna.model.command.member.AdminWithdrawalCommand;
 import com.savanna.model.command.member.DoPwdCheckCommand;
@@ -41,7 +48,6 @@ import com.savanna.model.command.member.SignInCommand;
 import com.savanna.model.command.member.SignUpCommand;
 import com.savanna.model.command.member.UpdateCommand;
 import com.savanna.model.command.member.WithdrawalCommand;
-import com.savanna.model.command.cart.*;
 
 @WebServlet("/controller")
 public class FrontController extends HttpServlet {
@@ -83,17 +89,13 @@ public class FrontController extends HttpServlet {
 			command = new InquiryIdCommand();
 		} else if ("inquiryPwd".equals(type)) {
 			command = new InquiryPwdCommand();
-		}
-
-		else if (type.indexOf("memDetail") == 0) {
+		} else if (type.indexOf("memDetail") == 0) {
 			command = new MemDetailCommand(type.substring(13));
 		} else if (type.indexOf("idCheck") == 0) {
 			command = new IdCheckCommand(type.substring(11));
 		} else if (type.indexOf("doPwdCheck") == 0) {
 			command = new DoPwdCheckCommand(type.substring(14), pwd);
-		}
-
-		else if ("adminUpdate".equals(type)) {
+		} else if ("adminUpdate".equals(type)) {
 			command = new AdminUpdateCommand();
 		} else if ("adminWithdrawal".equals(type)) {
 			command = new AdminWithdrawalCommand();
@@ -132,47 +134,36 @@ public class FrontController extends HttpServlet {
 			command = new CommInsertCommand();
 		} else if("commDelete".equals(type)) {
 			command = new CommDeleteCommand();
-		}
-		else if ("cartList".equals(type)) { //장바구니 보기
+		} else if ("cartList".equals(type)) { //장바구니 보기
 			command = new CartListCommand();
-		}
-		else if("cartInsert".equals(type)){ //장바구니 넣기
+		} else if("cartInsert".equals(type)){ //장바구니 넣기
 			command = new CartInsertCommand();
-		}
-		else if("deleteInCart".equals(type)){ //장바구니에서 삭제
+		} else if("deleteInCart".equals(type)){ //장바구니에서 삭제
 			command = new DeleteInCartCommand();
-		}
-		else if("clearCart".equals(type)){ //장바구니 비우기
+		} else if("clearCart".equals(type)){ //장바구니 비우기
 			command = new ClearCartCommand();
-		}
-		else if("orderPayment".equals(type)){ //구매step1
-			command = new OrderPaymentCommand();
-		}
-		else if("GoOrder".equals(type)){ //구매step2
+		} else if("orderPayment".equals(type)){ //구매step1
+//			command = new OrderPaymentCommand();
+		} else if("GoOrder".equals(type)){ //구매step2
 			command = new OrderGoCommand();
-		}
-		else if("editQuan".equals(type)){ //장바구니에서 수량변경
+		} else if("editQuan".equals(type)){ //장바구니에서 수량변경
 			command = new EditQuantCommand();
-		}
-		else if("tempBookInsert".equals(type)){ //Cart에 담기위한 임시상품리스트
+		} else if("tempBookInsert".equals(type)){ //Cart에 담기위한 임시상품리스트
 			command = new TempBookInsertCommand();
-		}
-		else if("paymentComplete".equals(type)){ //구매완료
-			command = new PaymentCompleteCommand();
-		}
-		else if("creditCardProc".equals(type)){ //카드결제진행창
-			command = new CreditCardProcCommand();
-		}
-		else if("payCreditCard".equals(type)){ //카드결제완료
-			command = new PayCreditCardCommand();
+		} else if("paymentComplete".equals(type)){ //구매완료
+//			command = new PaymentCompleteCommand();
+		} else if("creditCardProc".equals(type)){ //카드결제진행창
+//			command = new CreditCardProcCommand();
+		} else if("payCreditCard".equals(type)){ //카드결제완료
+//			command = new PayCreditCardCommand();
 		} else if("MainPage".equals(type)) {
 			System.out.print("expect:MainPage");
 			command = new MainPageCommand();
 		}else {
 			System.out.print("Command Error");
 		}
+		
 		String path = command.execute(request, response);
-
 
 		if(type.indexOf("List") != 0) {
 			request.setAttribute("curList", type);

@@ -74,6 +74,13 @@ function enterUpdateBook(frm) {
 					<input type="button" value="삭제" onclick="deleteBook(this.form)">
 					<input type="button" value="돌아가기" onclick="history.back()">
 				</td></tr>
+				<tr><td colspan="2">
+					<input type="hidden" id="book_no" name="book_no" value="${vo.book_no }">
+					<input type="button" value="구매하기" onclick="#">
+					<input type="button" value="장바구니에 넣기" onclick="#">
+					<input type="button" value="좋아요" onclick="#">
+					<input type="button" value="돌아가기" onclick="history.back()">
+				</td></tr>
 			</tfoot>
 			</table>
 		</form>

@@ -10,6 +10,8 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+
 <script type="text/javascript" src="js/bootstrap.js"></script>
 
 <!-- Bootstrap core CSS -->
@@ -22,7 +24,16 @@
 </head>
 <body>
 	<%@ include file="/common/menu.jspf" %>
-
+  <aside>
+  </aside>
+  <section>
+    <article>
+      <%@ include file="book/cardList2.jsp" %>
+    </article>
+    <article>
+      <%@ include file="book/cardList2.jsp" %>
+    </article>
+  </section>
 
 </body>
 </html>

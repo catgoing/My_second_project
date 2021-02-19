@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import com.savanna.model.command.Command;
 import com.savanna.model.dao.CartDAO;
+import com.savanna.model.vo.BookVO;
 import com.savanna.model.vo.CartVO;
 import com.savanna.model.vo.MemberVO;
 
@@ -26,14 +27,23 @@ public class CartListCommand implements Command {
 		MemberVO mvo = (MemberVO)session.getAttribute("user");
 		String id = mvo.getId();
 		System.out.println(id);
-
-		List<CartVO> list = CartDAO.cartList(id);
-		int tot = CartDAO.totalPrice(id);	//전체가격
-		System.out.println(list);
 		
-		// 배송비, 전체가격, 최종가격을 따로 CartVO에 저장
-		CartVO cvo = new CartVO();
-		if(tot >= 20000) {		   //배송비 처리(전체가격기준)
+		List<CartVO> list = CartDAO.cartList(id);
+		for(CartVO vo : list) {
+			BookVO bvo = CartDAO.checkSoldOut(vo.getBook_no());
+			int bookstock = bvo.getStock();
+		
+			if(bookstock == 0) {
+				vo.setCart_quan(0);
+			}else if (bookstock > 0 ) {
+				continue;
+			}
+		}
+		
+		int tot = CartDAO.totalPrice(id);	//전체가격
+		
+		CartVO cvo = new CartVO(); 
+		if(tot >= 20000) {		   // 배송비 처리(전체가격기준)
 			cvo.setShippingCharge(0);
 		}else if (0 < tot && tot < 20000){
 			cvo.setShippingCharge(2500);
@@ -46,7 +56,7 @@ public class CartListCommand implements Command {
 		System.out.println("전체가격 > " + cvo.getAllitemsPrice());
 		System.out.println("최종결제금액 > " + cvo.getTotalPrice());
 		
-		request.setAttribute("cvo", cvo); 
+		session.setAttribute("cvo", cvo); 
 		request.setAttribute("cartlist", list);
 		
 		return "/cart/cartList.jsp";

@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.savanna.model.command.Command;
+import com.savanna.model.command.board.CommDeleteCommand;
+import com.savanna.model.command.board.CommInsertCommand;
 import com.savanna.model.command.board.ReviewDeleteCommand;
 import com.savanna.model.command.board.ReviewInsertCommand;
 import com.savanna.model.command.board.ReviewListPagingCommand;
@@ -71,25 +73,27 @@ public class FrontController extends HttpServlet {
 			command = new UpdateCommand();
 		} else if ("withdrawal".equals(type)) {
 			command = new WithdrawalCommand();
-		} else if (type.indexOf("memList") == 0) {
-//			if(type.length()==7) {
-//				command = new MemListCommand("1");
-//			} else
-//			command = new MemListCommand(type.substring(14));
+		} 
+		else if (type.indexOf("memList") == 0) {
 			command = type.length()==7
 					? new MemListCommand("1")
 					: new MemListCommand(type.substring(14));
-		} else if ("inquiryId".equals(type)) {
+		} 
+		else if ("inquiryId".equals(type)) {
 			command = new InquiryIdCommand();
 		} else if ("inquiryPwd".equals(type)) {
 			command = new InquiryPwdCommand();
-		} else if (type.indexOf("memDetail") == 0) {
+		} 
+		
+		else if (type.indexOf("memDetail") == 0) {
 			command = new MemDetailCommand(type.substring(13));
 		} else if (type.indexOf("idCheck") == 0) {
 			command = new IdCheckCommand(type.substring(11));
 		} else if (type.indexOf("doPwdCheck") == 0) {
 			command = new DoPwdCheckCommand(type.substring(14), pwd);
-		} else if ("adminUpdate".equals(type)) {
+		} 
+		
+		else if ("adminUpdate".equals(type)) {
 			command = new AdminUpdateCommand();
 		} else if ("adminWithdrawal".equals(type)) {
 			command = new AdminWithdrawalCommand();

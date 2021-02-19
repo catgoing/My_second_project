@@ -4,9 +4,22 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원가입</title>
-<link href="/savanna/css/menu.css" rel="stylesheet" type="text/css">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<meta name="description" content="">
+<meta name="author" content="">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
+
+<!-- Bootstrap core CSS -->
+<link href="/savanna/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="/savanna/css/savanna.css" rel="stylesheet">
+<title>회원가입</title>
+<%
+	String sel_accept = request.getParameter("sel_accept");
+%>
 <script>
 		
 	var id_result = 0;
@@ -192,6 +205,7 @@
             </tr>            
             <tr>
                 <td>
+                    <input type="hidden" name="sel_accept" value="<%=sel_accept %>">
                     <input type="submit" name="sbm" value="확인">
                 </td>
             </tr>

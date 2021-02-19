@@ -4,10 +4,29 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<meta name="description" content="">
+<meta name="author" content="">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
+
+<!-- Bootstrap core CSS -->
+<link href="/savanna/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="/savanna/css/savanna.css" rel="stylesheet">
 <title>내정보</title>
-<link href="/savanna/css/menu.css" rel="stylesheet" type="text/css">
+
 </head>
 <script>
+	var sel_accept = '${user.sel_accept }';
+	$(function (){
+		if( sel_accept == 'on'){
+			$("input[type=checkbox]").prop("checked",true);
+		}
+	});
+
 	
 	function withdrawal(){
 		location.href = "member/withdrawal.jsp"
@@ -47,6 +66,10 @@
 		<tr>
 			<th>가입일</th>
 			<td><input type="text" name="regdate" id="regdate" readonly value=${user.regdate } ></td>
+		</tr>
+		<tr>
+			<th>선택약관 동의</th>
+			<td><input type="checkbox" name=sel_accept id="sel_accept"></td>
 		</tr>
 		<tr>
 			<td>

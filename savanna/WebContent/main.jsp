@@ -5,23 +5,35 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>메인화면</title>
-<link href="css/menu.css" rel="stylesheet" type="text/css">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<meta name="description" content="">
+<meta name="author" content="">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script>
-</script>
+
+
+<script type="text/javascript" src="js/bootstrap.js"></script>
+
+<!-- Bootstrap core CSS -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="/savanna/css/savanna.css" rel="stylesheet">
+
+<title>메인화면</title>
 </head>
 <body>
-	<%@ include file="common/menu.jspf" %>
-	<aside>
-	</aside>
-	<section>
-		<article>
-			<%@ include file="book/cardList2.jsp" %>
-		</article>
-		<article>
-			<%@ include file="book/cardList2.jsp" %>
-		</article>
-	</section>
+	<%@ include file="/common/menu.jspf" %>
+  <aside>
+  </aside>
+  <section>
+    <article>
+      <%@ include file="book/cardList2.jsp" %>
+    </article>
+    <article>
+      <%@ include file="book/cardList2.jsp" %>
+    </article>
+  </section>
+
 </body>
 </html>

@@ -110,7 +110,16 @@
     <!-- 책번호로 책 한권 검색 -->
 	<select id="onebook" parameterType="int" 
 			resultType="com.savanna.model.vo.BookVO">
-		SELECT * FROM BOOKS WHERE BOOK_NO = #{book_no }
+		SELECT BOOK_NO
+			, BOOK_NAME
+			, WRITER
+			, PUBLISHER
+			, PUB_DATE
+			, PRICE
+			, BOOK_DESC
+			, NVL(STOCK, 0) as STOCK
+			, CATEGORY
+		FROM BOOKS WHERE BOOK_NO = #{book_no }
 	</select>
 	
 	<!-- 동적 검색 -->

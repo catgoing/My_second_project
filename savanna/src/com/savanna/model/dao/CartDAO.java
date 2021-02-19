@@ -11,7 +11,7 @@ import com.savanna.model.vo.CartVO;
 import com.savanna.model.vo.MemberVO;
 import com.savanna.mybatis.DBService;
 
-public class CartDAO {
+public class CartDAO implements SuperDAO{
 
 	// 장바구니 추가 - 매개변수 : 책번호, 회원id
 	public static boolean insertCart(int book_no, String id) {
@@ -32,7 +32,7 @@ public class CartDAO {
 			
 			System.out.println("cvo : " + cvo.toString());
 			SqlSession ss = DBService.getFactory().openSession(true);
-			ss.insert("mystudy.insertcart", cvo);
+			ss.insert("cart.insertcart", cvo);
 			ss.close();
 		} else if (cvo != null){		//있을 때
 			check = true;
@@ -57,12 +57,12 @@ public class CartDAO {
 		CartVO cvo = null;
 		
 		SqlSession ss = DBService.getFactory().openSession(true);
-		int jungbok = ss.selectOne("mystudy.jungbok", map);
+		int jungbok = ss.selectOne("cart.jungbok", map);
 		
 		if(jungbok == 0) {
 			cvo = null;
 		} else {
-			cvo = ss.selectOne("mystudy.cartone", map);
+			cvo = ss.selectOne("cart.cartone", map);
 		}
 		ss.close();
 		
@@ -72,7 +72,7 @@ public class CartDAO {
 	//장바구니 일반 조회 - 매개변수 : id
 	public static List<CartVO> cartList(String id) {
 		SqlSession ss = DBService.getFactory().openSession(true);
-		List<CartVO> cartList = ss.selectList("mystudy.cartlist", id);
+		List<CartVO> cartList = ss.selectList("cart.cartlist", id);
 		ss.close();
 		return cartList;
 	}
@@ -80,7 +80,7 @@ public class CartDAO {
 	// 장바구니 수량변경 - 매개변수 : map(책번호 + 회원아이디)
 	public static void setQuant(Map<String, Object> map) {
 		SqlSession ss = DBService.getFactory().openSession(true);
-		ss.update("mystudy.cartquanupdate", map);
+		ss.update("cart.cartquanupdate", map);
 		ss.close();
 	}
 	
@@ -88,14 +88,14 @@ public class CartDAO {
 	//장바구니 상품 삭제 - 매개변수 : map(책번호 + 회원아이디)
 	public static void deleteProduct(Map<String, Object> map) {
 		SqlSession ss = DBService.getFactory().openSession(true);
-		ss.delete("mystudy.deleteincart", map);
+		ss.delete("cart.deleteincart", map);
 		ss.close();
 	}
 	
 	//장바구니 전체 금액 조회 - 매개변수 : id
 	public static int totalPrice(String id) {
 		SqlSession ss = DBService.getFactory().openSession(true);
-		int tot = ss.selectOne("mystudy.totprice", id);
+		int tot = ss.selectOne("cart.totprice", id);
 		ss.close();
 		return tot;
 	}
@@ -103,22 +103,44 @@ public class CartDAO {
 	// 장바구니 비우기 - 매개변수 : id
 	public static void clearCart(String id) {
 		SqlSession ss = DBService.getFactory().openSession(true);
-		ss.delete("mystudy.clearcart", id);
+		ss.delete("cart.clearcart", id);
 		ss.close();
 	}
 	
 	//장바구니 구매처리->구매내역
 	public static void sendOrder(CartVO cvo) {
 		SqlSession ss = DBService.getFactory().openSession(true);
-		ss.insert("mystudy.sendorder", cvo);
+		ss.insert("cart.sendorder", cvo);
 		ss.close();
 	}
 	
 	//장바구니에 주소를 가져오기 위해 회원정보를 가져옴
 	public static String getMemberAddr(String id) {
 		SqlSession ss = DBService.getFactory().openSession();
-		String addr = ss.selectOne("mystudy.getmemaddr", id);
+		String addr = ss.selectOne("cart.getmemaddr", id);
 		ss.close();
 		return addr;
 	}
+
+	//상품 품절/절판시에 장바구니에 품절로 표시
+	public static BookVO checkSoldOut(int book_no) {
+		SqlSession ss = DBService.getFactory().openSession();
+		BookVO bvo = ss.selectOne("mystudy.onebook",book_no);
+		ss.close();
+		return bvo;
+	}
+
+	@Override
+	public int getTotalCount() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List getPagedList(Map map) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 }

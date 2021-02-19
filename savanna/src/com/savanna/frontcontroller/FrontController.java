@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.savanna.model.command.Command;
+import com.savanna.model.command.board.CommDeleteCommand;
+import com.savanna.model.command.board.CommInsertCommand;
 import com.savanna.model.command.board.ReviewDeleteCommand;
 import com.savanna.model.command.board.ReviewInsertCommand;
 import com.savanna.model.command.board.ReviewListPagingCommand;
@@ -38,7 +40,7 @@ import com.savanna.model.command.member.SignInCommand;
 import com.savanna.model.command.member.SignUpCommand;
 import com.savanna.model.command.member.UpdateCommand;
 import com.savanna.model.command.member.WithdrawalCommand;
-
+import com.savanna.model.command.cart.*;
 
 @WebServlet("/controller")
 public class FrontController extends HttpServlet {
@@ -128,10 +130,43 @@ public class FrontController extends HttpServlet {
 			command = new CommInsertCommand();
 		} else if("commDelete".equals(type)) {
 			command = new CommDeleteCommand();
-		}else {
+		}
+		else if ("cartList".equals(type)) { //장바구니 보기
+			command = new CartListCommand();
+		} 
+		else if("cartInsert".equals(type)){ //장바구니 넣기
+			command = new CartInsertCommand();
+		}
+		else if("deleteInCart".equals(type)){ //장바구니에서 삭제
+			command = new DeleteInCartCommand();
+		}
+		else if("clearCart".equals(type)){ //장바구니 비우기
+			command = new ClearCartCommand();
+		} 
+		else if("orderPayment".equals(type)){ //구매step1
+			command = new OrderPaymentCommand();
+		} 
+		else if("GoOrder".equals(type)){ //구매step2
+			command = new OrderGoCommand();
+		} 
+		else if("editQuan".equals(type)){ //장바구니에서 수량변경
+			command = new EditQuantCommand();
+		}
+		else if("tempBookInsert".equals(type)){ //Cart에 담기위한 임시상품리스트
+			command = new TempBookInsertCommand();
+		}
+		else if("paymentComplete".equals(type)){ //구매완료
+			command = new PaymentCompleteCommand();
+		}
+		else if("creditCardProc".equals(type)){ //카드결제진행창
+			command = new CreditCardProcCommand();
+		}
+		else if("payCreditCard".equals(type)){ //카드결제완료
+			command = new PayCreditCardCommand();
+		}
+		else {
 			System.out.print("Command Error");
 		}
-
 		String path = command.execute(request, response);
 
 

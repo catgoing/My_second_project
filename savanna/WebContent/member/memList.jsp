@@ -68,7 +68,7 @@
 		<tbody>
 			<c:forEach var="vo" items="${list }">
 				<a href="main.jsp"></a>
-				<tr class="list" onclick="location.href = '/savanna/controller?type=memDetail?id=${vo.id }'">
+				<tr class="list" onclick="location.href = '/savanna/controller?type=${curList }?id=${vo.id }'">
 					<td >${vo.mem_no }</td>
 					<td>${vo.id }</td>
 					<td>${vo.pwd }</td>

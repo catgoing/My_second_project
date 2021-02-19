@@ -38,5 +38,6 @@
 		<input type="button" value="장바구니" onclick="cartList_search(this.form)">
 		<input type="button" value="게시판" onclick="board_search(this.form)">
 	</form>
+	<%@ include file="book/CardList.jsp" %>
 </body>
 </html>

@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.savanna.model.command.Command;
+import com.savanna.model.command.board.CommDeleteCommand;
+import com.savanna.model.command.board.CommInsertCommand;
 import com.savanna.model.command.board.ReviewDeleteCommand;
 import com.savanna.model.command.board.ReviewInsertCommand;
 import com.savanna.model.command.board.ReviewListPagingCommand;

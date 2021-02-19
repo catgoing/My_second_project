@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.savanna.model.command.Command;
 import com.savanna.model.dao.MemberDAO;
 import com.savanna.model.vo.BuyVO;
-import com.savanna.model.vo.MemberVO;
 import com.savanna.model.vo.Paging;
 
 public class BuyListCommand implements Command{

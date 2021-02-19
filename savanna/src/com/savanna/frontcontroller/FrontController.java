@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.savanna.model.command.Command;
+import com.savanna.model.command.board.CommDeleteCommand;
+import com.savanna.model.command.board.CommInsertCommand;
 import com.savanna.model.command.board.ReviewDeleteCommand;
 import com.savanna.model.command.board.ReviewInsertCommand;
 import com.savanna.model.command.board.ReviewListPagingCommand;
@@ -72,10 +74,6 @@ public class FrontController extends HttpServlet {
 		} else if ("withdrawal".equals(type)) {
 			command = new WithdrawalCommand();
 		} else if (type.indexOf("memList") == 0) {
-//			if(type.length()==7) {
-//				command = new MemListCommand("1");
-//			} else
-//			command = new MemListCommand(type.substring(14));
 			command = type.length()==7
 					? new MemListCommand("1")
 					: new MemListCommand(type.substring(14));

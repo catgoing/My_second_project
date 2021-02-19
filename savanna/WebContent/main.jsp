@@ -18,10 +18,10 @@
 	</aside>
 	<section>
 		<article>
-			<%@ include file="book/CardList.jsp" %>
+			<%@ include file="book/cardList2.jsp" %>
 		</article>
 		<article>
-			<%@ include file="book/CardList.jsp" %>
+			<%@ include file="book/cardList2.jsp" %>
 		</article>
 	</section>
 </body>

@@ -24,7 +24,7 @@ public class EnterCardListCommand implements Command {
 		System.out.println("login success");
 		List<BookVO> list = new BookDAO().getPagedList(new ListPaging<BookVO>().getRecordRange(0, 10));
 		request.setAttribute("list", list);
-		return "book/CardList.jsp";
+		return "book/cardList2.jsp";
 	}
 	public boolean isLoginValidate() {
 		return true;

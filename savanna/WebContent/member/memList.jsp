@@ -89,9 +89,9 @@
 				<c:if test="${pageNo == pvo.nowPage }">
 					<li class="now">${pageNo }</li>
 				</c:if>
-				<c:if test="${pageNo != pvo.nowPage }">
+				<c:if test="${pageNo != pvo.curPage }">
 					<li>
-						<a href="/savanna/controller?type=memList?cPage=${pageNo }">${pageNo }</a>
+						<a href="/savanna/controller?type=${curList }&cPage=${pageNo }">${pageNo }</a>
 					</li>
 				</c:if>		
 			</c:forEach>

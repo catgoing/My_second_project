@@ -2,7 +2,7 @@ package com.savanna.model.command.paging;
 
 import com.savanna.model.vo.PageVO;
 
-public interface PagingFactory {
+public interface PageFactory {
 	public static PageVO getPage(int recordCount, String cPage){
 		PageVO page = new PageVO();
 

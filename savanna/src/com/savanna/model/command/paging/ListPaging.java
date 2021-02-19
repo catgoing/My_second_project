@@ -11,11 +11,11 @@ import com.savanna.model.dao.BookDAO;
 import com.savanna.model.dao.SuperDAO;
 import com.savanna.model.vo.PageVO;
 
-public class ListPagingCommand<T> {
+public class ListPaging<T> {
 
 	public void PagingDistributor(SuperDAO<T> dao, HttpServletRequest request)
 			throws ServletException, IOException {
-		PageVO page = PagingFactory.getPage(dao.getTotalCount(), request.getParameter("cPage"));
+		PageVO page = PageFactory.getPage(dao.getTotalCount(), request.getParameter("cPage"));
 		request.setAttribute("pvo", page);
 		request.setAttribute("list", dao.getPagedList(
 										getRecordRange(page.getCurPageRecordBeginIdx(), page.getCurPageRecordEndIdx())

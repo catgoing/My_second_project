@@ -11,7 +11,7 @@ import com.savanna.model.command.Command;
 import com.savanna.model.dao.BookDAO;
 import com.savanna.model.vo.BookVO;
 
-public class AdminLoginCommand implements Command {
+public class EnterCardListCommand implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
@@ -20,7 +20,6 @@ public class AdminLoginCommand implements Command {
 			System.out.println("invalid login attempt");
 			return null;
 		}
-
 		System.out.println("login success");
 		List<BookVO> list = BookDAO.getBookList();
 		request.setAttribute("list", list);

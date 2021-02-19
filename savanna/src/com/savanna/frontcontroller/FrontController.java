@@ -11,14 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 import com.savanna.model.command.Command;
 import com.savanna.model.command.board.ReviewDeleteCommand;
 import com.savanna.model.command.board.ReviewInsertCommand;
-import com.savanna.model.command.board.ReviewListCommand;
 import com.savanna.model.command.board.ReviewListPagingCommand;
 import com.savanna.model.command.board.ReviewModifyCommand;
-import com.savanna.model.command.book.AbstractedBookListPagingCommand;
-import com.savanna.model.command.book.AdminLoginCommand;
-import com.savanna.model.command.book.CardListCommand;
+import com.savanna.model.command.book.BookListPagingCommand;
 import com.savanna.model.command.book.CreateBookCommand;
 import com.savanna.model.command.book.DeleteBookCommand;
+import com.savanna.model.command.book.EnterCardListCommand;
 import com.savanna.model.command.book.UpdateBookCommand;
 import com.savanna.model.command.book.viewDispatchCommand.EnterBookDetailCommand;
 import com.savanna.model.command.book.viewDispatchCommand.EnterCreateBookViewCommand;
@@ -72,10 +70,13 @@ public class FrontController extends HttpServlet {
 		} else if ("withdrawal".equals(type)) {
 			command = new WithdrawalCommand();
 		} else if (type.indexOf("memList") == 0) {
-			if(type.length()==7) {
-				command = new MemListCommand("1");
-			} else
-			command = new MemListCommand(type.substring(14));
+//			if(type.length()==7) {
+//				command = new MemListCommand("1");
+//			} else
+//			command = new MemListCommand(type.substring(14));
+			command = type.length()==7
+					? new MemListCommand("1")
+					: new MemListCommand(type.substring(14));
 		} else if ("inquiryId".equals(type)) {
 			command = new InquiryIdCommand();
 		} else if ("inquiryPwd".equals(type)) {
@@ -88,14 +89,11 @@ public class FrontController extends HttpServlet {
 			command = new AdminUpdateCommand();
 		} else if ("adminWithdrawal".equals(type)) {
 			command = new AdminWithdrawalCommand();
-		} else if("cardlist".equals(type)) {
-			System.out.println("showing cardlist");
-			command = new CardListCommand();
-		} else if("AdminLogin".equals(type)) {
-			command = new AdminLoginCommand();
-		} else if("PagedAdminLogin".equals(type)) {
-			System.out.print("Expect:PagedAdminLogin");
-			command = new AbstractedBookListPagingCommand();
+		} else if("StockList".equals(type)) {
+			command = new EnterCardListCommand();
+		} else if("StockManagerPage".equals(type)) {
+			System.out.print("Expect:StockManagerPage");
+			command = new BookListPagingCommand();
 		} else if("CreateBook".equals(type)) {
 			command = new CreateBookCommand();
 		} else if("EnterCreateBook".equals(type)) {
@@ -114,9 +112,7 @@ public class FrontController extends HttpServlet {
 		} else if("UpdateBook".equals(type)) {
 			System.out.print("expect:UpdateBook");
 			command = new UpdateBookCommand();
-		} else if("reviewPage".equals(type)) {
-			command = new ReviewListPagingCommand();
-		} else if("reviewList".equals(type)) {
+		} else if("reviewPage".equals(type) || "reviewList".equals(type)) {
 			command = new ReviewListPagingCommand();
 		} else if("reviewInsert".equals(type)) {
 			command = new ReviewInsertCommand();
@@ -134,6 +130,9 @@ public class FrontController extends HttpServlet {
 
 		String path = command.execute(request, response);
 
+		if(type.indexOf("List") != 0) {
+			request.setAttribute("curList", type);
+		}
 		if(type.indexOf("idCheck") != 0) {
 			request.getRequestDispatcher(path).forward(request, response); // 데이터 포워딩하는 부분
 		}

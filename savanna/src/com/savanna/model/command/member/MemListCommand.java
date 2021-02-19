@@ -24,7 +24,7 @@ public class MemListCommand implements Command{
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
 		
-		new ListPaging<MemberVO>().PagingDistributor(new MemberDAO(), request);
+		new ListPaging<MemberVO>().PagingDistributor(new MemberDAO(), request, 10, 5);
 		request.setAttribute("cPage", cPage);
 
 		return "member/memList.jsp";

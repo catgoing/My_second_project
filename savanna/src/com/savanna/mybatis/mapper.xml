@@ -17,7 +17,7 @@
 				, pub_date
 				, price
 				, book_desc
-				, NVL(stock, 0)
+				, stock
 				, category
 				FROM BOOKS ORDER BY BOOK_NO
 	</select>

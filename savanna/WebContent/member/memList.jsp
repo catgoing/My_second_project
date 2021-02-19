@@ -8,7 +8,6 @@
 <title>회원목록</title>
 <link href="/savanna/css/menu.css" rel="stylesheet" type="text/css">
 <style>
-	/***** 페이지 표시 부분 스타일(시작) ****/
 	.paging { list-style: none; }
 	.paging li {
 		float: left;
@@ -17,7 +16,7 @@
 	.paging li a {
 		text-decoration: none;
 		display: block;
-		padding: 3px 7px;
+		padding: 13px 7px;
 		border: 1px solid #00B3DC;
 		font-weight: bold;
 		color: black;
@@ -33,12 +32,6 @@
 		background-color: #ff4aa5;
 	}
 	.paging li a:hover {
-		background-color: #00B3DC;
-		color: white;
-	}
-	
-	.list:hover {
-		cursor:pointer;
 		background-color: #00B3DC;
 		color: white;
 	}
@@ -82,23 +75,9 @@
 		</c:forEach>
 		</tbody>
 		<tfoot>
-		 	<tr>
-		 	<td colspan="7">
-		 		<ol class="paging">
-		 				<c:forEach var="pageNo" begin="${pvo.beginPage }" end="${pvo.endPage }">
-				<c:if test="${pageNo == pvo.nowPage }">
-					<li class="now">${pageNo }</li>
-				</c:if>
-				<c:if test="${pageNo != pvo.curPage }">
-					<li>
-						<a href="/savanna/controller?type=${curList }&cPage=${pageNo }">${pageNo }</a>
-					</li>
-				</c:if>		
-			</c:forEach>
-		 	</ol>
-		 	</td>
-		 	</tr>
-   
+   			<tr>
+   				<%@ include file="../common/pageNavigation.jsp" %>
+   			</tr>
 		</tfoot>
 	</table>
 

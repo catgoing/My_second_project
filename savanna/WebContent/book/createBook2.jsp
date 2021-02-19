@@ -11,7 +11,7 @@
 </style>
 <script>
 function createBook(frm) {
-	frm.action = "controller?type=createbook";
+	frm.action = "controller?type=CreateBook";
 	frm.submit();
 }
 function createDummyBook(frm) {

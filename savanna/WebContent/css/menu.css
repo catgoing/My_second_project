@@ -1,4 +1,4 @@
-header {background-color: rgb(230, 230, 230); margin: auto;}
+header {position: pixed; background-color: rgb(230, 230, 230); margin: auto;}
 
 ul {list-style-type: none; margin: auto; padding: 0; width: 1000px; overflow: visible;
   height: 4vh;}

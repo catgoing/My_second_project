@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.savanna.model.command.Command;
+import com.savanna.model.command.MainPageCommand;
 import com.savanna.model.command.board.CommDeleteCommand;
 import com.savanna.model.command.board.CommInsertCommand;
 import com.savanna.model.command.board.ReviewDeleteCommand;
@@ -74,24 +75,25 @@ public class FrontController extends HttpServlet {
 		} else if ("withdrawal".equals(type)) {
 			command = new WithdrawalCommand();
 		} else if (type.indexOf("memList") == 0) {
-//			if(type.length()==7) {
-//				command = new MemListCommand("1");
-//			} else
-//			command = new MemListCommand(type.substring(14));
 			command = type.length()==7
 					? new MemListCommand("1")
 					: new MemListCommand(type.substring(14));
-		} else if ("inquiryId".equals(type)) {
+		}
+		else if ("inquiryId".equals(type)) {
 			command = new InquiryIdCommand();
 		} else if ("inquiryPwd".equals(type)) {
 			command = new InquiryPwdCommand();
-		} else if (type.indexOf("memDetail") == 0) {
+		}
+
+		else if (type.indexOf("memDetail") == 0) {
 			command = new MemDetailCommand(type.substring(13));
 		} else if (type.indexOf("idCheck") == 0) {
 			command = new IdCheckCommand(type.substring(11));
 		} else if (type.indexOf("doPwdCheck") == 0) {
 			command = new DoPwdCheckCommand(type.substring(14), pwd);
-		} else if ("adminUpdate".equals(type)) {
+		}
+
+		else if ("adminUpdate".equals(type)) {
 			command = new AdminUpdateCommand();
 		} else if ("adminWithdrawal".equals(type)) {
 			command = new AdminWithdrawalCommand();
@@ -133,7 +135,7 @@ public class FrontController extends HttpServlet {
 		}
 		else if ("cartList".equals(type)) { //장바구니 보기
 			command = new CartListCommand();
-		} 
+		}
 		else if("cartInsert".equals(type)){ //장바구니 넣기
 			command = new CartInsertCommand();
 		}
@@ -142,13 +144,13 @@ public class FrontController extends HttpServlet {
 		}
 		else if("clearCart".equals(type)){ //장바구니 비우기
 			command = new ClearCartCommand();
-		} 
+		}
 		else if("orderPayment".equals(type)){ //구매step1
 			command = new OrderPaymentCommand();
-		} 
+		}
 		else if("GoOrder".equals(type)){ //구매step2
 			command = new OrderGoCommand();
-		} 
+		}
 		else if("editQuan".equals(type)){ //장바구니에서 수량변경
 			command = new EditQuantCommand();
 		}
@@ -163,8 +165,10 @@ public class FrontController extends HttpServlet {
 		}
 		else if("payCreditCard".equals(type)){ //카드결제완료
 			command = new PayCreditCardCommand();
-		}
-		else {
+		} else if("MainPage".equals(type)) {
+			System.out.print("expect:MainPage");
+			command = new MainPageCommand();
+		}else {
 			System.out.print("Command Error");
 		}
 		String path = command.execute(request, response);

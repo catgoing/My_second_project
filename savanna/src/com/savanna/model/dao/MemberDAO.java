@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 
 import com.savanna.model.vo.BookVO;
+import com.savanna.model.vo.BuyVO;
 import com.savanna.model.vo.MemberVO;
 import com.savanna.mybatis.DBService;
 
@@ -41,6 +42,7 @@ public class MemberDAO implements SuperDAO{
 		ss.close();
 		return result;
 	}
+	
 	// 정보수정
 	public static MemberVO update(MemberVO vo1) {
 		SqlSession ss = DBService.getFactory().openSession();
@@ -69,7 +71,6 @@ public class MemberDAO implements SuperDAO{
 		SqlSession ss = DBService.getFactory().openSession();
 		List<MemberVO> list = ss.selectList("member.memList");
 		ss.close();
-		System.out.println(list);
 		return list;
 	}
 	
@@ -113,6 +114,16 @@ public class MemberDAO implements SuperDAO{
 		return vo;
 	}
 
+	
+	// 구매목록
+	public static List<BuyVO> buyList(Map<String, Integer> map) {
+		SqlSession ss = DBService.getFactory().openSession();
+		List<BuyVO> list = ss.selectList("member.buyList", map);
+		ss.close();
+		return list;
+}
+
+
 	@Override
 	public int getTotalCount() {
 		return this.getMemberCount();
@@ -121,6 +132,7 @@ public class MemberDAO implements SuperDAO{
 	@Override
 	public List getPagedList(Map map) {
 		return this.getList(map);
+
 	}
 }
 

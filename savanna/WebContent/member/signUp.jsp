@@ -16,7 +16,7 @@
 
 <!-- Custom styles for this template -->
 <link href="/savanna/css/savanna.css" rel="stylesheet">
-<link href="/savanna/css/signup.css" rel="stylesheet">
+<link href="/savanna/css/member.css" rel="stylesheet">
 <title>회원가입</title>
 <%
 	String sel_accept = request.getParameter("sel_accept");

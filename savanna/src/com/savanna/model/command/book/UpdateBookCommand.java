@@ -30,6 +30,6 @@ public class UpdateBookCommand implements Command {
 							);
 		int result = BookDAO.updateBook(vo);
 		System.out.println(result);
-		return "controller?type=PagedAdminLogin";
+		return "controller?type=StockManagerPage";
 	}
 }

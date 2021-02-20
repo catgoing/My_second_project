@@ -3,9 +3,14 @@
 
 <!DOCTYPE html>
 <html>
+<meta name="viewport" content="width=device-width", initial-scale="1">
+<script src="../js/bootstrap.min.js"></script>
+<link href="../css/bootstrap.min.css" rel="stylesheet">
 <head>
 <meta charset="UTF-8">
 <title>게시글수정</title>
+<link rel="stylesheet" type="text/css" href="/savanna/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="../css/savanna.css">	
 <style>
 	h1 { margin-left : 80px;}
 	div { margin-left : 80px;
@@ -37,7 +42,7 @@
 	}
 	
 	function modify(frm) {
-		frm.action = "../controller?type=modify";
+		frm.action = "../controller?type=reviewUpdate";
 		frm.submit();
 	}
 	
@@ -48,8 +53,54 @@
 </script>
 
 </head>
+<%@ include file="/common/menu.jspf" %>
+<hr>
 <body>
-
+<div class="container">
+	<div class="row">
+	<form action="../controller?type=reviewInsert" method="post">
+		<table class="table table-striped" style="text-align:center; border: 1px solid #dddddd">
+		<caption>게시글수정</caption>
+		<tbody>
+			<tr>
+				<th>책번호</th>
+				<td>
+					<input type="text" name="book_no" size="12" title="책번호"
+							value="${rvo.book_no }">
+				</td>
+			</tr>		
+			<tr>
+				<th>내용</th>
+				<td>
+					<textarea name="rev_content" rows="8" cols="50" title="내용">${rvo.rev_content }</textarea>
+				</td>
+			</tr>
+			<tr>
+				<th>패스워드(확인용)</th>
+				<td>
+					<input type="password" name="rev_pwd" size="12" title="패스워드">
+				</td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="2">
+					<input type="hidden" id="rev_no" name="rev_no" value="${rvo.rev_no }">
+					<input type="hidden" id="id" name="id" value="${vo.id }">
+					<input type="hidden" id="rev_date" name="rev_date" value="${rvo.rev_date }">
+					<input type="button" value="수정" onclick="modify(this.form)">
+					<input type="reset" value="다시작성">
+					<input type="button" value="목록" onclick="list_go(this.form)">
+				</td>
+			</tr>
+		</tfoot>
+		</table>
+						<input type="button" class="btn btn-primary pull-right" value="작성" onclick="reviewInsert(this.form)">
+						<input type="reset" value="다시작성">
+						<input type="button" value="목록" onclick="list_go(this.form)"> 		
+	</form>
+	</div>
+</div>
 <div id="bbs">
 <form method="post" name="myForm">
 	<table>
@@ -91,7 +142,10 @@
 </form>
 
 </div>
-
+<hr>
+<%@ include file="/common/foot.jspf" %>
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+		<script src="js/bootstrap.js"></script>
 </body>
 </html>
 

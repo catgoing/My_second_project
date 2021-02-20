@@ -1,4 +1,4 @@
-package com.savanna.model.command.book;
+package com.savanna.model.command.paging;
 
 import java.io.IOException;
 
@@ -10,15 +10,17 @@ import com.savanna.model.command.Command;
 import com.savanna.model.dao.BookDAO;
 import com.savanna.model.vo.BookVO;
 
-public class DeleteBookCommand implements Command {
+public class AbstractedDomainListPagingCommandExample implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		int book_no = Integer.parseInt(request.getParameter("book_no")); //parseint 사전처리
-		int result = BookDAO.deleteBook(book_no);
-		System.out.println(result);
-
-		return "controller?type=StockManagerPage";
+		new ListPaging<BookVO>().PagingDistributor(new BookDAO(), request, 5, 5);
+		return "book/bookList.jsp";
 	}
+
+	public boolean isLoginValidate() {
+		return true;
+	}
+
 }

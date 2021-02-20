@@ -18,6 +18,11 @@ public class PageVO {
 	private int curBlockBeginIdx = 0; //현재 블록의 시작 페이지 번호
 	private int curBlockEndIdx = 0; //현재 블록의 끝 페이지 번호
 
+	public PageVO(int recordPerPage, int pagePerBlock) {
+		super();
+		this.setRecordPerPage(recordPerPage);
+		this.setPagePerBlock(pagePerBlock);
+	}
 	public void initPage(int recordCount) {
 		this.setRecordScale(recordCount);
 		this.setRangeOfPageNo();
@@ -45,6 +50,24 @@ public class PageVO {
 								? this.getTotalPage()
 								: this.getCurBlockBeginIdx() + this.getPagePerBlock() - 1);
 	}
+	
+	//delegate lagacy
+	public int getBegin() {
+		return this.getCurPageRecordBeginIdx();
+	}		
+	public int getEnd() {
+		return this.getCurPageRecordEndIdx();
+	}
+	public int getBeginPage() {
+		return this.getCurBlockBeginIdx();
+	}
+	public int getEndPage() {
+		return this.getCurBlockEndIdx();
+	}
+	public int getNowPage() {
+		return this.getCurPage();
+	}
+	
 	public void logging() {
 		System.out.println("--------------");
 		System.out.println("> 전체 게시글 수 : " + this.getTotalRecord());

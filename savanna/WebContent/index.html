@@ -1,0 +1,135 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width", initial-scale="1">
+		<title>SAVANNA</title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="css/savanna.css">		
+	</head>
+	<body>
+		<style type="text/css">
+			.jumbotron {
+				background-image: url('images/savanna01.jpg');
+				background-size: cover;
+				
+				color: black;
+			}
+
+		</style>
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapse" data-toggle="collapse" 
+					data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+						<span class="sr-only"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">SAVANNA</a>
+				</div>
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="#">회원가입</a></li>
+						<li><a href="#">로그인</a>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+							aria-haspopup="true" aria-expanded="false">SAVANNA 소개<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="lecture.html?lectureName=C"></a>SAVANNA란?</li>
+								<li><a href="lecture.html?lectureName=Java"></a>기능 소개</li>
+								<li><a href="lecture.html?lectureName=Android"></a>프로젝트원</li>
+							</ul>
+						</li>
+						<li><a href="../board/list.jsp">리뷰 게시판</a></li>
+					</ul>
+					<form class="navbar-form navbar-left">
+						<div class="form-group">
+							<input type="text" class="form-control" placeholder="내용을 입력하세요"> 
+						</div>
+						<button type="submit" class="btn btn-default">검색</button>
+					</form>
+					<ul class="nav navbar-nav navbar-right">
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+							aria-haspopup="true" aria-expanded="false">접속하기<span class="caret"></span></a>		
+							<ul class="dropdown-menu">
+								<li><a href="#"></a>로그인</li>
+								<li><a href="#"></a>회원가입</li>
+							</ul>								
+						</li>
+					</ul>
+				</div>
+			</div>		
+		</nav>
+		<div class="container">
+			<div class="jumbotron">
+				<h1 class="text-center">SAVANNA를 소개합니다.</h1>
+				<p class="text-center">SAVANNA는 온라인 서점입니다.</p>
+				<p class="text-center"><a class="btn btn-primary btn-lg" href="#" role="button">둘러보기 </a></p>
+			</div>	
+			<div class="row">
+				<div class="col-md-4">
+					<h4>SAVANNA의 특징</h4>
+					<p>SAVANNA는 다른 사이트와는 비교할 수 없는 편리함을 지니고 있습니다.</p>
+					<p><a class="btn btn-default" data-target="#modal" data-toggle="modal">자세히 알아보기</a></p> 
+				</div>	
+				<div class="col-md-4">
+					<h4>SAVANNA의 기능</h4>
+					<p>SAVANNA는 다양한 기능들을 제공합니다.</p>
+					<p><a class="btn btn-default" href="#">자세히 알아보기</a></p> 
+				</div>
+				<div class="col-md-4">
+					<h4>대표 </h4>
+					<p>현재 비트캠프에서 공부중인 남윤창입니다.</p>
+					<p><a class="btn btn-default" href="#">자세히 알아보기</a></p> 
+				</div>			
+			</div>
+			<hr> 
+		</div>
+		<footer style="background-color: #000000; color: #ffffff;">
+			<div class="container">
+				<br>
+				<div class="row">
+					<div class="col-sm-2" style="text-align: center;"><h5>Copyright &copy; 2021</h5><h5>남윤창(Nam Yunchang)</h5></div>
+					<div class="col-sm-4"><h4>대표 소개</h4><p>저는 비트캠프에서 공부중인 남윤창입니다.</p></div>
+					<div class="col-sm-2"><h4 style="text-align: center;">내비게이션</h4>
+						<div class="list-group">
+							<a href="#" class="list-group-item">소개</a>
+							<a href="#" class="list-group-item">프로젝트원</a>
+							<a href="#" class="list-group-item">기능구현</a>
+						</div>
+					</div>
+					<div class="col-sm-2"><h4 style="text-align: center;">SNS</h4>
+						<div class="list-group">
+							<a href="#" class="list-group-item">인스타그램</a>
+							<a href="https://github.com/catgoing/2ndProject_Group2" class="list-group-item">깃허브</a>
+							<a href="#" class="list-group-item">유튜브</a>
+						</div>
+					</div> 	
+					<div class="col-sm-2"><h4 style="text-align: center;"><span class="glyphicon glyphicon-ok">&nbsp;by 남윤창</span></h4>
+					</div>
+				</div>
+			</div>
+		</footer>
+		<div class="row">
+			<div class="modal" id="modal" tabindex="-1">
+				<div class="modal-content">
+					<div class="modal-header">
+						SAVANNA의 특징
+						<button class="close" data-dismiss="modal">&times;</button>
+					</div>
+					<div class="modal-body" style="text-align: center;">
+						저희 사이트의 특징은 온라인으로 간편하게 책 주문이 가능하다는 점입니다.<br>
+						오프라인에서는 구하기 어려운 다양한 책들이 준비되어 있습니다.<br><br>
+						<img src="images/savanna.jpg" id="imagepreview" style="width: 256px; height: 256px;">
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+		<script src="js/bootstrap.js"></script>
+	</body>
+</html>

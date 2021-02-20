@@ -21,5 +21,4 @@ public class CardListCommand implements Command {
 
 		return "book/cardList.jsp";
 	}
-
 }

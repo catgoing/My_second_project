@@ -28,6 +28,6 @@ public class CreateBookCommand implements Command {
 							);
 		int result = BookDAO.insertBook(vo);
 		System.out.println(result);
-		return "controller?type=PagedAdminLogin";
+		return "controller?type=StockManagerPage";
 	}
 }

@@ -63,6 +63,8 @@
 </script>
 </head>
 <body>
+	<%@ include file="/common/menu.jspf" %>
+
 	<h1>booklist for admin</h1>
 	<div class="container">
 	<table>
@@ -103,41 +105,9 @@
 				<input type="button" value="재고 수정(카트방식)">
 				<input type="button" value="돌아가기" onclick="history.back()">
 			</form>
-		</td>
-		</tr>
-			<tr>
-			<td colspan="8">
-				<ol class="paging">
-			<%--[이전으로]에 대한 사용여부 처리 시작페이지번호가 1인 경우 비활성화 --%>
-			<c:choose>
-				<c:when test="${pvo.curBlockBeginIdx == 1 }">		
-					<li class="disable">이전으로</li>
-				</c:when>
-				<c:otherwise>
-					<li><a href="controller?type=${curList }&cPage=${pvo.curBlockBeginIdx - 1}">이전으로</a></li>
-				</c:otherwise>	
-			</c:choose>		
-			<c:forEach var="pageNo" begin="${pvo.curBlockBeginIdx }" end="${pvo.curBlockEndIdx }">
-				<c:if test="${pageNo == pvo.curPage }">
-					<li class="now">${pageNo }</li>
-				</c:if>
-				<c:if test="${pageNo != pvo.curPage }">
-					<li>
-						<a href="controller?type=${curList }&cPage=${pageNo }">${pageNo }</a>
-					</li>
-				</c:if>		
-			</c:forEach>		
-				<c:if test="${pvo.curBlockEndIdx < pvo.totalPage }">	
-					<li>
-						<a href="controller?type=${curList }&cPage=${pvo.curBlockEndIdx + 1}">다음으로</a>
-					</li>
-				</c:if>
-				<c:if test="${pvo.curBlockEndIdx >= pvo.totalPage }">	
-					<li class="disable">다음으로</li>
-				</c:if>
-				</ol>
 			</td>
 		</tr>
+		<%@ include file="../common/pageNavigation.jsp" %>
 	</tfoot>
 	</table>
 	</div>

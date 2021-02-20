@@ -9,13 +9,14 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script type="text/javascript" src="js/bootstrap.js"></script>
+<script type="text/javascript" src="/savanna/js/bootstrap.js"></script>
 
 <!-- Bootstrap core CSS -->
 <link href="/savanna/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Custom styles for this template -->
 <link href="/savanna/css/savanna.css" rel="stylesheet">
+<link href="/savanna/css/signup.css" rel="stylesheet">
 <title>회원가입</title>
 <%
 	String sel_accept = request.getParameter("sel_accept");
@@ -56,10 +57,12 @@
 					id_result = 1;
 					document.getElementById('id_check').innerHTML=
 						'아이디는 영어(대,소문자), 숫자, -, _ 5~12자리만 가능합니다';
-					 document.getElementById('id_check').style.color='red';
+					document.getElementById('id_check').style.color='red';
+					document.getElementById('alertTxt').style.display="inline";
 
 				} else{
 					document.getElementById('id_check').innerHTML='';
+					document.getElementById('alertTxt').style.display="none";
 					id_result = 0;
 				}
 				
@@ -76,32 +79,92 @@
 	
 	 var check_SC = 0;
      var check_length = 0;
+     var pw = null; 
+     var pw2 = null;
+     var SC = ["!","@","#","$","%", "^", "&", "*", "(", ")", "-", "=", "'\'", "/", "+", "."];
+     
+     
+     $(function(){
+    	 $('#pw').keyup(function(){
+    		 
+    		 pw = document.getElementById('pw').value;
+    		 
+    		 for(var i=0;i<SC.length;i++){
+                 if(pw.indexOf(SC[i]) != -1){
+                     check_SC = 1;
+                 }
+             }
+       
+             if(check_SC == 0){
+           	  document.getElementById('check1').innerHTML='특수문자를 하나 이상 포함해야 합니다';
+                 document.getElementById('check1').style.color='red';
+                 document.getElementById('alertTxtpw').style.display="inline";
+             }
+             
+             if(pw.length < 4 || pw.length > 12){
+                 document.getElementById('check1').innerHTML='비밀번호는 4~12글자만 가능합니다';
+                 document.getElementById('check1').style.color='red';
+                 document.getElementById('alertTxtpw').style.display="inline";
+             } else check_length = 1;
+             
+             if(check_SC == 1 && check_length == 1){
+           	  document.getElementById('check1').innerHTML='';
+           	  document.getElementById('alertTxtpw').style.display="none";
+             }
+    	 });
+    		 
+     });
+     
+     $(function(){
+		$('#pw2').keyup(function(){
+			
+			pw2 = document.getElementById('pw2').value;
+			if(pw !='' && pw2 !=''){
+	              if(pw == pw2){
+	                  document.getElementById('check2').innerHTML='비밀번호가 일치합니다'
+	                  document.getElementById('check2').style.color='blue';
+	              }
+	              else{
+	                  document.getElementById('check2').innerHTML='비밀번호가 일치하지 않습니다';
+	                  document.getElementById('check2').style.color='red';
+	              }
+	          }
+    	 });
+     });
+    	 
 	  function check_pw(){
-          var pw = document.getElementById('pw').value;
-          var SC = ["!","@","#","$","%", "^", "&", "*", "(", ")", "-", "=", "'\'", "/", "+", "."];
+		  
+		  check_SC = 0;
+		  
+          pw = document.getElementById('pw').value;
+          pw2 = document.getElementById('pw2').value;
          
-
-          if(pw.length < 4 || pw.length > 12){
-              document.getElementById('check1').innerHTML='비밀번호는 4~12글자만 가능합니다';
-              document.getElementById('check1').style.color='red';
-          }
-          
-          else {
-        	  document.getElementById('check1').innerHTML='';
-        	  check_length = 1;
-          }
-          
+         
           for(var i=0;i<SC.length;i++){
               if(pw.indexOf(SC[i]) != -1){
                   check_SC = 1;
               }
           }
+    
           if(check_SC == 0){
         	  document.getElementById('check1').innerHTML='특수문자를 하나 이상 포함해야 합니다';
               document.getElementById('check1').style.color='red';
+              document.getElementById('alertTxtpw').style.display="inline";
           }
-          if(document.getElementById('pw').value !='' && document.getElementById('pw2').value!=''){
-              if(document.getElementById('pw').value==document.getElementById('pw2').value){
+          
+          if(pw.length < 4 || pw.length > 12){
+              document.getElementById('check1').innerHTML='비밀번호는 4~12글자만 가능합니다';
+              document.getElementById('check1').style.color='red';
+              document.getElementById('alertTxtpw').style.display="inline";
+          } else check_length = 1;
+          
+          if(check_SC == 1 && check_length == 1){
+        	  document.getElementById('check1').innerHTML='';
+        	  document.getElementById('alertTxtpw').style.display="none";
+          }
+          
+          if(pw !='' && pw2 !=''){
+              if(pw == pw2){
                   document.getElementById('check2').innerHTML='비밀번호가 일치합니다'
                   document.getElementById('check2').style.color='blue';
               }
@@ -110,46 +173,46 @@
                   document.getElementById('check2').style.color='red';
               }
           }
- 
-      }
+          
+        }
 	
 	  
 	  function null_check(){
-		if(fr.id.value == "" || id_result != 0){
+		if(document.getElementById('id').value == "" || id_result != 0){
 			alert("아이디를 확인해주세요");
 			fr.id.focus();
 			return false;
-		} else if(fr.pwd.value == ""){
+		} else if(document.getElementById('pw').value == ""){
 			alert("패스워드를 입력해주세요");
-			fr.pwd.focus();
+			fr.pw.focus();
 			return false;
-		} else if(fr.pwd2.value == ""){
+		} else if(document.getElementById('pw2').value == ""){
 			alert("패스워드를 입력해주세요");
-			fr.pwd2.focus();
+			fr.pw2.focus();
 			return false;
-		} else if(fr.name.value == ""){
+		} else if(document.getElementById('name').value == ""){
 			alert("이름을 입력해주세요");
 			fr.name.focus();
 			return false;
-		} else if(fr.phone.value == ""){
+		} else if(document.getElementById('phone').value == ""){
 			alert("휴대전화를 입력해주세요");
 			fr.phone.focus();
 			return false;
-		} else if(fr.email.value == ""){
+		} else if(document.getElementById('email').value == ""){
 			alert("이메일을 입력해주세요");
 			fr.email.focus();
 			return false;
-		} else if(fr.addr.value == ""){
+		} else if(document.getElementById('addr').value == ""){
 			alert("주소를 입력해주세요");
 			fr.addr.focus();
 			return false;
-		} else if(fr.pwd.value != fr.pwd2.value) {
+		} else if(pw != pw2) {
 			alert("패스워드가 일치하지 않습니다");
-			fr.pwd2.focus();
+			fr.pw2.focus();
 			return false;
 		} else if(check_SC == 0 || check_length == 0){
 			alert("패스워드를 확인해주세요");
-			fr.pwd.focus();
+			fr.pw.focus();
 			return false;
 		}
 		
@@ -161,57 +224,96 @@
 	
 </script>
 </head>
-<body>
+<body id="body">
+
 	<%@ include file="/common/menu.jspf" %>
-	<h1>회원가입</h1>
+	
+	
+   <h1>SAVANNA</h1>
   	<form action="/savanna/controller?type=doSignUp" method="post" name="fr" onsubmit="return null_check()">
-        <table>
-            <tr>
-                <td>아이디</td>
-                <td><input type="text" name="id" id="id" maxlength="12"></td>
-            </tr>
-            <tr>
-                <td colspan=2><span id="id_check"></span>
-            </tr>
-            <tr>
-                <td>패스워드</td>
-                <td><input type="password" name="pwd" id="pw" maxlength="12" onchange="check_pw()"></td>
-            </tr>
-            <tr>
-                <td colspan=2><span id="check1"></span>
-            </tr>
-            <tr>
-                <td>패스워드 확인</td>
-                <td><input type="password" name="pwd2" id="pw2" maxlength="12" onchange="check_pw()"></td>
-            </tr>
-            <tr>
-                <td colspan=2><span id="check2"></span>
-            </tr>
-             <tr>
-                <td>이름</td>
-                <td><input type="text" name="name"></td>
-            </tr>
-                        <tr>
-                <td>휴대전화</td>
-                <td><input type="text" name="phone"></td>
-            </tr>
-                        <tr>
-                <td>이메일</td>
-                <td><input type="email" name="email"></td>
-            </tr>           
-            <tr>
-                <td>주소</td>
-                <td><input type="text" name="addr"></td>
-            </tr>            
-            <tr>
-                <td>
-                    <input type="hidden" name="sel_accept" value="<%=sel_accept %>">
-                    <input type="submit" name="sbm" value="확인">
-                </td>
-            </tr>
-        </table> 
+          <!-- wrapper -->
+          <div id="wrapper">
+            <!-- content-->
+            <div id="content">
+            
+                <!-- ID -->
+                <div>
+                    <h3 class="join_title">
+                        <label for="id">아이디</label>
+                    </h3>
+                    <span class="box int_id">
+                        <input type="text" id="id" name="id" class="int" maxlength="12">
+                        <span id="alertTxt">사용불가</span>
+                    </span>
+                    <span id="id_check"></span>
+                </div>
+
+                <!-- PW1 -->
+                <div>
+                    <h3 class="join_title"><label for="pw">비밀번호</label></h3>
+                    <span class="box int_pass">
+                        <input type="password" id="pw" name="pwd" class="int" maxlength="12" onchange="check_pw()">
+                        <span id="alertTxtpw">사용불가</span>
+                    </span>
+                    <span id="check1"></span>
+                </div>
+
+                <!-- PW2 -->
+                <div>
+                    <h3 class="join_title"><label for="pw2">비밀번호 재확인</label></h3>
+                    <span class="box int_pass_check">
+                        <input type="password" id="pw2" class="int" maxlength="12" onchange="check_pw()">
+                    </span>
+                    <span id="check2"></span>
+                </div>
+
+                <!-- NAME -->
+                <div>
+                    <h3 class="join_title"><label for="name">이름</label></h3>
+                    <span class="box int_name">
+                        <input type="text" id="name" name="name" class="int" maxlength="20">
+                    </span>
+                    <span class="error_next_box"></span>
+                </div>
+
+                <!-- PHONE -->
+                <div>
+                  <h3 class="join_title"><label for="phone">휴대전화</label></h3>
+                  <span class="box int_phone">
+                      <input type="text" id="phone" name="phone" class="int" maxlength="13">
+                  </span>
+                  <span class="error_next_box"></span>
+                 </div>
+
+                <!-- EMIAL -->
+                <div>
+                  <h3 class="join_title"><label for="email">이메일</label></h3>
+                  <span class="box int_email">
+                      <input type="email" id="email" name="email" class="int" maxlength="20">
+                  </span>
+                  <span class="error_next_box"></span>
+                 </div>
+
+                <!-- ADDRESS -->
+                <div>
+                  <h3 class="join_title"><label for="addr">주소</label></h3>
+                  <span class="box int_addr">
+                      <input type="text" id="addr" name="addr" class="int" maxlength="50">
+                  </span>
+                  <span class="error_next_box"></span>
+                 </div>
+                 
+                 
+                <!-- JOIN BTN-->
+                <div class="btn_area">
+                <input type="hidden" name="sel_accept" value="<%=sel_accept %>">
+                  <button type="submit" id="btnJoin">
+                      <span>가입하기</span>
+                  </button>
+                </div>
+              </div>
+            </div>
         </form>
-         
 
 </body>
 </html>

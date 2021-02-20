@@ -8,7 +8,7 @@
 </head>
 <body>
 	
-	<form action="../controller?type=delete" method="post">
+	<form action="../controller?type=reviewDelete" method="post">
 		리뷰 비밀번호를 입력하세요 : <input type="password" name="pwd">
 		<input type="button" value="삭제" onclick="del_go(this.form)">
 	</form>

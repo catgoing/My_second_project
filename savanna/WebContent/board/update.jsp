@@ -41,7 +41,7 @@
 		document.myForm.submit();
 	}
 	
-	function modify(frm) {
+	function update(frm) {
 		frm.action = "../controller?type=reviewUpdate";
 		frm.submit();
 	}
@@ -95,7 +95,7 @@
 			</tr>
 		</tfoot>
 		</table>
-						<input type="button" class="btn btn-primary pull-right" value="작성" onclick="reviewInsert(this.form)">
+						<input type="button" class="btn btn-primary pull-right" value="작성" onclick="update(this.form)">
 						<input type="reset" value="다시작성">
 						<input type="button" value="목록" onclick="list_go(this.form)"> 		
 	</form>
@@ -132,7 +132,7 @@
 					<input type="hidden" id="rev_no" name="rev_no" value="${rvo.rev_no }">
 					<input type="hidden" id="id" name="id" value="${vo.id }">
 					<input type="hidden" id="rev_date" name="rev_date" value="${rvo.rev_date }">
-					<input type="button" value="수정" onclick="modify(this.form)">
+					<input type="button" value="수정" onclick="update(this.form)">
 					<input type="reset" value="다시작성">
 					<input type="button" value="목록" onclick="list_go(this.form)">
 				</td>
@@ -142,8 +142,6 @@
 </form>
 
 </div>
-<hr>
-<%@ include file="/common/foot.jspf" %>
 		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 		<script src="js/bootstrap.js"></script>
 </body>

@@ -62,7 +62,7 @@
 </style>
 <script>
 
-	function modify_go(frm) {
+	function update_go(frm) {
 		frm.action = "../controller?type=reviewUpdate";
 		frm.submit();
 	}

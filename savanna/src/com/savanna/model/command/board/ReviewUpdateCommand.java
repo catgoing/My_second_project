@@ -24,14 +24,14 @@ public class ReviewUpdateCommand implements Command {
 		
 		rvo.setRev_no((Integer.parseInt(request.getParameter("rev_no"))));
 		rvo.setBook_no((Integer.parseInt(request.getParameter("book_no"))));
-		rvo.setId(request.getParameter("name"));
+		rvo.setId(request.getParameter("id"));
 		rvo.setRev_content(request.getParameter("rev_content"));
 		rvo.setRev_date(request.getParameter("rev_date"));
 		rvo.setRev_pwd(request.getParameter("rev_pwd"));
 		
 		HttpSession httpSession = request.getSession(true);
 		//수정된 정보 세션에 저장
-		httpSession.setAttribute("rvo", rvo);
+		httpSession.setAttribute("review", rvo);
 		
 		int result = ReviewDAO.update(rvo);
 		System.out.println(result);			

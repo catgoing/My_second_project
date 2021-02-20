@@ -43,8 +43,6 @@
 	}
 </script>
 </head>
-<%@ include file="/common/menu.jspf" %>
-<hr>
 <body>
 <h1>[리뷰를 작성해 주세요]</h1>
 <div class="container">
@@ -90,22 +88,22 @@
 	</form>
 	</div>
 </div>
-
+<hr>
 <div>
 <form action="../controller?type=reviewInsert" method="post">
 	<table>
 		<tbody>
 			<tr>
 				<th>책번호</th>
-				<td><input type="text" class="form-control"  name="book_no" size="45" title="책번호"></td>
+				<td><input type="text" name="book_no" size="45" title="책번호"></td>
 			</tr>
 			<tr>
 				<th>작성자</th>
-				<td><input type="text" class="form-control" name="id" size="45" title="작성자"></td>
+				<td><input type="text" name="id" size="45" title="작성자"></td>
 			</tr>						
 			<tr>
 				<th>내용</th>
-				<td><textarea  class="form-control"placeholder="리뷰 내용을 입력하세요" name="rev_content" rows="5" cols="35" title="내용"></textarea></td>
+				<td><textarea name="rev_content" rows="5" cols="35" title="내용"></textarea></td>
 			</tr>
 			<tr>
 				<th>비밀번호</th>
@@ -125,10 +123,8 @@
 		</tfoot>
 	</table>
 </form>
-</div>
 
-<hr>
-<%@ include file="/common/foot.jspf" %>
+</div>
 		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 		<script src="js/bootstrap.js"></script>
 </body>

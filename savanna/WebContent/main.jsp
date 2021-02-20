@@ -28,10 +28,7 @@
   </aside>
   <section>
     <article>
-      <%@ include file="book/cardList2.jsp" %>
-    </article>
-    <article>
-      <%@ include file="book/cardList2.jsp" %>
+      <%@ include file="book/CardList.jsp" %>
     </article>
   </section>
 

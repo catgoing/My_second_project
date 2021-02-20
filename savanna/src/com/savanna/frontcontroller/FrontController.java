@@ -15,7 +15,6 @@ import com.savanna.model.command.board.CommInsertCommand;
 import com.savanna.model.command.board.ReviewDeleteCommand;
 import com.savanna.model.command.board.ReviewInsertCommand;
 import com.savanna.model.command.board.ReviewListPagingCommand;
-import com.savanna.model.command.board.ReviewModifyCommand;
 import com.savanna.model.command.board.ReviewUpdateCommand;
 import com.savanna.model.command.book.BookListPagingCommand;
 import com.savanna.model.command.book.CreateBookCommand;

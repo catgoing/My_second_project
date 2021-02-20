@@ -186,7 +186,6 @@
 	</tfoot>
 </table>
 <hr>
-<%@ include file="/common/foot.jspf" %>
 		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 		<script src="js/bootstrap.js"></script>
 

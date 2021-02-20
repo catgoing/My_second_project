@@ -25,12 +25,7 @@ public class ReviewDeleteCommand implements Command{
 		
 		//화면전환 
 		return "controller?type=reviewPage";
-//		String rev_no = request.getParameter("rev_no"); //parseint 사전처리
-//		int result = ReviewDAO.delete(rev_no);
-//		System.out.println(result);
-//
-//		return "../controller?type=reviewList";
-		
 	}		
+		
 
 }

@@ -52,13 +52,13 @@
 	
 </style>
 <script>
-	function insert_cart(frm){
-		frm.action = "/savanna/controller?type=wishToCart";
+	function input_cart(frm){
+		frm.action = "/savanna/controller?type=wishitemToCart";
 		frm.method = "post";
 		frm.submit();
 	}
 	function delete_wish(frm){
-		frm.action = "/savanna/controller?type=deleteWishList" ;
+		frm.action = "/savanna/controller?type=deleteWishList";
 		frm.method = "post";
 		frm.submit();
 	}
@@ -74,33 +74,18 @@
 				<th class="delete">선택</th>			
 			</tr>
 		</thead>
-		<tbody>
-			<tr class="list">
-		        <td colspan="2">책 제목</td>
-		        <td rowspan="2">책 가격</td>
-		        <td rowspan="2">
-		        	<input type="button" value="장바구니" onclick="input_cart(frm)"><br>
-		        	<input type="submit" value="삭제">
-		        </td>        
-		    </tr>
-		    <tr  class="list">
-		        <td>저자</td>
-		        <td>출판사</td>       
-	    	</tr>
-	    	<!-- <tr>
-	    		<td colspan="2">메모</td>
-	    	</tr> -->
 			<c:if test="${not empty list }">
 			<c:forEach var="vo" items="${list }">
 				<tr class="list">
-			        <td colspan="2"><a href="controller?type=EnterDetail&book_no=${vo.book_no }">${vo.book_name }</td>
+			        <td colspan="2"><a href="상세페이지">${vo.book_name }</td>
 			        <td rowspan="2"><fmt:formatNumber value="${vo.price }" pattern="###,###"/>원</td>
-			        <td><input type="button" value="장바구니" onclick="input_cart(frm)"></td>        
+			        <td><input type="button" value="장바구니" onclick="input_cart(this.form)">
+			        	<input type="hidden" name="book_no" value="${vo.book_no }"></td>        
 			    </tr>
 			    <tr>
 			        <td>${vo.writer }</td>
 			        <td>${vo.publisher }</td>
-			        <td><input type="submit" value="삭제" onclick="delete_wish(frm)">
+			        <td><input type="submit" value="삭제" onclick="delete_wish(this.form)">
 			        	<input type="hidden" name="book_no" value="${vo.book_no }"></td>        
 		    	</tr>
 			</c:forEach>

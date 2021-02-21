@@ -14,7 +14,7 @@ import com.savanna.model.dao.CartDAO;
 import com.savanna.model.dao.WishDAO;
 import com.savanna.model.vo.MemberVO;
 
-public class InsertWishtoCartCommand implements Command{
+public class WishitemToCartCommand implements Command{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
@@ -23,20 +23,17 @@ public class InsertWishtoCartCommand implements Command{
 		HttpSession session = request.getSession();
 		MemberVO mvo = (MemberVO)session.getAttribute("user");
 		String id = mvo.getId();
-		
 		int book_no = Integer.parseInt(request.getParameter("book_no"));
 		
-		boolean result = CartDAO.insertCart(book_no, id);
-
-		String path = "";
+		Map<String, Object> map = new HashMap<>();
+		map.put("id", id);
+		map.put("book_no", book_no);
 		
+		String path = "";
+		boolean result = CartDAO.insertCart(book_no, id);		
 		if(result) {
 			path = "cart/jungbok.jsp";
-		} else {
-			Map<String, Object> map = new HashMap<>();
-			map.put("id", id);
-			map.put("book_no", book_no);
-			
+		} else {	
 			WishDAO.deleteWish(map);		
 			
 			path = "controller?type=cartList";

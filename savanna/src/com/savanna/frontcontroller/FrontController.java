@@ -43,8 +43,8 @@ import com.savanna.model.command.member.UpdateCommand;
 import com.savanna.model.command.member.WithdrawalCommand;
 import com.savanna.model.command.wish.DeleteWishCommand;
 import com.savanna.model.command.wish.InsertWishCommand;
-import com.savanna.model.command.wish.InsertWishtoCartCommand;
 import com.savanna.model.command.wish.WishListCommand;
+import com.savanna.model.command.wish.WishitemToCartCommand;
 import com.savanna.model.command.cart.*;
 
 @WebServlet("/controller")
@@ -170,8 +170,8 @@ public class FrontController extends HttpServlet {
 			command = new InsertWishCommand();
 		} else if("deleteWishList".equals(type)) { //찜목록에서 삭제
 			command = new DeleteWishCommand();
-		} else if("wishToCart".equals(type)) { //장바구니로 이동(찜목록에서 삭제)
-			command = new InsertWishtoCartCommand();
+		} else if("wishitemToCart".equals(type)) { //장바구니로 이동(찜목록에서 삭제)
+			command = new WishitemToCartCommand();
 		}
 		else {
 			System.out.print("Command Error");

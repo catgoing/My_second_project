@@ -42,6 +42,7 @@ import com.savanna.model.command.member.InquiryPwdCommand;
 import com.savanna.model.command.member.LogoutCommand;
 import com.savanna.model.command.member.MemDetailCommand;
 import com.savanna.model.command.member.MemListCommand;
+import com.savanna.model.command.member.MemSearchCommand;
 import com.savanna.model.command.member.MyInfoCommand;
 import com.savanna.model.command.member.PwdCheckCommand;
 import com.savanna.model.command.member.SignInCommand;
@@ -100,6 +101,8 @@ public class FrontController extends HttpServlet {
 			command = new AdminUpdateCommand();
 		} else if ("adminWithdrawal".equals(type)) {
 			command = new AdminWithdrawalCommand();
+		} else if ("memsearch".equals(type)) {
+			command = new MemSearchCommand();
 		} else if("StockList".equals(type)) {
 			command = new EnterCardListCommand();
 		} else if("StockManagerPage".equals(type)) {

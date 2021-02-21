@@ -1,11 +1,11 @@
 package com.savanna.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.savanna.model.vo.BookVO;
 import com.savanna.model.vo.BuyVO;
 import com.savanna.model.vo.MemberVO;
 import com.savanna.mybatis.DBService;
@@ -112,6 +112,18 @@ public class MemberDAO implements SuperDAO{
 		MemberVO vo = ss.selectOne("member.memDetail", id);
 		ss.close();
 		return vo;
+	}
+	
+	//동적검색
+	public static List<MemberVO> getSearch(String idx, String keyword) {
+		Map<String, String> map = new HashMap<>();
+		map.put("idx", idx);
+		map.put("keyword", keyword);
+		
+		SqlSession ss = DBService.getFactory().openSession();
+		List<MemberVO> list = ss.selectList("member.search", map);
+		ss.close();
+		return list;
 	}
 
 	

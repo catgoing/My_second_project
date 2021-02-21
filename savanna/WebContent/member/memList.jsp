@@ -27,7 +27,7 @@
 	.paging li a {
 		text-decoration: none;
 		display: block;
-		padding: 13px 7px;
+		padding: 3px 7px;
 		border: 1px solid #00B3DC;
 		font-weight: bold;
 		color: black;

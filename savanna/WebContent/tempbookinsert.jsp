@@ -19,6 +19,7 @@
 		frm.action="/savanna/controller?type=insertWishList";
 		frm.method="post";
 		frm.submit();
+	}	
 		/* $(function (){
 			$.ajax({
 				url : '/savanna/controller?type=insertWishList',
@@ -38,9 +39,9 @@
 							+ "errorThrown : " + errorThrown);
 				}
 			});
-		}); */
-	});
-
+		});
+	}); */
+	
 </script>
 </head>
 <body>

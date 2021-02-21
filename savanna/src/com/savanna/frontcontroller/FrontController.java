@@ -170,7 +170,19 @@ public class FrontController extends HttpServlet {
 		} else if("MainPage".equals(type)) {
 			System.out.print("expect:MainPage");
 			command = new MainPageCommand();
-		}else {
+		} else if("MainPage".equals(type)) {
+			System.out.print("expect:MainPage");
+			command = new MainPageCommand();
+		} else if("wishList".equals(type)) { //찜목록
+			command = new WishListCommand();
+		} else if("insertWishList".equals(type)) { //찜목록 입력
+			command = new InsertWishCommand();
+		} else if("deleteWishList".equals(type)) { //찜목록에서 삭제
+			command = new DeleteWishCommand();
+		} else if("wishitemToCart".equals(type)) { //장바구니로 이동(찜목록에서 삭제)
+			command = new WishitemToCartCommand();
+		}
+		else {
 			System.out.print("Command Error");
 		}
 		String path = command.execute(request, response);

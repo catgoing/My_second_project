@@ -62,7 +62,7 @@ public class ReviewDAO implements SuperDAO {
 	}
 	
 	//게시글 삭제 처리
-	public static int delete(String rev_no) {
+	public static int delete(int rev_no) {
 		SqlSession ss = DBService.getFactory().openSession(true);
 		int result = ss.delete("board.review_delete", rev_no);
 		ss.close();

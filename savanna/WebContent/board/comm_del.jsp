@@ -43,7 +43,7 @@
 </head>
 <body>
 
-<form action="comm_del_ok.jsp" method="post">
+<form action="../controller?type=commDelete" method="post">
 	비밀번호 : <input type="password" name="pwd">
 	<input type="button" value="삭제" onclick="ans_del(this.form)">
 	<input type="hidden" name="comm_no" value="${comm_no }">

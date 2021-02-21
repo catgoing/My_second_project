@@ -25,9 +25,14 @@
 
 <!DOCTYPE html>
 <html>
+<meta name="viewport" content="width=device-width", initial-scale="1">
+<script src="../js/bootstrap.min.js"></script>
+<link href="../css/bootstrap.min.css" rel="stylesheet">
 <head>
 <meta charset="UTF-8">
 <title>게시글상세</title>
+<link rel="stylesheet" type="text/css" href="/savanna/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="../css/savanna.css">	
 <style>
 	#bbs table {
 		width: 580px;
@@ -57,20 +62,29 @@
 </style>
 <script>
 
-	function modify_go(frm) {
-		frm.action = "../controller?type=modify";
+	function update_go(frm) {
+		frm.action = "../controller?type=reviewUpdate";
 		frm.submit();
 	}
 	function delete_go(frm) {
-		frm.action = "../controller?type=delete";
+		frm.action = "../controller?type=reviewDelete";
 		frm.submit();
 	}
 	function list_go(frm) {
 		frm.action = "../controller?type=reviewPage";
 		frm.submit();
 	}
+	function commInsert_go(frm) {
+		frm.action = "../controller?type=commInsert";
+		frm.submit();
+	}
+	function commDelete_go(frm) {
+		frm.action = "../controller?type=commDelete";
+		frm.submit();
+	}
 </script>
 </head>
+<%@ include file="/common/menu.jspf" %>
 <body>
 
 <div id="bbs">
@@ -95,8 +109,8 @@
 		<tfoot>
 			<tr>
 				<td colspan="2">
-					<input type="button" value="수정" onclick="javascript:location.href='modify.jsp'">
-					<input type="button" value="삭제" onclick="delete_go(this.form)">
+					<input type="button" value="수정" onclick="javascript:location.href='update.jsp'">
+					<input type="button" value="삭제" onclick="javascript:location.href='delete.jsp'">
 					<input type="button" value="목록" onclick="list_go(this.form)">
 					<input type="hidden" name="cPage" value="${cPage }">
 				</td>
@@ -108,13 +122,13 @@
 <hr>
 
 <%-- 게시글에 대한 댓글 작성 영역 --%>
-<form action="comm_write_ok.jsp" method="post">
+<form method="post">
 	<h3>댓글 작성하기</h3>
 	<div id="comment">
 	<p>작성자 : <input type="text" name="id">
 		댓글 비밀번호 : <input type="password" name="comm_pwd"></p>
-	<p>내용 : <textarea name="content" rows="4" cols="55"></textarea>
-	<input type="submit" value="작성하기">
+	<p>내용 : <textarea name="comm_content" rows="4" cols="55"></textarea>
+	<input type="submit" value="작성하기" onclick="commInsert_go(this.form)">
 	<input type="hidden" name="rev_no" value="${rvo.rev_no }"></p>
 	</div>
 </form>
@@ -132,10 +146,10 @@
 <c:if test="${not empty c_list }">	
 <c:forEach var="cvo" items="${c_list }">
 <div class="comment">
-	<form action="comm_del.jsp" method="post">
+	<form method="post">
 		<p>이름 : ${cvo.id } &nbsp; 날짜 : ${cvo.comm_date }</p>
 		<p>내용 : ${cvo.comm_content }</p>
-		<input type="submit" value="댓글삭제">
+		<input type="submit" value="댓글삭제" onclick="commDelete_go(this.form)">
 		<input type="hidden" name="rev_no" value="${rvo.rev_no }">
 		<input type="hidden" name="comm_no" value="${cvo.comm_no }">
 		<input type="hidden" name="comm_pwd" value="${cvo.comm_pwd }">

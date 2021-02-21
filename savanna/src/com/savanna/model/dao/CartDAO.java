@@ -142,5 +142,17 @@ public class CartDAO implements SuperDAO{
 		return null;
 	}
 
+	@Override
+	public int getTotalCount2(String str) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List getPagedList2(Map map) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }

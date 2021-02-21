@@ -15,7 +15,7 @@ import com.savanna.model.command.board.CommInsertCommand;
 import com.savanna.model.command.board.ReviewDeleteCommand;
 import com.savanna.model.command.board.ReviewInsertCommand;
 import com.savanna.model.command.board.ReviewListPagingCommand;
-import com.savanna.model.command.board.ReviewModifyCommand;
+import com.savanna.model.command.board.ReviewUpdateCommand;
 import com.savanna.model.command.book.BookListPagingCommand;
 import com.savanna.model.command.book.CreateBookCommand;
 import com.savanna.model.command.book.DeleteBookCommand;
@@ -24,6 +24,13 @@ import com.savanna.model.command.book.UpdateBookCommand;
 import com.savanna.model.command.book.viewDispatchCommand.EnterBookDetailCommand;
 import com.savanna.model.command.book.viewDispatchCommand.EnterCreateBookViewCommand;
 import com.savanna.model.command.book.viewDispatchCommand.EnterUpdateBookViewCommand;
+import com.savanna.model.command.cart.CartInsertCommand;
+import com.savanna.model.command.cart.CartListCommand;
+import com.savanna.model.command.cart.ClearCartCommand;
+import com.savanna.model.command.cart.DeleteInCartCommand;
+import com.savanna.model.command.cart.EditQuantCommand;
+import com.savanna.model.command.cart.OrderGoCommand;
+import com.savanna.model.command.cart.TempBookInsertCommand;
 import com.savanna.model.command.member.AdminUpdateCommand;
 import com.savanna.model.command.member.AdminWithdrawalCommand;
 import com.savanna.model.command.member.DoPwdCheckCommand;
@@ -35,6 +42,7 @@ import com.savanna.model.command.member.InquiryPwdCommand;
 import com.savanna.model.command.member.LogoutCommand;
 import com.savanna.model.command.member.MemDetailCommand;
 import com.savanna.model.command.member.MemListCommand;
+import com.savanna.model.command.member.MemSearchCommand;
 import com.savanna.model.command.member.MyInfoCommand;
 import com.savanna.model.command.member.PwdCheckCommand;
 import com.savanna.model.command.member.SignInCommand;
@@ -53,6 +61,7 @@ public class FrontController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println(">> FrontController.doGet() 실행~~");
 		String type = request.getParameter("type");
+		String id = request.getParameter("id");
 		String pwd = request.getParameter("pwd");
 		System.out.println("> type : "+ type);
 
@@ -64,7 +73,6 @@ public class FrontController extends HttpServlet {
 		} else if ("doSignUp".equals(type)) {
 			command = new DoSignUpCommand();
 		} else if ("signIn".equals(type)) {
-			System.out.print("expect:SignIn");
 			command = new SignInCommand();
 		} else if ("doSignIn".equals(type)) {
 			command = new DoSignInCommand();
@@ -78,31 +86,30 @@ public class FrontController extends HttpServlet {
 			command = new UpdateCommand();
 		} else if ("withdrawal".equals(type)) {
 			command = new WithdrawalCommand();
-		} 
-		
+		}
+
 		else if (type.indexOf("memList") == 0) {
 			command = type.length()==7
 					? new MemListCommand("1")
 					: new MemListCommand(type.substring(14));
-		}
-		else if ("inquiryId".equals(type)) {
+		} else if ("inquiryId".equals(type)) {
 			command = new InquiryIdCommand();
 		} else if ("inquiryPwd".equals(type)) {
 			command = new InquiryPwdCommand();
-		}
-
-		else if (type.indexOf("memDetail") == 0) {
-			command = new MemDetailCommand(type.substring(13));
-		} else if (type.indexOf("idCheck") == 0) {
-			command = new IdCheckCommand(type.substring(11));
-		} else if (type.indexOf("doPwdCheck") == 0) {
-			command = new DoPwdCheckCommand(type.substring(14), pwd);
-		}
-
-		else if ("adminUpdate".equals(type)) {
+		} else if ("memDetail".equals(type)) {
+			command = new MemDetailCommand(id);
+		} else if ("idCheck".equals(type)) {
+			command = new IdCheckCommand(id);
+		} else if ("doPwdCheck".equals(type)) {
+			command = new DoPwdCheckCommand(id, pwd);
+		} else if ("doPwdCheckwithdrawal".equals(type)) {
+			command = new DoPwdCheckCommand(id, pwd, type.substring(10));;
+		} else if ("adminUpdate".equals(type)) {
 			command = new AdminUpdateCommand();
 		} else if ("adminWithdrawal".equals(type)) {
 			command = new AdminWithdrawalCommand();
+		} else if ("memsearch".equals(type)) {
+			command = new MemSearchCommand();
 		} else if("StockList".equals(type)) {
 			command = new EnterCardListCommand();
 		} else if("StockManagerPage".equals(type)) {
@@ -130,16 +137,15 @@ public class FrontController extends HttpServlet {
 			command = new ReviewListPagingCommand();
 		} else if("reviewInsert".equals(type)) {
 			command = new ReviewInsertCommand();
-		} else if("reviewModify".equals(type)) {
-			command = new ReviewModifyCommand();
+		} else if("reviewUpdate".equals(type)) {
+			command = new ReviewUpdateCommand();
 		} else if("reviewDelete".equals(type)) {
 			command = new ReviewDeleteCommand();
 		} else if("commInsert".equals(type)) {
 			command = new CommInsertCommand();
 		} else if("commDelete".equals(type)) {
 			command = new CommDeleteCommand();
-		}
-		else if ("cartList".equals(type)) { //장바구니 보기
+		} else if ("cartList".equals(type)) { //장바구니 보기
 			command = new CartListCommand();
 		} else if("cartInsert".equals(type)){ //장바구니 넣기
 			command = new CartInsertCommand();
@@ -176,8 +182,8 @@ public class FrontController extends HttpServlet {
 		else {
 			System.out.print("Command Error");
 		}
-		String path = command.execute(request, response);
 
+		String path = command.execute(request, response);
 
 		if(type.indexOf("List") != 0) {
 			request.setAttribute("curList", type);

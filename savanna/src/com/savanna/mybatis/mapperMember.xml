@@ -124,6 +124,31 @@
 		WHERE ID = #{id}
 	</select>	
 	
+		<!-- 동적 검색 -->
+	<select id="search" parameterType="map" resultType="MemberVO">
+		SELECT *
+		  FROM MEMBERS
+		<choose>
+			<when test="idx == 0">
+				WHERE ID = #{keyword}
+			</when>
+			<when test="idx == 1">
+				WHERE NAME = #{keyword}
+			</when>
+			<when test="idx == 2">
+				WHERE PHONE = #{keyword}
+			</when>
+			<when test="idx == 3">
+				WHERE EMAIL = #{keyword}
+			</when>
+			<otherwise>
+				WHERE 1 = 2
+			</otherwise>
+		</choose>
+		ORDER BY ID	
+	
+	</select>
+	
 	<!-- 구매내역 리스트-->
 	<select id="buyList" parameterType="string" resultType="BuyVO">
 		SELECT BOOK_NAME, QUAN, PRICE, PUR_DATE

@@ -84,6 +84,7 @@ public class MemberVO {
 	}
 
 	public void setRegdate(String regdate) {
+		System.out.println(regdate);
 		this.regdate = regdate.substring(0, 10);
 	}
 	

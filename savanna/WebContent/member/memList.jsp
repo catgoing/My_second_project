@@ -123,6 +123,20 @@
 		</c:forEach>
 		</tbody>
 		<tfoot>
+	      <tr >
+	        <td colspan="8">
+	        <form action="/savanna/controller?type=memsearch" method="post">
+	        <select name="idx">
+	          <option value="0">아이디</option>
+	          <option value="1">이름</option>
+	          <option value="2">연락처</option>
+	          <option value="3">이메일</option>
+	        </select>
+	        <input type="text" name="keyword">
+	        <input type="submit" value="검색">
+	        </form>
+	      </td>
+	      </tr>
    			<tr>
    				<%@ include file="../common/pageNavigation.jsp" %>
    			</tr>

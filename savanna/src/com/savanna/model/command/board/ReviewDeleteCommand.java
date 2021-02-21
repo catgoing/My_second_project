@@ -17,12 +17,10 @@ public class ReviewDeleteCommand implements Command{
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		
-		HttpSession session = request.getSession();
-		String rev_no = request.getParameter("rev_no");
+		int rev_no = Integer.parseInt(request.getParameter("rev_no"));
 		
 		//DB 데이터 삭제 처리(rev_no 값 사용)
 		ReviewDAO.delete(rev_no);
-		
 		//화면전환 
 		return "controller?type=reviewPage";
 	}		

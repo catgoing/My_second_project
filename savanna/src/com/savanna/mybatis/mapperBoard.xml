@@ -52,7 +52,7 @@
 	</update>
 	
 	<!-- 게시글 삭제 -->
-	<delete id="review_delete" parameterType="String">
+	<delete id="review_delete" parameterType="int">
 		DELETE FROM REVIEWS WHERE REV_NO = #{rev_no}
 	</delete>
 	

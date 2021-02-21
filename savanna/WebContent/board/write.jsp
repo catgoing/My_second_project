@@ -43,6 +43,8 @@
 	}
 </script>
 </head>
+<%@ include file="/common/menu.jspf" %>
+<hr>
 <body>
 <h1>[리뷰를 작성해 주세요]</h1>
 <div class="container">

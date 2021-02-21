@@ -7,27 +7,49 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>결제 페이지</title>
-<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<meta name="description" content="">
+<meta name="author" content="">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+<script type="text/javascript" src="js/bootstrap.js"></script>
+
+<!-- Bootstrap core CSS -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="/savanna/css/savanna.css" rel="stylesheet">
+
+<title>:: 결제 페이지 ::</title>
+
 </head>
 <style>
-    .orderlist_check { border: 2px solid blue; background-color: antiquewhite}
-    .address { border: 2px solid yellow; background-color: aqua}
-    .paymethodview { border: 2px solid orange; background-color: aquamarine}
-    .paymentselect { margin: 10px; border: 2px solid pink; background-color: deeppink}
-    #sel { 
-        display: none;
-        width: 500px;
-        height: 60px;
+    div panel {
+        width: 80%;
+        margin: auto;
     }
-    #popup {
-        width: 100%   
+    div {
+        width: 80%;
+        margin: auto;
     }
     table {
-    	border: 1px solid black;
+        width: 70%;
+        margin: auto;
     }
-    
-    
+    table .th1 {
+        border-bottom: 1px solid black;   
+    }
+    table #paymethod, #buttons {
+        width: 70%;
+        margin: auto;
+    }
+    table #banks, #cards {
+        width: 40%;
+    }
+    #addr {
+        text-align: center;
+    }
 </style>
 <script>
     function back_cart(frm){
@@ -68,49 +90,63 @@
        		frm.submit();
     	}
     }
-    
 </script>    
 <body>
-    <div class="orderlist_check">
-    <h3> 구입할 상품을 확인하세요 </h3>
-    <table class = "product">
-        <thead>
+	<%@ include file="/common/menu.jspf" %>
+ <div class="panel">
+    <div id="orderlist_check">
+        <table id = "product">
+            <thead>
+                <tr>
+                    <th class="th1" colspan="3">상품 확인</th>
+                </tr>
+                <tr>
+                    <th>상품명</th>
+                    <th>수량</th>
+                    <th>가격</th>
+                </tr>
+            </thead>
+            <tbody>
+            <c:forEach var="cvo" items="${cartlist }">
+                <tr>
+                    <td>${cvo.book_name }</td>
+                    <td>${cvo.cart_quan }</td>
+                    <td>${cvo.cart_price }</td>
+                </tr>
+            </c:forEach>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td>배송비 : </td>
+                    <td colspan="2">${shipcharge }</td>
+                </tr>
+                <tr>
+                    <td>총 결제금액 : </td>
+                    <td colspan="2">${totprice }</td>
+                </tr>    
+            </tfoot>
+        </table>
+
+        <table>
             <tr>
-                <th>상품명</th>
-                <th>수량</th>
-                <th>가격</th>
+                <th class="th1">배송지 확인</th>
             </tr>
-        </thead>
-        <tbody>
-        <c:forEach var="cvo" items="${cartlist }">
             <tr>
-                <td>${cvo.book_name }</td>
-                <td>${cvo.cart_quan }</td>
-                <td>${cvo.cart_price }</td>
+                <td id="addr">${addr }</td>
             </tr>
-        </c:forEach>
-        </tbody>
-        <tfoot>
-            <tr>
-                <td>배송비 : ${shipcharge }</td>
-            </tr>
-            <tr>
-                <td>총 결제금액 : ${totprice }</td>
-            </tr>    
-        </tfoot>
-    </table>
-        
-	<h3> 배송지를 확인하세요 </h3>
-        ${addr }
+        </table> 
 	</div>
-    
-	<div class="paymethodview">
-	<h3> 결제 방식을 선택하세요 </h3>
+        
     
     <form>
-        
-        <div class="paymentselect">
-            <table >
+    <div id="paymentselect">
+        <table id="paymethod">
+            <thead>
+                <tr>
+                    <th class="th1" colspan="2">결제방식 확인</th>
+                </tr>
+            </thead>
+            <tbody>
                 <tr>
                     <td>
                         <input type="radio" name="paymentmethod" value="deposit" id="deposit" class="payment">
@@ -121,13 +157,15 @@
                         <label for="card">카드결제</label>
                     </td>
                 </tr>
-            </table>
-        </div>
+            </tbody>
+        </table>
+    </div>
 
-        <div id="sel" class="payment_deposit">
-            <table id="popup">
+    <div id="sel" class="payment_deposit" style="display: none">
+        <table id="popup">
+            <tbody>
                 <tr>
-                    <td style="text-align: center">
+                    <td id="banks" style="text-align: center">
                         입금할 은행
                     </td>
                     <td  width="60%">
@@ -144,14 +182,16 @@
                     <td  width="60%">
                         savanna 
                     </td>
-                </tr>       
-            </table>    
-        </div>
+                </tr> 
+            </tbody>
+        </table>    
+    </div>
 
-        <div id="sel" class="payment_card">
-            <table id="popup">
+    <div id="sel" class="payment_card" style="display: none">
+        <table id="popup">
+            <tbody>
                 <tr>
-                    <td style="text-align: center">
+                    <td id="cards" style="text-align: center">
                         카드사 선택
                     </td>
                     <td width="60%">
@@ -164,23 +204,24 @@
                         </select>
                     </td>
                 </tr>
-            </table>
-        </div>
-        
-        <table id="buttons">
-            <tr>
-                <td>
-                    <input type="button" value="장바구니로 돌아가기" onclick="back_cart(this.form)">
-                </td>
-                <td>
-                    <input type="button" value="확인" onclick="set_paymentmethod(this.form)">
-                </td>   
-            </tr> 
-	   </table>
-        
+            </tbody>
+        </table>
+    </div>
+
+    <div class="buttoncls">
+    <table id="buttons">
+        <tr>
+            <td>
+                <input type="button" value="장바구니로 돌아가기" class="btn btn-default" onclick="back_cart(this.form)">
+            </td>
+            <td>
+                <input type="button" value="확인" class="btn btn-default" onclick="set_paymentmethod(this.form)">
+            </td>   
+        </tr> 
+    </table>
+    </div>
 	</form>	
-        
-	</div>
+</div>  
 
 
 </body>

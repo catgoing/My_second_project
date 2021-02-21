@@ -8,11 +8,39 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
+
 	function cart_insert(frm){
-		frm.action="controller?type=cartInsert";
+		frm.action="/savanna/controller?type=cartInsert";
 		frm.method="post";
 		frm.submit();
 	}
+
+	function wish_insert(frm) {
+		frm.action="/savanna/controller?type=insertWishList";
+		frm.method="post";
+		frm.submit();
+		/* $(function (){
+			$.ajax({
+				url : '/savanna/controller?type=insertWishList',
+				type : 'post',
+				dataType : 'text',
+				data : { "book_no" : $('.book_no').val() },
+				success : function(result){
+					if(result == 1){
+						alert("이미 찜목록에 있습니다.");
+					} else if(result == 0) {
+						alert("찜목록에 담았습니다.");
+					}
+				}, error : function(jqXHR, testStatus, errorThrown){
+					alert("[예외발생] Ajax 처리실패!! \n"
+							+ "jqXHR : " + jqXHR.readyState + "\n"
+							+ "testStatus : " + testStatus + "\n"
+							+ "errorThrown : " + errorThrown);
+				}
+			});
+		}); */
+	});
+
 </script>
 </head>
 <body>
@@ -43,6 +71,7 @@
 				<td>${vo.stock  }</td>
 				<td>
 				<form>
+					<input type="button" value="찜" onclick="wish_insert(this.form)">
 					<input type="button" value="장바구니" onclick="cart_insert(this.form)">
 					<input type="hidden" name="book_no" value="${vo.book_no }">
 				</form>

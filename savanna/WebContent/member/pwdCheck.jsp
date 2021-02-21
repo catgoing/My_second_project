@@ -11,13 +11,14 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script type="text/javascript" src="js/bootstrap.js"></script>
+<script type="text/javascript" src="/savanna/js/bootstrap.js"></script>
 
 <!-- Bootstrap core CSS -->
 <link href="/savanna/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Custom styles for this template -->
 <link href="/savanna/css/savanna.css" rel="stylesheet">
+<link href="/savanna/css/member.css" rel="stylesheet">
 <title>패스워드 확인</title> 
 </head>
 <script>

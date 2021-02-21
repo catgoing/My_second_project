@@ -31,6 +31,23 @@ public class ListPaging<T> {
 					put("end", recordEndIdx);
 				}};
 	}
+	
+	public void PagingDistributor(SuperDAO<T> dao, HttpServletRequest request, String id, int recordPerPage, int pagePerBlock)
+			throws ServletException, IOException {
+		PageVO page = PageFactory.getPage(dao.getTotalCount2(id), request.getParameter("cPage"), recordPerPage, pagePerBlock);
+		request.setAttribute("pvo", page);
+		request.setAttribute("list", dao.getPagedList2(
+										getRecordRange(id, page.getCurPageRecordBeginIdx(), page.getCurPageRecordEndIdx())
+									));
+	}
+	public static Map<String, Object> getRecordRange(String id, int recordBeginIdx, int recordEndIdx) {
+		return new HashMap<String, Object>() {{
+					put("id", id);
+					put("begin", recordBeginIdx);
+					put("end", recordEndIdx);
+				}};
+	}
+	
 	public boolean isLoginValidate() {
 		return true;
 	}

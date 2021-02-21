@@ -137,7 +137,7 @@
 	      </td>
 	      </tr>
    			<tr>
-   				<%@ include file="pagingNavigationExample.jsp" %> <!-- 경로는 네비게이션 파일 위치에 따라 다름 -->
+   				<%@ include file="pagingExampleNavigation.jsp" %> <!-- 경로는 네비게이션 파일 위치에 따라 다름 -->
    				<!-- 네비게이션에서 cPage와 idx, keyword를 controller에 넘김 -->
    			</tr>
 		</tfoot>

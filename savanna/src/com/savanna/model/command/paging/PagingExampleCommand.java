@@ -10,18 +10,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.savanna.model.command.Command;
-import com.savanna.model.dao.MemberDAO;
 import com.savanna.model.vo.MemPagingVO;
 import com.savanna.model.vo.MemberVO;
 
-public class PagingExample implements Command{
+public class PagingExampleCommand implements Command{
 	String cPage;
 	
-	public PagingExample() {
+	public PagingExampleCommand() {
 	
 	}
 	
-	public PagingExample(String cPage) {
+	public PagingExampleCommand(String cPage) {
 		this.cPage = cPage; // cPage는 jsp에서 get 방식으로 controller를 통해 전달받음
 	}
 
@@ -45,7 +44,7 @@ public class PagingExample implements Command{
 			MemPagingVO p = new MemPagingVO();
 
 			//1. 검색한 데이터의 수를 구하기
-			p.setTotalMember(MemberDAO.getSearchCount(idx, keyword));
+			p.setTotalMember(PagingExampleDAO.getSearchCount(idx, keyword));
 			p.setTotalPage();
 //			System.out.println("> 전체 검색결과 수 : " + p.getTotalMember());
 //			System.out.println("> 전체 페이지 수 : " + p.getTotalPage());
@@ -99,7 +98,7 @@ public class PagingExample implements Command{
 			
 		
 			// 현재 페이지에 표시할 데이터 조회
-			List<MemberVO> list = MemberDAO.getsearchList(map);
+			List<MemberVO> list = PagingExampleDAO.getsearchList(map);
 //			System.out.println("> 현재 페이지 글목록(list) : " + list);
 
 			request.setAttribute("list", list); // 최종 데이터 리스트

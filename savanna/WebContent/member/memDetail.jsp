@@ -140,7 +140,7 @@
                 <button type="submit" id="updatebtn" style="width: 49%; margin-bottom: 0;">
                       <span>수정</span>
                 </button>              
-                <button type="button" id="withdrawalbtn" style="width: 49%;  margin-bottom: 0;" onclick="withdrawal()">
+                <button type="button" id="withdrawalbtn" style="width: 49%;  margin-bottom: 0;" onclick="withdrawal(this.form)">
                       <span>탈퇴</span>
                 </button>
                 </div>

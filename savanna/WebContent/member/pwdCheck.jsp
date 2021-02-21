@@ -18,6 +18,7 @@
 
 <!-- Custom styles for this template -->
 <link href="/savanna/css/savanna.css" rel="stylesheet">
+<link href="/savanna/css/member.css" rel="stylesheet">
 <title>패스워드 확인</title> 
 </head>
 <script>

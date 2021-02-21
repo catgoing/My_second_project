@@ -49,6 +49,7 @@ public class FrontController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println(">> FrontController.doGet() 실행~~");
 		String type = request.getParameter("type");
+		String id = request.getParameter("id");
 		String pwd = request.getParameter("pwd");
 		System.out.println("> type : "+ type);
 
@@ -60,7 +61,6 @@ public class FrontController extends HttpServlet {
 		} else if ("doSignUp".equals(type)) {
 			command = new DoSignUpCommand();
 		} else if ("signIn".equals(type)) {
-			System.out.print("expect:SignIn");
 			command = new SignInCommand();
 		} else if ("doSignIn".equals(type)) {
 			command = new DoSignInCommand();
@@ -78,22 +78,19 @@ public class FrontController extends HttpServlet {
 			command = type.length()==7
 					? new MemListCommand("1")
 					: new MemListCommand(type.substring(14));
-		}
-		else if ("inquiryId".equals(type)) {
+		} else if ("inquiryId".equals(type)) {
 			command = new InquiryIdCommand();
 		} else if ("inquiryPwd".equals(type)) {
 			command = new InquiryPwdCommand();
-		}
-
-		else if (type.indexOf("memDetail") == 0) {
-			command = new MemDetailCommand(type.substring(13));
-		} else if (type.indexOf("idCheck") == 0) {
-			command = new IdCheckCommand(type.substring(11));
-		} else if (type.indexOf("doPwdCheck") == 0) {
-			command = new DoPwdCheckCommand(type.substring(14), pwd);
-		}
-
-		else if ("adminUpdate".equals(type)) {
+		} else if ("memDetail".equals(type)) {
+			command = new MemDetailCommand(id);
+		} else if ("idCheck".equals(type)) {
+			command = new IdCheckCommand(id);
+		} else if ("doPwdCheck".equals(type)) {
+			command = new DoPwdCheckCommand(id, pwd);
+		} else if ("doPwdCheckwithdrawal".equals(type)) {
+			command = new DoPwdCheckCommand(id, pwd, type.substring(10));;
+		} else if ("adminUpdate".equals(type)) {
 			command = new AdminUpdateCommand();
 		} else if ("adminWithdrawal".equals(type)) {
 			command = new AdminWithdrawalCommand();

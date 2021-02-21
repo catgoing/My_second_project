@@ -18,10 +18,22 @@ public class DoPwdCheckCommand implements Command{
 	
 	String id;
 	String pwd;
+	String type;
+	
+	
+	public DoPwdCheckCommand() {
+	
+	}
 	
 	public DoPwdCheckCommand(String id, String pwd) {
 		this.id = id;
 		this.pwd = pwd;
+	}
+	
+	public DoPwdCheckCommand(String id, String pwd, String type) {
+		this.id = id;
+		this.pwd = pwd;
+		this.type = type;
 	}
 	
 
@@ -47,6 +59,10 @@ public class DoPwdCheckCommand implements Command{
 		
 		req.setAttribute("result", result);	
 		out.print(result);
+		
+		if("withdrawal".equals(type)) {
+			return "member/withdrawal.jsp";
+		}
 		
 		return "member/pwdCheck.jsp";
 	}

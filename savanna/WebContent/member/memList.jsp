@@ -19,15 +19,36 @@
 <link href="/savanna/css/savanna.css" rel="stylesheet">
 <title>회원목록</title>
 <style>
-	.paging { list-style: none; }
+	tr > td{
+	text-align : center;
+	height : 50px;
+ 	border: 1px solid lightgray;
+	}
+	tr > th{
+	height : 40px;
+	text-align : center;
+	}
+
+	tbody > tr:hover{
+	background-color: #00B3DC;
+	color: white;
+	cursor: pointer;
+	}
+	
+	
+	.paging { 
+	margin-left : 300px;
+	list-style: none; 
+	
+	}
 	.paging li {
 		float: left;
-		margin-right: 8px;
+		margin-right: 20px;
 	}
 	.paging li a {
 		text-decoration: none;
 		display: block;
-		padding: 13px 7px;
+		padding: 3px 7px;
 		border: 1px solid #00B3DC;
 		font-weight: bold;
 		color: black;
@@ -38,14 +59,29 @@
 		color: silver;
 	}
 	.paging .now {
-		border: 1px solid #ff4aa5;
+		border: 1px solid #00B3DC;
 		padding: 3px 7px;
-		background-color: #ff4aa5;
+		background-color: #00B3DC;
+		color: white;
 	}
 	.paging li a:hover {
 		background-color: #00B3DC;
 		color: white;
 	}
+	
+	table{
+	margin : auto;
+	width: 1000px;
+  line-height: 1em;
+	}
+	
+	h1{
+	margin: auto;
+  	text-align: center;
+    font-weight: bold;
+	}
+
+	
 </style>
 <script>
 
@@ -54,9 +90,10 @@
 </head>
 <body>
 	<%@ include file="/common/menu.jspf" %>
+	<br>
 <h1>회원목록</h1>
+<br>
 	<table>
-		<caption>회원 전체 목록</caption>
 		<thead>
 			<tr class="title">
 				<th class="no">회원번호</th>
@@ -71,18 +108,18 @@
 		</thead>
 		<tbody>
 			<c:forEach var="vo" items="${list }">
-				<a href="main.jsp"></a>
-				<tr class="list" onclick="location.href = '/savanna/controller?type=memDetail?id=${vo.id }'">
-					<td >${vo.mem_no }</td>
-					<td>${vo.id }</td>
-					<td>${vo.pwd }</td>
-					<td>${vo.name}</td>
-					<td>${vo.phone }</td>
-					<td>${vo.addr }</td>
-					<td>${vo.email }</td>
+			
+				<tr class="list" onclick="location.href = '/savanna/controller?type=memDetail&id=${vo.id }'">
+					<td style="width: 70px; text-align: center;">${vo.mem_no }</td>
+					<td style="width: 80px;">${vo.id }</td>
+					<td style="width: 80px;">${vo.pwd }</td>
+					<td style="width: 80px;">${vo.name}</td>
+					<td style="width: 150px;">${vo.phone }</td>
+					<td style="width: 300px;">${vo.addr }</td>
+					<td style="width: 150px;">${vo.email }</td>
 					<td>${vo.regdate }</td>
 				</tr>
-				
+	
 		</c:forEach>
 		</tbody>
 		<tfoot>

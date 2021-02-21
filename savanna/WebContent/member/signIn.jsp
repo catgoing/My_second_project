@@ -33,8 +33,8 @@
 	
 	
 <h1>로그인</h1>
+
 	    <form action="/savanna/controller?type=doSignIn" method="post" name="fr">
-	    
 	    
           <div id="wrapper">
             <!-- content-->
@@ -56,7 +56,7 @@
                 <div>
                     <h3 class="join_title"><label for="pw">비밀번호</label></h3>
                     <span class="box int_pass" style="margin-bottom: 60px">
-                        <input type="password" id="pw" name="pwd" class="int" maxlength="12"">
+                        <input type="password" id="pw" name="pwd" class="int" maxlength="12">
                     </span>
                     <span id="check1"></span>
                 </div>

@@ -25,40 +25,49 @@ public class CartListCommand implements Command {
 		HttpSession session = request.getSession();
 		
 		MemberVO mvo = (MemberVO)session.getAttribute("user");
-		String id = mvo.getId();
-		System.out.println(id);
 		
-		List<CartVO> list = CartDAO.cartList(id);
-		for(CartVO vo : list) {
-			BookVO bvo = CartDAO.checkSoldOut(vo.getBook_no());
-			int bookstock = bvo.getStock();
-		
-			if(bookstock == 0) {
-				vo.setCart_quan(0);
-			}else if (bookstock > 0 ) {
-				continue;
+		String path = null;
+		if(mvo == null) {
+			path = "/savanna/main.jsp";
+		}
+		else {
+			String id = mvo.getId();
+			System.out.println(id);
+			
+			List<CartVO> list = CartDAO.cartList(id);
+			for(CartVO vo : list) {
+				BookVO bvo = CartDAO.checkSoldOut(vo.getBook_no());
+				int bookstock = bvo.getStock();
+			
+				if(bookstock == 0) {
+					vo.setCart_quan(0);
+				}else if (bookstock > 0 ) {
+					continue;
+				}
 			}
+			
+			int tot = CartDAO.totalPrice(id);	//전체가격
+			
+			CartVO cvo = new CartVO(); 
+			if(tot >= 20000) {		   // 배송비 처리(전체가격기준)
+				cvo.setShippingCharge(0);
+			}else if (0 < tot && tot < 20000){
+				cvo.setShippingCharge(2500);
+			}
+			
+			cvo.setAllitemsPrice(tot); //전체가격 입력
+			cvo.setTotalPrice(tot + cvo.getShippingCharge()); //최종가격
+	
+			System.out.println("배송비 > " + cvo.getShippingCharge());
+			System.out.println("전체가격 > " + cvo.getAllitemsPrice());
+			System.out.println("최종결제금액 > " + cvo.getTotalPrice());
+			
+			session.setAttribute("cvo", cvo); 
+			request.setAttribute("cartlist", list);
+			
+			path ="/cart/cartList.jsp";
 		}
 		
-		int tot = CartDAO.totalPrice(id);	//전체가격
-		
-		CartVO cvo = new CartVO(); 
-		if(tot >= 20000) {		   // 배송비 처리(전체가격기준)
-			cvo.setShippingCharge(0);
-		}else if (0 < tot && tot < 20000){
-			cvo.setShippingCharge(2500);
-		}
-		
-		cvo.setAllitemsPrice(tot); //전체가격 입력
-		cvo.setTotalPrice(tot + cvo.getShippingCharge()); //최종가격
-
-		System.out.println("배송비 > " + cvo.getShippingCharge());
-		System.out.println("전체가격 > " + cvo.getAllitemsPrice());
-		System.out.println("최종결제금액 > " + cvo.getTotalPrice());
-		
-		session.setAttribute("cvo", cvo); 
-		request.setAttribute("cartlist", list);
-		
-		return "/cart/cartList.jsp";
+		return path;
 	}
 }

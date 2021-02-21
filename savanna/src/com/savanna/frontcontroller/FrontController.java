@@ -49,6 +49,11 @@ import com.savanna.model.command.member.SignInCommand;
 import com.savanna.model.command.member.SignUpCommand;
 import com.savanna.model.command.member.UpdateCommand;
 import com.savanna.model.command.member.WithdrawalCommand;
+import com.savanna.model.command.wish.DeleteWishCommand;
+import com.savanna.model.command.wish.InsertWishCommand;
+import com.savanna.model.command.wish.WishListCommand;
+import com.savanna.model.command.wish.WishitemToCartCommand;
+import com.savanna.model.command.cart.*;
 
 @WebServlet("/controller")
 public class FrontController extends HttpServlet {
@@ -81,7 +86,9 @@ public class FrontController extends HttpServlet {
 			command = new UpdateCommand();
 		} else if ("withdrawal".equals(type)) {
 			command = new WithdrawalCommand();
-		} else if (type.indexOf("memList") == 0) {
+		}
+
+		else if (type.indexOf("memList") == 0) {
 			command = type.length()==7
 					? new MemListCommand("1")
 					: new MemListCommand(type.substring(14));
@@ -147,7 +154,7 @@ public class FrontController extends HttpServlet {
 		} else if("clearCart".equals(type)){ //장바구니 비우기
 			command = new ClearCartCommand();
 		} else if("orderPayment".equals(type)){ //구매step1
-//			command = new OrderPaymentCommand();
+			command = new OrderPaymentCommand();
 		} else if("GoOrder".equals(type)){ //구매step2
 			command = new OrderGoCommand();
 		} else if("editQuan".equals(type)){ //장바구니에서 수량변경
@@ -155,18 +162,27 @@ public class FrontController extends HttpServlet {
 		} else if("tempBookInsert".equals(type)){ //Cart에 담기위한 임시상품리스트
 			command = new TempBookInsertCommand();
 		} else if("paymentComplete".equals(type)){ //구매완료
-//			command = new PaymentCompleteCommand();
+			command = new PaymentCompleteCommand();
 		} else if("creditCardProc".equals(type)){ //카드결제진행창
-//			command = new CreditCardProcCommand();
+			command = new CreditCardProcCommand();
 		} else if("payCreditCard".equals(type)){ //카드결제완료
-//			command = new PayCreditCardCommand();
+			command = new PayCreditCardCommand();
 		} else if("MainPage".equals(type)) {
 			System.out.print("expect:MainPage");
 			command = new MainPageCommand();
-		}else {
+		} else if("wishList".equals(type)) { //찜목록
+			command = new WishListCommand();
+		} else if("insertWishList".equals(type)) { //찜목록 입력
+			command = new InsertWishCommand();
+		} else if("deleteWishList".equals(type)) { //찜목록에서 삭제
+			command = new DeleteWishCommand();
+		} else if("wishitemToCart".equals(type)) { //장바구니로 이동(찜목록에서 삭제)
+			command = new WishitemToCartCommand();
+		}
+		else {
 			System.out.print("Command Error");
 		}
-		
+
 		String path = command.execute(request, response);
 
 		if(type.indexOf("List") != 0) {

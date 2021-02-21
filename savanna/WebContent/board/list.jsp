@@ -5,7 +5,7 @@
 <%@page import="com.savanna.model.dao.ReviewDAO"%>
 <%@page import="com.savanna.model.vo.ReviewVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
@@ -16,7 +16,7 @@
 <meta charset="UTF-8">
 <title>리뷰 게시판</title>
 <link rel="stylesheet" type="text/css" href="/savanna/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="../css/savanna.css">	
+<link rel="stylesheet" type="text/css" href="../css/savanna.css">
 <style>
 	#bbs table {
 		width: 580px;
@@ -35,15 +35,15 @@
 		padding: 4px 10px;
 	}
 	#bbs .align-left { text-align: left; }
-	
+
 	.title { background-color: #eeeeee; }
-	
+
 	.no { width: 10%; }
 	.bookno { width: 10%; }
 	.writer { width: 15%; }
 	.regdate { width: 20%; }
 	.hit { width: 15%; }
-	
+
 	/***** 페이지 표시 부분 스타일(시작) ****/
 	.paging { list-style: none; }
 	.paging li {
@@ -72,14 +72,14 @@
 		background-color: #00B3DC;
 		color: white;
 	}
-	
+
 	/***** 페이지 표시 부분 스타일(끝) ****/
 </style>
 
 </head>
 <%@ include file="/common/menu.jspf" %>
 <hr>
-<!-- 
+<!--
 <div class="container">
 	<div class="row">
 		<table class="table table-hover" style="text-align: center; border: 1px solid #dddddd;">
@@ -101,7 +101,7 @@
 					<th>2021-02-20</th>
 				</tr>
 			</tbody>
-		</table> 
+		</table>
 		<a href="write.jsp" class="btn btn-primary pull-right">글쓰기</a>
 	</div>
 </div>
@@ -134,7 +134,7 @@
 			<td class="align-left">
 				<a href="board/view.jsp?rev_no=${vo.rev_no }&cPage=${pvo.curPage}">${vo.rev_content }</a>
 			</td>
-			<td>${vo.id }</td>			
+			<td>${vo.id }</td>
 			<td>${vo.rev_date }</td>
 
 		</tr>
@@ -147,13 +147,13 @@
 				<ol class="paging">
 			<%--[이전으로]에 대한 사용여부 처리 시작페이지번호가 1인 경우 비활성화 --%>
 			<c:choose>
-				<c:when test="${pvo.curBlockBeginIdx == 1 }">		
+				<c:when test="${pvo.curBlockBeginIdx == 1 }">
 					<li class="disable">이전으로</li>
 				</c:when>
 				<c:otherwise>
-					<li><a href="../controller?type=reviewList&cPage=${pvo.curBlockBeginIdx - 1}">이전으로</a></li>
-				</c:otherwise>	
-			</c:choose>		
+					<li><a href="controller?type=${curList }&cPage=${pvo.curBlockBeginIdx - 1}">이전으로</a></li>
+				</c:otherwise>
+			</c:choose>
 			<%-- 블록내에 표시할 페이지 태그 작성(시작페이지 ~ 끝페이지)
 				현재페이지와 페이지 번호 같으면 현재페이지 처리--%>
 			<c:forEach var="pageNo" begin="${pvo.curBlockBeginIdx }" end="${pvo.curBlockEndIdx }">
@@ -162,18 +162,18 @@
 				</c:if>
 				<c:if test="${pageNo != pvo.curPage }">
 					<li>
-						<a href="controller?type=reviewList&cPage=${pageNo }">${pageNo }</a>
-					</li>
-				</c:if>		
-			</c:forEach>		
-				<%--[다음으로]에 대한 사용여부 처리
-				curBlockEndIdx가 전체페이지수(totalPage)보다 작은경우 활성화 --%>	
-				<c:if test="${pvo.curBlockEndIdx < pvo.totalPage }">	
-					<li>
-						<a href="controller?type=reviewList&cPage=${pvo.curBlockEndIdx + 1}">다음으로</a>
+						<a href="controller?type=${curList }&cPage=${pageNo }">${pageNo }</a>
 					</li>
 				</c:if>
-				<c:if test="${pvo.curBlockEndIdx >= pvo.totalPage }">	
+			</c:forEach>
+				<%--[다음으로]에 대한 사용여부 처리
+				curBlockEndIdx가 전체페이지수(totalPage)보다 작은경우 활성화 --%>
+				<c:if test="${pvo.curBlockEndIdx < pvo.totalPage }">
+					<li>
+						<a href="controller?type=${curList }&cPage=${pvo.curBlockEndIdx + 1}">다음으로</a>
+					</li>
+				</c:if>
+				<c:if test="${pvo.curBlockEndIdx >= pvo.totalPage }">
 					<li class="disable">다음으로</li>
 				</c:if>
 				</ol>
@@ -191,15 +191,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-

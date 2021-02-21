@@ -124,7 +124,7 @@
 		<tfoot>
 	      <tr >
 	        <td colspan="8">
-	        <form action="/savanna/controller?type=memsearch" method="post">
+	        <form action="/savanna/controller?type=example" method="post">
 	        <select name="idx">
 	          <option value="0">아이디</option>
 	          <option value="1">이름</option>
@@ -137,7 +137,8 @@
 	      </td>
 	      </tr>
    			<tr>
-   				<%@ include file="../common/pageNavigation2.jsp" %>
+   				<%@ include file="pagingNavigationExample.jsp" %> <!-- 경로는 네비게이션 파일 위치에 따라 다름 -->
+   				<!-- 네비게이션에서 cPage와 idx, keyword를 controller에 넘김 -->
    			</tr>
 		</tfoot>
 	</table>

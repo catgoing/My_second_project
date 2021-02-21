@@ -52,6 +52,8 @@ public class FrontController extends HttpServlet {
 		String type = request.getParameter("type");
 		String id = request.getParameter("id");
 		String pwd = request.getParameter("pwd");
+		
+		String cPage = request.getParameter("cPage"); // jsp에서 cPage 전달받아 동적검색할 command의 cPage로 넘김
 		System.out.println("> type : "+ type);
 
 		Command command = null;
@@ -96,7 +98,7 @@ public class FrontController extends HttpServlet {
 		} else if ("adminWithdrawal".equals(type)) {
 			command = new AdminWithdrawalCommand();
 		} else if ("memsearch".equals(type)) {
-			command = new MemSearchCommand();
+			command = new MemSearchCommand(cPage);
 		} else if("StockList".equals(type)) {
 			command = new EnterCardListCommand();
 		} else if("StockManagerPage".equals(type)) {

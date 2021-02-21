@@ -4,8 +4,8 @@
 
 <div class="col-sm-3 col-md-2 sidebar">
 	<ul class="nav nav-sidebar">
-		<li>나의 주문내역</li>
-		<li><a href="#">주문조회</a></li>
+		<li>나의 구매내역</li>
+		<li><a href="#">내역조회</a></li>
 		<li><a href="#">취소신청</a></li>
 	</ul>
 	<ul class="nav nav-sidebar">

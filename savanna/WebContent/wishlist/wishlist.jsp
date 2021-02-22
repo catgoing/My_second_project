@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -72,7 +72,6 @@
 		background-color: #292929;
 		color: white;
 	}
-
 /*부트스트랩css의 table td의 border-top속성을 일부td에서 무효화하고 width="%"를 주기위해 inline으로 style을 적용함*/
 
 </style>
@@ -95,7 +94,6 @@
 	<form>
 	<table class="table">
 		<thead>
-			<tr>
 				<th class="title" colspan="3">상품정보</th>
 				<th class="title">판매정보</th>
 				<th class="title">선택</th>			
@@ -104,7 +102,7 @@
 			<c:if test="${not empty list }">
 			<c:forEach var="vo" items="${list }">
 				<tr class="list">
-                    <td rowspan="2" width="25%">표지이미지</td>
+              <td rowspan="2" width="25%">표지이미지</td>
 			        <td colspan="2" width="45%"><a href="상세페이지">${vo.book_name }</td>
 			        <td rowspan="2" width="20%"><fmt:formatNumber value="${vo.price }" pattern="###,###"/>원</td>
 			        <td><input type="button" class="btn" value="장바구니" onclick="input_cart(this.form)">
@@ -130,5 +128,6 @@
 	</table>
 	</form>
 	</div>
+
 </body>
 </html>

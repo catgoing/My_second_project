@@ -125,6 +125,26 @@ public class MemberDAO implements SuperDAO{
 		ss.close();
 		return list;
 	}
+	
+	// 동적검색 결과 수 조회
+	public static int getSearchCount(String idx, String keyword) {
+		Map<String, String> map = new HashMap<>();
+		map.put("idx", idx);
+		map.put("keyword", keyword);
+		
+		SqlSession ss = DBService.getFactory().openSession();
+		int totalCount = ss.selectOne("member.searchCount", map);
+		ss.close();
+		return totalCount;
+	}
+	
+	// 검색결과에 해당하는 회원목록 가져오기
+	public static List<MemberVO> getsearchList(Map<String, String> map) {
+		SqlSession ss = DBService.getFactory().openSession();
+		List<MemberVO> list = ss.selectList("member.searchList", map);
+		ss.close();
+		return list;
+	}
 
 	
 	// 구매목록
@@ -145,6 +165,18 @@ public class MemberDAO implements SuperDAO{
 	public List getPagedList(Map map) {
 		return this.getList(map);
 
+	}
+
+	@Override
+	public int getTotalCount2(String str) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List getPagedList2(Map map) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
 

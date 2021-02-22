@@ -1,7 +1,6 @@
-package com.savanna.model.command.member;
+package com.savanna.model.command.paging;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,20 +10,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.savanna.model.command.Command;
-import com.savanna.model.command.paging.ListPaging;
-import com.savanna.model.dao.MemberDAO;
 import com.savanna.model.vo.MemPagingVO;
 import com.savanna.model.vo.MemberVO;
 
-public class MemSearchCommand implements Command {
+public class PagingExampleCommand implements Command{
 	String cPage;
 	
-	public MemSearchCommand() {
+	public PagingExampleCommand() {
 	
 	}
 	
-	public MemSearchCommand(String cPage) {
-		this.cPage = cPage; // cPage는 jsp에서 get 방식으로 frontcontroller를 통해 전달받음
+	public PagingExampleCommand(String cPage) {
+		this.cPage = cPage; // cPage는 jsp에서 get 방식으로 controller를 통해 전달받음
 	}
 
 	@Override
@@ -38,7 +35,7 @@ public class MemSearchCommand implements Command {
 		
 		String path = "";
 		if (keyword == null || keyword.equals("")) { 
-			path = "controller?type=memList"; // 검색값 없으면 리턴할 페이지로 이동
+			path = "controller?type=example"; // 검색값 없으면 리턴할 페이지로 이동
 		} else { //검색값이 입력되었으니 DB에서 검색처리
 			
 			request.setCharacterEncoding("UTF-8");
@@ -47,7 +44,7 @@ public class MemSearchCommand implements Command {
 			MemPagingVO p = new MemPagingVO();
 
 			//1. 검색한 데이터의 수를 구하기
-			p.setTotalMember(MemberDAO.getSearchCount(idx, keyword));
+			p.setTotalMember(PagingExampleDAO.getSearchCount(idx, keyword));
 			p.setTotalPage();
 //			System.out.println("> 전체 검색결과 수 : " + p.getTotalMember());
 //			System.out.println("> 전체 페이지 수 : " + p.getTotalPage());
@@ -101,16 +98,16 @@ public class MemSearchCommand implements Command {
 			
 		
 			// 현재 페이지에 표시할 데이터 조회
-			List<MemberVO> list = MemberDAO.getsearchList(map);
+			List<MemberVO> list = PagingExampleDAO.getsearchList(map);
 //			System.out.println("> 현재 페이지 글목록(list) : " + list);
 
 			request.setAttribute("list", list); // 최종 데이터 리스트
 			request.setAttribute("pvo", p); // 페이지 정보
-			request.setAttribute("cPage", cPage); // 현재 페이지
+			request.setAttribute("cPage", cPage); // 페이지값 jsp 페이지로 전달
 			request.setAttribute("idx", idx); // idx값 유지를 위해 jsp 페이지로 전달
 			request.setAttribute("keyword", keyword); // keyword값 유지를 위해 jsp 페이지로 전달
 
-			path = "member/memList.jsp"; // 최종적으로 리턴할 페이지
+			path = "example/example.jsp"; // 최종적으로 리턴할 페이지
 		}
 		
 		return path;

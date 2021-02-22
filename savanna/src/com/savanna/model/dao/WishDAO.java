@@ -20,7 +20,7 @@ public class WishDAO implements SuperDAO{
 		ss.close();
 		return count;
 	}
-	
+
 	//페이지에 해당하는 찜목록조회(id당)
 	public static List<WishVO> getWishList(Map<String, Object> map) {
 		SqlSession ss = DBService.getFactory().openSession();
@@ -28,7 +28,7 @@ public class WishDAO implements SuperDAO{
 		ss.close();
 		return list;
 	}
-	
+
 	//중복조회(map : id, book_no)
 	public static int jungbokCheck(Map<String, Object> map) {
 		SqlSession ss = DBService.getFactory().openSession();
@@ -36,21 +36,21 @@ public class WishDAO implements SuperDAO{
 		ss.close();
 		return result;
 	}
-	
+
 	//찜목록에 추가(map : id, book_no)
 	public static void insertWishList(Map<String, Object> map) {
 		SqlSession ss = DBService.getFactory().openSession(true);
 		ss.insert("mystudy.insertwish", map);
 		ss.close();
 	}
-	
+
 	//찜목록에서 삭제(map : id, book_no)
 	public static void deleteWish(Map<String, Object> map) {
 		SqlSession ss = DBService.getFactory().openSession(true);
 		ss.delete("mystudy.deletewish", map);
 		ss.close();
 	}
-	
+
 	/*
 	//메모추가(map : id, book_no, memo)
 	public static void updateWishMemo(Map<String, Object> map) {
@@ -59,8 +59,8 @@ public class WishDAO implements SuperDAO{
 		ss.close();
 	}
 	*/
-	
-	
+
+
 	@Override
 	public int getTotalCount() {
 		return 0;
@@ -70,13 +70,13 @@ public class WishDAO implements SuperDAO{
 	@Override
 	public List getPagedList(Map map) {
 		return null;
-	}	
-	
+	}
+
 	@Override
 	public int getTotalCount2(String id) {
 		return getWishCount(id);
 	}
-	
+
 	@Override
 	public List getPagedList2(Map map) {
 		return getWishList(map);

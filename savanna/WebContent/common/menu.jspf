@@ -130,9 +130,9 @@
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
 							aria-haspopup="true" aria-expanded="false">마이페이지<span class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li><a href="/savanna/controller?type=buyList"></a>구매내역</li>
-								<li><a href="/savanna/controller?type=cartList"></a>장바구니</li>
-								<li><a href="/savanna/controller?type=wishList"></a>찜리스트</li>
+								<li><a href="/savanna/controller?type=buyList">구매내역</a></li>
+								<li><a href="/savanna/controller?type=cartList">장바구니</a></li>
+								<li><a href="/savanna/controller?type=wishList">찜리스트</a></li>
 							</ul>
 						</li>
 					</ul>

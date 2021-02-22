@@ -153,7 +153,8 @@ select {
 
 #updatebtn,
 #withdrawalbtn,
-#signinbtn{
+#signinbtn,
+#okbtn{
 	width: 100%;
     padding: 21px 0 17px;
     border: 0;
@@ -181,5 +182,11 @@ select {
 h1{
   margin: 35px auto;
   text-align: center;
+  font-weight: bold;
+}
+
+form > h3{
+  margin: 35px auto !important;
+  text-align: center !important;
   font-weight: bold;
 }

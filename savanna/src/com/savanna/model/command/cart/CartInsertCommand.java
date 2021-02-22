@@ -17,7 +17,6 @@ public class CartInsertCommand implements Command {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("카트 입력 실행!");
 
 		HttpSession session = request.getSession();
 		MemberVO mvo = (MemberVO)session.getAttribute("user");

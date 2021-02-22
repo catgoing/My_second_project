@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,7 +49,7 @@
 		background-color: #00B3DC;
 		color: white;
 	}
-	
+
 </style>
 <script>
 	function input_cart(frm){
@@ -71,7 +71,7 @@
 			<tr class="title">
 				<th class="booktitle" colspan="2">상품정보</th>
 				<th class="price">판매정보</th>
-				<th class="delete">선택</th>			
+				<th class="delete">선택</th>
 			</tr>
 		</thead>
 			<c:if test="${not empty list }">
@@ -80,13 +80,13 @@
 			        <td colspan="2"><a href="상세페이지">${vo.book_name }</td>
 			        <td rowspan="2"><fmt:formatNumber value="${vo.price }" pattern="###,###"/>원</td>
 			        <td><input type="button" value="장바구니" onclick="input_cart(this.form)">
-			        	<input type="hidden" name="book_no" value="${vo.book_no }"></td>        
+			        	<input type="hidden" name="book_no" value="${vo.book_no }"></td>
 			    </tr>
 			    <tr>
 			        <td>${vo.writer }</td>
 			        <td>${vo.publisher }</td>
 			        <td><input type="submit" value="삭제" onclick="delete_wish(this.form)">
-			        	<input type="hidden" name="book_no" value="${vo.book_no }"></td>        
+			        	<input type="hidden" name="book_no" value="${vo.book_no }"></td>
 		    	</tr>
 			</c:forEach>
 			</c:if>
@@ -101,6 +101,6 @@
 		</tfoot>
 	</table>
 	</form>
-	
+
 </body>
 </html>

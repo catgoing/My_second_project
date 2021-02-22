@@ -16,6 +16,6 @@ public class MainPageCommand implements Command {
 			throws ServletException, IOException {
 		List<BookVO> list = new BookDAO().getPagedBookList(new ListPaging().getRecordRange(1, 5));
 		request.setAttribute("list", list);
-		return "main.jsp?";
+		return "main.jsp";
 	}
 }

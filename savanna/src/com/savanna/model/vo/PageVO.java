@@ -45,10 +45,14 @@ public class PageVO {
 									: this.getCurPage() * this.getRecordPerPage());
 	}
 	public void setRangeOfBlockNo() {
+		this.logging();
+
 		this.setCurBlockBeginIdx((int)((this.getCurPage()-1) / this.getPagePerBlock()) * this.getPagePerBlock() + 1);
-		this.setCurBlockEndIdx(this.getCurBlockEndIdx() > this.getTotalPage()
+		this.setCurBlockEndIdx((this.getCurBlockBeginIdx() + this.getPagePerBlock() - 1) > this.getTotalPage()
 								? this.getTotalPage()
-								: this.getCurBlockBeginIdx() + this.getPagePerBlock() - 1);
+								: (this.getCurBlockBeginIdx() + this.getPagePerBlock() - 1));
+		
+
 	}
 	
 	//delegate lagacy

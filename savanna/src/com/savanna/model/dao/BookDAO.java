@@ -21,7 +21,7 @@ public class BookDAO implements SuperDAO {
 
 	public static List<BookVO> getBookList() {
 		SqlSession ss = DBService.getFactory().openSession();
-		List<BookVO> list = ss.selectList("mystudy.booklist");
+		List<BookVO> list = ss.selectList("mystudy.bookList");
 		ss.close();
 		return list;
 	}

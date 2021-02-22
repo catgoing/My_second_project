@@ -23,7 +23,6 @@
 <title>:: 찜목록 ::</title>
 </head>
 <style>
-
 	ul, ol{
 	list-style: none;
 	}
@@ -88,23 +87,21 @@
 	}
 	
 	/*
+
 	.paging { 
-	
 		margin-left : 250px;
 		list-style: none;
-	
-		display: inline-block;
 	}
->>>>>>> Stashed changes
+
 	.paging li {
 		float: left;
-		margin-right: 8px;
+		margin-right: 20px;
 	}
 	.paging li a {
 		text-decoration: none;
 		display: block;
 		padding: 3px 7px;
-		border: 1px solid #00B3DC;
+		border: 1px solid #292929;
 		font-weight: bold;
 		color: black;
 	}
@@ -116,16 +113,19 @@
 	.paging .now {
 		border: 1px solid #ff4aa5;
 		padding: 3px 7px;
-		background-color: #ff4aa5;
+		background-color: #292929;
+		color: silver;
 	}
 	.paging li a:hover {
-		background-color: #00B3DC;
+		background-color: #292929;
 		color: white;
 	}
+
 	
 	*/
+
 /*부트스트랩css의 table td의 border-top속성을 일부td에서 무효화하고 width="%"를 주기위해 inline으로 style을 적용함*/
->>>>>>> Stashed changes
+
 
 </style>
 <script>
@@ -142,12 +142,13 @@
 </script>
 <body>
 	<%@ include file="/common/menu.jspf" %>
+
 	<div class="wish">
 	<form>
 	<table class="table">
 		<thead>
-		<tr>
-				<th class="title" colspan="2">상품정보</th>
+
+				<th class="title" colspan="3">상품정보</th>
 				<th class="title">판매정보</th>
 				<th class="title">선택</th>			
 			</tr>
@@ -156,16 +157,17 @@
 			<c:forEach var="vo" items="${list }">
 				<tr class="list">
               <td rowspan="2" width="25%">표지이미지</td>
+
 			        <td colspan="2" width="45%"><a href="/savanna/controller?type=EnterDetail&book_no=${vo.book_no }">${vo.book_name }</a></td>
 			        <td rowspan="2" width="20%"><fmt:formatNumber value="${vo.price }" pattern="###,###"/>원</td>
 			        <td><input type="button" class="btn" value="장바구니" onclick="input_cart(this.form)">
 			        	<input type="hidden" name="book_no" value="${vo.book_no }"></td>        
 			    </tr>
 			    <tr>
-			        <td>${vo.writer }</td>
-			        <td>${vo.publisher }</td>
-			        <td><input type="submit" value="삭제" onclick="delete_wish(this.form)">
-			        	<input type="hidden" name="book_no" value="${vo.book_no }"></td>
+			        <td width="20%" style="border-top:none">${vo.writer }</td>
+			        <td style="border-top:none">${vo.publisher }</td>
+			        <td style="border-top:none"><input type="submit" class="btn" value="삭제" onclick="delete_wish(this.form)">
+			        	<input type="hidden" name="book_no" value="${vo.book_no }"></td>        
 		    	</tr>
 			</c:forEach>
 			</c:if>
@@ -185,6 +187,7 @@
 		</tfoot>
 	</table>
 	</form>
+	</div>
 
 </body>
 </html>

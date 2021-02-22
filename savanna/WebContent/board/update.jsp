@@ -12,14 +12,14 @@
 <link rel="stylesheet" type="text/css" href="/savanna/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="../css/savanna.css">	
 <style>
-	h1 { margin-left : 80px;}
-	div { margin-left : 80px;
-		  margin-right : 80px;
-		  border : 2px solid black;}
+	div { margin-left : 120px;
+		  margin-right : 120px;
+		}
 	div th {text-align : left; }
-	tbody { margin-bottom : 30px; }
+	tbody { margin-bottom : 50px; }
 </style>
 <script>
+	<!-- 
 	function sendData() {
 		var firstForm = document.forms[0];
 		for (var i=0; i<firstForm.elements.length; i++) {
@@ -40,6 +40,21 @@
 		}
 		document.myForm.submit();
 	}
+	-->
+	function update_go(frm) {
+		if (frm.rev_pwd.value == "${rvo.rev_pwd}") { //암호 일치
+			var isUpdate = confirm("수정하시겠습니까?");
+			if (isUpdate) {
+				frm.submit();
+			} else {
+				history.back();
+			}
+		} else {
+			alert("비밀번호가 일치하지 않습니다. 확인하세요");
+			frm.rev_pwd.value = "";
+			frm.rev_pwd.focus();
+		}
+	}
 	
 	function update(frm) {
 		frm.action = "../controller?type=reviewUpdate";
@@ -56,6 +71,7 @@
 <%@ include file="/common/menu.jspf" %>
 <hr>
 <body>
+<h2 style="text-align: center;">리뷰를 수정해 주세요</h2>
 <div class="container">
 	<div class="row">
 	<form action="../controller?type=reviewInsert" method="post">
@@ -88,60 +104,17 @@
 					<input type="hidden" id="rev_no" name="rev_no" value="${rvo.rev_no }">
 					<input type="hidden" id="id" name="id" value="${vo.id }">
 					<input type="hidden" id="rev_date" name="rev_date" value="${rvo.rev_date }">
-					<input type="button" value="수정" onclick="modify(this.form)">
-					<input type="reset" value="다시작성">
-					<input type="button" value="목록" onclick="list_go(this.form)">
 				</td>
 			</tr>
 		</tfoot>
 		</table>
-						<input type="button" class="btn btn-primary pull-right" value="작성" onclick="update(this.form)">
+						<input type="button" class="btn btn-primary pull-right" value="수정" onclick="update(this.form)">
 						<input type="reset" value="다시작성">
 						<input type="button" value="목록" onclick="list_go(this.form)"> 		
-	</form>
+		</form>
 	</div>
 </div>
-<div id="bbs">
-<form method="post" name="myForm">
-	<table>
-		<caption>게시글수정</caption>
-		<tbody>
-			<tr>
-				<th>책번호</th>
-				<td>
-					<input type="text" name="book_no" size="12" title="책번호"
-							value="${rvo.book_no }">
-				</td>
-			</tr>		
-			<tr>
-				<th>내용</th>
-				<td>
-					<textarea name="rev_content" rows="8" cols="50" title="내용">${rvo.rev_content }</textarea>
-				</td>
-			</tr>
-			<tr>
-				<th>패스워드(확인용)</th>
-				<td>
-					<input type="password" name="rev_pwd" size="12" title="패스워드">
-				</td>
-			</tr>
-		</tbody>
-		<tfoot>
-			<tr>
-				<td colspan="2">
-					<input type="hidden" id="rev_no" name="rev_no" value="${rvo.rev_no }">
-					<input type="hidden" id="id" name="id" value="${vo.id }">
-					<input type="hidden" id="rev_date" name="rev_date" value="${rvo.rev_date }">
-					<input type="button" value="수정" onclick="update(this.form)">
-					<input type="reset" value="다시작성">
-					<input type="button" value="목록" onclick="list_go(this.form)">
-				</td>
-			</tr>
-		</tfoot>
-	</table>
-</form>
-
-</div>
+<hr>
 		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 		<script src="js/bootstrap.js"></script>
 </body>

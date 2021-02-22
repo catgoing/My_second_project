@@ -11,7 +11,11 @@ import com.savanna.model.vo.CartVO;
 import com.savanna.model.vo.MemberVO;
 import com.savanna.mybatis.DBService;
 
+<<<<<<< Updated upstream
 public class CartDAO implements SuperDAO{
+=======
+public class CartDAO  implements SuperDAO {
+>>>>>>> Stashed changes
 
 	// 장바구니 추가 - 매개변수 : 책번호, 회원id
 	public static boolean insertCart(int book_no, String id) {

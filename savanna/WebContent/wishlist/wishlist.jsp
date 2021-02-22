@@ -23,9 +23,7 @@
 <title>:: 찜목록 ::</title>
 </head>
 <style>
-<<<<<<< Updated upstream
-	.paging { list-style: none; }
-=======
+
 	ul, ol{
 	list-style: none;
 	}
@@ -124,8 +122,6 @@
 		background-color: #00B3DC;
 		color: white;
 	}
-<<<<<<< Updated upstream
-=======
 	
 	*/
 /*부트스트랩css의 table td의 border-top속성을 일부td에서 무효화하고 width="%"를 주기위해 inline으로 style을 적용함*/
@@ -146,43 +142,24 @@
 </script>
 <body>
 	<%@ include file="/common/menu.jspf" %>
-<<<<<<< Updated upstream
-	<form>
-	<table class="table">
-		<thead>
-			<tr class="title">
-				<th class="booktitle" colspan="2">상품정보</th>
-				<th class="price">판매정보</th>
-				<th class="delete">선택</th>
-=======
-	<%@ include file="/common/memberSidebar.jspf" %>
-	
 	<div class="wish">
 	<form>
 	<table class="table">
 		<thead>
 		<tr>
-				<th class="title" colspan="3">상품정보</th>
+				<th class="title" colspan="2">상품정보</th>
 				<th class="title">판매정보</th>
 				<th class="title">선택</th>			
->>>>>>> Stashed changes
 			</tr>
 		</thead>
 			<c:if test="${not empty list }">
 			<c:forEach var="vo" items="${list }">
 				<tr class="list">
-<<<<<<< Updated upstream
-			        <td colspan="2"><a href="상세페이지">${vo.book_name }</td>
-			        <td rowspan="2"><fmt:formatNumber value="${vo.price }" pattern="###,###"/>원</td>
-			        <td><input type="button" value="장바구니" onclick="input_cart(this.form)">
-			        	<input type="hidden" name="book_no" value="${vo.book_no }"></td>
-=======
               <td rowspan="2" width="25%">표지이미지</td>
 			        <td colspan="2" width="45%"><a href="/savanna/controller?type=EnterDetail&book_no=${vo.book_no }">${vo.book_name }</a></td>
 			        <td rowspan="2" width="20%"><fmt:formatNumber value="${vo.price }" pattern="###,###"/>원</td>
 			        <td><input type="button" class="btn" value="장바구니" onclick="input_cart(this.form)">
 			        	<input type="hidden" name="book_no" value="${vo.book_no }"></td>        
->>>>>>> Stashed changes
 			    </tr>
 			    <tr>
 			        <td>${vo.writer }</td>

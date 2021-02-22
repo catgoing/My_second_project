@@ -41,10 +41,10 @@
 		document.myForm.submit();
 	}
 	-->
-	function del_go(frm) {
+	function update_go(frm) {
 		if (frm.rev_pwd.value == "${rvo.rev_pwd}") { //암호 일치
-			var isDelete = confirm("정말 삭제할까요?");
-			if (isDelete) {
+			var isUpdate = confirm("수정하시겠습니까?");
+			if (isUpdate) {
 				frm.submit();
 			} else {
 				history.back();

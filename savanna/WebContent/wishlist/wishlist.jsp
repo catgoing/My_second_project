@@ -22,16 +22,38 @@
 <title>:: 찜목록 ::</title>
 </head>
 <style>
-	.paging { list-style: none; }
+	.wish {
+        width: 800px;
+        margin: auto;
+    }
+    table {
+        max-width: 700px;
+        margin:auto;
+    }
+    .title {
+    	text-align: center;
+    }
+    .btn {
+    	border: 1px solid #ff4aa5;
+		padding: 3px 7px;
+    }
+    .btn:hover {
+		background-color: #292929;
+		color: white;
+	}
+	.paging { 
+		margin-left : 250px;
+		list-style: none;
+	}
 	.paging li {
 		float: left;
-		margin-right: 8px;
+		margin-right: 20px;
 	}
 	.paging li a {
 		text-decoration: none;
 		display: block;
 		padding: 3px 7px;
-		border: 1px solid #00B3DC;
+		border: 1px solid #292929;
 		font-weight: bold;
 		color: black;
 	}
@@ -43,12 +65,14 @@
 	.paging .now {
 		border: 1px solid #ff4aa5;
 		padding: 3px 7px;
-		background-color: #ff4aa5;
+		background-color: #292929;
+		color: silver;
 	}
 	.paging li a:hover {
-		background-color: #00B3DC;
+		background-color: #292929;
 		color: white;
 	}
+/*부트스트랩css의 table td의 border-top속성을 일부td에서 무효화하고 width="%"를 주기위해 inline으로 style을 적용함*/
 
 </style>
 <script>
@@ -65,28 +89,30 @@
 </script>
 <body>
 	<%@ include file="/common/menu.jspf" %>
+	
+	<div class="wish">
 	<form>
 	<table class="table">
 		<thead>
-			<tr class="title">
-				<th class="booktitle" colspan="2">상품정보</th>
-				<th class="price">판매정보</th>
-				<th class="delete">선택</th>
+				<th class="title" colspan="3">상품정보</th>
+				<th class="title">판매정보</th>
+				<th class="title">선택</th>			
 			</tr>
 		</thead>
 			<c:if test="${not empty list }">
 			<c:forEach var="vo" items="${list }">
 				<tr class="list">
-			        <td colspan="2"><a href="상세페이지">${vo.book_name }</td>
-			        <td rowspan="2"><fmt:formatNumber value="${vo.price }" pattern="###,###"/>원</td>
-			        <td><input type="button" value="장바구니" onclick="input_cart(this.form)">
-			        	<input type="hidden" name="book_no" value="${vo.book_no }"></td>
+              <td rowspan="2" width="25%">표지이미지</td>
+			        <td colspan="2" width="45%"><a href="상세페이지">${vo.book_name }</td>
+			        <td rowspan="2" width="20%"><fmt:formatNumber value="${vo.price }" pattern="###,###"/>원</td>
+			        <td><input type="button" class="btn" value="장바구니" onclick="input_cart(this.form)">
+			        	<input type="hidden" name="book_no" value="${vo.book_no }"></td>        
 			    </tr>
 			    <tr>
-			        <td>${vo.writer }</td>
-			        <td>${vo.publisher }</td>
-			        <td><input type="submit" value="삭제" onclick="delete_wish(this.form)">
-			        	<input type="hidden" name="book_no" value="${vo.book_no }"></td>
+			        <td width="20%" style="border-top:none">${vo.writer }</td>
+			        <td style="border-top:none">${vo.publisher }</td>
+			        <td style="border-top:none"><input type="submit" class="btn" value="삭제" onclick="delete_wish(this.form)">
+			        	<input type="hidden" name="book_no" value="${vo.book_no }"></td>        
 		    	</tr>
 			</c:forEach>
 			</c:if>
@@ -101,6 +127,7 @@
 		</tfoot>
 	</table>
 	</form>
+	</div>
 
 </body>
 </html>

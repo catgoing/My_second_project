@@ -17,6 +17,19 @@
 		       )
 		 WHERE R_NUM BETWEEN #{begin} AND #{end}
 	</select>
+	
+	<!-- 게시글 ID 값으로 조회해서 출력 -->
+	<select id="reviewSearch" resultType="com.savanna.model.vo.ReviewVO" parameterType="Map">
+		SELECT *
+		  FROM (SELECT ROWNUM AS R_NUM, B.*
+		          FROM (SELECT *
+		                  FROM REVIEWS
+		                 ORDER BY REV_NO DESC
+		               ) B 
+		       )
+		 WHERE R_NUM BETWEEN #{begin} AND #{end}
+		 AND ID = #{id}
+	</select>
 
 	<!-- 전체 게시글 수 조회 -->
 	<select id="reviewCount" resultType="int">
@@ -30,7 +43,7 @@
 		FROM REVIEWS
 		WHERE REV_NO = #{rev_no}
 	</select>
-	
+
 	<select id="review_read" resultType="com.savanna.model.vo.ReviewVO">
 		 SELECT 
 		   (REV_NO, ID, BOOK_NO, REV_CONTENT, REV_DATE, REV_PWD)

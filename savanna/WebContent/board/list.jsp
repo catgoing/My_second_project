@@ -10,31 +10,26 @@
 <!DOCTYPE html>
 <html>
 <meta name="viewport" content="width=device-width", initial-scale="1">
-<script src="../js/bootstrap.min.js"></script>
-<link href="../css/bootstrap.min.css" rel="stylesheet">
+<script src="/savanna/js/bootstrap.min.js"></script>
+<link href="/savanna/css/bootstrap.min.css" rel="stylesheet">
 <head>
 <meta charset="UTF-8">
 <title>리뷰 게시판</title>
 <link rel="stylesheet" type="text/css" href="/savanna/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="../css/savanna.css">
+<link rel="stylesheet" type="text/css" href="/savanna/css/savanna.css">
 <style>
-	#bbs table {
-		width: 580px;
-		margin-left: 10px;
-		border-collapse: collapse;
-		font-size: 14px;
-	}
-	#bbs table caption {
-		font-size: 20px;
-		font-weight: bold;
-		margin-bottom: 10px;
-	}
-	#bbs table th, #bbs table td {
-		text-align: center;
-		border: 1px solid black;
-		padding: 4px 10px;
-	}
-	#bbs .align-left { text-align: left; }
+	#container { width: 70%; margin: 0 auto; /* 가로로 중앙에 배치 */
+				 padding-top: 10%; /* 테두리와 내용 사이의 패딩 여백 */ }
+
+	#list { text-align: center; }
+	.table > thead { color: #000000; background-color: #ffffff; }
+	.table > thead > tr > th { text-align: center; }
+	.table-hover > tbody > tr:hover { background-color: #bfbfbf; }
+	.table > tbody > tr > td { text-align: center; }
+	.table > tbody > tr > #title { text-align: left; }
+	div > #paging { text-align: center; }
+
+	h3 {  }
 
 	.title { background-color: #eeeeee; }
 
@@ -42,7 +37,6 @@
 	.bookno { width: 10%; }
 	.writer { width: 15%; }
 	.regdate { width: 20%; }
-	.hit { width: 15%; }
 
 	/***** 페이지 표시 부분 스타일(시작) ****/
 	.paging { list-style: none; }
@@ -69,7 +63,7 @@
 		background-color: #ff4aa5;
 	}
 	.paging li a:hover {
-		background-color: #00B3DC;
+		background-color: #999999;
 		color: white;
 	}
 
@@ -79,69 +73,53 @@
 </head>
 <%@ include file="/common/menu.jspf" %>
 <hr>
-<!--
-<div class="container">
-	<div class="row">
-		<table class="table table-hover" style="text-align: center; border: 1px solid #dddddd;">
+<div id="container">
+	<div align="right">
+		<!-- Login 검증 -->
+		<!-- jstl의 if문은 else가 없어서 따로 검증해야함. -->
+		<c:if test="${id != null}">
+			<%-- <%@include file="loginOk.jsp" %> --%>
+		</c:if>
+		<c:if test="${id == null}">
+			<%-- <%@include file="login.jsp" %> --%>
+		</c:if>
+	</div>
+	<div id="list">
+		<b><h3 style="font-weight : bold;">리뷰 게시판</h3></b>
+	</div>
+	<div>
+		<table class="table table-striped table-bordered table-hover">
 			<thead>
 				<tr>
-					<th style="background-color: #B8B8B8;">리뷰번호</th>
-					<th style="background-color: #B8B8B8;">책번호</th>
-					<th style="background-color: #B8B8B8;">작성자</th>
-					<th style="background-color: #B8B8B8;">제목</th>
-					<th style="background-color: #B8B8B8;">작성날짜</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<th>1</th>
-					<th>1</th>
-					<th>a</th>
-					<th>TEST</th>
-					<th>2021-02-20</th>
-				</tr>
-			</tbody>
-		</table>
-		<a href="write.jsp" class="btn btn-primary pull-right">글쓰기</a>
-	</div>
-</div>
- -->
-<div id="bbs">
-<table>
-	<caption>리뷰 목록</caption>
-	<thead>
-		<tr class="title">
-			<th class="no">리뷰 번호</th>
-			<th class="bookno">책번호</th>
-			<th class="subject">제목</th>
-			<th class="writer">글쓴이</th>
-			<th class="regdate">날짜</th>
-		</tr>
-	</thead>
-	<tbody>
-	<c:if test="${empty list }">
-		<tr>
-			<td colspan="5">
-				<p>현재 등록된 게시글이 없습니다.</p>
-			</td>
-		</tr>
-	</c:if>
-	<c:if test="${not empty list }">
-		<c:forEach var="vo" items="${list }">
-		<tr>
-			<td>${vo.rev_no }</td>
-			<td>${vo.book_no }</td>
-			<td class="align-left">
-				<a href="board/view.jsp?rev_no=${vo.rev_no }&cPage=${pvo.curPage}">${vo.rev_content }</a>
-			</td>
-			<td>${vo.id }</td>
-			<td>${vo.rev_date }</td>
+					<th width="15%">리뷰 번호</th>
+					<th width="15%">책 번호</th>
+					<th width="40%">리뷰 내용</th> <th width="10%">작성자</th>
+					<th width="20%">작성일</th>
+				</tr> </thead>
+				<tbody>
+				<c:if test="${empty list }">
+					<tr>
+						<td colspan="5">
+							<p>현재 등록된 게시글이 없습니다.</p>
+						</td>
+					</tr>
+				</c:if>
+				<c:if test="${not empty list }">
+					<c:forEach var="vo" items="${list }">
+					<tr>
+						<td>${vo.rev_no }</td>
+						<td>${vo.book_no }</td>
+						<td class="align-left">
+							<a href="board/view.jsp?rev_no=${vo.rev_no }&cPage=${pvo.curPage}">${vo.rev_content }</a>
+						</td>
+						<td>${vo.id }</td>
+						<td>${vo.rev_date }</td>
 
-		</tr>
-		</c:forEach>
-	</c:if>
-	</tbody>
-	<tfoot>
+					</tr>
+					</c:forEach>
+				</c:if>
+				</tbody>
+				<tfoot>
 		<tr>
 			<td colspan="4">
 				<ol class="paging">
@@ -177,14 +155,30 @@
 					<li class="disable">다음으로</li>
 				</c:if>
 				</ol>
+				<form class="navbar-form navbar-rignt" action="search.jsp">
+					<div class="form-group">
+						<input type="text" name="search" class="form-control" placeholder="작성자를 입력하세요">
+						<button type="submit" class="btn btn-default">검색</button>
+					</div>
+				</form>
 			</td>
 			<td>
-				<input type="button" value="글쓰기"
-					onclick="javascript:location.href='write.jsp'">
+				<div id="write">
+						<input type="button" value="글쓰기" onclick="javascript:location.href='/savanna/board/write.jsp'">
+					<!--
+					<c:if test="${id == null}">
+						<input type="button" value="글쓰기" onclick="javascript:location.href='/savanna/member/signIn.jsp'">
+					</c:if>
+					-->
+				</div>
 			</td>
 		</tr>
 	</tfoot>
-</table>
+		</table> <!-- Paging 처리 -->
+		<div id="paging"> ${pageCode}
+		</div>
+	</div>
+</div>
 <hr>
 		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 		<script src="js/bootstrap.js"></script>

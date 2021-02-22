@@ -42,7 +42,7 @@
 		color: white;
 	}
 	.paging { 
-		margin-left : 300px;
+		margin-left : 250px;
 		list-style: none;
 	}
 	.paging li {

@@ -65,7 +65,7 @@
 								<li><a href="lecture.html?lectureName=Android">프로젝트원</a></li>
 							</ul>
 						</li>
-						<li><a href="board/list.jsp">리뷰 게시판</a></li>
+						<li><a href="/savanna/board/list.jsp">리뷰 게시판</a></li>
 					</ul>
 					<form class="navbar-form navbar-left">
 						<div class="form-group">
@@ -79,8 +79,8 @@
 							aria-haspopup="true" aria-expanded="false">마이페이지<span class="caret"></span></a>
 							<ul class="dropdown-menu">
 								<li><a href="/savanna/controller?type=buyList">구매내역</a></li>
-								<li><a href="/savanna/cart/cartList.jsp">장바구니</a></li>
-								<li><a href="#wish">찜리스트</a></li>
+								<li><a href="/savanna/controller?type=cartList.jsp">장바구니</a></li>
+								<li><a href="/savanna/controller?type=wishList">찜리스트</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -112,9 +112,9 @@
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
 							aria-haspopup="true" aria-expanded="false">SAVANNA 소개<span class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li><a href="lecture.html?lectureName=C"></a>SAVANNA란?</li>
-								<li><a href="lecture.html?lectureName=Java"></a>기능 소개</li>
-								<li><a href="lecture.html?lectureName=Android"></a>프로젝트원</li>
+								<li><a href="lecture.html?lectureName=C">SAVANNA란?</a></li>
+								<li><a href="lecture.html?lectureName=Java">기능 소개</a></li>
+								<li><a href="lecture.html?lectureName=Android">프로젝트원</a></li>
 							</ul>
 						</li>
 						<li><a href="board/list.jsp">리뷰 게시판</a></li>
@@ -131,8 +131,8 @@
 							aria-haspopup="true" aria-expanded="false">마이페이지<span class="caret"></span></a>
 							<ul class="dropdown-menu">
 								<li><a href="/savanna/controller?type=buyList"></a>구매내역</li>
-								<li><a href="/savanna/cart/cartList.jsp"></a>장바구니</li>
-								<li><a href="#wish"></a>찜리스트</li>
+								<li><a href="/savanna/controller?type=cartList"></a>장바구니</li>
+								<li><a href="/savanna/controller?type=wishList"></a>찜리스트</li>
 							</ul>
 						</li>
 					</ul>

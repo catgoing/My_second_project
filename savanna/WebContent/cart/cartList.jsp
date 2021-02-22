@@ -7,9 +7,21 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>:: savanna : 장바구니 ::</title>
-<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<meta name="description" content="">
+<meta name="author" content="">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
 
+<!-- Bootstrap core CSS -->
+<link href="/savanna/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="/savanna/css/savanna.css" rel="stylesheet">
+
+<title>:: 장바구니 ::</title>
+</head>
 <script>
 	function order_go(frm){
 		var len = $('.quant').length
@@ -48,28 +60,27 @@
 	}
 	
 </script>
-<style>
-</style>
-</head>
+
 <body>
+	<%@ include file="/common/menu.jspf" %>
 	<h1>장바구니</h1>
 	<div class="cartMainView">
 	<table border>
 		<thead>
-			<tr>
-				<!-- <td>
+			<!-- <tr>
+				<td>
 					<form>
 					<input type="button" value="선택삭제" onclick="check_delete()">
 					</form>
-				</td> -->
+				</td>
 				<td colspan="4">장바구니</td>
-			</tr>
+			</tr> -->
 			<tr>
-				<th>✔</th>
+				<!-- <th>✔</th> -->
 				<th>상품명</th>
 				<th>가격</th>
 				<th>수량</th>
-				<th>삭제</th>
+				<th>선택</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -111,7 +122,7 @@
 		</c:if>
 		
 			<tr>
-				<td colspan="4">상품가격 : <fmt:formatNumber value="${cvo.allitemsPrice }" pattern="###,###"/> 원 /
+				<td colspan="3">상품가격 : <fmt:formatNumber value="${cvo.allitemsPrice }" pattern="###,###"/> 원 /
 								배송비 : <fmt:formatNumber value="${cvo.shippingCharge }" pattern="###,###"/> 원<br>
 								총 결제가격 : <fmt:formatNumber value="${cvo.totalPrice }" pattern="###,###"/> 원
 				</td>
@@ -125,7 +136,6 @@
 			</tr>
 		</tbody>
 		</table>
-		<input type="button" value="돌아가기" onclick="javascript:location.href='../main.jsp'">
 	</div>
 </body>
 </html>

@@ -1,7 +1,7 @@
 package com.savanna.model.vo;
 
 //회원목록의 페이징 처리를 위한 값을 저장 관리
-public class Paging {
+public class MemPagingVO {
 	private int nowPage = 1; //현재 페이지
 	private int nowBlock = 1; //현재 블록(페이지 담는 단위)
 	
@@ -99,3 +99,19 @@ public class Paging {
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -21,7 +21,7 @@ public class BookDAO implements SuperDAO {
 
 	public static List<BookVO> getBookList() {
 		SqlSession ss = DBService.getFactory().openSession();
-		List<BookVO> list = ss.selectList("mystudy.booklist");
+		List<BookVO> list = ss.selectList("mystudy.bookList");
 		ss.close();
 		return list;
 	}
@@ -66,6 +66,16 @@ public class BookDAO implements SuperDAO {
 		int result = ss.insert("mystudy.updatebook", vo);
 		ss.close();
 		return result;
+	}
+	@Override
+	public int getTotalCount2(String str) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	public List getPagedList2(Map map) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
 

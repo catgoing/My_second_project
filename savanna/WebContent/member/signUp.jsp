@@ -28,7 +28,7 @@
 			$('#id').keyup(function(){
 				var id = $('#id').val();
 				$.ajax({
-					url : '/savanna/controller?type=idCheck?id=' + id,
+					url : '/savanna/controller?type=idCheck&id=' + id,
 					type : 'get',
 					success : function(data){
 						console.log(data);

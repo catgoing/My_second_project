@@ -37,6 +37,14 @@ public class ReviewDAO implements SuperDAO {
 		return list;
 	}
 	
+	//페이지에 해당하는 글목록(게시글) 가져오기
+	private List<ReviewVO> getListSearch(Map<String, Integer> map) {
+		SqlSession ss = DBService.getFactory().openSession();
+		List<ReviewVO> list = ss.selectList("board.reviewSearch", map);
+		ss.close();
+		return list;
+	}
+	
 	//게시글 번호에 해당하는 게시글 하나 조회
 	public static ReviewVO selectOne(String rev_no) {
 		SqlSession ss = DBService.getFactory().openSession();

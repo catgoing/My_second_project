@@ -18,16 +18,16 @@
 <link rel="stylesheet" type="text/css" href="/savanna/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="/savanna/css/savanna.css">
 <style>
-	#container { width: 70%; margin: 0 auto; /* 가로로 중앙에 배치 */ 
-				 padding-top: 10%; /* 테두리와 내용 사이의 패딩 여백 */ } 
-				 
-	#list { text-align: center; }  
-	.table > thead { color: #000000; background-color: #ffffff; } 
-	.table > thead > tr > th { text-align: center; } 
-	.table-hover > tbody > tr:hover { background-color: #bfbfbf; } 
-	.table > tbody > tr > td { text-align: center; } 
-	.table > tbody > tr > #title { text-align: left; } 
-	div > #paging { text-align: center; } 
+	#container { width: 70%; margin: 0 auto; /* 가로로 중앙에 배치 */
+				 padding-top: 10%; /* 테두리와 내용 사이의 패딩 여백 */ }
+
+	#list { text-align: center; }
+	.table > thead { color: #000000; background-color: #ffffff; }
+	.table > thead > tr > th { text-align: center; }
+	.table-hover > tbody > tr:hover { background-color: #bfbfbf; }
+	.table > tbody > tr > td { text-align: center; }
+	.table > tbody > tr > #title { text-align: left; }
+	div > #paging { text-align: center; }
 
 	h3 {  }
 
@@ -73,29 +73,29 @@
 </head>
 <%@ include file="/common/menu.jspf" %>
 <hr>
-<div id="container"> 
-	<div align="right"> 
-		<!-- Login 검증 --> 
-		<!-- jstl의 if문은 else가 없어서 따로 검증해야함. --> 
-		<c:if test="${id != null}"> 
-			<%-- <%@include file="loginOk.jsp" %> --%> 
-		</c:if> 
-		<c:if test="${id == null}"> 
-			<%-- <%@include file="login.jsp" %> --%> 
-		</c:if> 
-	</div> 
-	<div id="list"> 
-		<b><h3 style="font-weight : bold;">리뷰 게시판</h3></b> 
-	</div> 
-	<div> 
-		<table class="table table-striped table-bordered table-hover"> 
-			<thead> 
-				<tr> 
+<div id="container">
+	<div align="right">
+		<!-- Login 검증 -->
+		<!-- jstl의 if문은 else가 없어서 따로 검증해야함. -->
+		<c:if test="${id != null}">
+			<%-- <%@include file="loginOk.jsp" %> --%>
+		</c:if>
+		<c:if test="${id == null}">
+			<%-- <%@include file="login.jsp" %> --%>
+		</c:if>
+	</div>
+	<div id="list">
+		<b><h3 style="font-weight : bold;">리뷰 게시판</h3></b>
+	</div>
+	<div>
+		<table class="table table-striped table-bordered table-hover">
+			<thead>
+				<tr>
 					<th width="15%">리뷰 번호</th>
-					<th width="15%">책 번호</th> 
-					<th width="40%">리뷰 내용</th> <th width="10%">작성자</th> 
-					<th width="20%">작성일</th>  
-				</tr> </thead> 
+					<th width="15%">책 번호</th>
+					<th width="40%">리뷰 내용</th> <th width="10%">작성자</th>
+					<th width="20%">작성일</th>
+				</tr> </thead>
 				<tbody>
 				<c:if test="${empty list }">
 					<tr>
@@ -114,7 +114,7 @@
 						</td>
 						<td>${vo.id }</td>
 						<td>${vo.rev_date }</td>
-			
+
 					</tr>
 					</c:forEach>
 				</c:if>
@@ -164,19 +164,19 @@
 			</td>
 			<td>
 				<div id="write">
-						<input type="button" value="글쓰기" onclick="javascript:location.href='/savanna/board/write.jsp'"> 
+						<input type="button" value="글쓰기" onclick="javascript:location.href='/savanna/board/write.jsp'">
 					<!--
-					<c:if test="${id == null}"> 
-						<input type="button" value="글쓰기" onclick="javascript:location.href='/savanna/member/signIn.jsp'"> 
+					<c:if test="${id == null}">
+						<input type="button" value="글쓰기" onclick="javascript:location.href='/savanna/member/signIn.jsp'">
 					</c:if>
-					--> 
-				</div>  
+					-->
+				</div>
 			</td>
 		</tr>
-	</tfoot> 
-		</table> <!-- Paging 처리 --> 
-		<div id="paging"> ${pageCode} 
-		</div> 
+	</tfoot>
+		</table> <!-- Paging 처리 -->
+		<div id="paging"> ${pageCode}
+		</div>
 	</div>
 </div>
 <hr>

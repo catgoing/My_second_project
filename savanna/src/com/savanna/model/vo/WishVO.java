@@ -1,15 +1,15 @@
 package com.savanna.model.vo;
 
 public class WishVO {
-	
+
 	private int wish_no, book_no;
 	private String id, memo, wish_date;
-	
+
 	private String book_name, writer, pub_date, publisher;
 	private int price;
 
 	public WishVO() {}
-	
+
 	public WishVO(int wish_no, int book_no, String id, String wish_date, String book_name, String writer,
 			String pub_date, int price) {
 		this.wish_no = wish_no;
@@ -29,7 +29,7 @@ public class WishVO {
 		this.id = id;
 		this.wish_date = wish_date;
 	}
-	
+
 	// wishlist DB
 	public int getWish_no() {
 		return wish_no;
@@ -70,7 +70,7 @@ public class WishVO {
 	public void setWish_date(String wish_date) {
 		this.wish_date = wish_date;
 	}
-	
+
 	// VO저장용 Book데이터
 	public String getPublisher() {
 		return publisher;
@@ -112,5 +112,5 @@ public class WishVO {
 		this.price = price;
 	}
 
-	
+
 }

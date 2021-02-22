@@ -66,9 +66,7 @@ public class FrontController extends HttpServlet {
 		System.out.println("> type : "+ type);
 
 		Command command = null;
-		if (1 == 2) {
-			System.out.print("error test");
-		} else if ("signUp".equals(type)) {
+		if ("signUp".equals(type)) {
 			command = new SignUpCommand();
 		} else if ("doSignUp".equals(type)) {
 			command = new DoSignUpCommand();

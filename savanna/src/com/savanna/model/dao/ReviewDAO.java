@@ -93,6 +93,14 @@ public class ReviewDAO implements SuperDAO {
 		return result;
 	}
 	
+	//댓글 수정 처리
+	public static int updateComment(CommVO cvo) {
+		SqlSession ss = DBService.getFactory().openSession(true);
+		int result = ss.update("board.review_update", cvo);
+		ss.close();
+		return result;
+	}
+	
 	//댓글 삭제
 	public static int deleteComment(int comm_no) {
 		SqlSession ss = DBService.getFactory().openSession(true);

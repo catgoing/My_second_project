@@ -154,8 +154,7 @@
 			</td>
 			<td>
 				<div id="write">
-						<input type="button" value="글쓰기" onclick="javascript:location.href='/savanna/board/write.jsp'">
-						<input type="button" value="글쓰기2" onclick="javascript:location.href='/savanna/board/write2.jsp'">
+					<button type="submit" class="btn btn-default btn-right" onclick="javascript:location.href='/savanna/board/write.jsp'">글쓰기</button>
 				</div>
 			</td>
 		</tr>

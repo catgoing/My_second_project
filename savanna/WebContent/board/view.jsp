@@ -26,42 +26,28 @@
 <!DOCTYPE html>
 <html>
 <meta name="viewport" content="width=device-width", initial-scale="1">
-<script src="../js/bootstrap.min.js"></script>
-<link href="../css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="/savanna/css/writeform.css" />
+<script src="/savanna/js/bootstrap.min.js"></script>
+<link href="/savanna/css/bootstrap.min.css" rel="stylesheet">
 <head>
 <meta charset="UTF-8">
-<title>게시글상세</title>
+<title>게시글 상세보기</title>
 <link rel="stylesheet" type="text/css" href="/savanna/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="../css/savanna.css">	
+<link rel="stylesheet" type="text/css" href="/savanna/css/savanna.css">	
 <style>
-	#bbs table {
-		width: 580px;
-		margin-left: 10px;
-		border-collapse: collapse;
-		font-size: 14px;
-	}
-	#bbs table caption {
-		font-size: 20px;
-		font-weight: bold;
-		margin-bottom: 10px;
-	}
-	#bbs table th {
-		border: 1px solid black;
-		padding: 4px 10px;
-		width: 25%;
-		background-color: lightsteelblue;
-	}
-	#bbs table td {
-		border: 1px solid black;
-		padding: 4px 10px;
-	}
 	#comment { 
 		border : 1px solid black;
 		padding: 4px 10px;
 	}
+
+	#comm {
+		border : 1px solid black;
+		margin-top : none;
+		padding-top : none;
+	}
+
 </style>
 <script>
-
 	function update_go(frm) {
 		frm.action = "../controller?type=reviewUpdate";
 		frm.submit();
@@ -86,82 +72,111 @@
 </head>
 <%@ include file="/common/menu.jspf" %>
 <body>
-
-<div id="bbs">
-<%-- 게시글 내용 표시 --%>
-<form method="post" name="frm">
-	<table>
-		<caption>상세보기</caption>
-		<tbody>
-			<tr>
-				<th>책번호</th>
-				<td>${rvo.book_no }</td>
-			</tr>
-			<tr>
-				<th>작성자</th>
-				<td>${rvo.id }</td>
-			</tr>
-			<tr>
-				<th>내용</th>
-				<td>${rvo.rev_content }</td>
-			</tr>
-		</tbody>
-		<tfoot>
-			<tr>
-				<td colspan="2">
-					<input type="button" value="수정" onclick="javascript:location.href='update.jsp'">
-					<input type="button" value="삭제" onclick="javascript:location.href='delete.jsp'">
-					<input type="button" value="목록" onclick="list_go(this.form)">
-					<input type="hidden" name="cPage" value="${cPage }">
-				</td>
-			</tr>
-		</tfoot>
-	</table>
-</form>
-
-<hr>
-
-<%-- 게시글에 대한 댓글 작성 영역 --%>
-<form method="post">
-	<h3>댓글 작성하기</h3>
-	<div id="comment">
-	<p>작성자 : <input type="text" name="id">
-		댓글 비밀번호 : <input type="password" name="comm_pwd"></p>
-	<p>내용 : <textarea name="comm_content" rows="4" cols="55"></textarea>
-	<input type="submit" value="작성하기" onclick="commInsert_go(this.form)">
-	<input type="hidden" name="rev_no" value="${rvo.rev_no }"></p>
-	</div>
-</form>
-
-<hr>
-<h3>등록된 댓글들</h3>
-	<c:if test="${empty c_list }">
-		<tr>
-			<td colspan="5">
-				<p>등록된 댓글이 없습니다. 첫번째 댓글을 작성하세요!</p>
-			</td>
-		</tr>
-	</c:if>
-	<%-- 게시글에 작성된 댓글 표시 영역 --%>
-<c:if test="${not empty c_list }">	
-<c:forEach var="cvo" items="${c_list }">
-<div class="comment">
-	<form method="post">
-		<p>이름 : ${cvo.id } &nbsp; 날짜 : ${cvo.comm_date }</p>
-		<p>내용 : ${cvo.comm_content }</p>
-		<input type="submit" value="댓글삭제" onclick="commDelete_go(this.form)">
-		<input type="hidden" name="rev_no" value="${rvo.rev_no }">
-		<input type="hidden" name="comm_no" value="${cvo.comm_no }">
-		<input type="hidden" name="comm_pwd" value="${cvo.comm_pwd }">
-		<%--댓글 삭제처리후 게시글 상세페이지로 이동시 --%>
-		<input type="hidden" name="rev_no" value="${cvo.rev_no }">
-	</form>
-</div>
-<hr>
-</c:forEach>
-</c:if>
-</div>
-<hr>
-
+	<footer id="footer" class="wrapper" method="post">
+		<div class="inner">
+			<section>
+				<div class="box" >
+					<div class="content">
+						<h2 class="align-center" style="font-weight: bold;">게시글 상세보기</h2>
+						<form method="post">
+							<div class="field half first">
+								<label for="name">작성자</label>
+								<input name="id" id="id" type="text" value="${user.id}" readonly>
+							</div>
+							<div class="field half">
+								<label for="name">작성일자</label>
+								<input name="rev_date" id="rev_date" type="text" value="${rvo.rev_date}" readonly>
+							</div>							
+							<div class="field">
+								<label for="book">책번호</label>
+								<!--
+								<div class="select-wrapper">
+									  
+									<select name="book" id="book">
+									<c:forEach var="bvo" items="${list }">
+										<option value="1">${bvo.book_no }</option>
+									</c:forEach>	
+									</select>
+								</div>
+								-->
+								<input type="text" name="book_no" title="책번호" value="${rvo.book_no }" readonly>
+							</div>
+							<div class="field">
+								<label for="message">리뷰 내용</label>
+								<textarea name="rev_content" id="message" rows="6" readonly>${rvo.rev_content }</textarea>
+							</div>
+							<ul class="actions align-center">
+								<li><input value="수정하기" type="button" onclick="javascript:location.href='update.jsp'"></li>
+								<li><input value="삭제하기" type="button" onclick="javascript:location.href='delete.jsp'"></li>
+								<li><input value="목록" type="button" onclick="list_go(this.form)"></li>
+							</ul>
+						</form>
+						<hr>
+							<%-- 게시글에 대한 댓글 작성 영역 --%>		
+						<div id="comm">
+							<section>
+								<div class="box">
+									<div class="content">
+										<h3 class="align-center" style="font-weight: bold;">댓글 작성하기</h3>
+										<form action="/savanna/controller?type=commInsert" method="post">
+											<div class="field">
+												<label for="message">댓글 내용</label>
+												<textarea name="comm_content" id="comm_content"  placeholder="댓글을 입력하세요"></textarea>
+											</div>
+											<div class="field half">
+												<label for="pwd">비밀번호</label>
+												<input type="password" name="comm_pwd" size="40" title="비밀번호"><label>* 댓글 수정 및 삭제시 사용</label>
+											</div>
+											<ul class="actions align-center">
+												<li><input value="작성하기" class="button special" type="submit" onclick="javascript:location.href='view.jsp?rev_no=${vo.rev_no }&cPage=${pvo.curPage}'"></li>
+												<li><input value="다시 작성" class="button" type="reset"></li>
+												<li><input type="hidden" name="rev_no" value="${rvo.rev_no }"></li>
+												<li><input type="hidden" name="id" value="${user.id }"></li>
+											</ul>
+										</form>
+									</div>
+								</div>
+							</section>
+						</div>
+						<hr>
+						<div>
+							<h3 style="font-weight:bold;">등록된 댓글들</h3>
+							<c:if test="${empty c_list }">
+								<tr>
+									<td colspan="5">
+										<p style="font-weight: bold;">등록된 댓글이 없습니다. 첫번째 댓글을 작성하세요!</p>
+									</td>
+								</tr>
+							</c:if>
+							<%-- 게시글에 작성된 댓글 표시 영역 --%>
+							<c:if test="${not empty c_list }">	
+							<c:forEach var="cvo" items="${c_list }">
+							<div class="comment">
+								<form method="post">
+									<p>이름 : ${user.id} &nbsp; 날짜 : ${cvo.comm_date }</p>
+									<p>내용 : ${cvo.comm_content }</p>
+									<input value="수정하기" type="button" onclick="javascript:location.href='comm_update.jsp'">
+									<input value="삭제하기" type="button" onclick="javascript:location.href='comm_del.jsp'">
+									<input type="hidden" name="comm_no" value="${cvo.comm_no }">
+								</form>
+							</div>
+							<hr>
+							</c:forEach>
+							</c:if>
+						</div>							
+					</div>
+				</div>
+			</section>
+		</div>
+	</footer>
+<%@ include file="/common/foot.jspf" %>
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/skel.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+		<script src="js/bootstrap.js"></script>
 </body>
 </html>

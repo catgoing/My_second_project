@@ -1,54 +1,80 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%--전달받은 파라미터 값 사용 비밀번호 확인 후
-	비밀번호 일치 : DB에서 댓글 삭제 요청 처리
-	비밀번호 불일치 : 암호가 다르다 메시지 표시 
---%>
-<%
-	request.setCharacterEncoding("UTF-8");
-
-	String comm_no = request.getParameter("comm_no");
-	String comm_pwd = request.getParameter("comm_pwd");
-	String rev_no = request.getParameter("rev_no");
-	
-	//EL, JSTL 사용을 위해 scope에 속성 설정
-	pageContext.setAttribute("comm_no", comm_no);
-	pageContext.setAttribute("comm_pwd", comm_pwd);
-	pageContext.setAttribute("rev_no", rev_no);
-%>
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>댓글삭제(암호확인)</title>
+<meta charset="UTF-8">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<meta name="description" content="">
+<meta name="author" content="">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript" src="/savanna/js/bootstrap.js"></script>
+
+<!-- Bootstrap core CSS -->
+<link href="/savanna/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="/savanna/css/savanna.css" rel="stylesheet">
+<link href="/savanna/css/member.css" rel="stylesheet">
+<title>리뷰 삭제(패스워드 확인)</title> 
+</head>
 <script>
-	function ans_del(frm) {
-		var pwd1 = frm.pwd.value; //새로 입력한 암호
-		var pwd2 = "${comm_pwd}"; // DB에 저장된 실제 암호
-		if (pwd1 != pwd2) {
-			alert("비밀번호가 일치하지 않습니다.");
-			frm.pwd.value = "";
-			frm.pwd.focus();
-			return false;
-		}
-		var isDelete = confirm("정말 삭제하시겠습니까?");
-		if (isDelete) {
-			frm.submit(); //삭제처리 진행
+	function commDelete_go(frm) {
+		if (frm.comm_pwd.value == "${cvo.comm_pwd}") { //암호 일치
+			var isDelete = confirm("정말 삭제할까요?");
+			if (isDelete) {
+				frm.submit();
+			} else {
+				history.back();
+			}
 		} else {
-			history.back(); //삭제 작업 취소하고 이전페이지로 이동
+			alert("비밀번호가 일치하지 않습니다. 다시 입력해 주세요.");
+			frm.comm_pwd.value = "";
+			frm.comm_pwd.focus();
 		}
 	}
+
 </script>
-</head>
+<%@ include file="/common/menu.jspf" %>
 <body>
+	<form action="../controller?type=commDelete" method="post" name="fr">
+		<h1>패스워드 확인</h1>
+	    <div id="wrapper">
+           <!-- content-->
+           <div id="content">
+               <!-- PW -->
+               <div>
+                   <h3 class="join_title"><label for="pw">댓글 작성시 등록한 비밀번호를 입력하세요</label></h3>
+                    <span class="box int_pass" style="margin-bottom: 20px">
+                        <input type="password" id="pwdchk" name="comm_pwd" class="int" maxlength="12">
+                    </span>
+                    <span id="error"></span>
+                    <hr>
+                <!-- OKBTN-->
+                <div class="btn_area" style="margin: 20px 0 0 0">
+                  <button type="button" id="okbtn" style="margin: 0" onclick="commDelete_go(this.form)">
+                      <span>확인</span>
+                  </button>
+                  <input type="hidden" id="comm_no" name="comm_no" value="${cvo.comm_no }">
+              	</div>
+               </div>
+        	</div>
+        </div>
+    </form>		
 
-<form action="../controller?type=commDelete" method="post">
-	비밀번호 : <input type="password" name="pwd">
-	<input type="button" value="삭제" onclick="ans_del(this.form)">
-	<input type="hidden" name="comm_no" value="${comm_no }">
-	<input type="hidden" name="rev_no" value="${rev_no }">
-</form>
-
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+		<script src="js/bootstrap.js"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+

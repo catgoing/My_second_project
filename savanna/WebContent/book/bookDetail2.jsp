@@ -43,7 +43,7 @@ function enterUpdateBook(frm) {
 	<h1>상품 상세보기</h1>
 	
 	<form method="post">
-		<table>
+		<table id="content">
 		<thead>
 		<tr>
 			<th>항목</th>

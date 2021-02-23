@@ -13,7 +13,25 @@
 <link href="/savanna/css/savanna.css" rel="stylesheet">
 <link href="/savanna/css/member.css" rel="stylesheet">
 <link href="/savanna/css/book.css" rel="stylesheet">
-
+<style>
+.img-container {
+	background-color: white;
+	padding: 0px;
+	margin: 5px 5px 5px 5px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 5%;
+}
+.img-placeholder {
+	background-color: lightcoral;
+	padding: 0px;
+	width: 25vh;
+	height: 25vh;
+	border-radius: 5%;
+	box-shadow: 0 20px 20px rgba(0,0,0,0.2);
+}
+</style>
 <script>
 	function enterCreateBookView(frm) {
 		frm.action = "controller?type=EnterCreateBook";
@@ -25,9 +43,9 @@
 	<%@ include file="/common/menu.jspf" %>
 
 	<h1>상품 관리</h1>
-	<div class="container">
-	<table>
-	<thead>
+	<div class="container ">
+	<table class="">
+	<thead >
 		<tr>
 			<th width="5%">인덱스</th>
 			<th width="10%">썸네일</th>
@@ -42,8 +60,7 @@
 	<c:forEach var="vo" items="${list }">
 		<tr class="book">
 			<td>${vo.book_no }</td>
-			<td class="img-container">
-				<div class="img-placeholder"></div>
+			<td>
 			</td>
 			<td>
 				<a href="controller?type=EnterDetail&book_no=${vo.book_no }">

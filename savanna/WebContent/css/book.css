@@ -2,20 +2,27 @@
 		border: 1px solid black;
 		border-collapse: collapse;
 	}
-	.img-container {
-		background-color: peru;
-		padding: 0px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
+	thead {
+		border: 1px solid black;
+		border-collapse: collapse;
 	}
-	.img-placeholder {
-		background-color: lightgreen;
-		padding: 0px;
-		width: 15vh;
-		height: 15vh;
-		border-radius: 50%;
-	}
+.img-container {
+	background-color: white;
+	padding: 0px;
+	margin: 5px 5px 5px 5px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 5%;
+}
+.img-placeholder {
+	background-color: lightcoral;
+	padding: 0px;
+	width: 25vh;
+	height: 25vh;
+	border-radius: 5%;
+	box-shadow: 0 20px 20px rgba(0,0,0,0.2);
+}
 	
 	tr > td{
 	text-align : center;

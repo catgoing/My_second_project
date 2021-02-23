@@ -16,6 +16,7 @@ import com.savanna.model.command.board.ReviewDeleteCommand;
 import com.savanna.model.command.board.ReviewInsertCommand;
 import com.savanna.model.command.board.ReviewListPagingCommand;
 import com.savanna.model.command.board.ReviewUpdateCommand;
+import com.savanna.model.command.board.commUpdateCommand;
 import com.savanna.model.command.book.BookListPagingCommand;
 import com.savanna.model.command.book.CreateBookCommand;
 import com.savanna.model.command.book.DeleteBookCommand;
@@ -151,6 +152,8 @@ public class FrontController extends HttpServlet {
 			command = new ReviewDeleteCommand();
 		} else if("commInsert".equals(type)) {
 			command = new CommInsertCommand();
+		} else if("commUpdate".equals(type)) {
+			command = new commUpdateCommand();
 		} else if("commDelete".equals(type)) {
 			command = new CommDeleteCommand();
 		} else if ("cartList".equals(type)) { //장바구니 보기

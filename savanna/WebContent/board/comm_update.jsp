@@ -13,8 +13,8 @@
 <link rel="stylesheet" type="text/css" href="/savanna/css/savanna.css">	
 
 <script>	
-	function update_go(frm) {
-		if (frm.rev_pwd.value == "${rvo.rev_pwd}") { //암호 일치
+	function commUpdate_go(frm) {
+		if (frm.comm_pwd.value == "${cvo.comm_pwd}") { //암호 일치
 			var isUpdate = confirm("수정하시겠습니까?");
 			if (isUpdate) {
 				frm.submit();
@@ -23,8 +23,8 @@
 			}
 		} else {
 			alert("비밀번호가 일치하지 않습니다. 다시 입력해 주세요.");
-			frm.rev_pwd.value = "";
-			frm.rev_pwd.focus();
+			frm.comm_pwd.value = "";
+			frm.comm_pwd.focus();
 		}
 	}
 
@@ -42,42 +42,25 @@
 				<div class="box">
 					<div class="content">
 						<h2 class="align-center" style="font-weight: bold;">리뷰 수정하기</h2>
-						<form action="/savanna/controller?type=reviewUpdate" method="post">
-							<div class="field half first">
-								<label for="name">작성자</label>
-								<input name="id" id="id" type="text" value="${user.id}" readonly>
-							</div>
-							<div class="field half">
-								<label for="book">책번호</label>
-								<!--
-								<div class="select-wrapper">
-									  
-									<select name="book" id="book">
-									<c:forEach var="bvo" items="${list }">
-										<option value="1">${bvo.book_no }</option>
-									</c:forEach>	
-									</select>
-								</div>
-								-->
-								<input type="text" name="book_no" title="책번호" value="${rvo.book_no }">
-							</div>
+						<form action="/savanna/controller?type=commUpdate" method="post">
 							<div class="field">
-								<label for="message">리뷰 내용</label>
-								<textarea name="rev_content" id="message" rows="6">${rvo.rev_content }</textarea>
+								<label for="message">댓글 내용</label>
+								<textarea name="comm_content" id="comm_content" >${cvo.comm_content }</textarea>
 							</div>
 							<div class="field half">
 								<label for="pwd">비밀번호</label>
-								<input type="password" name="rev_pwd" size="40" title="비밀번호"> * 게시글 작성시 사용한 비밀번호
+								<input type="password" name="comm_pwd" size="40" title="비밀번호"><label>* 댓글 작성시 사용한 비밀번호</label>
 							</div>
 							<ul class="actions align-center">
-								<li><input value="수정하기" class="button special" type="button" onclick="update_go(this.form)"></li>
+								<li><input value="수정하기" class="button special" type="button" onclick="commUpdate_go(this.form)"></li>
 								<li><input value="다시 작성" class="button" type="reset"></li>
 								<li><input value="목록" class="button" type="submit" onclick="list_go(this.form)"></li>
 							</ul>
 							<div>
 								<input type="hidden" id="rev_no" name="rev_no" value="${rvo.rev_no }">
+								<input type="hidden" id="comm_no" name="comm_no" value="${cvo.comm_no }">
 								<input type="hidden" id="id" name="id" value="${vo.id }">
-								<input type="hidden" id="rev_date" name="rev_date" value="${rvo.rev_date }">
+								<input type="hidden" id="comm_date" name="comm_date" value="${cvo.comm_date }">
 							</div>
 						</form>
 					</div>

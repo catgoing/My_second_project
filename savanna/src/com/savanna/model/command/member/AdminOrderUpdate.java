@@ -8,25 +8,27 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.savanna.model.command.Command;
 import com.savanna.model.dao.MemberDAO;
-import com.savanna.model.vo.MemberVO;
+import com.savanna.model.vo.BuyVO;
 
-public class MemDetailCommand implements Command{
-	String id;
-	
-	public MemDetailCommand(String id) {
-		System.out.println(id);
-		this.id = id;
-	}
+
+public class AdminOrderUpdate implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		request.setCharacterEncoding("UTF-8");
 		
-		MemberVO vo = MemberDAO.memDetail(id);
-//		System.out.println(vo);
-		request.setAttribute("vo", vo);
+		BuyVO vo = new BuyVO();
 		
-		return "member/memDetail.jsp";
+		vo.setBuylist_no(request.getParameter("buylist_no"));
+		vo.setAddr(request.getParameter("addr"));
+		vo.setStatus(request.getParameter("status"));
+
+		
+		MemberDAO.orderUpdate(vo);
+			
+		return "controller?type=adminOrderList";
 	}
+
 }

@@ -18,6 +18,7 @@
 <!-- Custom styles for this template -->
 <link href="/savanna/css/savanna.css" rel="stylesheet">
 <link href="/savanna/css/paging.css" rel="stylesheet">
+<link href="/savanna/css/sidebar.css" rel="stylesheet">
 <title>회원목록</title>
 <style>
 
@@ -64,6 +65,7 @@
 </head>
 <body>
 	<%@ include file="/common/menu.jspf" %>
+	<%@ include file="/common/adminSidebar.jspf" %>
 	<br>
 <h1>회원목록</h1>
 <br>

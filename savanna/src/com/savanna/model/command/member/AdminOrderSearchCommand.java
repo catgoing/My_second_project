@@ -8,37 +8,37 @@ import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.savanna.model.command.Command;
 import com.savanna.model.dao.MemberDAO;
 import com.savanna.model.vo.BuyVO;
-import com.savanna.model.vo.CommVO;
 import com.savanna.model.vo.MemPagingVO;
-import com.savanna.model.vo.MemberVO;
 
-public class MyBuyListCommand implements Command{
+public class AdminOrderSearchCommand implements Command{
+String cPage;
 	
-	String cPage;
-	
-	public MyBuyListCommand() {
+	public AdminOrderSearchCommand() {
 	
 	}
 	
-	public MyBuyListCommand(String cPage) {
+	public AdminOrderSearchCommand(String cPage) {
 		this.cPage = cPage; // cPage는 jsp에서 get 방식으로 frontcontroller를 통해 전달받음
 	}
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		HttpSession session = request.getSession();
-		MemberVO vo = (MemberVO)session.getAttribute("user");
-		String command = "buyList";
-		if( null != vo ) {
-			
-			String id = vo.getId();
+//		System.out.println(">> SearchController doGet() 실행~~~");
+		
+		String idx = request.getParameter("idx");
+		String keyword = request.getParameter("keyword");
+		System.out.println("> idx: "+ idx + ", keyword: " + keyword + ", cpage: " + cPage);
+		String command = "adminordersearch";
+		
+		String path = "";
+		if (keyword == null || keyword.equals("")) { 
+			path = "controller?type=adminOrderList"; // 검색값 없으면 리턴할 페이지로 이동
+		} else { //검색값이 입력되었으니 DB에서 검색처리
 			
 			request.setCharacterEncoding("UTF-8");
 			response.setContentType("text/html;charset=UTF-8");
@@ -46,10 +46,10 @@ public class MyBuyListCommand implements Command{
 			MemPagingVO p = new MemPagingVO();
 
 			//1. 검색한 데이터의 수를 구하기
-			p.setTotalMember(MemberDAO.myBuyCount(id));
+			p.setTotalMember(MemberDAO.orderSearchCount(idx, keyword));
 			p.setTotalPage();
-//			System.out.println("> 전체 검색결과 수 : " + p.getTotalMember());
-//			System.out.println("> 전체 페이지 수 : " + p.getTotalPage());
+			System.out.println("> 전체 검색결과 수 : " + p.getTotalMember());
+			System.out.println("> 전체 페이지 수 : " + p.getTotalPage());
 			
 			//2. 현재 페이지 구하기
 //			System.out.println("cpage: " + cPage);
@@ -95,28 +95,25 @@ public class MyBuyListCommand implements Command{
 			Map<String, String> map = new HashMap<>();
 			map.put("begin", Integer.toString(p.getBegin()));
 			map.put("end", Integer.toString(p.getEnd()));
-			map.put("id", id);
+			map.put("idx", idx);
+			map.put("keyword", keyword);
 			
 		
 			// 현재 페이지에 표시할 데이터 조회
-			List<BuyVO> list = MemberDAO.myBuyList(map); /*******************************/
-//			System.out.println("> 현재 페이지 글목록(list) : " + list);
+			List<BuyVO> list = MemberDAO.orderSearchList(map);
+			System.out.println("> 현재 페이지 글목록(list) : " + list);
 
-			request.setAttribute("buylist", list); // 최종 데이터 리스트
+			request.setAttribute("orderlist", list); // 최종 데이터 리스트
 			request.setAttribute("pvo", p); // 페이지 정보
 			request.setAttribute("cPage", cPage); // 현재 페이지
-			request.setAttribute("id", id); // idx값 유지를 위해 jsp 페이지로 전달
-			request.setAttribute("command", command); // idx값 유지를 위해 jsp 페이지로 전달
-			
+			request.setAttribute("idx", idx); // idx값 유지를 위해 jsp 페이지로 전달
+			request.setAttribute("keyword", keyword); // keyword값 유지를 위해 jsp 페이지로 전달
+			request.setAttribute("command", command);
 
-			
-			
-			
+			path = "member/adminOrderList.jsp"; // 최종적으로 리턴할 페이지
 		}
 		
-		return "member/buyList.jsp";
+		return path;
 	}
-	
-	
 
 }

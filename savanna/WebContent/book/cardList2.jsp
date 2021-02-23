@@ -35,7 +35,7 @@ body {
 	border-radius: 5%;
 }
 .img-placeholder {
-	background-color: lightcoral;
+	background-color: peru;
 	padding: 0px;
 	width: 25vh;
 	height: 25vh;

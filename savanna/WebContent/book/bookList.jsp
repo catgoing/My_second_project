@@ -12,89 +12,8 @@
 <link href="/savanna/css/bootstrap.min.css" rel="stylesheet">
 <link href="/savanna/css/savanna.css" rel="stylesheet">
 <link href="/savanna/css/member.css" rel="stylesheet">
-<style>
-	table, td {
-		border: 1px solid black;
-		border-collapse: collapse;
-	}
-	.img-container {
-		background-color: peru;
-		padding: 0px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
-	.img-placeholder {
-		background-color: lightgreen;
-		padding: 0px;
-		width: 15vh;
-		height: 15vh;
-		border-radius: 50%;
-	}
-	
-	tr > td{
-	text-align : center;
-	height : 50px;
- 	border: 1px solid lightgray;
-	}
-	tr > th{
-	height : 40px;
-	text-align : center;
-	}
+<link href="/savanna/css/book.css" rel="stylesheet">
 
-	tbody > tr:hover{
-	background-color: #00B3DC;
-	color: white;
-	cursor: pointer;
-	}
-	
-	
-	.paging { 
-	margin-left : 300px;
-	list-style: none; 
-	
-	}
-	.paging li {
-		float: left;
-		margin-right: 20px;
-	}
-	.paging li a {
-		text-decoration: none;
-		display: block;
-		padding: 3px 7px;
-		border: 1px solid #00B3DC;
-		font-weight: bold;
-		color: black;
-	}
-	.paging .disable {
-		border: 1px solid silver;
-		padding: 3px 7px;
-		color: silver;
-	}
-	.paging .now {
-		border: 1px solid #00B3DC;
-		padding: 3px 7px;
-		background-color: #00B3DC;
-		color: white;
-	}
-	.paging li a:hover {
-		background-color: #00B3DC;
-		color: white;
-	}
-	
-	table{
-	margin : auto;
-	width: 1000px;
-  line-height: 1em;
-	}
-	
-	h1{
-	margin: auto;
-  	text-align: center;
-    font-weight: bold;
-	}
-	
-</style>
 <script>
 	function enterCreateBookView(frm) {
 		frm.action = "controller?type=EnterCreateBook";
@@ -105,7 +24,7 @@
 <body>
 	<%@ include file="/common/menu.jspf" %>
 
-	<h1>booklist for admin</h1>
+	<h1>상품 관리</h1>
 	<div class="container">
 	<table>
 	<thead>

@@ -33,7 +33,8 @@ public class WishitemToCartCommand implements Command{
 		boolean result = CartDAO.insertCart(book_no, id);		
 		if(result) {
 			path = "cart/jungbok.jsp";
-		} else {	
+		} else {
+			
 			WishDAO.deleteWish(map);		
 			
 			path = "controller?type=cartList";

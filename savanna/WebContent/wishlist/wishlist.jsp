@@ -91,28 +91,37 @@
 	<%@ include file="/common/menu.jspf" %>
 	
 	<div class="wish">
-	<form>
 	<table class="table">
 		<thead>
+			<tr>
 				<th class="title" colspan="3">상품정보</th>
 				<th class="title">판매정보</th>
 				<th class="title">선택</th>			
 			</tr>
 		</thead>
+		<tbody>
 			<c:if test="${not empty list }">
 			<c:forEach var="vo" items="${list }">
-				<tr class="list">
-              <td rowspan="2" width="25%">표지이미지</td>
+			<tr class="list">
+             	<td rowspan="2" width="25%">표지이미지</td>
 			        <td colspan="2" width="45%"><a href="상세페이지">${vo.book_name }</td>
 			        <td rowspan="2" width="20%"><fmt:formatNumber value="${vo.price }" pattern="###,###"/>원</td>
-			        <td><input type="button" class="btn" value="장바구니" onclick="input_cart(this.form)">
-			        	<input type="hidden" name="book_no" value="${vo.book_no }"></td>        
+			        <td>
+			        <form>
+			        	<input type="button" class="btn" value="장바구니" onclick="input_cart(this.form)">
+			        	<input type="hidden" name="book_no" value="${vo.book_no }">
+		        	</form>
+		        	</td>
 			    </tr>
 			    <tr>
 			        <td width="20%" style="border-top:none">${vo.writer }</td>
 			        <td style="border-top:none">${vo.publisher }</td>
-			        <td style="border-top:none"><input type="submit" class="btn" value="삭제" onclick="delete_wish(this.form)">
-			        	<input type="hidden" name="book_no" value="${vo.book_no }"></td>        
+			        <td style="border-top:none">
+			        <form>
+			        	<input type="submit" class="btn" value="삭제" onclick="delete_wish(this.form)">
+			        	<input type="hidden" name="book_no" value="${vo.book_no }">
+		        	</form>
+		        	</td>        
 		    	</tr>
 			</c:forEach>
 			</c:if>

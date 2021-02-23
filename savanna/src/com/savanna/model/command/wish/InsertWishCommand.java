@@ -39,11 +39,12 @@ public class InsertWishCommand implements Command{
 		// DB작업
 		int result = WishDAO.jungbokCheck(map);
 		String path = "";
-		
+
 		if(result == 0) {
 			WishDAO.insertWishList(map);
-			path = "controller?type=tempBookInsert";
-			//out.print(result);
+			CartDAO.deleteProduct(map); //카트에서 삭제
+			
+			path = "controller?type=cartList";
 		} else if (result > 0){
 			path = "cart/jungbok2.jsp";
 		}

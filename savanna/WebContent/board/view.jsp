@@ -38,12 +38,12 @@
 <link rel="stylesheet" type="text/css" href="/savanna/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="/savanna/css/savanna.css">	
 <style>
-	#comment { 
+	#viewComm { 
 		border : 1px solid black;
 		padding: 4px 10px;
 	}
 
-	#comm {
+	#insertComm {
 		border : 1px solid black;
 		margin-top : none;
 		padding-top : none;
@@ -123,7 +123,7 @@
 						</form>
 						<hr>
 							<%-- 게시글에 대한 댓글 작성 영역 --%>		
-						<div id="comm">
+						<div id="insertComm">
 							<section>
 								<div class="box">
 									<div class="content">
@@ -161,7 +161,7 @@
 							<%-- 게시글에 작성된 댓글 표시 영역 --%>
 							<c:if test="${not empty c_list }">	
 							<c:forEach var="cvo" items="${c_list }">
-							<div class="comment">
+							<div class="viewComm">
 								<form method="post">
 									<p>이름 : ${cvo.id} &nbsp; 날짜 : ${cvo.comm_date }</p>
 									<p>내용 : ${cvo.comm_content }</p>

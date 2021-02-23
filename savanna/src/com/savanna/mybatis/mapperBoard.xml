@@ -39,14 +39,14 @@
 	<!-- 게시글 하나 조회(REV_NO 값으로) -->
 	<select id="one" parameterType="String" resultType="com.savanna.model.vo.ReviewVO">
 		SELECT 
-			REV_NO, ID, BOOK_NO, REV_CONTENT, REV_DATE, REV_PWD
+			REV_NO, ID, BOOK_NO, REV_CONTENT, REV_DATE
 		FROM REVIEWS
 		WHERE REV_NO = #{rev_no}
 	</select>
 
 	<select id="review_read" resultType="com.savanna.model.vo.ReviewVO">
 		 SELECT 
-		   (REV_NO, ID, BOOK_NO, REV_CONTENT, REV_DATE, REV_PWD)
+		   (REV_NO, ID, BOOK_NO, REV_CONTENT, REV_DATE)
 		 FROM REVIEWS
 		 WHERE REV_NO = #{rev_no}
 	 </select>	
@@ -54,8 +54,8 @@
 	<!-- 게시글 작성 -->
 	<insert id="review_insert" parameterType="ReviewVO">
 		INSERT INTO REVIEWS
-			   (REV_NO, ID, BOOK_NO, REV_CONTENT, REV_DATE, REV_PWD)
-		VALUES (REVIEWS_SEQ.NEXTVAL, #{id}, #{book_no}, #{rev_content}, SYSDATE, #{rev_pwd})			   
+			   (REV_NO, ID, BOOK_NO, REV_CONTENT, REV_DATE)
+		VALUES (REVIEWS_SEQ.NEXTVAL, #{id}, #{book_no}, #{rev_content}, SYSDATE)			   
 	</insert>
 	
 	<!-- 게시글 수정 -->

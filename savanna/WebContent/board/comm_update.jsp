@@ -2,6 +2,7 @@
 <%@page import="java.util.List"%>
 <%@page import="com.savanna.model.dao.ReviewDAO"%>
 <%@page import="com.savanna.model.vo.ReviewVO"%>
+<%@page import="com.savanna.model.vo.CommVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -39,11 +40,11 @@
 						<form action="/savanna/controller?type=commUpdate" method="post">
 							<div class="field half">
 								<label for="message">작성자</label>
-								<textarea name="comm_id" id="comm_id" >${cvo.id }</textarea>
+								<input name="id" id="comm_id" type="text" value="${user.id}" readonly>
 							</div>							
 							<div class="field">
 								<label for="message">댓글 내용</label>
-								<textarea name="comm_content" id="comm_content" >${cvo.comm_content }</textarea>
+								<textarea name="comm_content" id="message" >${cvo.comm_content }</textarea>
 							</div>
 							<ul class="actions align-center">
 								<li><input value="수정하기" class="button special" type="button" onclick="commUpdate_go(this.form)"></li>

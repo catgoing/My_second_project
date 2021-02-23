@@ -2,20 +2,19 @@ package com.savanna.model.vo;
 
 public class ReviewVO {
 	private int rev_no, book_no;
-	private String id, rev_content, rev_date, rev_pwd;
+	private String id, rev_content, rev_date;
 	
 	public ReviewVO() {
 		super();
 	}
 	
-	public ReviewVO(int rev_no, int book_no, String id, String rev_content, String rev_date, String rev_pwd) {
+	public ReviewVO(int rev_no, int book_no, String id, String rev_content, String rev_date) {
 		super();
 		this.rev_no = rev_no;
 		this.book_no = book_no;
 		this.id = id;
 		this.rev_content = rev_content;
 		this.rev_date = rev_date;
-		this.rev_pwd = rev_pwd;
 	}
 
 	public int getRev_no() {
@@ -48,16 +47,11 @@ public class ReviewVO {
 	public void setRev_date(String rev_date) {
 		this.rev_date = rev_date;
 	}
-	public String getRev_pwd() {
-		return rev_pwd;
-	}
-	public void setRev_pwd(String rev_pwd) {
-		this.rev_pwd = rev_pwd;
-	}
+
 	@Override
 	public String toString() {
 		return "ReviewVO [rev_no=" + rev_no + ", book_no=" + book_no + ", id=" + id + ", rev_content=" + rev_content
-				+ ", rev_date=" + rev_date + ", rev_pwd=" + rev_pwd + "]";
+				+ ", rev_date=" + rev_date + "]";
 	}
 }
 

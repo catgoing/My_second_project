@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,11 +16,35 @@
 
 <!-- Custom styles for this template -->
 <link href="/savanna/css/savanna.css" rel="stylesheet">
+<link href="/savanna/css/member.css" rel="stylesheet">
 <title>패스워드 찾기 결과</title>
 </head>
 <body>
-<h1>회원님의 패스워드는</h1>
-<p>${pwd }입니다</p>
-<p><a href="member/signIn.jsp">로그인</a></p>
+
+	<div id="wrapper">
+		<!-- content-->
+		<div id="content">
+			<h1>회원님의 패스워드는</h1>
+
+
+			<!-- 패스워드 -->
+			<div>
+				<span class="box int_signid"> <input type="text" id="id"
+					name="id" class="int" value="${pwd }" maxlength="12">
+				</span>
+			</div>
+			<h1>입니다</h1>
+
+			<div class="btn_area" style="margin: 20px 0 0 0">
+				<button type="button" id="signinbtn" style="margin: 0"
+					onclick='location.href="/savanna/member/signIn.jsp"'>
+					<span>로그인</span>
+				</button>
+			</div>
+
+		</div>
+
+	</div>
+
 </body>
 </html>

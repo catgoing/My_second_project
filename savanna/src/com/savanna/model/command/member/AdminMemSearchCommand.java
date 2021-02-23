@@ -16,14 +16,14 @@ import com.savanna.model.dao.MemberDAO;
 import com.savanna.model.vo.MemPagingVO;
 import com.savanna.model.vo.MemberVO;
 
-public class MemSearchCommand implements Command {
+public class AdminMemSearchCommand implements Command {
 	String cPage;
 	
-	public MemSearchCommand() {
+	public AdminMemSearchCommand() {
 	
 	}
 	
-	public MemSearchCommand(String cPage) {
+	public AdminMemSearchCommand(String cPage) {
 		this.cPage = cPage; // cPage는 jsp에서 get 방식으로 frontcontroller를 통해 전달받음
 	}
 
@@ -34,6 +34,7 @@ public class MemSearchCommand implements Command {
 		
 		String idx = request.getParameter("idx");
 		String keyword = request.getParameter("keyword");
+		String command = "memsearch";
 		System.out.println("> idx: "+ idx + ", keyword: " + keyword + ", cpage: " + cPage);
 		
 		String path = "";
@@ -109,6 +110,7 @@ public class MemSearchCommand implements Command {
 			request.setAttribute("cPage", cPage); // 현재 페이지
 			request.setAttribute("idx", idx); // idx값 유지를 위해 jsp 페이지로 전달
 			request.setAttribute("keyword", keyword); // keyword값 유지를 위해 jsp 페이지로 전달
+			request.setAttribute("command", command);
 
 			path = "member/memList.jsp"; // 최종적으로 리턴할 페이지
 		}

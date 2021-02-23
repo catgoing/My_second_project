@@ -6,7 +6,7 @@
 			<ul class="sidebar1">
 			  <li><h4>나의 구매내역</h4></li>
 			  <li><a class="menu" href="/savanna/controller?type=buyList">내역조회</a></li>
-			  <li><a class="menu" href="#">취소신청</a></li>
+			  <li><a class="menu" href="/savanna/controller?type=buyCancelList">취소신청</a></li>
 			
 			  <hr>
 			</ul>

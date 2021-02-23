@@ -72,10 +72,6 @@
 	function withdrawal(){
 		location.href = "member/withdrawal.jsp"
 	}
-	
-	function main(){
-		location.href = "/savanna/main.jsp"
-	}
 
 </script>
 <body>

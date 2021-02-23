@@ -61,7 +61,7 @@ public class MemberDAO implements SuperDAO{
 		return result;
 	}
 	
-	// 회원데이터 탈퇴테이블로 복사
+	// 멤버테이블에서 회원데이터 null로 변경
 	public static int withdrawal2(MemberVO vo1) {
 		SqlSession ss = DBService.getFactory().openSession(true);
 		int result = ss.update("member.withdrawal2", vo1);
@@ -198,6 +198,83 @@ public class MemberDAO implements SuperDAO{
 		ss.close();
 		return list;
 	}
+	
+	// 전체 취소가능 구매 수
+	public static int cancelPsbCount(String id) {
+		SqlSession ss = DBService.getFactory().openSession();
+		int totalCount = ss.selectOne("member.cancelPsbCount", id);
+		ss.close();
+		return totalCount;
+	}
+	
+	// 내 취소가능 구매내역 가져오기
+	public static List<BuyVO> cancelPsbList(Map<String, String> map) {
+		SqlSession ss = DBService.getFactory().openSession();
+		List<BuyVO> list = ss.selectList("member.cancelPsbList", map);
+		ss.close();
+		return list;
+	}
+	
+	// 취소 가능 구매 구매취소하기
+	public static int buyCancel(String buylist_no) {
+		SqlSession ss = DBService.getFactory().openSession(true);
+		int result = ss.update("member.buyCancel", buylist_no);
+		ss.close();
+		return result;
+	}
+	
+	// 관리자용 전체 구매내역 수
+	public static int adminOrderCount() {
+		SqlSession ss = DBService.getFactory().openSession();
+		int totalCount = ss.selectOne("member.orderCount");
+		ss.close();
+		return totalCount;
+	}
+	
+	// 관리자용 구매내역 가져오기
+	public static List<BuyVO> adminOrderList(Map<String, String> map) {
+		SqlSession ss = DBService.getFactory().openSession();
+		List<BuyVO> list = ss.selectList("member.orderList", map);
+		ss.close();
+		return list;
+	}
+	
+	// 관리자용 주문 상세정보
+	public static BuyVO orderDetail(String buylist_no) {
+		SqlSession ss = DBService.getFactory().openSession();
+		BuyVO vo = ss.selectOne("member.orderDetail", buylist_no);
+		ss.close();
+		return vo;
+	}
+	
+	// 관리자용 주문정보 수정
+	public static BuyVO orderUpdate(BuyVO vo1) {
+		SqlSession ss = DBService.getFactory().openSession(true);
+		BuyVO vo = ss.selectOne("member.orderUpdate", vo1);
+		ss.close();
+		return vo;
+	}
+	
+	// 관리자용 주문 동적검색 결과 수 조회
+	public static int orderSearchCount(String idx, String keyword) {
+		Map<String, String> map = new HashMap<>();
+		map.put("idx", idx);
+		map.put("keyword", keyword);
+		
+		SqlSession ss = DBService.getFactory().openSession();
+		int totalCount = ss.selectOne("member.orderSearchCount", map);
+		ss.close();
+		return totalCount;
+	}
+	
+	// 관리자용 검색결과에 해당하는 주문목록 가져오기
+	public static List<BuyVO> orderSearchList(Map<String, String> map) {
+		SqlSession ss = DBService.getFactory().openSession();
+		List<BuyVO> list = ss.selectList("member.orderSearchList", map);
+		ss.close();
+		return list;
+	}
+
 
 
 	@Override

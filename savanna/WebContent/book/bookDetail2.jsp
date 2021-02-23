@@ -21,6 +21,18 @@ function enterUpdateBook(frm) {
 	frm.action = "controller?type=EnterUpdateBook";
 	frm.submit();
 }
+function cartInsert(frm) {
+	frm.action = "controller?type=cartInsert";
+	frm.submit();
+}
+function enterUpdateBook(frm) {
+	frm.action = "controller?type=EnterUpdateBook";
+	frm.submit();
+}
+function enterUpdateBook(frm) {
+	frm.action = "controller?type=EnterUpdateBook";
+	frm.submit();
+}
 </script>
 <meta charset="UTF-8">
 <title>Universal Book Detail</title>
@@ -82,16 +94,15 @@ function enterUpdateBook(frm) {
 				<input type="button" value="돌아가기" onclick="history.back()">
 			</td></tr>
 			</c:when>
-			<c:when test="${null == user.id }">
+			<c:otherwise>
 			<tr><td colspan="2">
 				<input type="hidden" id="book_no" name="book_no" value="${vo.book_no }">
 				<input type="button" value="구매하기" onclick="#">
-				<input type="button" value="장바구니에 넣기" onclick="#">
+				<input type="button" value="장바구니에 넣기" onclick="cartInsert(this.form)">
 				<input type="button" value="좋아요" onclick="#">
 				<input type="button" value="돌아가기" onclick="history.back()">
 			</td></tr>
-			
-			</c:when>
+			</c:otherwise>
 		</c:choose>
 		</tfoot>
 		</table>

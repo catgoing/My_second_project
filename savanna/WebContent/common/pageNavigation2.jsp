@@ -1,34 +1,35 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<tr>
-<td colspan="8">
-	<ol class="paging">
+<div class="center">
+<div class="pagination">
+	<ol>
 <c:choose>
 	<c:when test="${pvo.beginPage == 1 }">		
-		<li class="disable"> < </li>
+		<a class="disable"> < </a>
 	</c:when>
 	<c:otherwise>
-		<li><a href="controller?type=memsearch&cPage=${pvo.beginPage - 1}&idx=${idx}&keyword=${keyword}"> < </a></li>
+		<a href="controller?type=${command }&cPage=${pvo.beginPage - 1}&idx=${idx}&keyword=${keyword}"> < </a>
 	</c:otherwise>	
 </c:choose>		
 <c:forEach var="pageNo" begin="${pvo.beginPage }" end="${pvo.endPage }">
 	<c:if test="${pageNo == pvo.nowPage }">
-		<li class="now">${pageNo }</li>
+		<a class="now">${pageNo }</a>
 	</c:if>
 	<c:if test="${pageNo != pvo.nowPage }">
-		<li>
-			<a href="controller?type=memsearch&cPage=${pageNo }&idx=${idx}&keyword=${keyword}">${pageNo }</a>
-		</li>
+		
+			<a href="controller?type=${command }&cPage=${pageNo }&idx=${idx}&keyword=${keyword}">${pageNo }</a>
+	
 	</c:if>		
 </c:forEach>		
 	<c:if test="${pvo.endPage < pvo.totalPage }">	
-		<li>
-			<a href="controller?type=memsearch&cPage=${pvo.endPage + 1}&idx=${idx}&keyword=${keyword}"> > </a>
-		</li>
+	
+			<a href="controller?type=${command }&cPage=${pvo.endPage + 1}&idx=${idx}&keyword=${keyword}"> > </a>
+	
 	</c:if>
 	<c:if test="${pvo.endPage >= pvo.totalPage }">	
-		<li class="disable"> > </li>
+		<a class="disable"> > </a>
 	</c:if>
+	
 	</ol>
-</td>
-</tr>
+		</div>
+ </div>

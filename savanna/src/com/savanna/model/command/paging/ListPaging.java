@@ -15,7 +15,7 @@ public class ListPaging<T> {
 
 	public void PagingDistributor(SuperDAO<T> dao, HttpServletRequest request)
 			throws ServletException, IOException {
-		PagingDistributor(dao, request, 3, 3);
+		PagingDistributor(dao, request, 10, 5);
 	}
 	public void PagingDistributor(SuperDAO<T> dao, HttpServletRequest request, int recordPerPage, int pagePerBlock)
 			throws ServletException, IOException {

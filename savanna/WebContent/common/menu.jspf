@@ -23,7 +23,7 @@
 						<li><a>관리자 로그인</a></li>
 						<li><a href="/savanna/controller?type=memList">회원관리</a></li>
 						<li><a href="#buy">구매내역관리</a></li>
-						<li><a href="#prod">상품관리</a></li>
+						<li><a href="/savanna/controller?type=StockManagerPage">상품관리</a></li>
 						<li><a href="/savanna/controller?type=reviewPage">리뷰 게시판관리</a></li>
 						<li><a href="/savanna/controller?type=logout">로그아웃</a></li>
 					</ul>
@@ -79,7 +79,7 @@
 							aria-haspopup="true" aria-expanded="false">마이페이지<span class="caret"></span></a>
 							<ul class="dropdown-menu">
 								<li><a href="/savanna/controller?type=buyList">구매내역</a></li>
-								<li><a href="/savanna/controller?type=cartList.jsp">장바구니</a></li>
+								<li><a href="/savanna/controller?type=cartList">장바구니</a></li>
 								<li><a href="/savanna/controller?type=wishList">찜리스트</a></li>
 							</ul>
 						</li>

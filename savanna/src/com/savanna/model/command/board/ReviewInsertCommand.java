@@ -23,7 +23,6 @@ public class ReviewInsertCommand implements Command {
 		rvo.setId(request.getParameter("id"));
 		rvo.setBook_no((Integer.parseInt(request.getParameter("book_no"))));
 		rvo.setRev_content(request.getParameter("rev_content"));
-		rvo.setRev_pwd(request.getParameter("rev_pwd"));
 		
 		int result = ReviewDAO.insert(rvo);
 		System.out.println(result);

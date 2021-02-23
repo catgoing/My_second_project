@@ -112,7 +112,7 @@ public class AdminMemSearchCommand implements Command {
 			request.setAttribute("keyword", keyword); // keyword값 유지를 위해 jsp 페이지로 전달
 			request.setAttribute("command", command);
 
-			path = "member/memList.jsp"; // 최종적으로 리턴할 페이지
+			path = "member/adminMemList.jsp"; // 최종적으로 리턴할 페이지
 		}
 		
 		return path;

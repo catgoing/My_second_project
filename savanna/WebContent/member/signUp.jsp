@@ -79,6 +79,9 @@
 	
 	 var check_SC = 0;
      var check_length = 0;
+     var phone_result = 1;
+     var phone_length = 0;
+     var phone_isNumber = 0;
      var pw = null; 
      var pw2 = null;
      var SC = ["!","@","#","$","%", "^", "&", "*", "(", ")", "-", "=", "'\'", "/", "+", "."];
@@ -138,8 +141,7 @@
 		  
           pw = document.getElementById('pw').value;
           pw2 = document.getElementById('pw2').value;
-         
-         
+        
           for(var i=0;i<SC.length;i++){
               if(pw.indexOf(SC[i]) != -1){
                   check_SC = 1;
@@ -175,6 +177,44 @@
           }
           
         }
+	  
+	  
+		$(function(){
+			
+			var userPhoneCheck = RegExp(/^[0-9]{10,11}$/);
+			var phone = document.getElementById('phone').value;
+			
+			$('#phone').keyup(function(){
+				
+				phone_isNumber = 0;
+				phone_length = 0;
+				
+				phone = document.getElementById('phone').value;
+				
+				if(!userPhoneCheck.test($('#phone').val())){
+					phone_isNumber = 1;
+					document.getElementById('phone_check').innerHTML=
+						'휴대전화는 숫자만 입력이 가능합니다';
+					document.getElementById('phone_check').style.color='red';
+
+				} else phone_isNumber = 0;
+				
+				if(phone.length < 10 ){
+					phone_length = 1;
+					document.getElementById('phone_check').innerHTML=
+						'올바르지 않은 번호입니다';
+					document.getElementById('phone_check').style.color='red';
+				} else phone_length = 0;
+
+				if(phone_length == 0 && phone_isNumber == 0) {
+					phone_result = 0;
+					document.getElementById('phone_check').innerHTML='';
+				}
+
+				
+			});	
+		}
+		);
 	
 	  
 	  function null_check(){
@@ -194,8 +234,8 @@
 			alert("이름을 입력해주세요");
 			fr.name.focus();
 			return false;
-		} else if(document.getElementById('phone').value == ""){
-			alert("휴대전화를 입력해주세요");
+		} else if(document.getElementById('phone').value == "" || phone_result == 1){
+			alert("올바른 휴대전화번호를 입력해주세요");
 			fr.phone.focus();
 			return false;
 		} else if(document.getElementById('email').value == ""){
@@ -271,7 +311,7 @@
                 <div>
                     <h3 class="join_title"><label for="name">이름</label></h3>
                     <span class="box int_name">
-                        <input type="text" id="name" name="name" class="int" maxlength="20">
+                        <input type="text" id="name" name="name" class="int" maxlength="5">
                     </span>
                     <span class="error_next_box"></span>
                 </div>
@@ -280,9 +320,10 @@
                 <div>
                   <h3 class="join_title"><label for="phone">휴대전화</label></h3>
                   <span class="box int_phone">
-                      <input type="text" id="phone" name="phone" class="int" maxlength="13">
+                      <input type="text" id="phone" name="phone" class="int" maxlength="11" placeholder="-제외 숫자만 입력">
                   </span>
                   <span class="error_next_box"></span>
+                      <span id="phone_check"></span>
                  </div>
 
                 <!-- EMIAL -->

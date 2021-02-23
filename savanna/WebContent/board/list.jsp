@@ -74,6 +74,7 @@
 </head>
 <%@ include file="/common/menu.jspf" %>
 <hr>
+
 <div id="container">
 	<div id="list">
 		<b><h3 style="font-weight : bold;">리뷰 게시판</h3></b>
@@ -107,7 +108,14 @@
 						<td>${vo.rev_no }</td>
 						<td>${vo.book_no }</td>
 						<td class="align-left" style="hover: #000000;">
-							<a href="board/view.jsp?rev_no=${vo.rev_no }&cPage=${pvo.curPage}">${vo.rev_content }</a>
+							<c:choose>
+								<c:when test="${user.id == null }">
+									<a href="/savanna/member/signIn.jsp"></a>
+								</c:when>
+								<c:otherwise>
+									<a href="board/view.jsp?rev_no=${vo.rev_no }&cPage=${pvo.curPage}">${vo.rev_content }</a>
+								</c:otherwise>
+							</c:choose>
 						</td>
 						<td>${vo.id }</td>
 						<td>${vo.rev_date }</td>

@@ -27,7 +27,6 @@ public class ReviewUpdateCommand implements Command {
 		rvo.setId(request.getParameter("id"));
 		rvo.setRev_content(request.getParameter("rev_content"));
 		rvo.setRev_date(request.getParameter("rev_date"));
-		rvo.setRev_pwd(request.getParameter("rev_pwd"));
 		
 		HttpSession httpSession = request.getSession(true);
 		//수정된 정보 세션에 저장

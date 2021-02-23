@@ -36,13 +36,24 @@
 	}
 	
 	function goList(){
-		location.href = "/savanna/controller?type=memList"
+		location.href = "/savanna/controller?type=memList";
+	}
+	
+	function isAdmin(){
+		if('${user.id}' != 'a'){
+			alert("권한이 없습니다");
+			location.href = "/savanna/controller?type=MainPage";
+		}
 	}
 
 </script>
-<body>
+<body onload="isAdmin();"> <!-- 페이지 로드한 이후 때 관리자인지 확인 -->
 	<%@ include file="/common/menu.jspf" %>
 	<%@ include file="/common/adminSidebar.jspf" %>
+	
+<c:set var="isAdmin" value="${user.id }"/>
+<c:if test="${'a' eq isAdmin }"> <!-- 관리자 아이디일 때만 아래 내용 출력 -->
+
 
 	<form action="controller?type=adminUpdate" method="post" id="fr_info">
 	
@@ -53,7 +64,7 @@
             
                   <!-- GO LIST BTN-->
       <div class="btn_area">
-        <button type="button" id="signinbtn" style="margin-left: 120px; width:200px; height:40px; line-height:0;" onclick="goList()">
+        <button type="button" id="signinbtn" style="margin-left: 130px; width:200px; height:40px; line-height:0;" onclick="goList()">
             <span>목록으로</span>
         </button>
       </div>
@@ -153,5 +164,6 @@
               </div>
             </div>
 	</form>
+	</c:if>
 </body>
 </html>

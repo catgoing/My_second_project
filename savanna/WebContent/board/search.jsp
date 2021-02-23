@@ -97,7 +97,7 @@
 				<c:if test="${empty list }">
 					<tr>
 						<td colspan="5">
-							<p>현재 등록된 게시글이 없습니다.</p>
+							<p>님이 등록한 게시글이 없습니다.</p>
 						</td>
 					</tr>
 				</c:if>

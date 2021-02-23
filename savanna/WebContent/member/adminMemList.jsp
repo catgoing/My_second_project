@@ -60,16 +60,24 @@
 	
 </style>
 <script>
-	
+function isAdmin(){
+	if('${user.id}' != 'a'){
+		alert("권한이 없습니다");
+		location.href = "/savanna/controller?type=MainPage";
+	}
+}
 </script>
 </head>
-<body>
+<body onload="isAdmin();">
 	<%@ include file="/common/menu.jspf" %>
 	<%@ include file="/common/adminSidebar.jspf" %>
 	<br>
 <h1>회원목록</h1>
 <br>
-	<table>
+<c:set var="isAdmin" value="${user.id }"/>
+<c:if test="${'a' eq isAdmin }"> <!-- 관리자 아이디일 때만 아래 내용 출력 -->
+
+<table>
 		<thead>
 			<tr class="title">
 				<th class="no">회원번호</th>
@@ -120,6 +128,9 @@
    			</tr>
 		</tfoot>
 	</table>
+
+</c:if>
+	
 
 </body>
 </html>

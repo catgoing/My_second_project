@@ -46,15 +46,27 @@
 	cursor: pointer;
 	}
 </style>
+<script>
+function isAdmin(){
+	if('${user.id}' != 'a'){
+		alert("권한이 없습니다");
+		location.href = "/savanna/controller?type=MainPage";
+	}
+}
+
+</script>
 
 <title>주문관리</title>
 </head>
-<body>
+<body onload="isAdmin();">
 	<%@ include file="/common/menu.jspf" %>
 	<%@ include file="/common/adminSidebar.jspf" %>
 	<br>
 	<h1>주문관리</h1>
 	<br><br><br>
+
+<c:set var="isAdmin" value="${user.id }"/>
+<c:if test="${'a' eq isAdmin }"> <!-- 관리자 아이디일 때만 아래 내용 출력 -->
 		
 	<div class="buy">
 	<table class="table" style="margin-left:30px">
@@ -86,7 +98,7 @@
 		</tbody>
 		<tfoot>
 	      	<tr>
-	        <td colspan="7">
+	        <td colspan="7" align="center">
 	        <form action="/savanna/controller?type=adminordersearch" method="post">
 	        <select name="idx">
 	          <option value="0">아이디</option>
@@ -106,6 +118,6 @@
 		</tfoot>
 		</table>
 	</div>
-	
+</c:if>	
 </body>
 </html>

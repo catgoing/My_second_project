@@ -19,6 +19,14 @@
 <link href="/savanna/css/member.css" rel="stylesheet">
 <title>로그인</title>
 <script>
+
+	$(function (){
+		if( '${user.id}' != ''){
+			location.href = "/savanna/controller?type=MainPage";
+		}
+		
+	})
+
 	function idInquiry(){
 		location.href = "inquiryId.jsp";
 	}
@@ -26,6 +34,8 @@
 	function qwdInquiry(){
 		location.href = "inquiryPwd.jsp";
 	}
+	
+	
 </script>
 </head>
 <body>
@@ -54,7 +64,7 @@
                 <div>
                     <h3 class="join_title"><label for="pswd1">비밀번호</label></h3>
                     <span class="box int_signpass">
-                        <input type="text" id="pswd1" name="pwd" class="int" maxlength="12">
+                        <input type="password" id="pswd1" name="pwd" class="int" maxlength="12">
                     </span>
                 </div>
                 <br>

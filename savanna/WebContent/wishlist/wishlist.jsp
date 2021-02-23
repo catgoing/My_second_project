@@ -19,7 +19,7 @@
 <!-- Custom styles for this template -->
 <link href="/savanna/css/savanna.css" rel="stylesheet">
 <link href="/savanna/css/sidebar.css" rel="stylesheet">
-
+<link href="/savanna/css/paging.css" rel="stylesheet">
 <title>:: 찜목록 ::</title>
 </head>
 <style>
@@ -30,11 +30,15 @@
 	.center {
 	text-align: center;
 	}
-
 	.wish {
         width: 800px;
         margin: auto;
     }
+    h1{
+		margin-right: 100px;
+		text-align: center;
+		font-weight: bold;
+	}	
     table {
         max-width: 700px;
         margin:auto;
@@ -51,78 +55,7 @@
 		color: white;
 	}
 	
-	.pagination {
-	display: inline-block;
-	}
-	
-	.pagination a {
-	display: block;
-	padding: 3px 7px;
-	border: 1px solid #292929;
-	font-weight: bold;
-	color: black;
-	float: left;
-	text-decoration: none;
-	transition: background-color .3s;
-	margin: 0 4px;
-	
-	}
 
-	.pagination a.now {
-		border: 1px solid #ff4aa5;
-		padding: 3px 7px;
-		background-color: #292929;
-		color: silver;
-	}
-
-	.pagination .disable {
-		border: 1px solid silver;
-		padding: 3px 7px;
-		color: silver;
-	}
-
-	.pagination a:hover {
-	background-color: #292929;
-		color: white;
-	}
-	
-	/*
-
-	.paging { 
-		margin-left : 250px;
-		list-style: none;
-	}
-
-	.paging li {
-		float: left;
-		margin-right: 20px;
-	}
-	.paging li a {
-		text-decoration: none;
-		display: block;
-		padding: 3px 7px;
-		border: 1px solid #292929;
-		font-weight: bold;
-		color: black;
-	}
-	.paging .disable {
-		border: 1px solid silver;
-		padding: 3px 7px;
-		color: silver;
-	}
-	.paging .now {
-		border: 1px solid #ff4aa5;
-		padding: 3px 7px;
-		background-color: #292929;
-		color: silver;
-	}
-	.paging li a:hover {
-		background-color: #292929;
-		color: white;
-	}
-
-	
-	*/
 
 /*부트스트랩css의 table td의 border-top속성을 일부td에서 무효화하고 width="%"를 주기위해 inline으로 style을 적용함*/
 
@@ -143,7 +76,8 @@
 <body>
 	<%@ include file="/common/menu.jspf" %>
 	<%@ include file="/common/memberSidebar.jspf" %>
-
+	<br>
+	<h1>위시리스트</h1>
 	<div class="wish">
 	<table class="table">
 		<thead>
@@ -156,9 +90,9 @@
 		<tbody>
 			<c:if test="${not empty list }">
 			<c:forEach var="vo" items="${list }">
-          <tr class="list">
-             	<td rowspan="2" width="25%">표지이미지</td>
-			        <td colspan="2" width="45%"><a href="상세페이지">${vo.book_name }</td>
+				<tr class="list">
+             		<td class="img-container" rowspan="2" width="25%">표지이미지</td>
+			        <td colspan="2" width="45%"><a href="controller?type=EnterDetail&book_no=${vo.book_no }">${vo.book_name }</td>
 			        <td rowspan="2" width="20%"><fmt:formatNumber value="${vo.price }" pattern="###,###"/>원</td>
 			        <td>
 			        <form>
@@ -187,11 +121,10 @@
 		</tbody>
 		<tfoot>
 		<tr>
-		<td colspan="6">
-		<%@ include file="../common/pageNavigation2.jsp" %>
-		</td>
+			<td colspan="5">
+			<%@ include file="../common/pageNavigation3.jsp" %>
+			</td>
 		</tr>
-			
 		</tfoot>
 	</table>
 	</form>

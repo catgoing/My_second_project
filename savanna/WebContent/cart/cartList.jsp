@@ -28,6 +28,11 @@
         width: 800px;
         margin: auto;
     }
+    h1 {
+	    margin-right: 100px;
+	    text-align: center;
+	    font-weight: bold;
+	}
     table {
         max-width: 700px;
         margin:auto;
@@ -63,13 +68,13 @@
     	height: 2px;
     	padding: 0;
     }
-    ul {
+    #btnlist {
    		list-style: none;;
     }
-    ul li{
+    #btnlist li{
 	    float:left; 
     }
-    li .btn{
+    #btnlist li .btn{
     	margin:3px;
     }
 </style>
@@ -186,7 +191,8 @@
 
 	<%@ include file="/common/menu.jspf" %>
 	<%@ include file="/common/memberSidebar.jspf" %>
-	
+	<br>
+	<h1>장바구니</h1>
 	<div class="cartwrqpper">
 	<table class="table">
 		<thead>
@@ -244,7 +250,7 @@
 		</table>
 		<div id="btnline">
 		<form>
-		<ul>
+		<ul id="btnlist">
 			<li><input type="button" class="btn" id="seldelbtn" value="선택삭제" ></li>
             <li><input type="button" class="btn" value="전체삭제" onclick="clear_cart(this.form)"></li>
             <li><input type="button" class="btn" value="전체구입" onclick="order_go(this.form)">

@@ -46,27 +46,27 @@ function createDummyBook(frm) {
 		<tbody>
 		<tr>
 			<td><label for="book_name">제목</label></td>
-			<td><input type="text" id="book_name" name="book_name"></td>
+			<td><input class="box" type="text" id="book_name" name="book_name"></td>
 		</tr>
 		<tr>
 			<td><label for="writer">작가</label></td>
-			<td><input type="text" id="writer" name="writer"></td>
+			<td><input class="box" type="text" id="writer" name="writer"></td>
 		</tr>
 		<tr>
 			<td><label for="publisher">출판사</label></td>
-			<td><input type="text" id="publisher" name="publisher"></td>
+			<td><input class="box" type="text" id="publisher" name="publisher"></td>
 		</tr>
 		<tr>
 			<td><label for="pub_date">출판일</label></td>
-			<td><input type="date" id="pub_date" name="pub_date"></td>
+			<td><input class="box" type="date" id="pub_date" name="pub_date"></td>
 		</tr>
 		<tr>
 			<td><label for="price">가격</label></td>
-			<td><input type="number" id="price" name="price"></td>
+			<td><input class="box" type="number" id="price" name="price"></td>
 		</tr>
 		<tr>
 			<td><label for="book_desc">책소개</label></td>
-			<td><input type="text" id="book_desc" name="book_desc"></td>
+			<td><input class="box" type="text" id="book_desc" name="book_desc"></td>
 		</tr>
 		<tr>
 			<td><label for="stock">재고</label></td>
@@ -74,15 +74,17 @@ function createDummyBook(frm) {
 		</tr>
 		<tr>
 			<td><label for="category">분류</label></td>
-			<td><input type="text" id="category" name="category"></td>
+			<td><input class="box" type="text" id="category" name="category"></td>
 		</tr>
 		</tbody>
 		<tfoot>
+			<div class="btn_area">
 			<tr><td colspan="2">
 				<input type="submit" value="등록" onclick="createBook(this.form)">
 				<input type="submit" value="더미등록" onclick="createDummyBook(this.form)">
 				<input type="button" value="돌아가기" onclick="history.back()">
 			</td></tr>
+			</div>
 		</tfoot>
 		</table>
 	</form>

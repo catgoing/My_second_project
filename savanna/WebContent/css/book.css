@@ -1,11 +1,4 @@
-	table, td {
-		border: 1px solid black;
-		border-collapse: collapse;
-	}
-	thead {
-		border: 1px solid black;
-		border-collapse: collapse;
-	}
+
 .img-container {
 	background-color: white;
 	padding: 0px;
@@ -72,6 +65,9 @@
 	.paging li a:hover {
 		background-color: #00B3DC;
 		color: white;
+	}
+	.box {
+	width: 90%;
 	}
 	
 	table{

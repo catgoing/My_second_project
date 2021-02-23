@@ -21,13 +21,10 @@ public class WishListCommand implements Command{
 		
 		HttpSession session = request.getSession();
 		MemberVO mvo = (MemberVO)session.getAttribute("user");
-		if( null != mvo ) {
-			String id = mvo.getId();
+		String id = mvo.getId();
 
-			//페이징처리 & 출력할 데이터 처리 (페이지당 게시물 수, 블록당 페이지 수)
-			new ListPaging<WishVO>().PagingDistributor(new WishDAO(), request, id, 5, 5);
-		}
-		
+		//페이징처리 & 출력할 데이터 처리 (페이지당 게시물 수, 블록당 페이지 수)
+		new ListPaging<WishVO>().PagingDistributor(new WishDAO(), request, id, 5, 5);
 		
 		return "wishlist/wishlist.jsp";
 	}

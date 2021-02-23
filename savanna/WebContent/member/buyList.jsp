@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,80 +16,57 @@
 
 <!-- Custom styles for this template -->
 <link href="/savanna/css/savanna.css" rel="stylesheet">
-<link href="/savanna/css/sidebar.css" rel="stylesheet">
-<link href="/savanna/css/paging.css" rel="stylesheet">
 <title>구매내역</title>
-<style>
-	.buy {
-        width: 800px;
-        margin: auto;
-    }
-    table {
-        max-width: 700px;
-        margin:auto;
-    }
-    .title {
-    	text-align: center;
-    }
-    
-    h1{
-	margin: auto;
-	text-align: center;
-	font-weight: bold;
-	}	
-	
-	tbody > tr:hover{
-	cursor: pointer;
-	}
-</style>
 
 </head>
 <body>
 	<%@ include file="/common/menu.jspf" %>
-	<%@ include file="/common/memberSidebar.jspf" %>
 	<h1>구매내역</h1>
-	<br>
-		
-	<div class="buy">
-	<table class="table">
+	<table>
 		<thead>
-			<tr>
-				<th class="title" colspan="3">상품정보</th>
-				<th class="title">권수</th>
-				<th class="title">결제금액</th>			
-				<th class="title">구매일</th>			
+			<tr class="title">
+				<th class="book_name">책이름</th>
+				<th class="quan">수량</th>
+				<th class="price">가격</th>
+				<th class="pur_date">주문일</th>
 			</tr>
 		</thead>
 		<tbody>
-			<c:if test="${not empty buylist }">
-			<c:forEach var="vo" items="${buylist }">
-				<tr class="list" onclick="location.href = '/savanna/controller?type=EnterDetail&book_no=${vo.book_no }'">
-              <td rowspan="2" width="25%">표지이미지</td>
-			        <td colspan="2" width="40%">${vo.book_name }</td>
-			        <td width="10%" style="text-align:center;">${vo.quan }</td>
-			        <td rowspan="2" width="10%" style="text-align:center;"><fmt:formatNumber value="${vo.price }" pattern="###,###"/>원</td>
-			        <td rowspan="2" style="text-align:center;">${vo.pur_date }</td>        
-			    </tr>
-			    <tr onclick="location.href = '/savanna/controller?type=EnterDetail&book_no=${vo.book_no }'">
-			        <td colspan="6" style="border-top:none">${vo.addr }</td>
-		    	</tr>
-			</c:forEach>
-			</c:if>
-			<c:if test="${empty buylist }">
-				<tr>
-					<td colspan="6">구매내역이 없습니다.</td>
+			<c:forEach var="vo" items="${list }">
+				<a href="main.jsp"></a>
+				<tr class="list" onclick="location.href = '/savanna/controller?type=memDetail?id=${vo.id }'">
+					<td>${vo.mem_no }</td>
+					<td>${vo.id }</td>
+					<td>${vo.pwd }</td>
+					<td>${vo.name}</td>
+					<td>${vo.phone }</td>
+					<td>${vo.addr }</td>
+					<td>${vo.email }</td>
+					<td>${vo.regdate }</td>
 				</tr>
-			</c:if>
+				
+		</c:forEach>
 		</tbody>
 		<tfoot>
-			<tr>
-			<td colspan="6">
-				<%@ include file="../common/pageNavigation2.jsp" %>
-			</td>
-			</tr>
+		 	<tr>
+		 	<td colspan="7">
+		 		<ol class="paging">
+		 				<c:forEach var="pageNo" begin="${pvo.beginPage }" end="${pvo.endPage }">
+				<c:if test="${pageNo == pvo.nowPage }">
+					<li class="now">${pageNo }</li>
+				</c:if>
+				<c:if test="${pageNo != pvo.nowPage }">
+					<li>
+						<a href="/savanna/controller?type=memList?cPage=${pageNo }">${pageNo }</a>
+					</li>
+				</c:if>		
+			</c:forEach>
+		 	</ol>
+		 	</td>
+		 	</tr>
+   
 		</tfoot>
-		</table>
-	</div>
+	</table>
 	
 </body>
 </html>

@@ -52,6 +52,7 @@ public class ReviewDAO implements SuperDAO {
 		ss.close();
 		return rvo;
 	}
+
 	
 	//게시글 입력 처리
 	public static int insert(ReviewVO rvo) {
@@ -85,6 +86,14 @@ public class ReviewDAO implements SuperDAO {
 		return c_list;
 	}
 	
+	//댓글 번호에 해당하는 댓글글 하나 조회
+	public static CommVO selectOneComm(String comm_no) {
+		SqlSession ss = DBService.getFactory().openSession();
+		CommVO cvo = ss.selectOne("board.oneComm", comm_no);
+		ss.close();
+		return cvo;
+	}
+	
 	//댓글 입력
 	public static int insertComment(CommVO cvo) {
 		SqlSession ss = DBService.getFactory().openSession(true);
@@ -96,7 +105,7 @@ public class ReviewDAO implements SuperDAO {
 	//댓글 수정 처리
 	public static int updateComment(CommVO cvo) {
 		SqlSession ss = DBService.getFactory().openSession(true);
-		int result = ss.update("board.review_update", cvo);
+		int result = ss.update("board.comm_update", cvo);
 		ss.close();
 		return result;
 	}

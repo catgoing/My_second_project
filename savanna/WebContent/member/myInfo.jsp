@@ -17,7 +17,6 @@
 <!-- Custom styles for this template -->
 <link href="/savanna/css/savanna.css" rel="stylesheet">
 <link href="/savanna/css/member.css" rel="stylesheet">
-<link href="/savanna/css/sidebar.css" rel="stylesheet">
 <title>내정보</title>
 
 </head>
@@ -80,10 +79,9 @@
 </script>
 <body>
 	<%@ include file="/common/menu.jspf" %>
-	<%@ include file="/common/memberSidebar.jspf" %>
 	
 	<br>	
-	<h1 style="margin-right:150px;">내정보</h1>
+	<h1>내정보</h1>
 	
 	<form action="/savanna/controller?type=update" method="post" id="fr_info" name="fr" onsubmit="return null_check()">
        <div id="wrapper">

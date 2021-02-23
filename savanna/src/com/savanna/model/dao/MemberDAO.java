@@ -7,9 +7,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 
 import com.savanna.model.vo.BuyVO;
-import com.savanna.model.vo.CommVO;
 import com.savanna.model.vo.MemberVO;
-import com.savanna.model.vo.ReviewVO;
 import com.savanna.mybatis.DBService;
 
 public class MemberDAO implements SuperDAO{
@@ -147,57 +145,15 @@ public class MemberDAO implements SuperDAO{
 		ss.close();
 		return list;
 	}
-	
-	// 내 리뷰 수 조회
-	public static int myReivewCount(String id) {
-		SqlSession ss = DBService.getFactory().openSession();
-		int totalCount = ss.selectOne("member.myReviewCount", id);
-		ss.close();
-		return totalCount;
-	}
-	
-	// 내 리뷰목록 가져오기
-	public static List<ReviewVO> myReview(Map<String, String> map) {
-		SqlSession ss = DBService.getFactory().openSession();
-		List<ReviewVO> list = ss.selectList("member.myReview", map);
-		ss.close();
-		return list;
-	}
-	
-	
-	// 내 댓글 수 조회
-	public static int myCommCount(String id) {
-		SqlSession ss = DBService.getFactory().openSession();
-		int totalCount = ss.selectOne("member.myCommCount", id);
-		ss.close();
-		return totalCount;
-	}
-	
-	
-	// 내 리뷰목록 가져오기
-	public static List<CommVO> myComm(Map<String, String> map) {
-		SqlSession ss = DBService.getFactory().openSession();
-		List<CommVO> list = ss.selectList("member.myComm", map);
-		ss.close();
-		return list;
-	}
 
 	
-	// 전체 구매내역 수
-	public static int myBuyCount(String id) {
+	// 구매목록
+	public static List<BuyVO> buyList(Map<String, Integer> map) {
 		SqlSession ss = DBService.getFactory().openSession();
-		int totalCount = ss.selectOne("member.myBuyCount", id);
-		ss.close();
-		return totalCount;
-	}
-	
-	// 내 구매내역 가져오기
-	public static List<BuyVO> myBuyList(Map<String, String> map) {
-		SqlSession ss = DBService.getFactory().openSession();
-		List<BuyVO> list = ss.selectList("member.myBuyList", map);
+		List<BuyVO> list = ss.selectList("member.buyList", map);
 		ss.close();
 		return list;
-	}
+}
 
 
 	@Override

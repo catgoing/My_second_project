@@ -19,7 +19,6 @@
 <!-- Custom styles for this template -->
 <link href="/savanna/css/savanna.css" rel="stylesheet">
 <link href="/savanna/css/member.css" rel="stylesheet">
-<link href="/savanna/css/sidebar.css" rel="stylesheet">
 <title>패스워드 확인</title> 
 </head>
 <script>
@@ -55,11 +54,8 @@ $(function (){
 </script>
 <body>
 	<%@ include file="/common/menu.jspf" %>
-	<%@ include file="/common/memberSidebar.jspf" %>
 	<br>
-	
-	
-<h1 style="margin-right:150px;">패스워드 확인</h1>
+<h1>패스워드 확인</h1>
 
 	    <form name="fr">
 	    

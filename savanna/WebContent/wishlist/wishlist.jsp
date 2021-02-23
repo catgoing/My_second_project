@@ -18,19 +18,10 @@
 
 <!-- Custom styles for this template -->
 <link href="/savanna/css/savanna.css" rel="stylesheet">
-<link href="/savanna/css/sidebar.css" rel="stylesheet">
 
 <title>:: 찜목록 ::</title>
 </head>
 <style>
-	ul, ol{
-	list-style: none;
-	}
-
-	.center {
-	text-align: center;
-	}
-
 	.wish {
         width: 800px;
         margin: auto;
@@ -50,49 +41,10 @@
 		background-color: #292929;
 		color: white;
 	}
-	
-	.pagination {
-	display: inline-block;
-	}
-	
-	.pagination a {
-	display: block;
-	padding: 3px 7px;
-	border: 1px solid #292929;
-	font-weight: bold;
-	color: black;
-	float: left;
-	text-decoration: none;
-	transition: background-color .3s;
-	margin: 0 4px;
-	
-	}
-
-	.pagination a.now {
-		border: 1px solid #ff4aa5;
-		padding: 3px 7px;
-		background-color: #292929;
-		color: silver;
-	}
-
-	.pagination .disable {
-		border: 1px solid silver;
-		padding: 3px 7px;
-		color: silver;
-	}
-
-	.pagination a:hover {
-	background-color: #292929;
-		color: white;
-	}
-	
-	/*
-
 	.paging { 
 		margin-left : 250px;
 		list-style: none;
 	}
-
 	.paging li {
 		float: left;
 		margin-right: 20px;
@@ -120,12 +72,7 @@
 		background-color: #292929;
 		color: white;
 	}
-
-	
-	*/
-
 /*부트스트랩css의 table td의 border-top속성을 일부td에서 무효화하고 width="%"를 주기위해 inline으로 style을 적용함*/
-
 
 </style>
 <script>
@@ -142,12 +89,11 @@
 </script>
 <body>
 	<%@ include file="/common/menu.jspf" %>
-
+	
 	<div class="wish">
 	<form>
 	<table class="table">
 		<thead>
-
 				<th class="title" colspan="3">상품정보</th>
 				<th class="title">판매정보</th>
 				<th class="title">선택</th>			
@@ -157,8 +103,7 @@
 			<c:forEach var="vo" items="${list }">
 				<tr class="list">
               <td rowspan="2" width="25%">표지이미지</td>
-
-			        <td colspan="2" width="45%"><a href="/savanna/controller?type=EnterDetail&book_no=${vo.book_no }">${vo.book_name }</a></td>
+			        <td colspan="2" width="45%"><a href="상세페이지">${vo.book_name }</td>
 			        <td rowspan="2" width="20%"><fmt:formatNumber value="${vo.price }" pattern="###,###"/>원</td>
 			        <td><input type="button" class="btn" value="장바구니" onclick="input_cart(this.form)">
 			        	<input type="hidden" name="book_no" value="${vo.book_no }"></td>        
@@ -178,12 +123,7 @@
 			</c:if>
 		</tbody>
 		<tfoot>
-		<tr>
-		<td colspan="6">
-		<%@ include file="../common/pageNavigation2.jsp" %>
-		</td>
-		</tr>
-			
+			<%@ include file="../common/pageNavigation.jsp" %>
 		</tfoot>
 	</table>
 	</form>

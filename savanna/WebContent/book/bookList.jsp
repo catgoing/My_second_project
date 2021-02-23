@@ -6,31 +6,54 @@
 <head>
 <meta charset="UTF-8">
 <title>booklist for admin</title>
-
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script type="text/javascript" src="/savanna/js/bootstrap.js"></script>
-<link href="/savanna/css/bootstrap.min.css" rel="stylesheet">
-<link href="/savanna/css/savanna.css" rel="stylesheet">
-<link href="/savanna/css/member.css" rel="stylesheet">
-<link href="/savanna/css/book.css" rel="stylesheet">
 <style>
-.img-container {
-	background-color: white;
-	padding: 0px;
-	margin: 5px 5px 5px 5px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	border-radius: 5%;
-}
-.img-placeholder {
-	background-color: lightcoral;
-	padding: 0px;
-	width: 25vh;
-	height: 25vh;
-	border-radius: 5%;
-	box-shadow: 0 20px 20px rgba(0,0,0,0.2);
-}
+	table, td {
+		border: 1px solid black;
+		border-collapse: collapse;
+	}
+	.img-container {
+		background-color: peru;
+		padding: 0px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.img-placeholder {
+		background-color: lightgreen;
+		padding: 0px;
+		width: 15vh;
+		height: 15vh;
+		border-radius: 50%;
+	}
+	
+		.paging { list-style: none; }
+	.paging li {
+		float: left;
+		margin-right: 8px;
+	}
+	.paging li a {
+		text-decoration: none;
+		display: block;
+		padding: 3px 7px;
+		border: 1px solid #00B3DC;
+		font-weight: bold;
+		color: black;
+	}
+	.paging .disable {
+		border: 1px solid silver;
+		padding: 3px 7px;
+		color: silver;
+	}
+	.paging .now {
+		border: 1px solid #ff4aa5;
+		padding: 3px 7px;
+		background-color: #ff4aa5;
+	}
+	.paging li a:hover {
+		background-color: #00B3DC;
+		color: white;
+	}
+	
 </style>
 <script>
 	function enterCreateBookView(frm) {
@@ -42,10 +65,10 @@
 <body>
 	<%@ include file="/common/menu.jspf" %>
 
-	<h1>상품 관리</h1>
-	<div class="container ">
-	<table class="">
-	<thead >
+	<h1>booklist for admin</h1>
+	<div class="container">
+	<table>
+	<thead>
 		<tr>
 			<th width="5%">인덱스</th>
 			<th width="10%">썸네일</th>
@@ -60,7 +83,8 @@
 	<c:forEach var="vo" items="${list }">
 		<tr class="book">
 			<td>${vo.book_no }</td>
-			<td>
+			<td class="img-container">
+				<div class="img-placeholder"></div>
 			</td>
 			<td>
 				<a href="controller?type=EnterDetail&book_no=${vo.book_no }">

@@ -6,6 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>booklist for admin</title>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript" src="/savanna/js/bootstrap.js"></script>
+<link href="/savanna/css/bootstrap.min.css" rel="stylesheet">
+<link href="/savanna/css/savanna.css" rel="stylesheet">
+<link href="/savanna/css/member.css" rel="stylesheet">
 <style>
 	table, td {
 		border: 1px solid black;
@@ -26,10 +32,31 @@
 		border-radius: 50%;
 	}
 	
-		.paging { list-style: none; }
+	tr > td{
+	text-align : center;
+	height : 50px;
+ 	border: 1px solid lightgray;
+	}
+	tr > th{
+	height : 40px;
+	text-align : center;
+	}
+
+	tbody > tr:hover{
+	background-color: #00B3DC;
+	color: white;
+	cursor: pointer;
+	}
+	
+	
+	.paging { 
+	margin-left : 300px;
+	list-style: none; 
+	
+	}
 	.paging li {
 		float: left;
-		margin-right: 8px;
+		margin-right: 20px;
 	}
 	.paging li a {
 		text-decoration: none;
@@ -45,13 +72,26 @@
 		color: silver;
 	}
 	.paging .now {
-		border: 1px solid #ff4aa5;
+		border: 1px solid #00B3DC;
 		padding: 3px 7px;
-		background-color: #ff4aa5;
+		background-color: #00B3DC;
+		color: white;
 	}
 	.paging li a:hover {
 		background-color: #00B3DC;
 		color: white;
+	}
+	
+	table{
+	margin : auto;
+	width: 1000px;
+  line-height: 1em;
+	}
+	
+	h1{
+	margin: auto;
+  	text-align: center;
+    font-weight: bold;
 	}
 	
 </style>

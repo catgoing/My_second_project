@@ -8,11 +8,10 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.savanna.model.vo.BookVO;
 import com.savanna.model.vo.CartVO;
-import com.savanna.model.vo.MemberVO;
 import com.savanna.mybatis.DBService;
 
 
-public class CartDAO  implements SuperDAO {
+public class CartDAO {
 
 
 	// 장바구니 추가 - 매개변수 : 책번호, 회원id

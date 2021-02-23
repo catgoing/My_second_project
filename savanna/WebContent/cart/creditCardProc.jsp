@@ -54,9 +54,14 @@
 		    return false;
 		}
 		
-		opener.parent.location="controller?type=payCreditCard";
+		opener.parent.location = "/savanna/controller?type=payCreditCard";
+		frm.method = "post";
+		$("#inputcardinfo").val().submit();
 		window.close("childPage");
 
+	}
+	function cancel(){
+		window.close("childPage");
 	}
 	
 </script>
@@ -87,7 +92,7 @@
 	<tfoot>
 		<td></td>
 		<td><input type="submit" value="구매진행" onclick="creditcardpay_proc(this.form)">
-			<input type="submit" value="취    소" onclick="javascript:location.href='main.jsp'"></td>
+			<input type="submit" value="취    소" onclick="cancel(this.form)"></td>
 	</tfoot>
 	</table>
 	</form>

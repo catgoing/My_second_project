@@ -29,7 +29,6 @@ public class OrderPaymentCommand implements Command{
 		for(CartVO cvo : list) {
 			addr = cvo.getAddr();
 		}
-		System.out.println(addr);
 		
 		request.setAttribute("cartlist", list);
 		
@@ -39,6 +38,7 @@ public class OrderPaymentCommand implements Command{
 		
 		request.setAttribute("shipcharge", shipcharge );
 		request.setAttribute("totprice", totprice );
+		request.setAttribute("addr", addr);
 		
 		return "cart/payment.jsp";
 	}

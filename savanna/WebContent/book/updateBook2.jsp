@@ -35,27 +35,27 @@ function updateBook(frm) {
 		<tbody>
 		<tr>
 			<td><label for="book_name">제목</label></td>
-			<td><input type="text" id="book_name" name="book_name" value="${vo.book_name }"></td>
+			<td ><input class="box" type="text" id="book_name" name="book_name" value="${vo.book_name }"></td>
 		</tr>
 		<tr>
 			<td><label for="writer">작가</label></td>
-			<td><input type="text" id="writer" name="writer" value="${vo.writer }"></td>
+			<td><input class="box" type="text" id="writer" name="writer" value="${vo.writer }"></td>
 		</tr>
 		<tr>
 			<td><label for="publisher">출판사</label></td>
-			<td><input type="text" id="publisher" name="publisher" value="${vo.publisher }"></td>
+			<td><input class="box" type="text" id="publisher" name="publisher" value="${vo.publisher }"></td>
 		</tr>
 		<tr>
 			<td><label for="pub_date">출판일</label></td>
-			<td><input type="month" id="pub_date" name="pub_date" value="${vo.pub_date }"></td>
+			<td><input class="box" type="month" id="pub_date" name="pub_date" value="${vo.pub_date }"></td>
 		</tr>
 		<tr>
 			<td><label for="price">가격</label></td>
-			<td><input type="number" id="price" name="price" value="${vo.price }"></td>
+			<td><input class="box" type="number" id="price" name="price" value="${vo.price }"></td>
 		</tr>
 		<tr>
 			<td><label for="book_desc">책소개</label></td>
-			<td><input type="text" id="book_desc" name="book_desc" value="${vo.book_desc }"></td>
+			<td><input class="box" type="text" id="book_desc" name="book_desc" value="${vo.book_desc }"></td>
 		</tr>
 		<tr>
 			<td><label for="stock">재고</label></td>
@@ -63,7 +63,7 @@ function updateBook(frm) {
 		</tr>
 		<tr>
 			<td><label for="category">분류</label></td>
-			<td><input type="text" id="category" name="category" value="${vo.category }"></td>
+			<td><input class="box" type="text" id="category" name="category" value="${vo.category }"></td>
 		</tr>
 		</tbody>
 		<tfoot>

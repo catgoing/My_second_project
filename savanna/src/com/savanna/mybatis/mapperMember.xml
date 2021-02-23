@@ -180,11 +180,65 @@
 		 WHERE R_NUM BETWEEN #{begin} AND #{end}
 	</select>
 	
+	<!-- 내 게시글수 조회(ID 값으로) -->
+	<select id="myReviewCount" resultType="int" parameterType="Map">
+		SELECT COUNT(*) AS CNT 
+          FROM REVIEWS
+         WHERE ID = #{id}
+	</select>
+	
+	<!-- 내 게시글 조회(ID 값으로) -->
+	<select id="myReview" resultType="com.savanna.model.vo.ReviewVO" parameterType="Map">
+		SELECT *
+		  FROM (SELECT ROWNUM AS R_NUM, B.*
+		          FROM (SELECT *
+		                  FROM REVIEWS
+		                 WHERE ID = #{id}
+		                 ORDER BY REV_DATE DESC
+		               ) B 
+		       )
+		 WHERE R_NUM BETWEEN #{begin} AND #{end}
+	</select>
+	
+	
+		<!-- 내 댓글수 조회(ID 값으로) -->
+	<select id="myCommCount" resultType="int" parameterType="Map">
+		SELECT COUNT(*) AS CNT 
+          FROM COMMENTS
+         WHERE ID = #{id}
+	</select>
+	
+		<!-- 내 댓글 조회(ID 값으로) -->
+	<select id="myComm" resultType="com.savanna.model.vo.CommVO" parameterType="Map">
+		SELECT *
+		  FROM (SELECT ROWNUM AS R_NUM, B.*
+		          FROM (SELECT *
+		                  FROM COMMENTS
+		                 WHERE ID = #{id}
+		                 ORDER BY COMM_DATE DESC
+		               ) B 
+		       )
+		 WHERE R_NUM BETWEEN #{begin} AND #{end}
+	</select>
+	
+	<!-- 내 구매내역 조회(ID 값으로) -->
+	<select id="myBuyCount" parameterType="string" resultType="int">
+		SELECT COUNT(*) AS CNT 
+          FROM BUY_LIST
+         WHERE ID = #{id}
+	</select>
+	
 	<!-- 구매내역 리스트-->
-	<select id="buyList" parameterType="string" resultType="BuyVO">
-		SELECT BOOK_NAME, QUAN, PRICE, PUR_DATE
-		FROM BUY_LIST
-		WHERE ID = #{id}
+	<select id="myBuyList" parameterType="Map" resultType="BuyVO">
+		SELECT *
+		  FROM (SELECT ROWNUM AS R_NUM, B.*
+		          FROM (SELECT BOOK_NO, BOOK_NAME, QUAN, PRICE, ADDR, PUR_DATE
+		                  FROM BUY_LIST
+		                 WHERE ID = #{id}
+		                 ORDER BY PUR_DATE DESC
+		               ) B 
+		       )
+		 WHERE R_NUM BETWEEN #{begin} AND #{end}
 	</select>			
 
 </mapper>

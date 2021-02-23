@@ -43,7 +43,10 @@ import com.savanna.model.command.member.LogoutCommand;
 import com.savanna.model.command.member.MemDetailCommand;
 import com.savanna.model.command.member.MemListCommand;
 import com.savanna.model.command.member.MemSearchCommand;
+import com.savanna.model.command.member.MyBuyListCommand;
+import com.savanna.model.command.member.MyCommCommand;
 import com.savanna.model.command.member.MyInfoCommand;
+import com.savanna.model.command.member.MyReviewCommand;
 import com.savanna.model.command.member.PwdCheckCommand;
 import com.savanna.model.command.member.SignInCommand;
 import com.savanna.model.command.member.SignUpCommand;
@@ -63,12 +66,11 @@ public class FrontController extends HttpServlet {
 		String type = request.getParameter("type");
 		String id = request.getParameter("id");
 		String pwd = request.getParameter("pwd");
+		String cPage = request.getParameter("cPage");
 		System.out.println("> type : "+ type);
 
 		Command command = null;
-		if (1 == 2) {
-			System.out.print("error test");
-		} else if ("signUp".equals(type)) {
+		if ("signUp".equals(type)) {
 			command = new SignUpCommand();
 		} else if ("doSignUp".equals(type)) {
 			command = new DoSignUpCommand();
@@ -103,13 +105,19 @@ public class FrontController extends HttpServlet {
 		} else if ("doPwdCheck".equals(type)) {
 			command = new DoPwdCheckCommand(id, pwd);
 		} else if ("doPwdCheckwithdrawal".equals(type)) {
-			command = new DoPwdCheckCommand(id, pwd, type.substring(10));;
+			command = new DoPwdCheckCommand(id, pwd, type.substring(10));
 		} else if ("adminUpdate".equals(type)) {
 			command = new AdminUpdateCommand();
 		} else if ("adminWithdrawal".equals(type)) {
 			command = new AdminWithdrawalCommand();
 		} else if ("memsearch".equals(type)) {
 			command = new MemSearchCommand();
+		} else if ("myComm".equals(type)) {
+			command = new MyCommCommand(cPage);
+		} else if ("myReview".equals(type)) {
+			command = new MyReviewCommand(cPage);
+		} else if ("buyList".equals(type)) {
+			command = new MyBuyListCommand(cPage);
 		} else if("StockList".equals(type)) {
 			command = new EnterCardListCommand();
 		} else if("StockManagerPage".equals(type)) {

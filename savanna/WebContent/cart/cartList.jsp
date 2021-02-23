@@ -19,6 +19,7 @@
 
 <!-- Custom styles for this template -->
 <link href="/savanna/css/savanna.css" rel="stylesheet">
+<link href="/savanna/css/sidebar.css" rel="stylesheet">
 
 <title>:: 장바구니 ::</title>
 </head>
@@ -63,6 +64,8 @@
 
 <body>
 	<%@ include file="/common/menu.jspf" %>
+	<%@ include file="/common/memberSidebar.jspf" %>
+	
 	<h1>장바구니</h1>
 	<div class="cartMainView">
 	<table border>

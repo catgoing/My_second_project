@@ -45,7 +45,7 @@
                     <h3 class="join_title">
                         <label for="id">아이디</label>
                     </h3>
-                    <span class="box int_id" style="margin-bottom: 40px">
+                    <span class="box int" style="margin-bottom: 40px">
                         <input type="text" id="id" name="id" class="int" maxlength="12">
                         <span id="alertTxt">사용불가</span>
                     </span>
@@ -55,7 +55,7 @@
                 <!-- PW -->
                 <div>
                     <h3 class="join_title"><label for="pw">비밀번호</label></h3>
-                    <span class="box int_pass" style="margin-bottom: 60px">
+                    <span class="box int" style="margin-bottom: 60px">
                         <input type="password" id="pw" name="pwd" class="int" maxlength="12">
                     </span>
                     <span id="check1"></span>

@@ -28,7 +28,6 @@ public class commUpdateCommand implements Command {
 		cvo.setId(request.getParameter("id"));
 		cvo.setComm_content(request.getParameter("comm_content"));
 		cvo.setComm_date(request.getParameter("comm_date"));
-		cvo.setComm_pwd(request.getParameter("comm_pwd"));
 		
 		HttpSession httpSession = request.getSession(true);
 		//수정된 정보 세션에 저장

@@ -55,10 +55,9 @@
 							<div class="field half">
 								<label for="book">책번호</label>
 								<div class="select-wrapper">
-									<select name="book" id="book">
-									<c:forEach var="bvo" items="${list }">
-										<option value="1">책번호 목록</option>
-										<option value="1">${bvo.book_no }</option>
+									<select name="book_no" id="books">
+									<c:forEach var="vo" items="${vo }">
+										<option value="1">${vo.book_no }</option>
 									</c:forEach>	
 									</select>
 								</div>

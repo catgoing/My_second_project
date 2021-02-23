@@ -22,7 +22,7 @@
 <title>리뷰 삭제(패스워드 확인)</title> 
 </head>
 <script>
-	function del_go(frm) {
+	function reviewDelete_go(frm) {
 		if (frm.rev_pwd.value == "${rvo.rev_pwd}") { //암호 일치
 			var isDelete = confirm("정말 삭제할까요?");
 			if (isDelete) {
@@ -31,7 +31,7 @@
 				history.back();
 			}
 		} else {
-			alert("비밀번호가 일치하지 않습니다. 확인하세요");
+			alert("비밀번호가 일치하지 않습니다. 다시 입력해 주세요.");
 			frm.rev_pwd.value = "";
 			frm.rev_pwd.focus();
 		}
@@ -39,12 +39,9 @@
 
 </script>
 <%@ include file="/common/menu.jspf" %>
-<hr>
 <body>
-<hr>
-
-<h1>패스워드 확인</h1>
 	<form action="../controller?type=reviewDelete" method="post" name="fr">
+		<h1>패스워드 확인</h1>
 	    <div id="wrapper">
            <!-- content-->
            <div id="content">
@@ -58,7 +55,7 @@
                     <hr>
                 <!-- OKBTN-->
                 <div class="btn_area" style="margin: 20px 0 0 0">
-                  <button type="button" id="okbtn" style="margin: 0" onclick="del_go(this.form)">
+                  <button type="button" id="okbtn" style="margin: 0" onclick="reviewDelete_go(this.form)">
                       <span>확인</span>
                   </button>
                   <input type="hidden" id="rev_no" name="rev_no" value="${rvo.rev_no }">

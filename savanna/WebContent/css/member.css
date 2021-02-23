@@ -38,10 +38,6 @@ body {
 
 
 
-
-/* 입력폼 */
-
-
 h3 {
     margin: 19px 0 8px;
     font-size: 14px;
@@ -83,7 +79,7 @@ h3 {
 }
 
 input {
-    font-family: Dotum,'돋움',Helvetica,sans-serif;    
+    font-family: Dotum,'�룍��',Helvetica,sans-serif;    
 }
 
 .box.int_id {
@@ -110,10 +106,10 @@ select {
     text-align: start;
     border: none;
     cursor: default;
-    font-family: Dotum,'돋움',Helvetica,sans-serif;
+    font-family: Dotum,'�룍��',Helvetica,sans-serif;
 }
 
-/* 에러메세지 */
+/* �뿉�윭硫붿꽭吏� */
 
 .error_next_box {
     margin-top: 9px;
@@ -140,7 +136,7 @@ select {
     display: none;
 }
 
-/* 버튼 */
+/* 踰꾪듉 */
 
 .btn_area {
     margin: 30px 0 40px;
@@ -155,7 +151,7 @@ select {
     background-color: #292929;
     font-size: 20px;
     font-weight: 400;
-    font-family: Dotum,'돋움',Helvetica,sans-serif;
+    font-family: Dotum,'�룍��',Helvetica,sans-serif;
 }
 
 #updatebtn,
@@ -170,7 +166,7 @@ select {
     background-color: #292929;
     font-size: 20px;
     font-weight: 400;
-    font-family: Dotum,'돋움',Helvetica,sans-serif;
+    font-family: Dotum,'�룍��',Helvetica,sans-serif;
 }
 
 #qwdinquirybtn,
@@ -183,7 +179,7 @@ select {
     background-color: #292929;
     font-size: 20px;
     font-weight: 400;
-    font-family: Dotum,'돋움',Helvetica,sans-serif;
+    font-family: Dotum,'�룍��',Helvetica,sans-serif;
 }
 
 h1{

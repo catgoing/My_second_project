@@ -14,8 +14,8 @@ import com.savanna.model.vo.BookVO;
 public class MainPageCommand implements Command {
 	public String execute(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-		List<BookVO> list = new BookDAO().getPagedBookList(new ListPaging().getRecordRange(1, 5));
+		List<BookVO> list = new BookDAO().getPagedBookList(new ListPaging().getRecordRange(1, 9));
 		request.setAttribute("list", list);
-		return "main.jsp";
+		return "mainResolved.jsp";
 	}
 }

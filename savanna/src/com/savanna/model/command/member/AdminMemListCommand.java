@@ -23,9 +23,11 @@ public class AdminMemListCommand implements Command{
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
+		String command = "memList";
 		
 		new ListPaging<MemberVO>().PagingDistributor(new MemberDAO(), request, 10, 5);
 		request.setAttribute("cPage", cPage);
+		request.setAttribute("command", command);
 
 		return "member/adminMemList.jsp";
 	}

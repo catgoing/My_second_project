@@ -142,6 +142,7 @@
 </script>
 <body>
 	<%@ include file="/common/menu.jspf" %>
+	<%@ include file="/common/memberSidebar.jspf" %>
 
 	<div class="wish">
 	<form>

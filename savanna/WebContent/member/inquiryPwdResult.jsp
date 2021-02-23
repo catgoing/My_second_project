@@ -20,6 +20,7 @@
 <title>패스워드 찾기 결과</title>
 </head>
 <body>
+	<%@ include file="/common/menu.jspf" %>
 
 	<div id="wrapper">
 		<!-- content-->

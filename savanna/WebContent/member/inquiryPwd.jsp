@@ -20,6 +20,7 @@
 <title>패스워드 찾기</title>
 </head>
 <body>
+	<%@ include file="/common/menu.jspf" %>
 <h1>패스워드 찾기</h1>
 <form action="/savanna/controller?type=inquiryPwd" method="post">
           <div id="wrapper">

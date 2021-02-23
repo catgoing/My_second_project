@@ -13,13 +13,19 @@
 
 <meta charset="UTF-8">
 <title>Update book</title>
+<script>
+function updateBook(frm) {
+	frm.action = "controller?type=UpdateBook";
+	frm.submit();
+}
+</script>
 </head>
 <body>
 	<%@ include file="/common/menu.jspf" %>
 
 	<h1>상품 수정</h1>
 	<form method="post">
-		<table>
+		<table id="content">
 		<thead>
 		<tr>
 			<th>항목</th>

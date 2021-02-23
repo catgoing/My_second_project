@@ -52,7 +52,7 @@ body {
 }
 </style>
 	<div class="container">
-		<h2>새로나온 책</h2>
+		<h2></h2>
 		<c:forEach var="vo" items="${list }">
 			<ul class="card">
 			<a href="controller?type=EnterDetail&book_no=${vo.book_no }">

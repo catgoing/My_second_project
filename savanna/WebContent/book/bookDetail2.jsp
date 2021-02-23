@@ -29,10 +29,6 @@ function enterUpdateBook(frm) {
 	frm.action = "controller?type=EnterUpdateBook";
 	frm.submit();
 }
-function enterUpdateBook(frm) {
-	frm.action = "controller?type=EnterUpdateBook";
-	frm.submit();
-}
 </script>
 <meta charset="UTF-8">
 <title>Universal Book Detail</title>

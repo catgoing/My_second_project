@@ -20,7 +20,6 @@
 <link href="/savanna/css/savanna.css" rel="stylesheet">
 <link href="/savanna/css/sidebar.css" rel="stylesheet">
 <link href="/savanna/css/paging.css" rel="stylesheet">
-<title>구매내역</title>
 <style>
 	.buy {
         width: 900px;
@@ -40,54 +39,65 @@
 	font-weight: bold;
 	}	
 	
+	
 	tbody > tr:hover{
+	background-color: #00B3DC;
+	color: white;
 	cursor: pointer;
 	}
 </style>
 
+<title>주문관리</title>
 </head>
 <body>
 	<%@ include file="/common/menu.jspf" %>
-	<%@ include file="/common/memberSidebar.jspf" %>
+	<%@ include file="/common/adminSidebar.jspf" %>
 	<br>
-	<h1>구매내역</h1>
+	<h1>주문관리</h1>
 	<br><br><br>
 		
 	<div class="buy">
-	<table class="table">
+	<table class="table" style="margin-left:30px">
 		<thead>
 			<tr>
-				<th class="title" colspan="3">상품정보</th>
-				<th class="title">권수</th>
-				<th class="title">결제금액</th>			
-				<th class="title">결제일</th>			
+				<th class="title">주문번호</th>
 				<th class="title">상태</th>			
+				<th class="title">아이디</th>
+				<th class="title">상품명</th>			
+				<th class="title">수량</th>			
+				<th class="title">결제금액</th>			
+				<th class="title">구매일</th>	
 			</tr>
 		</thead>
 		<tbody>
-			<c:if test="${not empty buylist }">
-			<c:forEach var="vo" items="${buylist }">
-				<tr class="list" onclick="location.href = '/savanna/controller?type=EnterDetail&book_no=${vo.book_no }'">
-              <td rowspan="2" width="20%">표지이미지</td>
-			        <td colspan="2" width="40%">${vo.book_name }</td>
-			        <td width="10%" style="text-align:center;">${vo.quan }</td>
-			        <td rowspan="2" width="10%" style="text-align:center;"><fmt:formatNumber value="${vo.price }" pattern="###,###"/>원</td>
-			        <td rowspan="2" width="10%" style="text-align:center;">${vo.pur_date }</td>
-			        <td rowspan="2" width="10%" style="text-align:center;">${vo.status_print }</td>
-			              
+			<c:forEach var="vo" items="${orderlist }">
+			
+				<tr class="list" onclick="location.href = '/savanna/controller?type=orderdetail&buylist_no=${vo.buylist_no}'">
+	              	<td style="text-align:center;">${vo.buylist_no}</td>
+	              	<td style="text-align:center;">${vo.status}</td>
+	              	<td style="text-align:center;">${vo.id}</td>
+	              	<td width="20%" style="text-align:center;">${vo.book_name}</td>
+	              	<td style="text-align:center;">${vo.quan}</td>
+	              	<td style="text-align:center;"><fmt:formatNumber value="${vo.price }" pattern="###,###"/>원</td>
+	              	<td style="text-align:center;">${vo.pur_date}</td>
 			    </tr>
-			    <tr onclick="location.href = '/savanna/controller?type=EnterDetail&book_no=${vo.book_no }'">
-			        <td colspan="7" style="border-top:none">${vo.addr }</td>
-		    	</tr>
+			    
 			</c:forEach>
-			</c:if>
-			<c:if test="${empty buylist }">
-				<tr>
-					<td colspan="7" style="text-align:center;">구매내역이 없습니다.</td>
-				</tr>
-			</c:if>
 		</tbody>
 		<tfoot>
+	      	<tr>
+	        <td colspan="7">
+	        <form action="/savanna/controller?type=adminordersearch" method="post">
+	        <select name="idx">
+	          <option value="0">아이디</option>
+	          <option value="1">상품명</option>
+	          <option value="2">상태</option>
+	        </select>
+	        <input type="text" name="keyword">
+	        <input type="submit" value="검색">
+	        </form>
+	      </td>
+	      </tr>
 			<tr>
 			<td colspan="7">
 				<%@ include file="../common/pageNavigation2.jsp" %>

@@ -44,13 +44,24 @@
 	cursor: pointer;
 	}
 </style>
+<script>
+	function cancel_confirm(){
+		var answer = confirm("주문을 취소하시겠습니까?");
+		
+	    if (answer) {
+	    	let buylist_no = $('#no').val();
+	        location.href = "/savanna/controller?type=buyCancel&buylist_no=" + buylist_no;
+	    } 
+	}
+	
+</script>
 
 </head>
 <body>
 	<%@ include file="/common/menu.jspf" %>
 	<%@ include file="/common/memberSidebar.jspf" %>
 	<br>
-	<h1>구매내역</h1>
+	<h1>주문취소</h1>
 	<br><br><br>
 		
 	<div class="buy">
@@ -60,23 +71,21 @@
 				<th class="title" colspan="3">상품정보</th>
 				<th class="title">권수</th>
 				<th class="title">결제금액</th>			
-				<th class="title">결제일</th>			
-				<th class="title">상태</th>			
+				<th class="title">결제일</th>				
 			</tr>
 		</thead>
 		<tbody>
 			<c:if test="${not empty buylist }">
 			<c:forEach var="vo" items="${buylist }">
-				<tr class="list" onclick="location.href = '/savanna/controller?type=EnterDetail&book_no=${vo.book_no }'">
+				<tr class="list" onclick="cancel_confirm()">
               <td rowspan="2" width="20%">표지이미지</td>
 			        <td colspan="2" width="40%">${vo.book_name }</td>
 			        <td width="10%" style="text-align:center;">${vo.quan }</td>
 			        <td rowspan="2" width="10%" style="text-align:center;"><fmt:formatNumber value="${vo.price }" pattern="###,###"/>원</td>
-			        <td rowspan="2" width="10%" style="text-align:center;">${vo.pur_date }</td>
-			        <td rowspan="2" width="10%" style="text-align:center;">${vo.status_print }</td>
-			              
+			        <td rowspan="2" width="10%" style="text-align:center;">${vo.pur_date }</td>        
+			        <td><input type="hidden" id="no" value="${vo.buylist_no }"></td>
 			    </tr>
-			    <tr onclick="location.href = '/savanna/controller?type=EnterDetail&book_no=${vo.book_no }'">
+			    <tr onclick="cancel_confirm()">
 			        <td colspan="7" style="border-top:none">${vo.addr }</td>
 		    	</tr>
 			</c:forEach>

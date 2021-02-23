@@ -17,6 +17,7 @@
 <!-- Custom styles for this template -->
 <link href="/savanna/css/savanna.css" rel="stylesheet">
 <link href="/savanna/css/member.css" rel="stylesheet">
+<link href="/savanna/css/sidebar.css" rel="stylesheet">
 <title>회원정보</title>
 </head>
 <script>
@@ -41,20 +42,21 @@
 </script>
 <body>
 	<%@ include file="/common/menu.jspf" %>
-	<h1>회원정보</h1>
+	<%@ include file="/common/adminSidebar.jspf" %>
 
-       <!-- GO LIST BTN-->
-      <div class="btn_area" style="margin: 20px 0 0 0">
-        <button type="button" id="signinbtn" style="margin: 0" onclick="goList()">
-            <span>목록으로</span>
-        </button>
-      </div>
-	
 	<form action="controller?type=adminUpdate" method="post" id="fr_info">
 	
 	<div id="wrapper">
             <!-- content-->
             <div id="content">
+	<h1>회원정보</h1>
+            
+                  <!-- GO LIST BTN-->
+      <div class="btn_area">
+        <button type="button" id="signinbtn" style="margin-left: 120px; width:200px; height:40px; line-height:0;" onclick="goList()">
+            <span>목록으로</span>
+        </button>
+      </div>
             
                 <!-- MEMBER.NO -->
                 <div>

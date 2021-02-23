@@ -10,7 +10,7 @@
 <body>
 	<script>
 		alert("회원가입을 환영합니다!");
-		location.href = "main.jsp";
+		location.href = "/savanna/controller?type=MainPage";
 	</script>
 </body>
 </html>

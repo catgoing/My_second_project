@@ -32,24 +32,7 @@ import com.savanna.model.command.cart.DeleteInCartCommand;
 import com.savanna.model.command.cart.EditQuantCommand;
 import com.savanna.model.command.cart.OrderGoCommand;
 import com.savanna.model.command.cart.TempBookInsertCommand;
-import com.savanna.model.command.member.AdminUpdateCommand;
-import com.savanna.model.command.member.AdminWithdrawalCommand;
-import com.savanna.model.command.member.DoPwdCheckCommand;
-import com.savanna.model.command.member.DoSignInCommand;
-import com.savanna.model.command.member.DoSignUpCommand;
-import com.savanna.model.command.member.IdCheckCommand;
-import com.savanna.model.command.member.InquiryIdCommand;
-import com.savanna.model.command.member.InquiryPwdCommand;
-import com.savanna.model.command.member.LogoutCommand;
-import com.savanna.model.command.member.MemDetailCommand;
-import com.savanna.model.command.member.MemListCommand;
-import com.savanna.model.command.member.MemSearchCommand;
-import com.savanna.model.command.member.MyInfoCommand;
-import com.savanna.model.command.member.PwdCheckCommand;
-import com.savanna.model.command.member.SignInCommand;
-import com.savanna.model.command.member.SignUpCommand;
-import com.savanna.model.command.member.UpdateCommand;
-import com.savanna.model.command.member.WithdrawalCommand;
+import com.savanna.model.command.member.*;
 import com.savanna.model.command.wish.DeleteWishCommand;
 import com.savanna.model.command.wish.InsertWishCommand;
 import com.savanna.model.command.wish.WishListCommand;
@@ -64,12 +47,11 @@ public class FrontController extends HttpServlet {
 		String type = request.getParameter("type");
 		String id = request.getParameter("id");
 		String pwd = request.getParameter("pwd");
+		String cPage = request.getParameter("cPage");
 		System.out.println("> type : "+ type);
 
 		Command command = null;
-		if (1 == 2) {
-			System.out.print("error test");
-		} else if ("signUp".equals(type)) {
+		if ("signUp".equals(type)) {
 			command = new SignUpCommand();
 		} else if ("doSignUp".equals(type)) {
 			command = new DoSignUpCommand();
@@ -91,26 +73,44 @@ public class FrontController extends HttpServlet {
 
 		else if (type.indexOf("memList") == 0) {
 			command = type.length()==7
-					? new MemListCommand("1")
-					: new MemListCommand(type.substring(14));
+					? new AdminMemListCommand("1")
+					: new AdminMemListCommand(type.substring(14));
 		} else if ("inquiryId".equals(type)) {
 			command = new InquiryIdCommand();
 		} else if ("inquiryPwd".equals(type)) {
 			command = new InquiryPwdCommand();
 		} else if ("memDetail".equals(type)) {
-			command = new MemDetailCommand(id);
+			command = new AdminMemDetailCommand(id);
 		} else if ("idCheck".equals(type)) {
 			command = new IdCheckCommand(id);
 		} else if ("doPwdCheck".equals(type)) {
 			command = new DoPwdCheckCommand(id, pwd);
 		} else if ("doPwdCheckwithdrawal".equals(type)) {
-			command = new DoPwdCheckCommand(id, pwd, type.substring(10));;
+			command = new DoPwdCheckCommand(id, pwd, type.substring(10));
 		} else if ("adminUpdate".equals(type)) {
 			command = new AdminUpdateCommand();
 		} else if ("adminWithdrawal".equals(type)) {
 			command = new AdminWithdrawalCommand();
 		} else if ("memsearch".equals(type)) {
-			command = new MemSearchCommand();
+			command = new AdminMemSearchCommand(cPage);
+		} else if ("myComm".equals(type)) {
+			command = new MyCommCommand(cPage);
+		} else if ("myReview".equals(type)) {
+			command = new MyReviewCommand(cPage);
+		} else if ("buyList".equals(type)) {
+			command = new MyBuyListCommand(cPage);
+		} else if ("buyCancelList".equals(type)) {
+			command = new BuyCancelListCommand(cPage);
+		} else if ("buyCancel".equals(type)) {
+			command = new BuyCancelCommand();
+		} else if ("adminOrderList".equals(type)) {
+			command = new AdminOrderListCommand(cPage);
+		} else if ("orderdetail".equals(type)) {
+			command = new AdminOrderDetailCommand();
+		} else if ("adminOrderUpdate".equals(type)) {
+			command = new AdminOrderUpdate();
+		} else if ("adminordersearch".equals(type)) {
+			command = new AdminOrderSearchCommand(cPage);
 		} else if("StockList".equals(type)) {
 			command = new EnterCardListCommand();
 		} else if("StockManagerPage".equals(type)) {

@@ -17,13 +17,22 @@
 
 <!-- Custom styles for this template -->
 <link href="/savanna/css/savanna.css" rel="stylesheet">
+<link href="/savanna/css/paging.css" rel="stylesheet">
+<link href="/savanna/css/sidebar.css" rel="stylesheet">
 <title>회원목록</title>
 <style>
+
+	ul, ol{
+	list-style: none;
+	margin-left: 10px;
+	}
+	
 	tr > td{
 	text-align : center;
 	height : 50px;
  	border: 1px solid lightgray;
-	}
+	} 
+	
 	tr > th{
 	height : 40px;
 	text-align : center;
@@ -35,39 +44,6 @@
 	cursor: pointer;
 	}
 	
-	
-	.paging { 
-	margin-left : 300px;
-	list-style: none; 
-	
-	}
-	.paging li {
-		float: left;
-		margin-right: 20px;
-	}
-	.paging li a {
-		text-decoration: none;
-		display: block;
-		padding: 3px 7px;
-		border: 1px solid #00B3DC;
-		font-weight: bold;
-		color: black;
-	}
-	.paging .disable {
-		border: 1px solid silver;
-		padding: 3px 7px;
-		color: silver;
-	}
-	.paging .now {
-		border: 1px solid #00B3DC;
-		padding: 3px 7px;
-		background-color: #00B3DC;
-		color: white;
-	}
-	.paging li a:hover {
-		background-color: #00B3DC;
-		color: white;
-	}
 	
 	table{
 	margin : auto;
@@ -89,6 +65,7 @@
 </head>
 <body>
 	<%@ include file="/common/menu.jspf" %>
+	<%@ include file="/common/adminSidebar.jspf" %>
 	<br>
 <h1>회원목록</h1>
 <br>
@@ -137,7 +114,9 @@
 	      </td>
 	      </tr>
    			<tr>
+   			<td colspan="8" style="border:none;">
    				<%@ include file="../common/pageNavigation2.jsp" %>
+  			</td>
    			</tr>
 		</tfoot>
 	</table>

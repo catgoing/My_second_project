@@ -11,10 +11,10 @@ import com.savanna.model.command.paging.ListPaging;
 import com.savanna.model.dao.MemberDAO;
 import com.savanna.model.vo.MemberVO;
 
-public class MemListCommand implements Command{
+public class AdminMemListCommand implements Command{
 	String cPage;
 
-	public MemListCommand(String cPage) {
+	public AdminMemListCommand(String cPage) {
 		this.cPage = cPage;
 	}
 
@@ -27,6 +27,6 @@ public class MemListCommand implements Command{
 		new ListPaging<MemberVO>().PagingDistributor(new MemberDAO(), request, 10, 5);
 		request.setAttribute("cPage", cPage);
 
-		return "member/memList.jsp";
+		return "member/adminMemList.jsp";
 	}
 }

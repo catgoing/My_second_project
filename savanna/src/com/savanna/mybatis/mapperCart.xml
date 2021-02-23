@@ -70,9 +70,9 @@
 	<!-- 구매내역에 입력 -->
 	<insert id="sendorder" parameterType="com.savanna.model.vo.CartVO">
 		INSERT INTO BUY_LIST(BUYLIST_NO, CART_NO, BOOK_NO, BOOK_NAME ,QUAN ,
-				PRICE ,ADDR ,ID ,PUR_DATE)
+				PRICE ,ADDR ,ID ,PUR_DATE, STATUS)
 		VALUES (BUYLIST_NO_SEQ.NEXTVAL, #{cart_no}, #{book_no}, #{book_name}, #{cart_quan},
-				#{totalPrice}, #{addr}, #{id}, SYSDATE)
+				#{totalPrice}, #{addr}, #{id}, SYSDATE, 0)
 	</insert>
 
 </mapper>

@@ -1,0 +1,110 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<meta name="description" content="">
+<meta name="author" content="">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript" src="/savanna/js/bootstrap.js"></script>
+
+<!-- Bootstrap core CSS -->
+<link href="/savanna/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="/savanna/css/savanna.css" rel="stylesheet">
+<link href="/savanna/css/sidebar.css" rel="stylesheet">
+<link href="/savanna/css/paging.css" rel="stylesheet">
+<title>구매내역</title>
+<style>
+	.buy {
+        width: 900px;
+        margin: auto;
+    }
+    table {
+        max-width: 700px;
+        margin:auto;
+    }
+    .title {
+    	text-align: center;
+    }
+    
+    h1{
+	margin-right: 100px;
+	text-align: center;
+	font-weight: bold;
+	}	
+	
+	tbody > tr:hover{
+	cursor: pointer;
+	}
+</style>
+<script>
+	function cancel_confirm(){
+		var answer = confirm("주문을 취소하시겠습니까?");
+		
+	    if (answer) {
+	    	let buylist_no = $('#no').val();
+	        location.href = "/savanna/controller?type=buyCancel&buylist_no=" + buylist_no;
+	    } 
+	}
+	
+</script>
+
+</head>
+<body>
+	<%@ include file="/common/menu.jspf" %>
+	<%@ include file="/common/memberSidebar.jspf" %>
+	<br>
+	<h1>주문취소</h1>
+	<br><br><br>
+		
+	<div class="buy">
+	<table class="table">
+		<thead>
+			<tr>
+				<th class="title" colspan="3">상품정보</th>
+				<th class="title">권수</th>
+				<th class="title">결제금액</th>			
+				<th class="title">결제일</th>				
+			</tr>
+		</thead>
+		<tbody>
+			<c:if test="${not empty buylist }">
+			<c:forEach var="vo" items="${buylist }">
+				<tr class="list" onclick="cancel_confirm()">
+              <td rowspan="2" width="20%">표지이미지</td>
+			        <td colspan="2" width="40%">${vo.book_name }</td>
+			        <td width="10%" style="text-align:center;">${vo.quan }</td>
+			        <td rowspan="2" width="10%" style="text-align:center;"><fmt:formatNumber value="${vo.price }" pattern="###,###"/>원</td>
+			        <td rowspan="2" width="10%" style="text-align:center;">${vo.pur_date }</td>        
+			        <td><input type="hidden" id="no" value="${vo.buylist_no }"></td>
+			    </tr>
+			    <tr onclick="cancel_confirm()">
+			        <td colspan="7" style="border-top:none">${vo.addr }</td>
+		    	</tr>
+			</c:forEach>
+			</c:if>
+			<c:if test="${empty buylist }">
+				<tr>
+					<td colspan="7" style="text-align:center;">구매내역이 없습니다.</td>
+				</tr>
+			</c:if>
+		</tbody>
+		<tfoot>
+			<tr>
+			<td colspan="7">
+				<%@ include file="../common/pageNavigation2.jsp" %>
+			</td>
+			</tr>
+		</tfoot>
+		</table>
+	</div>
+	
+</body>
+</html>

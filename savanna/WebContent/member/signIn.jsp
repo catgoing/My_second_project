@@ -19,6 +19,14 @@
 <link href="/savanna/css/member.css" rel="stylesheet">
 <title>로그인</title>
 <script>
+
+	$(function (){
+		if( '${user.id}' != ''){
+			location.href = "/savanna/controller?type=MainPage";
+		}
+		
+	})
+
 	function idInquiry(){
 		location.href = "inquiryId.jsp";
 	}
@@ -26,6 +34,8 @@
 	function qwdInquiry(){
 		location.href = "inquiryPwd.jsp";
 	}
+	
+	
 </script>
 </head>
 <body>
@@ -39,27 +49,25 @@
           <div id="wrapper">
             <!-- content-->
             <div id="content">
-            
+                
                 <!-- ID -->
                 <div>
                     <h3 class="join_title">
                         <label for="id">아이디</label>
                     </h3>
-                    <span class="box int_id" style="margin-bottom: 40px">
+                    <span class="box int_signid">
                         <input type="text" id="id" name="id" class="int" maxlength="12">
-                        <span id="alertTxt">사용불가</span>
                     </span>
-                    <span id="id_check"></span>
                 </div>
 
                 <!-- PW -->
                 <div>
-                    <h3 class="join_title"><label for="pw">비밀번호</label></h3>
-                    <span class="box int_pass" style="margin-bottom: 60px">
-                        <input type="password" id="pw" name="pwd" class="int" maxlength="12">
+                    <h3 class="join_title"><label for="pswd1">비밀번호</label></h3>
+                    <span class="box int_signpass">
+                        <input type="password" id="pswd1" name="pwd" class="int" maxlength="12">
                     </span>
-                    <span id="check1"></span>
                 </div>
+                <br>
                 
                 <!-- SIGNIN BTN-->
                 <div class="btn_area" style="margin: 20px 0 0 0">

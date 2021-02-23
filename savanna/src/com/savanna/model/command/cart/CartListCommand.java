@@ -28,7 +28,7 @@ public class CartListCommand implements Command {
 		
 		String path = null;
 		if(mvo == null) {
-			path = "/savanna/main.jsp";
+			path = "controller?type=MainPage";
 		}
 		else {
 			String id = mvo.getId();

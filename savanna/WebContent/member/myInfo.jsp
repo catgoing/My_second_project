@@ -17,6 +17,7 @@
 <!-- Custom styles for this template -->
 <link href="/savanna/css/savanna.css" rel="stylesheet">
 <link href="/savanna/css/member.css" rel="stylesheet">
+<link href="/savanna/css/sidebar.css" rel="stylesheet">
 <title>내정보</title>
 
 </head>
@@ -31,9 +32,30 @@
 	
 	 var check_SC = 0;
      var check_length = 0;
+     var phone_result = 1;
+     var phone_length = 0;
+     var phone_isNumber = 0;
      var pw = null; 
      var pw2 = null;
      var SC = ["!","@","#","$","%", "^", "&", "*", "(", ")", "-", "=", "'\'", "/", "+", "."];
+     
+     
+     $(function(){
+ 		$('#pw2').keyup(function(){
+ 			
+ 			pw2 = document.getElementById('pw2').value;
+ 			if(pw !='' && pw2 !=''){
+ 	              if(pw == pw2){
+ 	                  document.getElementById('check2').innerHTML='비밀번호가 일치합니다'
+ 	                  document.getElementById('check2').style.color='blue';
+ 	              }
+ 	              else{
+ 	                  document.getElementById('check2').innerHTML='비밀번호가 일치하지 않습니다';
+ 	                  document.getElementById('check2').style.color='red';
+ 	              }
+ 	          }
+     	 });
+      });
      
      
      $(function(){
@@ -66,22 +88,104 @@
     	 });
     		 
      });
+     
+     
 
 	
 	function withdrawal(){
 		location.href = "member/withdrawal.jsp"
 	}
 	
-	function main(){
-		location.href = "/savanna/main.jsp"
+	
+	
+	$(function(){ // 휴대전화번호 체크
+		
+		var userPhoneCheck = RegExp(/^[0-9]{10,11}$/);
+		var phone = document.getElementById('phone').value;
+		
+		$('#phone').keyup(function(){
+			
+			phone_isNumber = 0;
+			phone_length = 0;
+			
+			phone = document.getElementById('phone').value;
+			
+			if(!userPhoneCheck.test($('#phone').val())){
+				phone_isNumber = 1;
+				document.getElementById('phone_check').innerHTML=
+					'휴대전화는 숫자만 입력이 가능합니다';
+				document.getElementById('phone_check').style.color='red';
+
+			} else phone_isNumber = 0;
+			
+			if(phone.length < 10 ){
+				phone_length = 1;
+				document.getElementById('phone_check').innerHTML=
+					'올바르지 않은 번호입니다';
+				document.getElementById('phone_check').style.color='red';
+			} else phone_length = 0;
+
+			if(phone_length == 0 && phone_isNumber == 0) {
+				phone_result = 0;
+				document.getElementById('phone_check').innerHTML='';
+			}
+
+			
+		});	
 	}
+	);
+	
+	
+	  function null_check(){
+			if(document.getElementById('id').value == "" || id_result != 0){
+				alert("아이디를 확인해주세요");
+				fr.id.focus();
+				return false;
+			} else if(document.getElementById('pw').value == ""){
+				alert("패스워드를 입력해주세요");
+				fr.pw.focus();
+				return false;
+			} else if(document.getElementById('pw2').value == ""){
+				alert("패스워드를 입력해주세요");
+				fr.pw2.focus();
+				return false;
+			} else if(document.getElementById('name').value == ""){
+				alert("이름을 입력해주세요");
+				fr.name.focus();
+				return false;
+			} else if(document.getElementById('phone').value == "" || phone_result == 1){
+				alert("올바른 휴대전화번호를 입력해주세요");
+				fr.phone.focus();
+				return false;
+			} else if(document.getElementById('email').value == ""){
+				alert("이메일을 입력해주세요");
+				fr.email.focus();
+				return false;
+			} else if(document.getElementById('addr').value == ""){
+				alert("주소를 입력해주세요");
+				fr.addr.focus();
+				return false;
+			} else if(pw != pw2) {
+				alert("패스워드가 일치하지 않습니다");
+				fr.pw2.focus();
+				return false;
+			} else if(check_SC == 0 || check_length == 0){
+				alert("패스워드를 확인해주세요");
+				fr.pw.focus();
+				return false;
+			}
+			
+			else return true;
+			
+			}
 
 </script>
 <body>
 	<%@ include file="/common/menu.jspf" %>
+	<%@ include file="/common/memberSidebar.jspf" %>
 	
 	<br>	
-	<h1>내정보</h1>
+	<h1 style="margin-right:150px;">내정보</h1>
 	
 	<form action="/savanna/controller?type=update" method="post" id="fr_info" name="fr" onsubmit="return null_check()">
        <div id="wrapper">
@@ -123,9 +227,10 @@
                 <div>
                   <h3 class="join_title"><label for="phone">휴대전화</label></h3>
                   <span class="box int_phone">
-                      <input type="text" id="phone" name="phone" class="int" value="${user.phone }" maxlength="13">
+                      <input type="text" id="phone" name="phone" class="int" value="${user.phone }" maxlength="11" placeholder="숫자만 입력">
                   </span>
                   <span class="error_next_box"></span>
+                  <span id="phone_check"></span>
                  </div>
 
                 <!-- EMIAL -->

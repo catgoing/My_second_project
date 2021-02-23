@@ -180,12 +180,179 @@
 		 WHERE R_NUM BETWEEN #{begin} AND #{end}
 	</select>
 	
+	<!-- 내 게시글수 조회(ID 값으로) -->
+	<select id="myReviewCount" resultType="int" parameterType="Map">
+		SELECT COUNT(*) AS CNT 
+          FROM REVIEWS
+         WHERE ID = #{id}
+	</select>
+	
+	<!-- 내 게시글 조회(ID 값으로) -->
+	<select id="myReview" resultType="com.savanna.model.vo.ReviewVO" parameterType="Map">
+		SELECT *
+		  FROM (SELECT ROWNUM AS R_NUM, B.*
+		          FROM (SELECT *
+		                  FROM REVIEWS
+		                 WHERE ID = #{id}
+		                 ORDER BY REV_DATE DESC
+		               ) B 
+		       )
+		 WHERE R_NUM BETWEEN #{begin} AND #{end}
+	</select>
+	
+	
+		<!-- 내 댓글수 조회(ID 값으로) -->
+	<select id="myCommCount" resultType="int" parameterType="Map">
+		SELECT COUNT(*) AS CNT 
+          FROM COMMENTS
+         WHERE ID = #{id}
+	</select>
+	
+		<!-- 내 댓글 조회(ID 값으로) -->
+	<select id="myComm" resultType="com.savanna.model.vo.CommVO" parameterType="Map">
+		SELECT *
+		  FROM (SELECT ROWNUM AS R_NUM, B.*
+		          FROM (SELECT *
+		                  FROM COMMENTS
+		                 WHERE ID = #{id}
+		                 ORDER BY COMM_DATE DESC
+		               ) B 
+		       )
+		 WHERE R_NUM BETWEEN #{begin} AND #{end}
+	</select>
+	
+	<!-- 내 구매내역 조회(ID 값으로) -->
+	<select id="myBuyCount" parameterType="string" resultType="int">
+		SELECT COUNT(*) AS CNT 
+          FROM BUY_LIST
+         WHERE ID = #{id}
+	</select>
+	
 	<!-- 구매내역 리스트-->
-	<select id="buyList" parameterType="string" resultType="BuyVO">
-		SELECT BOOK_NAME, QUAN, PRICE, PUR_DATE
-		FROM BUY_LIST
-		WHERE ID = #{id}
+	<select id="myBuyList" parameterType="Map" resultType="BuyVO">
+		SELECT *
+		  FROM (SELECT ROWNUM AS R_NUM, B.*
+		          FROM (SELECT BOOK_NO, BOOK_NAME, QUAN, PRICE, ADDR, PUR_DATE, BUYLIST_NO, STATUS
+		                  FROM BUY_LIST
+		                 WHERE ID = #{id}
+		                 ORDER BY PUR_DATE DESC
+		               ) B 
+		       )
+		 WHERE R_NUM BETWEEN #{begin} AND #{end}
 	</select>			
+	
+	<!-- 내 구매내역 조회(ID 값으로) -->
+	<select id="cancelPsbCount" parameterType="string" resultType="int">
+		SELECT COUNT(*) AS CNT 
+          FROM BUY_LIST
+         WHERE ID = #{id}
+         AND STATUS = 0
+	</select>
+	
+	<!-- 구매내역 리스트-->
+	<select id="cancelPsbList" parameterType="Map" resultType="BuyVO">
+		SELECT *
+		  FROM (SELECT ROWNUM AS R_NUM, B.*
+		          FROM (SELECT BOOK_NO, BOOK_NAME, QUAN, PRICE, ADDR, PUR_DATE, BUYLIST_NO, STATUS
+		                  FROM BUY_LIST
+		                 WHERE ID = #{id}
+		                 AND STATUS = 0
+		                 ORDER BY PUR_DATE DESC
+		               ) B 
+		       )
+		 WHERE R_NUM BETWEEN #{begin} AND #{end}
+	</select>
+	
+	<!-- 구매취소 -->
+	<select id="buyCancel" parameterType="string" resultType="int">
+	 	UPDATE BUY_LIST
+		SET STATUS = 3
+		WHERE BUYLIST_NO = #{buylist_no}
+	</select>	
+	
+	
+		<!-- 관리자용 전체 구매내역 수 조회-->
+	<select id="orderCount" resultType="int">
+		SELECT COUNT(*) AS CNT 
+          FROM BUY_LIST
+	</select>
+	
+	<!-- 관리자용 전체 구매내역 조회-->
+	<select id="orderList" parameterType="Map" resultType="BuyVO">
+		SELECT *
+		  FROM (SELECT ROWNUM AS R_NUM, B.*
+		          FROM (SELECT BOOK_NO, BOOK_NAME, QUAN, PRICE, ADDR, PUR_DATE, BUYLIST_NO, STATUS, ID
+		                  FROM BUY_LIST
+		                 ORDER BY PUR_DATE DESC
+		               ) B
+		       )
+		 WHERE R_NUM BETWEEN #{begin} AND #{end}
+	</select>	
+	
+	<!-- 관리자용 주문 상세상세정보-->
+	<select id="orderDetail" parameterType="string" resultType="BuyVO">
+		SELECT *
+		FROM BUY_LIST
+		WHERE BUYLIST_NO = #{buylist_no}
+	</select>	
+	
+	<!-- 관리자용 주문 동적검색 결과 수 조회 -->
+	<select id="orderSearchCount" parameterType="Map" resultType="int">
+		SELECT COUNT(*) AS CNT 
+		FROM BUY_LIST
+		<choose>
+			<when test="idx == 0">
+				WHERE ID = #{keyword}
+			</when>
+			<when test="idx == 1">
+				WHERE BOOK_NAME = #{keyword}
+			</when>
+			<when test="idx == 2">
+				WHERE STATUS = #{keyword}
+			</when>
+			<otherwise>
+				WHERE 1 = 2
+			</otherwise>
+		</choose>
+	</select>
+	
+	
+		<!-- 관리자용 주문관리 페이지에 표시할 검색 데이터 조회 
+		parameterType="Map" : begin, end 값 전달 용도
+		key-value 형태의 Map 사용 바인드변수명 key가 됨 -->
+	<select id="orderSearchList" resultType="BuyVO"
+			parameterType="Map">
+		SELECT *
+		  FROM (SELECT ROWNUM AS R_NUM, M.*
+		          FROM (SELECT *
+		                  FROM BUY_LIST
+                  		<choose>
+							<when test="idx == 0">
+								WHERE ID = #{keyword}
+							</when>
+							<when test="idx == 1">
+								WHERE BOOK_NAME = #{keyword}
+							</when>
+							<when test="idx == 2">
+								WHERE STATUS = #{keyword}
+							</when>
+							<otherwise>
+								WHERE 1 = 2
+							</otherwise>
+						</choose>
+		                 ORDER BY PUR_DATE
+		               ) M 
+		       )
+		 WHERE R_NUM BETWEEN #{begin} AND #{end}
+	</select>
+	
+		<!-- 정보수정-->
+	<select id="orderUpdate" parameterType="BuyVO" resultType="BuyVO">
+		UPDATE BUY_LIST
+		SET ADDR = #{addr},
+			STATUS = #{status}
+		WHERE BUYLIST_NO = #{buylist_no}	
+	</select>
 
 </mapper>
 

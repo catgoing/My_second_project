@@ -19,7 +19,7 @@ public class LogoutCommand implements Command{
 		HttpSession httpSession = request.getSession(true);
 		httpSession.invalidate();
 		
-		return "main.jsp";
+		return "controller?type=MainPage";
 	}
 
 }

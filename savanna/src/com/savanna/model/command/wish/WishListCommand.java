@@ -21,7 +21,8 @@ public class WishListCommand implements Command{
 		
 		HttpSession session = request.getSession();
 		MemberVO mvo = (MemberVO)session.getAttribute("user");
-		String command = "wishlist";
+
+    String command = "wishlist";
 		if(null != mvo) {
 			String id = mvo.getId();
 		

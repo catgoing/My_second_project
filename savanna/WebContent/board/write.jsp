@@ -1,23 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="com.savanna.model.dao.BookDAO"%>
+<%@page import="com.savanna.model.vo.BookVO"%>
 <!DOCTYPE html>
 <html>
 <meta name="viewport" content="width=device-width", initial-scale="1">
-<script src="../js/bootstrap.min.js"></script>
-<link href="../css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="/savanna/css/writeform.css" />
+<script src="/savanna/js/bootstrap.min.js"></script>
+<link href="/savanna/css/bootstrap.min.css" rel="stylesheet">
 <head>
 <meta charset="UTF-8">
 <title>리뷰 작성</title>
 <link rel="stylesheet" type="text/css" href="/savanna/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="../css/savanna.css">	
-<style>
-	h1 { margin-left : 80px;}
-	div { margin-left : 80px;
-		  margin-right : 80px;
-		  border : 2px solid black;}
-	div th {text-align : left; }
-	tbody { margin-bottom : 30px; }
-</style>
+<link rel="stylesheet" type="text/css" href="/savanna/css/savanna.css">	
+
 <script>
 	function reviewInsert(frm) {
 		frm.action = "../controller?type=reviewInsert";
@@ -44,89 +40,55 @@
 </script>
 </head>
 <%@ include file="/common/menu.jspf" %>
-<hr>
 <body>
-<h1>[리뷰를 작성해 주세요]</h1>
-<div class="container">
-	<div class="row">
-	<form action="../controller?type=reviewInsert" method="post">
-		<table class="table table-striped" style="text-align:center; border: 1px solid #dddddd">
-			<thead>
-				<tr>
-					<th colspan="2" style="background-color: #eeeeee; text-align: center;">글쓰기 양식</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<th>책번호</th>
-					<td><input type="text" class="form-control"  name="book_no" size="40" title="책번호"></td>
-				</tr>
-				<tr>
-					<th>작성자</th>
-					<td><input type="text" class="form-control" name="id" size="40" title="작성자"></td>
-				</tr>						
-				<tr>
-					<th>내용</th>
-					<td><textarea  class="form-control"placeholder="리뷰 내용을 입력하세요" name="rev_content" rows="5" cols="35" title="내용"></textarea></td>
-				</tr>
-				<tr>
-					<th>비밀번호</th>
-					<td>
-						<input type="password" name="rev_pwd" size="40" title="비밀번호"> * 게시글 수정 및 삭제시 사용
-					</td>
-				</tr>			
-			</tbody>
-			<tfoot>
-				<tr>
-					<td colspan="2">
-
-					</td>
-				</tr>		
-			</tfoot>
-		</table>
-						<input type="button" class="btn btn-primary pull-right" value="작성" onclick="reviewInsert(this.form)">
-						<input type="reset" value="다시작성">
-						<input type="button" value="목록" onclick="list_go(this.form)"> 		
-	</form>
-	</div>
-</div>
-<hr>
-<div>
-<form action="../controller?type=reviewInsert" method="post">
-	<table>
-		<tbody>
-			<tr>
-				<th>책번호</th>
-				<td><input type="text" name="book_no" size="45" title="책번호"></td>
-			</tr>
-			<tr>
-				<th>작성자</th>
-				<td><input type="text" name="id" size="45" title="작성자"></td>
-			</tr>						
-			<tr>
-				<th>내용</th>
-				<td><textarea name="rev_content" rows="5" cols="35" title="내용"></textarea></td>
-			</tr>
-			<tr>
-				<th>비밀번호</th>
-				<td>
-					<input type="password" name="rev_pwd" size="12" title="비밀번호"> * 게시글 수정 및 삭제시 사용
-				</td>
-			</tr>			
-		</tbody>
-		<tfoot>
-			<tr>
-				<td colspan="2">
-					<input type="button" value="작성" onclick="reviewInsert(this.form)">
-					<input type="reset" value="다시작성">
-					<input type="button" value="목록" onclick="list_go(this.form)">
-				</td>
-			</tr>		
-		</tfoot>
-	</table>
-</form>
-
-</div>
+	<footer id="footer" class="wrapper">
+		<div class="inner">
+			<section>
+				<div class="box">
+					<div class="content">
+						<h2 class="align-center" style="font-weight: bold;">리뷰 작성하기</h2>
+						<form action="/savanna/controller?type=reviewInsert" method="post">
+							<div class="field half first">
+								<label for="name">작성자</label>
+								<input name="id" id="id" type="text" value="${user.id}" readonly>
+							</div>
+							<div class="field half">
+								<label for="book">책번호</label>
+								<div class="select-wrapper">
+									<select name="book_no" id="books">
+									<c:forEach var="vo" items="${vo }">
+										<option value="1">${vo.book_no }</option>
+									</c:forEach>	
+									</select>
+								</div>
+								<input name="book_no" id="book_no" type="text">
+							</div>
+							<div class="field">
+								<label for="content">리뷰 내용</label>
+								<textarea name="rev_content" id="message" rows="6" placeholder="리뷰 내용을 입력하세요"></textarea>
+							</div>
+							<div class="field half">
+								<label for="pwd">비밀번호</label>
+								<input type="password" name="rev_pwd" size="40" title="비밀번호"> <label>* 게시글 수정 및 삭제시 사용</label>
+							</div>
+							<ul class="actions align-center">
+								<li><input value="작성하기" class="button special" type="submit" onclick="reviewInsert(this.form)"></li>
+								<li><input value="다시 작성" class="button" type="reset"></li>
+								<li><input value="목록" class="button" type="submit" onclick="list_go(this.form)"></li>
+							</ul>
+						</form>
+					</div>
+				</div>
+			</section>
+		</div>
+	</footer>
+<%@ include file="/common/foot.jspf" %>
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/skel.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
 		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 		<script src="js/bootstrap.js"></script>
 </body>

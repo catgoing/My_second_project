@@ -73,12 +73,16 @@ function enterUpdateBook(frm) {
 		</tr>
 		</tbody>
 		<tfoot>
+		<c:choose>
+			<c:when test="${user.id == 'a' }">
 			<tr><td colspan="2">
 				<input type="hidden" id="book_no" name="book_no" value="${vo.book_no }">
 				<input type="button" value="수정모드" onclick="enterUpdateBook(this.form)">
 				<input type="button" value="삭제" onclick="deleteBook(this.form)">
 				<input type="button" value="돌아가기" onclick="history.back()">
 			</td></tr>
+			</c:when>
+			<c:when test="${null == user.id }">
 			<tr><td colspan="2">
 				<input type="hidden" id="book_no" name="book_no" value="${vo.book_no }">
 				<input type="button" value="구매하기" onclick="#">
@@ -86,6 +90,9 @@ function enterUpdateBook(frm) {
 				<input type="button" value="좋아요" onclick="#">
 				<input type="button" value="돌아가기" onclick="history.back()">
 			</td></tr>
+			
+			</c:when>
+		</c:choose>
 		</tfoot>
 		</table>
 	</form>

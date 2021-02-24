@@ -74,7 +74,7 @@ footer {
 			<form action="controller?type=adminUpdate" method="post" id="fr_info">
 				<br>
 				
-				<h1 style="margin-right:150px">회원정보</h1>
+				<h1 style="margin-right:0;">회원정보</h1>
 				<!-- content-->
 				<div id="content">
 					<section>

@@ -86,7 +86,8 @@ function insertWishList(frm) {
 		</tr>
 		<tr>
 			<td><label for="pub_date">출판일</label></td>
-			<td>${vo.pub_date}</td>
+			<td><fmt:parseDate value='${vo.pub_date}' var='pub_date' pattern='yyyymmdd'/>
+				<fmt:formatDate value="${pub_date}" pattern="yyyy/MM/dd"/></td>
 		</tr>
 		<tr>
 			<td><label for="price">가격</label></td>

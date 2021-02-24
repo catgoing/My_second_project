@@ -14,8 +14,6 @@ INDEX VERSION 1.131+C:\Users\lan9e\Documents\GitHub\2ndProject_Group2\.metadata\
 3895275253.index
 915478008.index
 368191065.index
-436695098.index
-2206622256.index
 2795265832.index
 721920812.index
 1230375882.index
@@ -38,14 +36,12 @@ INDEX VERSION 1.131+C:\Users\lan9e\Documents\GitHub\2ndProject_Group2\.metadata\
 3866726117.index
 1750013800.index
 235937257.index
-608342474.index
 173864439.index
 1102354409.index
 2227786841.index
 3551552156.index
 2488665110.index
 3476425240.index
-3733242987.index
 2661293508.index
 2402964102.index
 663974701.index

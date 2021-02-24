@@ -148,6 +148,64 @@
 	
 	</select>
 	
+	
+	<!-- 검색 결과 수 조회
+	<select id="getwishcount" parameterType="Map" resultType="int">
+		SELECT COUNT(*) AS CNT 
+		FROM WISHLIST 
+		<choose>
+			<when test="idx == 0">
+				WHERE ID = #{keyword}
+			</when>
+			<when test="idx == 1">
+				WHERE NAME = #{keyword}
+			</when>
+			<when test="idx == 2">
+				WHERE PHONE = #{keyword}
+			</when>
+			<when test="idx == 3">
+				WHERE EMAIL = #{keyword}
+			</when>
+			<otherwise>
+				WHERE 1 = 2
+			</otherwise>
+		</choose>
+	</select>
+	
+		페이지에 표시할 데이터 조회 
+		parameterType="Map" : begin, end 값 전달 용도
+		key-value 형태의 Map 사용 바인드변수명 key가 됨
+	<select id="selectwishlist" resultType="exampleVO"
+			parameterType="Map">
+		SELECT *
+		  FROM (SELECT ROWNUM AS RN, J.*
+		          FROM (SELECT B.BOOK_NAME, B.WRITER, B.PUB_DATE, B.PRICE, B.PUBLISHER,
+             				W.WISH_NO, W.BOOK_NO, W.ID, W.MEMO, W.WISH_DATE
+	         			 FROM BOOKS B INNER JOIN WISHLIST W
+				         ON B.BOOK_NO = W.BOOK_NO
+                  		<choose>
+							<when test="idx == 0">
+								WHERE ID = #{keyword}
+							</when>
+							<when test="idx == 1">
+								WHERE NAME = #{keyword}
+							</when>
+							<when test="idx == 2">
+								WHERE PHONE = #{keyword}
+							</when>
+							<when test="idx == 3">
+								WHERE EMAIL = #{keyword}
+							</when>
+							<otherwise>
+								WHERE 1 = 2
+							</otherwise>
+						</choose>
+		                 ORDER BY ID
+		               ) M 
+		       )
+		 WHERE R_NUM BETWEEN #{begin} AND #{end}
+	</select> -->
+	
 	<!-- id당 찜한 수 -->
 	<select id="getwishcount" parameterType="string"  resultType="int">
 		SELECT COUNT(*) AS CNT FROM WISHLIST WHERE ID = #{id }

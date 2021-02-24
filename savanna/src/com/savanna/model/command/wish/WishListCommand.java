@@ -27,7 +27,7 @@ public class WishListCommand implements Command{
 
 			String id = mvo.getId();
 
-    String command = "wishlist";
+		String command = "wishlist";
 		if(null != mvo) {
 			String id = mvo.getId();
 		

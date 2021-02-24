@@ -35,7 +35,7 @@ public class PayCreditCardCommand implements Command {
 			vo.setAddr(addr);
 			
 			shipPrice = vo.getShippingCharge();
-			tot += vo.getTotalPrice();
+			tot += vo.getCart_price();
 			CartDAO.sendOrder(vo);
 			System.out.println(vo.toString());
 		}
@@ -43,7 +43,18 @@ public class PayCreditCardCommand implements Command {
 		
 		// 결제완료 페이지에 출력할 정보 전달
 		String cardcom = request.getParameter("setcard");
-
+		if(cardcom.equals("sscard")) {
+			cardcom = "삼성카드";
+		} else if(cardcom.equals("hdcard")) {
+			cardcom = "현대카드";
+		} else if(cardcom.equals("shcard")) {
+			cardcom = "신한카드";
+		} else if(cardcom.equals("kbcard")) {
+			cardcom = "KB국민카드";
+		} else {
+			cardcom = "하나카드";
+		}
+		
 		String[] cardnum = new String[4];
 		cardnum[0] = (String)request.getParameter("cardnumber1");
 		cardnum[1] = (String)request.getParameter("cardnumber2");

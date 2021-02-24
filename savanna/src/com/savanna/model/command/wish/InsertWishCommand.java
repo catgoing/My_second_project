@@ -47,7 +47,7 @@ public class InsertWishCommand implements Command{
 			WishDAO.insertWishList(map);
 			CartDAO.deleteProduct(map); //카트에서 삭제
 			
-			path = "controller?type=cartList";
+			path = "controller?type=wishList";
 		} else if (result > 0){
 			path = "cart/jungbok2.jsp";
 		}

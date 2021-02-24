@@ -251,7 +251,7 @@
 				<td>
 					<input type="checkbox" name="check" class="cb" value="${cvo.book_no}">
 				</td>
-				<td class="productcol">${cvo.book_name  }</td>
+				<td class="productcol"><a href="controller?type=EnterDetail&book_no=${cvo.book_no }">${cvo.book_name  }</td>
 				<td class="pricecol"><fmt:formatNumber value="${cvo.cart_price  }" pattern="###,###"/>원</td>
 				<td class="quantcol" >
 				<c:if test="${cvo.cart_quan > 0 }">

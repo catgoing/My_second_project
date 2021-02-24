@@ -66,7 +66,7 @@ $(function (){
 	<br>
 	
 	
-<h1 style="margin-right:150px;">패스워드 확인</h1>
+<h1 style="margin-right:0;">패스워드 확인</h1>
 
 	    <form name="fr">
 	    

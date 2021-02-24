@@ -37,7 +37,7 @@
 .img-placeholder {
 	background-color: white;
 	padding: 0px;
-	width: 25vh;
+	width: 23vh;
 	height: 35vh;
 	align-items: center;
 	justify-content: center;
@@ -46,7 +46,7 @@
 	overflow: none;
 }
 img {
-	width: 25vh;
+	width: 23vh;
 	height: 35vh;
 	object-fit: contain;
 }

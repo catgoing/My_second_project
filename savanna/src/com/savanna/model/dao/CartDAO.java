@@ -12,7 +12,7 @@ import com.savanna.model.vo.MemberVO;
 import com.savanna.mybatis.DBService;
 
 
-public class CartDAO  implements SuperDAO {
+public class CartDAO {
 
 
 	// 장바구니 추가 - 매개변수 : 책번호, 회원id
@@ -88,10 +88,11 @@ public class CartDAO  implements SuperDAO {
 
 
 	//장바구니 상품 삭제 - 매개변수 : map(책번호 + 회원아이디)
-	public static void deleteProduct(Map<String, Object> map) {
+	public static int deleteProduct(Map<String, Object> map) {
 		SqlSession ss = DBService.getFactory().openSession(true);
-		ss.delete("cart.deleteincart", map);
+		int result = ss.delete("cart.deleteincart", map);
 		ss.close();
+		return result;
 	}
 
 	//장바구니 전체 금액 조회 - 매개변수 : id

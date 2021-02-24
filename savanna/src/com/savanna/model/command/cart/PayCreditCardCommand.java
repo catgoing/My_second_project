@@ -24,8 +24,8 @@ public class PayCreditCardCommand implements Command {
 		String id = mvo.getId();
 		String addr = mvo.getAddr();
 		
-		int tot = 0;
-		int shipPrice = 0;
+		int tot = Integer.parseInt((String)request.getParameter("totprice"));
+		
 		//id, 책번호를 이용하여 CartVO정보를 가져오고 구매이력에 전달
 		List<CartVO> list = CartDAO.cartList(id);
 		
@@ -34,12 +34,9 @@ public class PayCreditCardCommand implements Command {
 			vo.setTotalPrice(vo.getCart_price()); 
 			vo.setAddr(addr);
 			
-			shipPrice = vo.getShippingCharge();
-			tot += vo.getCart_price();
 			CartDAO.sendOrder(vo);
 			System.out.println(vo.toString());
 		}
-		tot += tot + shipPrice;
 		
 		// 결제완료 페이지에 출력할 정보 전달
 		String cardcom = request.getParameter("setcard");

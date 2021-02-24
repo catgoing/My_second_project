@@ -100,14 +100,38 @@
 	}
 	//수량변경
 	function editQuan(frm){
-		if($(".quant").val() > 0 ){
+		if(frm.quant.value <= 0  ){
+			console.log(frm.quant.value);
+			alert("최소 수량은 1개입니다.");
+			frm.quant.value = 1;
+			return false;
+		}else{
 			frm.action = "/savanna/controller?type=editQuan";
 			frm.method = "post";
 			frm.submit();	
-		}else{
-			alert("최소 수량은 1개입니다.");
-			$(".quant").val(1);
 		}
+	}
+	
+	/* 잘못된 코드~~~~~
+	function editQuan(frm){
+		if($(".quant").val() <= 0  ){
+			console.log($(".quant").val());
+			console.log($(this));
+			alert("최소 수량은 1개입니다.");
+			$(this).val()
+			return false;
+		}else{
+			frm.action = "/savanna/controller?type=editQuan";
+			frm.method = "post";
+			frm.submit();	
+		}
+	} */
+	
+	//개별삭제
+	function deleteInCart(frm){
+		frm.action = "/savanna/controller?type=deleteInCart";
+		frm.method = "post";
+		frm.submit();
 	}
 	//전체삭제
 	function clear_cart(frm){
@@ -121,69 +145,63 @@
 		frm.method="post";
 		frm.submit();
 	}
+	
 	$(function (){ 
 		//전체선택
 		$('#selall').click(function(){ 
 			if($("#selall").prop("checked")) { // 전체선택이 체크됐을 때
-				$("input[type=checkbox]").prop("checked",true); // 전체 checkbox들을 체크 
+				$("input[type=checkbox]").prop("checked",true); 
 			} else { // 전체선택 체크박스가 해제된 경우 
-				$("input[type=checkbox]").prop("checked",false); // 모든 checkbox들의 체크를 해제
+				$("input[type=checkbox]").prop("checked",false);
 			}
 		});
-	
-		//체크한 상품 삭제
+	});
+	//체크된 상품 삭제
+	$(function (){ 
 		$("#seldelbtn").click(function(){
-			$("input:checkbox[type=checkbox]:checked").each(function(){
-			var datas = "book_no=" + $(this).val();
-				
-				if($("input:checkbox[type=checkbox]:checked").length == 0){
-					alert("삭제할 품목을 선택해주세요!");
-				} else {
-					$.ajax("/savanna/controller?type=deleteInCart",{
-						type : "post",
-						data : datas, 
-						dataType : "text",
-						success : function(data){ 
-							location.reload(); //화면 새로고침
-						},
-						error : function(jqXHR, testStatus, errorThrown){
-							alert("[예외발생] Ajax 처리실패!! \n"
-									+ "jqXHR : " + jqXHR.readyState + "\n"
-									+ "testStatus : " + testStatus + "\n"
-									+ "errorThrown : " + errorThrown);
-						}
-					});
-				}
-			});
-		}); 
-	});	
-		/* //체크한 상품 구입
-		$("#selbuybtn").click(function(){
-			var values = [];
-			$("input:checkbox[type=checkbox]:checked").each(function(){
-				if($("input:checkbox[type=checkbox]:checked").length == 0){
-					alert("구입할 품목을 선택해주세요!");
-				} else {
-					values.push($(this).val());
-					var datas = {
-						"book_array" : values
-					$.ajax("/savanna/controller?type=orderPayment2",{
-						type : "post",
-						data : datas, 
-						success : function(data){ 
-							location.reload(); //화면 새로고침
-						},
-						error : function(jqXHR, testStatus, errorThrown){
-							alert("[예외발생] Ajax 처리실패!! \n"
-									+ "jqXHR : " + jqXHR.readyState + "\n"
-									+ "testStatus : " + testStatus + "\n"
-									+ "errorThrown : " + errorThrown);
-						}
-					});
-				}
-			});
+			var books = [];
+			var confirm_val = confirm("정말 삭제하시겠습니까?");
+			if(confirm_val) {
+			 	$("input:checkbox[name=check]:checked").each(function(){
+			 		var val = $(this).val();
+			 		books.push(val);
+			  	});
+			   	$.ajax({
+			    	 url : "/savanna/controller?type=checkDelete",
+			    	 type : "post",
+			    	 traditional : true,
+			    	 data : { 'book_no' : books },
+			    	 success : function(){
+			     		location.href = "/savanna/controller?type=cartList";
+			    	 }
+			   });
+			} 
 		});
-	}); */
+	});
+	/*
+	//체크상품 구매 - 구현X
+	$(function (){ 
+		$("#seldelbtn").click(function(){
+			var books = [];
+			var confirm_val = confirm("정말 구매하시겠습니까?");
+			if(confirm_val) {
+			 	$("input:checkbox[name=check]:checked").each(function(){
+			 		var val = $(this).val();
+			 		books.push(val);
+			  	});
+			   	$.ajax({
+			    	 url : "/savanna/controller?type=orderPayment2",
+			    	 type : "post",
+			    	 traditional : true,
+			    	 data : { 'book_no' : books },
+			    	 success : function(){
+			     		location.href = "/savanna/controller?type=cartList";
+			    	 }
+			   });
+			} 
+		});
+	});
+	*/
 	
 </script>
 
@@ -218,14 +236,14 @@
 				<form>
 					<input type="number" name="quant" class="quant" size="3" min="1" max="10"
 							value="${cvo.cart_quan }">
-					<input type="button" class="btn" id="quanbtn" value="수정" onclick="editQuan(this.form)">
+					<input type="button" class="btn" id="quantbtn" value="수정" onclick="editQuan(this.form)">
+					<input type="hidden" name="book_no" value="${cvo.book_no }">
 				</form>
 				</c:if>
 				<c:if test="${cvo.cart_quan == 0 }">
-					<input type="number" name="quant" class="quant" size="3" value="0" disabled>품절/절판
+					<input type="txet" name="quant" class="quant" size="12" value="품절/절판" disabled>
 				</c:if>
 				</td>
-				<form>
 				<td class="deletecol" >
 				<form>
 					<input type="button" class="btn" id="wishbtn" value="찜목록이동" onclick="wish_insert(this.form)">
@@ -234,7 +252,6 @@
 					<input type="hidden" name="price" value="${cvo.cart_price }">
 				</form>
 				</td>
-				</form>
 			</tr>
 		</c:forEach>
 		</c:if>

@@ -23,10 +23,10 @@
 <title>:: 찜목록 ::</title>
 </head>
 <style>
-	h1{
-	  margin: 30px auto;
-	  text-align: center;
-	  font-weight: bold;
+	#wishtitle{
+		margin-right: 100px;
+		text-align: center;
+		font-weight: bold;
 	}
 	ul, ol{
 		list-style: none;
@@ -87,7 +87,7 @@
 	<%@ include file="/common/menu.jspf" %>
 	<%@ include file="/common/memberSidebar.jspf" %>
 	<br>
-	<h1>위시리스트</h1>
+	<h1 id="wishtitle">위시리스트</h1>
 	<br>
 	<div class="wish">
 	<table class="table">

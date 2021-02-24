@@ -31,10 +31,10 @@
         min-height:100%;
         /* position:relative; */
     }
-    h1{
-	  margin: 35px auto;
-	  text-align: center;
-	  font-weight: bold;
+   	#h1title{
+		margin-right: 100px;
+		text-align: center;
+		font-weight: bold;
 	}
     table {
         max-width: 700px;
@@ -231,7 +231,7 @@
 	<%@ include file="/common/menu.jspf" %>
 	<%@ include file="/common/memberSidebar.jspf" %>
 	<br>
-	<h1>장바구니</h1>
+	<h1 id="h1title">장바구니</h1>
 	<br>
 	<div class="cartwrqpper">
 	<table class="table">

@@ -41,12 +41,13 @@ function insertWishList(frm) {
 	<form method="post">
 		<table id="content">
 		<thead>
-		<tr>
-			<th>항목</th>
-			<th>내용</th>
-		</tr>
 		</thead>
 		<tbody>
+		<tr>
+			<td colspan="2">
+				<img src="images/${vo.book_no}.jpg" alt="제품이미지">
+			</td>
+		</tr>
 		<tr>
 			<td><label for="book_name">제목</label></td>
 			<td>${vo.book_name}</td>

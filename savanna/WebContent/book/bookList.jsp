@@ -24,12 +24,20 @@
 	border-radius: 5%;
 }
 .img-placeholder {
-	background-color: lightcoral;
+	background-color: white;
 	padding: 0px;
-	width: 25vh;
-	height: 25vh;
+	width: 23vh;
+	height: 35vh;
+	align-items: center;
+	justify-content: center;
 	border-radius: 5%;
 	box-shadow: 0 20px 20px rgba(0,0,0,0.2);
+	overflow: none;
+}
+img {
+	width: 23vh;
+	height: 35vh;
+	object-fit: contain;
 }
 </style>
 <script>
@@ -61,6 +69,7 @@
 		<tr class="book">
 			<td>${vo.book_no }</td>
 			<td>
+				<img class="img" src="images/${vo.book_no}.jpg" alt="제품이미지">
 			</td>
 			<td>
 				<a href="controller?type=EnterDetail&book_no=${vo.book_no }">

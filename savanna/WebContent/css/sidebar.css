@@ -1,29 +1,29 @@
 @import url(http://fonts.googleapics.com/earlyaccess/nanumgothic.css);
 
-* {
+.sidebar * {
 	font-family: 'nanumgothic' !important;
 	margin: 0;
 	padding: 0;
 }
 
-ul {
+.sidebar ul {
 	list-style: none;
 	margin-left: 10px;
 	border: none;
 }
 
-ul li a {
+.sidebar ul li a {
 	text-decoration: none;
 	color: rgb(255, 255, 255);
 	margin-left: 8px;
 	line-height: 4.5vh;
 }
 
-ul li a:hover {
+.sidebar ul li a:hover {
 	color: rgb(139, 139, 139);
 }
 
-li h4 {
+.sidebar li h4 {
 	color: rgb(204, 204, 204);
 	text-align: center;
 	margin-top: 13px;
@@ -33,7 +33,7 @@ li h4 {
 	
 }
 
-hr {
+.sidebar hr {
 	margin-top: 10px;
 	background-color: rgb(65, 65, 65);
 	border-color: rgb(65, 65, 65);

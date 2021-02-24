@@ -7,20 +7,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.savanna.model.command.Command;
-import com.savanna.model.dao.BookDAO;
-import com.savanna.model.vo.BookVO;
 
 public class AbstractedDomainListPagingCommandExample implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		new ListPaging<BookVO>().PagingDistributor(new BookDAO(), request, 5, 5);
-		return "book/bookList.jsp";
+//		new ListPaging<SuperVO>().PagingDistributor(new SuperDAO(), request, 5, 5);
+		return "domain/domainList.jsp";
 	}
-
-	public boolean isLoginValidate() {
-		return true;
-	}
-
 }

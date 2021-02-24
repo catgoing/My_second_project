@@ -19,6 +19,7 @@
 <!-- Custom styles for this template -->
 <link href="/savanna/css/savanna.css" rel="stylesheet">
 <link href="/savanna/css/member.css" rel="stylesheet">
+<link href="/savanna/css/sidebar.css" rel="stylesheet">
 <title>리뷰 삭제(패스워드 확인)</title> 
 </head>
 <script>
@@ -39,6 +40,8 @@
 
 </script>
 <%@ include file="/common/menu.jspf" %>
+<%@ include file="/common/memberSidebar.jspf" %>
+
 <body>
 	<form action="../controller?type=reviewDelete" method="post" name="fr">
 		<h1>패스워드 확인</h1>

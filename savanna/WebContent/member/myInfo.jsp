@@ -93,7 +93,7 @@
 
 	
 	function withdrawal(){
-		location.href = "member/withdrawal.jsp"
+		location.href = "withdrawal.jsp"
 	}
 	
 	

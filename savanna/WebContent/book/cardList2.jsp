@@ -4,17 +4,17 @@
 <!DOCTYPE html>
 <meta charset="UTF-8">
 <style>
-body {
+.cardList {
+	position: absolute;
+	left: 150px;
 }
 .container {
 	background-color: white;
-	width: 80%;
+	width: 90%;
 	display: flex;
 	flex: 50px;
-	justify-content: space-between;
-	align-items: center;
-	overflow: auto;
-	border: 1px solid black;
+	overflow: visible;
+	border: none;
 }
 .card {
 	padding: 0px;
@@ -35,12 +35,20 @@ body {
 	border-radius: 5%;
 }
 .img-placeholder {
-	background-color: peru;
+	background-color: white;
 	padding: 0px;
 	width: 25vh;
-	height: 25vh;
+	height: 35vh;
+	align-items: center;
+	justify-content: center;
 	border-radius: 5%;
 	box-shadow: 0 20px 20px rgba(0,0,0,0.2);
+	overflow: none;
+}
+img {
+	width: 25vh;
+	height: 35vh;
+	object-fit: contain;
 }
 .card li {
 	list-style: none;
@@ -51,20 +59,28 @@ body {
 	margin-right: 10px;
 }
 </style>
-	<div class="container">
-		<h2></h2>
-		<c:forEach var="vo" items="${list }">
-			<ul class="card">
-			<a href="controller?type=EnterDetail&book_no=${vo.book_no }">
-			
-				<li class="img-container">
-					<div class="img-placeholder"></div>
-				</li>
-				<li><h3>${vo.book_name }</h3></li>
-				<li><h4>${vo.writer }</h4></li>
-				<li><h5>${vo.publisher }</h5></li>
-				<li><h3 class="price">${vo.price }₩<h3><li>
-			</a>
-			</ul>
-		</c:forEach>	
-	</div>
+<div class="cardList">
+	<h2></h2>
+	<c:forEach var="vo" items="${list }" varStatus="i">
+		<c:if test="${i.count%4 eq 1}">
+			<div class="container">
+		</c:if>
+		<ul class="card">
+		<a href="controller?type=EnterDetail&book_no=${vo.book_no }">
+		
+			<li class="img-container">
+				<div class="img-placeholder">
+					<img class="img" src="images/${vo.book_no}.jpg" alt="제품이미지">
+				</div>
+			</li>
+			<li><h3>${vo.book_name }</h3></li>
+			<li><h4>${vo.writer }</h4></li>
+			<li><h5>${vo.publisher }</h5></li>
+			<li><h3 class="price">${vo.price }원<h3><li>
+		</a>
+		</ul>
+		<c:if test="${i.count%4 eq 0}">
+			</div>
+		</c:if>
+	</c:forEach>
+</div>

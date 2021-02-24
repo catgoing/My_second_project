@@ -18,16 +18,19 @@
 <!-- Custom styles for this template -->
 <link href="/savanna/css/savanna.css" rel="stylesheet">
 
+<link href="css/sidebar.css" rel="stylesheet">
+<link href="css/cardList.css" rel="stylesheet">
+
+
+
 <title>메인화면</title>
 </head>
 <body>
 	<%@ include file="/common/menu.jspf" %>
   <aside>
+  	<%@ include file="/common/bookSidebar.jspf" %>
   </aside>
   <section>
-    <article>
-      <%@ include file="book/cardList2.jsp" %>
-    </article>
     <article>
       <%@ include file="book/cardList2.jsp" %>
     </article>

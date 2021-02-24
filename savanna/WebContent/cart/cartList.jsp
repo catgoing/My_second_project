@@ -27,11 +27,14 @@
 	.cartwrqpper {
         width: 800px;
         margin: auto;
+        height:500px;
+        min-height:100%;
+        /* position:relative; */
     }
-    h1 {
-	    margin-right: 100px;
-	    text-align: center;
-	    font-weight: bold;
+   	#h1title{
+		margin-right: 100px;
+		text-align: center;
+		font-weight: bold;
 	}
     table {
         max-width: 700px;
@@ -40,11 +43,21 @@
 	th, td {
     	text-align: center;
     }
-    .btn {
+     #wishbtn:hover,#quantbtn:hover,#delbtn:hover,
+    #seldelbtn:hover,#alldelbtn:hover,#allbuybtn:hover {
+    	font-size: 14px;
+		font-weight: normal;
+	    line-height: 1.42857143;
+	    margin-bottom: 0;
+		padding: 6px 12px;
+	    text-align: center;
+	    white-space: nowrap;
+	    vertical-align: middle;
     	border: 1px solid #ff4aa5;
-		padding: 3px 7px;
+		border-radius: 4px;
     }
-    .btn:hover {
+    #wishbtn:hover,#quantbtn:hover,#delbtn:hover,
+    #seldelbtn:hover,#alldelbtn:hover,#allbuybtn:hover {
 		background-color: #292929;
 		color: white;
 	}
@@ -74,9 +87,17 @@
     #btnlist li{
 	    float:left; 
     }
-    #btnlist li .btn{
+    #btnlist>li>.btn{
     	margin:3px;
     }
+    .title {
+    	text-align: center;
+    }
+    .footer {
+	   width:100%;
+	   position:absolute;
+	   bottom:0;
+	}
 </style>
 <script>
 	//전체구입
@@ -210,7 +231,8 @@
 	<%@ include file="/common/menu.jspf" %>
 	<%@ include file="/common/memberSidebar.jspf" %>
 	<br>
-	<h1>장바구니</h1>
+	<h1 id="h1title">장바구니</h1>
+	<br>
 	<div class="cartwrqpper">
 	<table class="table">
 		<thead>
@@ -269,8 +291,8 @@
 		<form>
 		<ul id="btnlist">
 			<li><input type="button" class="btn" id="seldelbtn" value="선택삭제" ></li>
-            <li><input type="button" class="btn" value="전체삭제" onclick="clear_cart(this.form)"></li>
-            <li><input type="button" class="btn" value="전체구입" onclick="order_go(this.form)">
+            <li><input type="button" class="btn" id="alldelbtn" value="전체삭제" onclick="clear_cart(this.form)"></li>
+            <li><input type="button" class="btn" id="allbuybtn" value="전체구입" onclick="order_go(this.form)">
 				<input type="hidden" name="book_no" value="${cvo.book_no }"></li>
 		</ul>
 		</form>
@@ -288,5 +310,9 @@
 		</table>
 		</div>
 	</div>
+	
+	<%@ include file="/common/foot.jspf"%>
+
+
 </body>
 </html>

@@ -30,6 +30,8 @@
 		width: 800px;
         margin: auto;
         text-align: center;
+		height: 500px;
+		min-height: 100%;
 	}
 	#orderinfo {
 		list-style:none;
@@ -43,15 +45,19 @@
 		border: 1px solid #ff4aa5;
 		padding: 3px 7px;
     }
-    
+    .footer {
+	   width:100%;
+	   position:absolute;
+	   bottom:0;
+	}
 </style>
 <body>
 	<%@ include file="/common/menu.jspf" %>
 	<%@ include file="/common/memberSidebar.jspf" %>
-	
 	<div id="complewrapper">
+	<br><br>
 	<h3 style="text-align:center">주문이 완료되었습니다.</h3>
-	
+	<br><br>
 	<ul id="orderinfo">
 		<li>배송지 : ${addr }</li>
 		<li>결제가격 : <fmt:formatNumber value="${tot }" pattern="###,###"/>원</li>
@@ -64,5 +70,9 @@
 		<input type="button" class="btn" value="구매내역" onclick="javascript:location.href='/savanna/controller?type=buyList'">
 	</div>
 	</div>
+	
+	<%@ include file="/common/foot.jspf"%>
+
+	
 </body>
 </html>

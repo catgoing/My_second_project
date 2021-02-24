@@ -24,7 +24,6 @@
 		frm.action = "../controller?type=reviewPage";
 		frm.submit();
 	}
-ㅇ
 </script>
 </head>
 <%@ include file="/common/menu.jspf" %>
@@ -43,13 +42,8 @@
 							<div class="field half">
 								<label for="book">책번호</label>
 								<div class="select-wrapper">
-									<select name="book_no" id="books">
-									<c:forEach var="vo" items="${vo }">
-										<option value="1">${vo.book_no }</option>
-									</c:forEach>	
-									</select>
+									<input name="book_no" id="book_no" type="text">
 								</div>
-								<input name="book_no" id="book_no" type="text">
 							</div>
 							<div class="field">
 								<label for="content">리뷰 내용</label>

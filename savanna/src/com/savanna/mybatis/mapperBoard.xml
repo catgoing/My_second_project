@@ -94,12 +94,6 @@
 		VALUES (COMMENTS_SEQ.NEXTVAL, #{rev_no}, #{id}, #{comm_content}, SYSDATE)
 	</insert>
 	
-	<!-- 댓글 수정 -->
-	<update id="comm_update">
-		UPDATE COMMENTS SET COMM_NO =#{comm_no}, COMM_CONTENT =#{comm_content} 
-		WHERE COMM_NO = #{comm_no}
-	</update>	
-	
 	<!-- 댓글 삭제 -->
 	<delete id="comm_delete" parameterType="int">
 		DELETE FROM COMMENTS WHERE COMM_NO = #{comm_no}

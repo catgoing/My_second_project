@@ -39,7 +39,7 @@ public class BookVO {
 		return pub_date;
 	}
 	public void setPub_date(String pub_date) {
-		this.pub_date = pub_date;
+		this.pub_date = pub_date.substring(0, 10);
 	}
 	public int getPrice() {
 		return price;

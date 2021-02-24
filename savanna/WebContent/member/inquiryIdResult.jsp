@@ -21,9 +21,14 @@
 <style>
 footer {
    width:100%;
-   position:absolute;
+   position:relative;
    bottom:0;
 }
+
+#wrapper{
+	height: 500px;
+}
+
 </style>
 </head>
 <body>

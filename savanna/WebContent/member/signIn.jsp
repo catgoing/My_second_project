@@ -40,7 +40,7 @@
 <style>
 footer {
    width:100%;
-   position:absolute;
+   position: relative;
    bottom:0;
 }
 </style>
@@ -53,7 +53,7 @@ footer {
 
 	    <form action="/savanna/controller?type=doSignIn" method="post" name="fr">
 	    
-          <div id="wrapper">
+          <div id="wrapper" style="height: 500px">
             <!-- content-->
             <div id="content">
                 

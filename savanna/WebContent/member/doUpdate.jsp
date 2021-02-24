@@ -12,7 +12,7 @@
 		alert("정보가 수정되었습니다");
 		console.log('${user.id}');
 		if('${user.id}' == 'a'){
-			location.href = "/savanna/controller?type=adminMemList";
+			location.href = "/savanna/controller?type=memList";
 		}
 		if('${user.id}' != 'a'){
 		location.href = "member/myInfo.jsp";

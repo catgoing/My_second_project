@@ -28,11 +28,18 @@
 	div .panel{
         width: 800px;
         margin: auto;
+     	min-height: 100%;
+     	border : none;
     }
     div #orderlist, #paymentselect, #sel, #buttons{
     	width: 60%;
     	margin: auto;
     }
+    h1{
+	  margin: 35px auto;
+	  text-align: center;
+	  font-weight: bold;
+	}
     table {
         width: 70%;
         margin: auto;
@@ -70,14 +77,16 @@
     #addr {
         text-align: center;
     }
-    .payment_card {
-    	
-    }
     .btn {
     	border: 1px solid #ff4aa5;
 		padding: 3px 7px;
     }
-    
+    .footer {
+	   width:100%;
+	   position:absolute;
+	   bottom:0;
+	}
+	
 </style>
 <script>
     function back_cart(frm){
@@ -159,12 +168,13 @@
 </script>    
 <body>
 	<%@ include file="/common/menu.jspf" %>
+	
  <div class="panel">
     <div id="orderlist">
         <table class = "table">
             <thead>
                 <tr>
-                    <th class="th1" id="th_info" colspan="3">상품 확인</th>
+                    <th class="th1" id="th_info" colspan="3"  style="font-size:1.5em">상품 확인</th>
                 </tr>
                 <tr>
                     <th>상품명</th>
@@ -282,6 +292,7 @@
 	</form>	
 </div>  
 
+	<%@ include file="/common/foot.jspf"%>
 
 </body>
 </html>

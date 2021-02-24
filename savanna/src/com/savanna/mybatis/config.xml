@@ -31,6 +31,7 @@
     <mapper resource="com/savanna/mybatis/mapperMember.xml"/>
     <mapper resource="com/savanna/mybatis/mapperBoard.xml"/>
     <mapper resource="com/savanna/mybatis/mapperCart.xml"/>
+    <mapper resource="com/savanna/mybatis/mapperBook.xml"/>
   </mappers>
 </configuration>
 

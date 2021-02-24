@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <meta charset="UTF-8">
 <style>
@@ -76,7 +77,7 @@ img {
 			<li><h3>${vo.book_name }</h3></li>
 			<li><h4>${vo.writer }</h4></li>
 			<li><h5>${vo.publisher }</h5></li>
-			<li><h3 class="price">${vo.price }원<h3><li>
+			<li><h3 class="price"><fmt:formatNumber value="${vo.price}" pattern="#,###,###원" /><h3><li>
 		</a>
 		</ul>
 		<c:if test="${i.count%4 eq 0}">

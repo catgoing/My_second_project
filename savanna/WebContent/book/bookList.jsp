@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -123,7 +124,7 @@ img {
 			</td>
 			<td>${vo.writer }</td>
 			<td>${vo.publisher }</td>
-			<td>${vo.price }</td>
+			<td><fmt:formatNumber value="${vo.price}" pattern="#,###,###원" /></td>
 			<td class="stock">&lt;&lt;${vo.stock }&gt;&gt;</td>
 		</tr>
 	</c:forEach>

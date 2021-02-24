@@ -9,51 +9,17 @@ import com.savanna.model.vo.BookVO;
 import com.savanna.mybatis.DBService;
 
 public class StaticBookDAO {
-	public static List<BookVO> getBookList() {
-		SqlSession ss = DBService.getFactory().openSession();
-		List<BookVO> list = ss.selectList("mystudy.booklist");
-		ss.close();
-		return list;
-	}
-	
-	public static List<BookVO> getPagedBookList(Map<String, Integer> map) {
-		SqlSession ss = DBService.getFactory().openSession();
-		List<BookVO> list = ss.selectList("mystudy.pagedDatelessBookList", map);
-		ss.close();
-		return list;
-	}
-	
-	public static int getBookCount() {
-		SqlSession ss = DBService.getFactory().openSession();
-		int totalCount = ss.selectOne("mystudy.bookCount");
-		ss.close();
-		return totalCount;
-	}
-	
-	public static BookVO getBookDetail(int book_no) {
-		SqlSession ss = DBService.getFactory().openSession();
-		BookVO vo = ss.selectOne("mystudy.bookdetail", book_no);
-		ss.close();
-		return vo;
-	}
-
-	public static int deleteBook(int book_no) {
+	public static int searchBookCount(Map<String, String> map) {
+		System.out.println(map.get("keyword"));
 		SqlSession ss = DBService.getFactory().openSession(true);
-		int result = ss.delete("mystudy.deletebook", book_no);
+		int result = ss.selectOne("book.searchBookCount", map);
 		ss.close();
 		return result;
 	}
-	
-	public static int insertBook(BookVO vo) {
+	public static List<BookVO> searchBook(Map<String, String> map) {
+		System.out.println(map.get("keyword"));
 		SqlSession ss = DBService.getFactory().openSession(true);
-		int result = ss.insert("mystudy.insertbook", vo);
-		ss.close();
-		return result;
-	}
-	
-	public static int updateBook(BookVO vo) {
-		SqlSession ss = DBService.getFactory().openSession(true);
-		int result = ss.insert("mystudy.updatebook", vo);
+		List<BookVO> result = ss.selectList("book.searchBook", map);
 		ss.close();
 		return result;
 	}

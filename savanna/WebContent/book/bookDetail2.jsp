@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,8 +13,27 @@
 <link href="/savanna/css/member.css" rel="stylesheet">
 <link href="/savanna/css/book.css" rel="stylesheet">
 <link href="/savanna/css/sidebar.css" rel="stylesheet">
-
-
+<style>
+.content {
+position: relative;
+justify-content: center;
+}
+#bookDetail {
+    position: relative;
+    width: 460px;
+}
+.btn {
+    font-size: 14px;
+	font-weight: normal;
+    line-height: 1.42857143;
+    margin-bottom: 0;
+	padding: 6px 12px;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+	border-radius: 4px;
+}
+</style>
 <script>
 function deleteBook(frm) {
 	frm.action = "controller?type=DeleteBook";
@@ -40,8 +61,9 @@ function insertWishList(frm) {
 
 	<br><h1>상품 상세보기</h1>
 	<br>
+	<div class="content">
 	<form method="post">
-		<table id="content">
+		<table id="bookDetail">
 		<thead>
 		</thead>
 		<tbody>
@@ -68,7 +90,7 @@ function insertWishList(frm) {
 		</tr>
 		<tr>
 			<td><label for="price">가격</label></td>
-			<td>${vo.price }</td>
+			<td><fmt:formatNumber value="${vo.price}" pattern="#,###,###원" /></td>
 		</tr>
 		<tr>
 			<td><label for="book_desc">책소개</label></td>
@@ -88,24 +110,25 @@ function insertWishList(frm) {
 			<c:when test="${user.id == 'a' }">
 			<tr><td colspan="2">
 				<input type="hidden" id="book_no" name="book_no" value="${vo.book_no }">
-				<input type="button" value="수정모드" onclick="enterUpdateBook(this.form)">
-				<input type="button" value="삭제" onclick="deleteBook(this.form)">
-				<input type="button" value="돌아가기" onclick="history.back()">
+				<input type="button" class="btn" value="수정모드" onclick="enterUpdateBook(this.form)">
+				<input type="button" class="btn" value="삭제" onclick="deleteBook(this.form)">
+				<input type="button" class="btn" value="돌아가기" onclick="history.back()">
 			</td></tr>
 			</c:when >
 			<c:otherwise>
 			<tr><td colspan="2">
-				<input type="hidden" id="book_no" name="book_no" value="${vo.book_no }">
-				<input type="button" value="장바구니에 넣기" onclick="cartInsert(this.form)">
-				<input type="button" value="좋아요" onclick="insertWishList(this.form)">
-				<input type="button" value="돌아가기" onclick="history.back()">
+				<input type="hidden" class="btn" id="book_no" name="book_no" value="${vo.book_no }">
+				<input type="button" class="btn" value="장바구니에 넣기" onclick="cartInsert(this.form)">
+				<input type="button" class="btn" value="찜하기" onclick="insertWishList(this.form)">
+				<input type="button" class="btn" value="돌아가기" onclick="history.back()">
 			</td></tr>
 			</c:otherwise>
 		</c:choose>
 		</tfoot>
 		</table>
 	</form>
-	
+	</div>
+	<br><br>
 	<%@ include file="/common/foot2.jspf" %>
 	
 </body>

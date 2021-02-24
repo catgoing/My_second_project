@@ -275,9 +275,7 @@
 
 	<%@ include file="/common/menu.jspf"%>
 
-
-
-		<div id="wrapper" style="overflow: auto;">
+<div id="wrapper" style="height: 800px">
 	<form action="/savanna/controller?type=doSignUp" method="post"
 		name="fr" onsubmit="return null_check()">
 		<!-- wrapper -->
@@ -367,7 +365,7 @@
 				</section>
 		</div>
 	</form>
-		</div>
+</div>
 	<div class="footer">
 					<%@ include file="/common/foot.jspf"%>
 	</div>

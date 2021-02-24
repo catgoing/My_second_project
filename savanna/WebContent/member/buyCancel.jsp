@@ -65,7 +65,7 @@
 	<br><br><br>
 		
 	<div class="buy">
-	<table class="table">
+	<table class="table" style="margin-left:50px">
 		<thead>
 			<tr>
 				<th class="title" colspan="3">상품정보</th>

@@ -21,9 +21,14 @@
 <style>
 footer {
    width:100%;
-   position:absolute;
+   position:relative;
    bottom:0;
 }
+
+#wrapper{
+	height: 500px;
+}
+
 </style>
 </head>
 <body>
@@ -51,7 +56,7 @@ footer {
                     </span>
                 </div>
 
-                
+                <br>
                 <!-- SIGNIN BTN-->
                 <div class="btn_area" style="margin: 20px 0 0 0">
                   <button type="submit" id="signinbtn" style="margin: 0">

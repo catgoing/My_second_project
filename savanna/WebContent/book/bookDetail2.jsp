@@ -10,6 +10,7 @@
 <link href="/savanna/css/savanna.css" rel="stylesheet">
 <link href="/savanna/css/member.css" rel="stylesheet">
 <link href="/savanna/css/book.css" rel="stylesheet">
+<link href="/savanna/css/sidebar.css" rel="stylesheet">
 
 
 <script>
@@ -35,9 +36,10 @@ function insertWishList(frm) {
 </head>
 <body>
 	<%@ include file="/common/menu.jspf" %>
+	<%@ include file="/common/bookSidebar.jspf" %>
 
-	<h1>상품 상세보기</h1>
-	
+	<br><h1>상품 상세보기</h1>
+	<br>
 	<form method="post">
 		<table id="content">
 		<thead>
@@ -103,5 +105,8 @@ function insertWishList(frm) {
 		</tfoot>
 		</table>
 	</form>
+	
+	<%@ include file="/common/foot2.jspf" %>
+	
 </body>
 </html>

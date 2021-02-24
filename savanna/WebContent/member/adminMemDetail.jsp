@@ -166,6 +166,6 @@
 	</form>
 	</c:if>
 	<hr>
-	<%@ include file="/common/foot.jspf" %>
+	<%@ include file="/common/foot2.jspf" %>
 </body>
 </html>

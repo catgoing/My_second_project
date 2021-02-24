@@ -134,7 +134,7 @@ function isAdmin(){
 	</table>
 
 </c:if>
-	<%@ include file="/common/foot.jspf" %>
+	<%@ include file="/common/foot2.jspf" %>
 
 </body>
 </html>

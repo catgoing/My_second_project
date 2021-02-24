@@ -9,6 +9,8 @@
 <link href="/savanna/css/savanna.css" rel="stylesheet">
 <link href="/savanna/css/member.css" rel="stylesheet">
 <link href="/savanna/css/book.css" rel="stylesheet">
+<link href="/savanna/css/paging.css" rel="stylesheet">
+<link href="/savanna/css/sidebar.css" rel="stylesheet">
 
 <script>
 function createBook(frm) {
@@ -32,9 +34,10 @@ function createDummyBook(frm) {
 <title>enroll book</title>
 </head>
 <body>
-	<%@ include file="/common/menu.jspf" %>
 
-	<h1>상품 등록</h1>
+	<%@ include file="/common/menu.jspf" %>
+	<%@ include file="/common/adminSidebar.jspf" %>
+	<br><h1>상품 등록</h1><br>
 	<form method="post">
 		<table id="content">
 		<thead>
@@ -88,5 +91,6 @@ function createDummyBook(frm) {
 		</tfoot>
 		</table>
 	</form>
+	<%@ include file="/common/bookSidebar.jspf" %>
 </body>
 </html>

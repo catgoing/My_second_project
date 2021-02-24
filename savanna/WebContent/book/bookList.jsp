@@ -13,6 +13,9 @@
 <link href="/savanna/css/savanna.css" rel="stylesheet">
 <link href="/savanna/css/member.css" rel="stylesheet">
 <link href="/savanna/css/book.css" rel="stylesheet">
+<link href="/savanna/css/paging.css" rel="stylesheet">
+<link href="/savanna/css/sidebar.css" rel="stylesheet">
+
 <style>
 .img-container {
 	background-color: white;
@@ -39,6 +42,45 @@ img {
 	height: 35vh;
 	object-fit: contain;
 }
+
+	ul, ol{
+	list-style: none;
+	margin-left: 10px;
+	}
+	
+	tr > td{
+	text-align : center;
+	height : 50px;
+	} 
+	
+	tr{
+	border: 1px lightgray;
+	border-style : solid none none none;
+	}
+	
+	tr > th{
+	height : 40px;
+	text-align : center;
+	}
+
+	tbody > tr:hover{
+	background-color: #00B3DC;
+	color: white;
+	cursor: pointer;
+	}
+	
+	
+	table{
+	margin : auto;
+	width: 1000px;
+  line-height: 1em;
+	}
+	
+	h1{
+	margin: auto;
+  	text-align: center;
+    font-weight: bold;
+	}
 </style>
 <script>
 	function enterCreateBookView(frm) {
@@ -49,8 +91,11 @@ img {
 </head>
 <body>
 	<%@ include file="/common/menu.jspf" %>
+	<%@ include file="/common/adminSidebar.jspf" %>
 
+	<br>
 	<h1>상품 관리</h1>
+	<br>
 	<div class="container ">
 	<table class="">
 	<thead >
@@ -96,5 +141,6 @@ img {
 	</tfoot>
 	</table>
 	</div>
+	<%@ include file="../common/foot2.jspf" %>
 </body>
 </html>

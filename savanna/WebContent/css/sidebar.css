@@ -40,10 +40,9 @@
 }
 
 .sidebar {
-	position: relative;
+	position: absolute;
 	float:left;
 	margin-top: 30px;
-	bottom: 0;
 	margin-left: 0;
 	width: 150px;
 	z-index: 1000;

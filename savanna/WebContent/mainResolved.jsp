@@ -34,7 +34,7 @@
     <article>
       <%@ include file="book/cardList2.jsp" %>
     </article>
-  </section>
-
+	</section>
+	<%@ include file="common/foot2.jspf" %>
 </body>
 </html>

@@ -200,8 +200,9 @@ footer {
 			</form>
 		</div>
 	</c:if>
+
 	<div class="footer">
-		<%@ include file="/common/foot.jspf"%>
+		<%@ include file="/common/foot2.jspf"%>
 	</div>
 </body>
 </html>

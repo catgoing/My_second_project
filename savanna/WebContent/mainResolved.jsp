@@ -21,11 +21,10 @@
 <link href="css/sidebar.css" rel="stylesheet">
 <link href="css/cardList.css" rel="stylesheet">
 
-
-
-<title>메인화면</title>
+<title>SAVANNA</title>
 </head>
 <body>
+
 	<%@ include file="/common/menu.jspf" %>
   <aside>
   	<%@ include file="/common/bookSidebar.jspf" %>

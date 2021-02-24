@@ -12,7 +12,8 @@
 <meta charset="UTF-8">
 <title>리뷰 작성</title>
 <link rel="stylesheet" type="text/css" href="/savanna/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="/savanna/css/savanna.css">	
+<link rel="stylesheet" type="text/css" href="/savanna/css/savanna.css">
+<link href="/savanna/css/sidebar.css" rel="stylesheet">	
 
 <script>
 	function reviewInsert(frm) {
@@ -27,6 +28,7 @@
 </script>
 </head>
 <%@ include file="/common/menu.jspf" %>
+<%@ include file="/common/memberSidebar.jspf" %>
 <body>
 	<footer id="footer" class="wrapper">
 		<div class="inner">

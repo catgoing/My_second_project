@@ -2,20 +2,19 @@ package com.savanna.model.vo;
 
 public class CommVO {
 	private int comm_no, rev_no;
-	private String id, comm_content, comm_date, comm_pwd;
+	private String id, comm_content, comm_date;
 	
 	public CommVO() {
 		super();
 	}
 
-	public CommVO(int comm_no, int rev_no, String id, String comm_content, String comm_date, String comm_pwd) {
+	public CommVO(int comm_no, int rev_no, String id, String comm_content, String comm_date) {
 		super();
 		this.comm_no = comm_no;
 		this.rev_no = rev_no;
 		this.id = id;
 		this.comm_content = comm_content;
 		this.comm_date = comm_date;
-		this.comm_pwd = comm_pwd;
 	}
 
 	public int getComm_no() {
@@ -58,18 +57,10 @@ public class CommVO {
 		this.comm_date = comm_date;
 	}
 
-	public String getComm_pwd() {
-		return comm_pwd;
-	}
-
-	public void setComm_pwd(String comm_pwd) {
-		this.comm_pwd = comm_pwd;
-	}
-
 	@Override
 	public String toString() {
 		return "CommVO [comm_no=" + comm_no + ", rev_no=" + rev_no + ", id=" + id + ", comm_content=" + comm_content
-				+ ", comm_date=" + comm_date + ", comm_pwd=" + comm_pwd + "]";
+				+ ", comm_date=" + comm_date + "]";
 	}
 	
 }

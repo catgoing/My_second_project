@@ -1,3 +1,8 @@
+<%@page import="com.savanna.model.vo.CommVO"%>
+<%@page import="java.util.List"%>
+<%@page import="com.savanna.model.dao.ReviewDAO"%>
+<%@page import="com.savanna.model.vo.ReviewVO"%>
+<%@page import="com.savanna.model.vo.CommVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -14,20 +19,10 @@
 
 <script>	
 	function commUpdate_go(frm) {
-		if (frm.comm_pwd.value == "${cvo.comm_pwd}") { //암호 일치
-			var isUpdate = confirm("수정하시겠습니까?");
-			if (isUpdate) {
-				frm.submit();
-			} else {
-				history.back();
-			}
-		} else {
-			alert("비밀번호가 일치하지 않습니다. 다시 입력해 주세요.");
-			frm.comm_pwd.value = "";
-			frm.comm_pwd.focus();
-		}
+		frm.action = "../controller?type=commUpdate";
+		frm.submit();
 	}
-
+	
 	function list_go(frm) {
 		frm.action = "../controller?type=reviewPage";
 		frm.submit();
@@ -43,13 +38,13 @@
 					<div class="content">
 						<h2 class="align-center" style="font-weight: bold;">리뷰 수정하기</h2>
 						<form action="/savanna/controller?type=commUpdate" method="post">
+							<div class="field half">
+								<label for="message">작성자</label>
+								<input name="id" id="comm_id" type="text" value="${user.id}" readonly>
+							</div>							
 							<div class="field">
 								<label for="message">댓글 내용</label>
-								<textarea name="comm_content" id="comm_content" >${cvo.comm_content }</textarea>
-							</div>
-							<div class="field half">
-								<label for="pwd">비밀번호</label>
-								<input type="password" name="comm_pwd" size="40" title="비밀번호"><label>* 댓글 작성시 사용한 비밀번호</label>
+								<textarea name="comm_content" id="message" >${cvo.comm_content }</textarea>
 							</div>
 							<ul class="actions align-center">
 								<li><input value="수정하기" class="button special" type="button" onclick="commUpdate_go(this.form)"></li>
@@ -59,7 +54,6 @@
 							<div>
 								<input type="hidden" id="rev_no" name="rev_no" value="${rvo.rev_no }">
 								<input type="hidden" id="comm_no" name="comm_no" value="${cvo.comm_no }">
-								<input type="hidden" id="id" name="id" value="${vo.id }">
 								<input type="hidden" id="comm_date" name="comm_date" value="${cvo.comm_date }">
 							</div>
 						</form>

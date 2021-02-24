@@ -131,25 +131,4 @@ public class CartDAO {
 		return bvo;
 	}
 
-	public int getTotalCount() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	public List getPagedList(Map map) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public int getTotalCount2(String str) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	public List getPagedList2(Map map) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
 }

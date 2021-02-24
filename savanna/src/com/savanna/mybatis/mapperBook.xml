@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mystudy">
+
+	
+	<select id="bookCount" resultType="int">
+		SELECT COUNT(*) FROM BOOKS
+	</select>
+	
+	<select id="bookList" resultType="com.savanna.model.vo.BookVO">
+		SELECT book_no
+				, book_name
+				, writer
+				, publisher
+				, pub_date
+				, price
+				, book_desc
+				, stock
+				, category
+				FROM BOOKS ORDER BY BOOK_NO
+	</select>
+	
+	<select id="pagedBookList" resultType="com.savanna.model.vo.BookVO"
+			parameterType="Map">
+		SELECT *
+		  FROM (SELECT ROWNUM AS PAGING_INDEX, ORDERED_BOOKS.*
+		          FROM (SELECT book_no
+							, book_name
+							, writer
+							, publisher
+							, pub_date
+							, price
+							, book_desc
+							, stock
+							, category
+		                  FROM BOOKS
+		                 ORDER BY BOOK_NO DESC
+		               ) ORDERED_BOOKS
+		       )
+		 WHERE PAGING_INDEX BETWEEN #{begin} AND #{end}
+	</select>
+	
+	<select id="pagedDatelessBookList" resultType="com.savanna.model.vo.BookVO"
+			parameterType="Map">
+		SELECT *
+		  FROM (SELECT ROWNUM AS PAGING_INDEX, ORDERED_BOOKS.*
+		          FROM (SELECT book_no
+							, book_name
+							, writer
+							, publisher
+							, price
+							, book_desc
+							, stock
+							, category
+		                  FROM BOOKS
+		                 ORDER BY BOOK_NO DESC
+		               ) ORDERED_BOOKS
+		       )
+		 WHERE PAGING_INDEX BETWEEN #{begin} AND #{end}
+	</select>
+	
+	<!-- 동적 검색 -->
+	<select id="search" parameterType="map"
+			resultType="com.savanna.model.vo.BookVO">
+		SELECT *
+		  FROM BOOKS
+		<choose>
+			<when test="idx == 0">
+				WHERE BOOK_NO = #{keyword}
+			</when>
+			<when test="idx == 1">
+				WHERE BOOK_NAME= INITCAP(#{keyword}) 
+			</when>
+			<when test="idx == 2">
+				WHERE WRITER = UPPER(#{keyword})
+			</when>
+			<when test="idx == 3">
+				WHERE PUBLISHER = #{keyword}
+			</when>
+			<otherwise>
+				WHERE 1 = 2
+			</otherwise>
+		</choose>
+		ORDER BY BOOK_NO	
+	
+	</select>
+
+</mapper>
+
+
+
+
+
+
+
+
+

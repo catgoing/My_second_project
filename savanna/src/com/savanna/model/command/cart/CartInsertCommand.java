@@ -19,6 +19,8 @@ public class CartInsertCommand implements Command {
 			throws ServletException, IOException {
 
 		HttpSession session = request.getSession();
+		if((MemberVO)session.getAttribute("user") == null) return "controller?type=signIn";
+				
 		MemberVO mvo = (MemberVO)session.getAttribute("user");
 		String id = mvo.getId();
 		System.out.println(id);

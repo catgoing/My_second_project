@@ -76,7 +76,7 @@
 <div id="container">
 	<div id="list">
 		<b><h3 style="font-weight : bold;">리뷰 게시판</h3></b>
-		<b><h5 style="font-weight : bold;">검색 결과 : ${vo.id }님이 작성하신 글 목록</h5></b>
+		<b><h5 style="font-weight : bold;">검색 결과 : ${search } 님이 작성하신 글 목록</h5></b>
 	</div>
 	<form class="navbar-form navbar-right" action="/savanna/board/search.jsp">
 		<div class="form-group">
@@ -97,11 +97,12 @@
 				<c:if test="${empty list }">
 					<tr>
 						<td colspan="5">
-							<p>현재 등록된 게시글이 없습니다.</p>
+							<p>님이 등록한 게시글이 없습니다.</p>
 						</td>
 					</tr>
 				</c:if>
 				<c:if test="${not empty list }">
+				<c:when test="${map.search == user.id }">
 					<c:forEach var="vo" items="${list }">
 					<tr>
 						<td>${vo.rev_no }</td>
@@ -114,6 +115,7 @@
 
 					</tr>
 					</c:forEach>
+				</c:when>	
 				</c:if>
 				</tbody>
 				<tfoot>

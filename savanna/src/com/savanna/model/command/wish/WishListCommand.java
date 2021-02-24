@@ -27,10 +27,14 @@ public class WishListCommand implements Command{
 
 			String id = mvo.getId();
 
+    String command = "wishlist";
+		if(null != mvo) {
+			String id = mvo.getId();
+		
 			//페이징처리 & 출력할 데이터 처리 (페이지당 게시물 수, 블록당 페이지 수)
 			new ListPaging<WishVO>().PagingDistributor(new WishDAO(), request, id, 5, 5);
 		}
-		
+		request.setAttribute("command", command);
 		
 		return "wishlist/wishlist.jsp";
 	}

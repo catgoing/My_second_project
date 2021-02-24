@@ -27,6 +27,9 @@ public class InsertWishCommand implements Command{
 		PrintWriter out = response.getWriter();
 		
 		HttpSession session = request.getSession();
+		if((MemberVO)session.getAttribute("user") == null) return "controller?type=signIn";
+
+		
 		MemberVO mvo = (MemberVO)session.getAttribute("user");
 		String id = mvo.getId();
 		
@@ -39,11 +42,12 @@ public class InsertWishCommand implements Command{
 		// DB작업
 		int result = WishDAO.jungbokCheck(map);
 		String path = "";
-		
+
 		if(result == 0) {
 			WishDAO.insertWishList(map);
-			path = "controller?type=tempBookInsert";
-			//out.print(result);
+			CartDAO.deleteProduct(map); //카트에서 삭제
+			
+			path = "controller?type=cartList";
 		} else if (result > 0){
 			path = "cart/jungbok2.jsp";
 		}

@@ -39,14 +39,14 @@
 	<!-- 게시글 하나 조회(REV_NO 값으로) -->
 	<select id="one" parameterType="String" resultType="com.savanna.model.vo.ReviewVO">
 		SELECT 
-			REV_NO, ID, BOOK_NO, REV_CONTENT, REV_DATE, REV_PWD
+			REV_NO, ID, BOOK_NO, REV_CONTENT, REV_DATE
 		FROM REVIEWS
 		WHERE REV_NO = #{rev_no}
 	</select>
 
 	<select id="review_read" resultType="com.savanna.model.vo.ReviewVO">
 		 SELECT 
-		   (REV_NO, ID, BOOK_NO, REV_CONTENT, REV_DATE, REV_PWD)
+		   (REV_NO, ID, BOOK_NO, REV_CONTENT, REV_DATE)
 		 FROM REVIEWS
 		 WHERE REV_NO = #{rev_no}
 	 </select>	
@@ -54,8 +54,8 @@
 	<!-- 게시글 작성 -->
 	<insert id="review_insert" parameterType="ReviewVO">
 		INSERT INTO REVIEWS
-			   (REV_NO, ID, BOOK_NO, REV_CONTENT, REV_DATE, REV_PWD)
-		VALUES (REVIEWS_SEQ.NEXTVAL, #{id}, #{book_no}, #{rev_content}, SYSDATE, #{rev_pwd})			   
+			   (REV_NO, ID, BOOK_NO, REV_CONTENT, REV_DATE)
+		VALUES (REVIEWS_SEQ.NEXTVAL, #{id}, #{book_no}, #{rev_content}, SYSDATE)			   
 	</insert>
 	
 	<!-- 게시글 수정 -->
@@ -79,14 +79,22 @@
 		 ORDER BY COMM_NO 
 	</select>
 	
+	<!-- 댓글 하나 조회(COMM_NO 값으로) -->
+	<select id="oneComm" parameterType="String" resultType="com.savanna.model.vo.CommVO">
+		SELECT 
+			COMM_NO, REV_NO, ID, COMM_CONTENT, COMM_DATE
+		FROM COMMENTS
+		WHERE COMM_NO = #{comm_no}
+	</select>
+	
 	<!-- 댓글 입력 -->
 	<insert id="comm_insert" parameterType="com.savanna.model.vo.CommVO">
 		INSERT INTO COMMENTS
-		       (COMM_NO, REV_NO, ID, COMM_CONTENT, COMM_DATE, COMM_PWD)
-		VALUES (COMMENTS_SEQ.NEXTVAL, #{rev_no}, #{id}, #{comm_content}, SYSDATE, #{comm_pwd})
+		       (COMM_NO, REV_NO, ID, COMM_CONTENT, COMM_DATE)
+		VALUES (COMMENTS_SEQ.NEXTVAL, #{rev_no}, #{id}, #{comm_content}, SYSDATE)
 	</insert>
 	
-	<!-- 댓글글 수정 -->
+	<!-- 댓글 수정 -->
 	<update id="comm_update">
 		UPDATE COMMENTS SET COMM_NO =#{comm_no}, COMM_CONTENT =#{comm_content} 
 		WHERE COMM_NO = #{comm_no}

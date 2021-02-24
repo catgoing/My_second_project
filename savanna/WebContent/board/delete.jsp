@@ -23,7 +23,7 @@
 </head>
 <script>
 	function reviewDelete_go(frm) {
-		if (frm.rev_pwd.value == "${rvo.rev_pwd}") { //암호 일치
+		if (frm.pwd.value == "${user.pwd}") { //암호 일치
 			var isDelete = confirm("정말 삭제할까요?");
 			if (isDelete) {
 				frm.submit();
@@ -32,8 +32,8 @@
 			}
 		} else {
 			alert("비밀번호가 일치하지 않습니다. 다시 입력해 주세요.");
-			frm.rev_pwd.value = "";
-			frm.rev_pwd.focus();
+			frm.pwd.value = "";
+			frm.pwd.focus();
 		}
 	}
 
@@ -47,9 +47,9 @@
            <div id="content">
                <!-- PW -->
                <div>
-                   <h3 class="join_title"><label for="pw">리뷰 작성시 등록한 비밀번호를 입력하세요</label></h3>
+                   <h3 class="join_title"><label for="pw">회원 비밀번호를 입력하세요</label></h3>
                     <span class="box int_pass" style="margin-bottom: 20px">
-                        <input type="password" id="pwdchk" name="rev_pwd" class="int" maxlength="12">
+                        <input type="password" id="pwdchk" name="pwd" class="int" maxlength="12">
                     </span>
                     <span id="error"></span>
                     <hr>

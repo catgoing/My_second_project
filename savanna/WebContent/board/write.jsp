@@ -24,19 +24,7 @@
 		frm.action = "../controller?type=reviewPage";
 		frm.submit();
 	}
-	
-	function sendData() {
-		var firstForm = document.forms[0];
-		for (var i=0; i<firstForm.elements.length; i++) {
-			console.log(firstForm.elements[i]);
-			if (firstForm.elements[i].value.trim() == "") {
-				alert(firstForm.elements[i].title + " 입력하세요");
-				firstForm.elements[i].focus();
-				return;
-			}
-		}
-		firstForm.submit();
-	}
+ㅇ
 </script>
 </head>
 <%@ include file="/common/menu.jspf" %>
@@ -55,10 +43,9 @@
 							<div class="field half">
 								<label for="book">책번호</label>
 								<div class="select-wrapper">
-									<select name="book" id="book">
-									<c:forEach var="bvo" items="${list }">
-										<option value="1">책번호 목록</option>
-										<option value="1">${bvo.book_no }</option>
+									<select name="book_no" id="books">
+									<c:forEach var="vo" items="${vo }">
+										<option value="1">${vo.book_no }</option>
 									</c:forEach>	
 									</select>
 								</div>
@@ -67,10 +54,6 @@
 							<div class="field">
 								<label for="content">리뷰 내용</label>
 								<textarea name="rev_content" id="message" rows="6" placeholder="리뷰 내용을 입력하세요"></textarea>
-							</div>
-							<div class="field half">
-								<label for="pwd">비밀번호</label>
-								<input type="password" name="rev_pwd" size="40" title="비밀번호"> <label>* 게시글 수정 및 삭제시 사용</label>
 							</div>
 							<ul class="actions align-center">
 								<li><input value="작성하기" class="button special" type="submit" onclick="reviewInsert(this.form)"></li>

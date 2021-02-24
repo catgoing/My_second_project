@@ -9,16 +9,19 @@
 <%
 	//파라미터 값 확인
 	String rev_no = request.getParameter("rev_no");
+	String comm_no = request.getParameter("comm_no");
 	String cPage = request.getParameter("cPage");
 
 	//2. 게시글(rev_no) 데이터 조회
 	ReviewVO rvo = ReviewDAO.selectOne(rev_no);
+	CommVO cvo = ReviewDAO.selectOneComm(comm_no);
 
 	//3. 게시글(b_idx)에 딸린 댓글이 있으면 조회(검색, 찾기)
 	List<CommVO> list = ReviewDAO.getCommList(rev_no);	
 	
 	//EL, JSTL 사용을 위한 scope 상에 속성 등록하고 화면 표시
 	session.setAttribute("rvo", rvo);
+	session.setAttribute("cvo", cvo);
 	session.setAttribute("cPage", cPage);
 	pageContext.setAttribute("c_list", list);	
 %>
@@ -35,12 +38,12 @@
 <link rel="stylesheet" type="text/css" href="/savanna/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="/savanna/css/savanna.css">	
 <style>
-	#comment { 
+	#viewComm { 
 		border : 1px solid black;
 		padding: 4px 10px;
 	}
 
-	#comm {
+	#insertComm {
 		border : 1px solid black;
 		margin-top : none;
 		padding-top : none;
@@ -81,7 +84,7 @@
 						<form method="post">
 							<div class="field half first">
 								<label for="name">작성자</label>
-								<input name="id" id="id" type="text" value="${user.id}" readonly>
+								<input name="id" id="id" type="text" value="${rvo.id}" readonly>
 							</div>
 							<div class="field half">
 								<label for="name">작성일자</label>
@@ -106,29 +109,36 @@
 								<textarea name="rev_content" id="message" rows="6" readonly>${rvo.rev_content }</textarea>
 							</div>
 							<ul class="actions align-center">
-								<li><input value="수정하기" type="button" onclick="javascript:location.href='update.jsp'"></li>
-								<li><input value="삭제하기" type="button" onclick="javascript:location.href='delete.jsp'"></li>
-								<li><input value="목록" type="button" onclick="list_go(this.form)"></li>
+								<c:choose>
+									<c:when test="${user.id == rvo.id }">
+										<li><input value="수정하기" type="button" onclick="javascript:location.href='update.jsp'"></li>
+										<li><input value="삭제하기" type="button" onclick="javascript:location.href='delete.jsp'"></li>
+										<li><input value="목록" type="button" onclick="list_go(this.form)"></li>
+									</c:when>
+									<c:when test="${user.id != rvo.id }">
+										<li><input value="목록" type="button" onclick="list_go(this.form)"></li>
+									</c:when>
+								</c:choose>
 							</ul>
 						</form>
 						<hr>
 							<%-- 게시글에 대한 댓글 작성 영역 --%>		
-						<div id="comm">
+						<div id="insertComm">
 							<section>
 								<div class="box">
 									<div class="content">
 										<h3 class="align-center" style="font-weight: bold;">댓글 작성하기</h3>
 										<form action="/savanna/controller?type=commInsert" method="post">
+											<div class="field half first">
+												<label for="name">작성자</label>
+												<input name="comm_id" id="comm_id" type="text" value="${user.id}" readonly>
+											</div>											
 											<div class="field">
 												<label for="message">댓글 내용</label>
 												<textarea name="comm_content" id="comm_content"  placeholder="댓글을 입력하세요"></textarea>
 											</div>
-											<div class="field half">
-												<label for="pwd">비밀번호</label>
-												<input type="password" name="comm_pwd" size="40" title="비밀번호"><label>* 댓글 수정 및 삭제시 사용</label>
-											</div>
 											<ul class="actions align-center">
-												<li><input value="작성하기" class="button special" type="submit" onclick="javascript:location.href='view.jsp?rev_no=${vo.rev_no }&cPage=${pvo.curPage}'"></li>
+												<li><input value="작성하기" class="button special" type="submit" onclick="commInsert_go(this.form)"></li>
 												<li><input value="다시 작성" class="button" type="reset"></li>
 												<li><input type="hidden" name="rev_no" value="${rvo.rev_no }"></li>
 												<li><input type="hidden" name="id" value="${user.id }"></li>
@@ -151,13 +161,21 @@
 							<%-- 게시글에 작성된 댓글 표시 영역 --%>
 							<c:if test="${not empty c_list }">	
 							<c:forEach var="cvo" items="${c_list }">
-							<div class="comment">
+							<div class="viewComm">
 								<form method="post">
-									<p>이름 : ${user.id} &nbsp; 날짜 : ${cvo.comm_date }</p>
+									<p>이름 : ${cvo.id} &nbsp; 날짜 : ${cvo.comm_date }</p>
 									<p>내용 : ${cvo.comm_content }</p>
-									<input value="수정하기" type="button" onclick="javascript:location.href='comm_update.jsp'">
-									<input value="삭제하기" type="button" onclick="javascript:location.href='comm_del.jsp'">
-									<input type="hidden" name="comm_no" value="${cvo.comm_no }">
+								<c:choose>
+									<c:when test="${user.id == cvo.id }">
+										<input value="수정하기" type="button" onclick="javascript:location.href='comm_update.jsp'">
+										<input value="삭제하기" type="button" onclick="commDelete_go(this.form)">
+										<input type="hidden" name="comm_no" value="${cvo.comm_no }">
+										<input type="hidden" name="rev_no" value="${rvo.rev_no }">
+									</c:when>
+									<c:when test="${user.id != cvo.id }">
+										<input type="hidden" name="comm_no" value="${cvo.comm_no }">
+									</c:when>
+								</c:choose>		
 								</form>
 							</div>
 							<hr>

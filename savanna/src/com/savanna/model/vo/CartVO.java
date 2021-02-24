@@ -34,6 +34,7 @@ public class CartVO {
 		this.allitemsPrice = allitemsPrice;
 		this.totalPrice = totalPrice;
 	}
+	
 
 	public int getAllitemsPrice() {
 		return allitemsPrice;

@@ -22,17 +22,50 @@ public class PayCreditCardCommand implements Command {
 		
 		MemberVO mvo = (MemberVO)session.getAttribute("user");
 		String id = mvo.getId();
-		System.out.println(id);
+		String addr = mvo.getAddr();
 		
+		int tot = 0;
+		int shipPrice = 0;
 		//id, 책번호를 이용하여 CartVO정보를 가져오고 구매이력에 전달
 		List<CartVO> list = CartDAO.cartList(id);
 		
 		for(CartVO vo : list) {
-			vo.setTotalPrice(vo.getCart_price());
-			System.out.println(vo.getTotalPrice());
-			System.out.println(vo.toString());
+			//mapper에 totalPrice로 설정되어있어서 각 상품의 가격을 totalPrice에 넣음
+			vo.setTotalPrice(vo.getCart_price()); 
+			vo.setAddr(addr);
+			
+			shipPrice = vo.getShippingCharge();
+			tot += vo.getCart_price();
 			CartDAO.sendOrder(vo);
+			System.out.println(vo.toString());
 		}
+		tot += tot + shipPrice;
+		
+		// 결제완료 페이지에 출력할 정보 전달
+		String cardcom = request.getParameter("setcard");
+		if(cardcom.equals("sscard")) {
+			cardcom = "삼성카드";
+		} else if(cardcom.equals("hdcard")) {
+			cardcom = "현대카드";
+		} else if(cardcom.equals("shcard")) {
+			cardcom = "신한카드";
+		} else if(cardcom.equals("kbcard")) {
+			cardcom = "KB국민카드";
+		} else {
+			cardcom = "하나카드";
+		}
+		
+		String[] cardnum = new String[4];
+		cardnum[0] = (String)request.getParameter("cardnumber1");
+		cardnum[1] = (String)request.getParameter("cardnumber2");
+		cardnum[2] = (String)request.getParameter("cardnumber3");
+		cardnum[3] = (String)request.getParameter("cardnumber4");
+		
+		request.setAttribute("list", list);
+		request.setAttribute("addr", addr);
+		request.setAttribute("card", cardcom);
+		request.setAttribute("cardnum", cardnum);
+		request.setAttribute("tot", tot);
 		
 		//장바구니 비우기~~
 		CartDAO.clearCart(id);

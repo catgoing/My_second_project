@@ -35,7 +35,7 @@
 
 </script>
 </head>
-<body>
+<body onload="isAdmin();">
 	<%@ include file="/common/menu.jspf" %>
 	<%@ include file="/common/adminSidebar.jspf" %>
 

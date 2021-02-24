@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.savanna.model.command.Command;
+import com.savanna.model.dao.BookDAO;
 import com.savanna.model.dao.CartDAO;
 import com.savanna.model.vo.BookVO;
 import com.savanna.model.vo.MemberVO;
@@ -28,15 +29,23 @@ public class CartInsertCommand implements Command {
 		int book_no = Integer.parseInt(request.getParameter("book_no"));
 		System.out.println("bookno : " + request.getParameter("book_no"));
 		
-		boolean result = CartDAO.insertCart(book_no, id);
-
-		String path = "";
+		BookVO bvo = BookDAO.getBookDetail(book_no);
+		int stock = bvo.getStock();
 		
-		if(result) {
-			path = "cart/jungbok.jsp";
+		String path = "";
+		if(stock > 0) {
+			boolean result = CartDAO.insertCart(book_no, id);
+
+			if(result) {
+				path = "cart/jungbok.jsp";
+			} else {
+				path = "controller?type=cartList";
+			}
+			return path;	
 		} else {
-			path = "controller?type=cartList";
+			path = "cart/soldout.jsp";
 		}
+	
 		return path;
 	}
 

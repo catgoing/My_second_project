@@ -73,18 +73,11 @@
 
 </head>
 <%@ include file="/common/menu.jspf" %>
-<hr>
 
 <div id="container">
 	<div id="list">
 		<b><h3 style="font-weight : bold;">리뷰 게시판</h3></b>
 	</div>
-	<form class="navbar-form navbar-right" action="/savanna/board/search.jsp">
-		<div class="form-group">
-			<input type="text" name="search" class="form-control" placeholder="작성자를 입력하세요">
-			<button type="submit" class="btn btn-default">검색</button>
-		</div>
-	</form>	
 	<div>
 		<table class="table table-striped table-bordered table-hover">
 			<thead>
@@ -108,14 +101,7 @@
 						<td>${vo.rev_no }</td>
 						<td>${vo.book_no }</td>
 						<td class="align-left" style="hover: #000000;">
-							<c:choose>
-								<c:when test="${user.id == null }">
-									<a href="/savanna/member/signIn.jsp"></a>
-								</c:when>
-								<c:otherwise>
-									<a href="board/view.jsp?rev_no=${vo.rev_no }&cPage=${pvo.curPage}">${vo.rev_content }</a>
-								</c:otherwise>
-							</c:choose>
+							<a href="board/view.jsp?rev_no=${vo.rev_no }&cPage=${pvo.curPage}">${vo.rev_content }</a>
 						</td>
 						<td>${vo.id }</td>
 						<td>${vo.rev_date }</td>
@@ -172,7 +158,6 @@
 		</div>
 	</div>
 </div>
-<hr>
 <%@ include file="/common/foot.jspf" %>
 		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 		<script src="js/bootstrap.js"></script>

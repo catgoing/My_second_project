@@ -9,19 +9,16 @@
 <%
 	//파라미터 값 확인
 	String rev_no = request.getParameter("rev_no");
-	String comm_no = request.getParameter("comm_no");
 	String cPage = request.getParameter("cPage");
 
 	//2. 게시글(rev_no) 데이터 조회
 	ReviewVO rvo = ReviewDAO.selectOne(rev_no);
-	CommVO cvo = ReviewDAO.selectOneComm(comm_no);
 
-	//3. 게시글(b_idx)에 딸린 댓글이 있으면 조회(검색, 찾기)
+	//3. 게시글(rev_no)에 딸린 댓글이 있으면 조회(검색, 찾기)
 	List<CommVO> list = ReviewDAO.getCommList(rev_no);	
 	
 	//EL, JSTL 사용을 위한 scope 상에 속성 등록하고 화면 표시
 	session.setAttribute("rvo", rvo);
-	session.setAttribute("cvo", cvo);
 	session.setAttribute("cPage", cPage);
 	pageContext.setAttribute("c_list", list);	
 %>
@@ -51,14 +48,7 @@
 
 </style>
 <script>
-	function update_go(frm) {
-		frm.action = "../controller?type=reviewUpdate";
-		frm.submit();
-	}
-	function delete_go(frm) {
-		frm.action = "../controller?type=reviewDelete";
-		frm.submit();
-	}
+
 	function list_go(frm) {
 		frm.action = "../controller?type=reviewPage";
 		frm.submit();
@@ -161,19 +151,19 @@
 							<%-- 게시글에 작성된 댓글 표시 영역 --%>
 							<c:if test="${not empty c_list }">	
 							<c:forEach var="cvo" items="${c_list }">
-							<div class="viewComm">
-								<form method="post">
+							<div class="viewComm" >
+								<form  method="post">
 									<p>이름 : ${cvo.id} &nbsp; 날짜 : ${cvo.comm_date }</p>
 									<p>내용 : ${cvo.comm_content }</p>
 								<c:choose>
 									<c:when test="${user.id == cvo.id }">
-										<input value="수정하기" type="button" onclick="javascript:location.href='comm_update.jsp'">
 										<input value="삭제하기" type="button" onclick="commDelete_go(this.form)">
 										<input type="hidden" name="comm_no" value="${cvo.comm_no }">
 										<input type="hidden" name="rev_no" value="${rvo.rev_no }">
 									</c:when>
 									<c:when test="${user.id != cvo.id }">
 										<input type="hidden" name="comm_no" value="${cvo.comm_no }">
+										<input type="hidden" name="rev_no" value="${rvo.rev_no }">
 									</c:when>
 								</c:choose>		
 								</form>

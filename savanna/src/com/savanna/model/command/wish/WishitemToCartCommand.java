@@ -10,8 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.savanna.model.command.Command;
+import com.savanna.model.dao.BookDAO;
 import com.savanna.model.dao.CartDAO;
 import com.savanna.model.dao.WishDAO;
+import com.savanna.model.vo.BookVO;
 import com.savanna.model.vo.MemberVO;
 
 public class WishitemToCartCommand implements Command{
@@ -25,18 +27,26 @@ public class WishitemToCartCommand implements Command{
 		String id = mvo.getId();
 		int book_no = Integer.parseInt(request.getParameter("book_no"));
 		
-		Map<String, Object> map = new HashMap<>();
-		map.put("id", id);
-		map.put("book_no", book_no);
+		BookVO bvo = BookDAO.getBookDetail(book_no);
+		int stock = bvo.getStock(); //재고
 		
 		String path = "";
-		boolean result = CartDAO.insertCart(book_no, id);		
-		if(result) {
-			path = "cart/jungbok.jsp";
-		} else {	
-			WishDAO.deleteWish(map);		
+		if(stock > 0) { //재고가 1개 이상일때
+			boolean result = CartDAO.insertCart(book_no, id);		
 			
-			path = "controller?type=cartList";
+			if(result) { //중복
+				path = "cart/jungbok.jsp";
+			} else { //중복이 아닐 때
+				Map<String, Object> map = new HashMap<>();
+				map.put("id", id);
+				map.put("book_no", book_no);
+				
+				WishDAO.deleteWish(map); //찜목록에서 삭제	
+				
+				path = "controller?type=cartList";
+			}
+		} else {// 재고가 0개이하일 때
+			path = "cart/soldout.jsp";
 		}
 		
 		return path;

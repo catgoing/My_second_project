@@ -24,7 +24,7 @@
 <style>
 footer {
    width:100%;
-   position:absolute;
+   position: relative;
    bottom:0;
 }
 </style>
@@ -70,18 +70,19 @@ $(function (){
 
 	    <form name="fr">
 	    
-          <div id="wrapper">
+          <div id="wrapper" style="height:500px">
             <!-- content-->
             <div id="content">
 
                 <!-- PW -->
                 <div>
                     <h3 class="join_title"><label for="pw">비밀번호</label></h3>
-                    <span class="box int_pass" style="margin-bottom: 20px">
+                    <span class="box int_signpass" style="margin-bottom: 20px">
                         <input type="password" id="pwdchk" name="pwd" class="int" maxlength="12">
                     </span>
                     <span id="error"></span>
                 </div>
+                <br>
                 
                 <!-- OKBTN-->
                 <div class="btn_area" style="margin: 20px 0 0 0">

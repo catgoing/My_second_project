@@ -22,9 +22,14 @@
 <style>
 footer {
    width:100%;
-   position:absolute;
+   position:relative;
    bottom:0;
 }
+
+#wrapper{
+	height: 1000px;
+}
+
 </style>
 </head>
 <script>
@@ -99,7 +104,7 @@ footer {
 
 	
 	function withdrawal(){
-		location.href = "withdrawal.jsp"
+		location.href = "/savanna/member/withdrawal.jsp"
 	}
 	
 	

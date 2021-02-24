@@ -19,7 +19,18 @@
 <link href="/savanna/css/member.css" rel="stylesheet">
 <link href="/savanna/css/sidebar.css" rel="stylesheet">
 <title>내정보</title>
+<style>
+footer {
+   width:100%;
+   position:relative;
+   bottom:0;
+}
 
+#wrapper{
+	height: 1000px;
+}
+
+</style>
 </head>
 <script>
 	var sel_accept = '${user.sel_accept }';
@@ -93,7 +104,7 @@
 
 	
 	function withdrawal(){
-		location.href = "withdrawal.jsp"
+		location.href = "/savanna/member/withdrawal.jsp"
 	}
 	
 	
@@ -286,6 +297,7 @@
               </div>
             </div>
           </form>
-
+          
+	<%@ include file="/common/foot.jspf" %>
 </body>
 </html>

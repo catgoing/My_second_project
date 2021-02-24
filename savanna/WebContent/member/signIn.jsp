@@ -37,16 +37,23 @@
 	
 	
 </script>
+<style>
+footer {
+   width:100%;
+   position: relative;
+   bottom:0;
+}
+</style>
 </head>
 <body>
 	<%@ include file="/common/menu.jspf" %>
 	
-	
+	<div>
 <h1>로그인</h1>
 
 	    <form action="/savanna/controller?type=doSignIn" method="post" name="fr">
 	    
-          <div id="wrapper">
+          <div id="wrapper" style="height: 500px">
             <!-- content-->
             <div id="content">
                 
@@ -87,6 +94,8 @@
               </div>
             </div>
            </form>
+	</div>
+	<%@ include file="/common/foot.jspf" %>
 
 
 </body>

@@ -21,6 +21,13 @@
 <link href="/savanna/css/member.css" rel="stylesheet">
 <link href="/savanna/css/sidebar.css" rel="stylesheet">
 <title>패스워드 확인</title> 
+<style>
+footer {
+   width:100%;
+   position: relative;
+   bottom:0;
+}
+</style>
 </head>
 <script>
 
@@ -63,18 +70,19 @@ $(function (){
 
 	    <form name="fr">
 	    
-          <div id="wrapper">
+          <div id="wrapper" style="height:500px">
             <!-- content-->
             <div id="content">
 
                 <!-- PW -->
                 <div>
                     <h3 class="join_title"><label for="pw">비밀번호</label></h3>
-                    <span class="box int_pass" style="margin-bottom: 20px">
+                    <span class="box int_signpass" style="margin-bottom: 20px">
                         <input type="password" id="pwdchk" name="pwd" class="int" maxlength="12">
                     </span>
                     <span id="error"></span>
                 </div>
+                <br>
                 
                 <!-- OKBTN-->
                 <div class="btn_area" style="margin: 20px 0 0 0">
@@ -84,9 +92,10 @@ $(function (){
                 
               </div>
             </div>
+            </div>
            </form>
 
 
-
+	<%@ include file="/common/foot.jspf" %>
 </body>
 </html>

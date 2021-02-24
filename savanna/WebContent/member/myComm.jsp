@@ -53,6 +53,16 @@ h1{
 	text-align: center;
 	font-weight: bold;
 }
+
+footer {
+   width:100%;
+   position:relative;
+   bottom:0;
+}
+
+#wrapper{
+	height: 700px;
+}
 </style>
 </head>
 <body>
@@ -64,6 +74,8 @@ h1{
 
 <h1>나의 댓글</h1>
 <br>
+
+	<div id="wrapper">
 	<table style="table-layout:fixed">
 		<thead>
 			<tr class="title">
@@ -99,7 +111,8 @@ h1{
 		 	
 		</tfoot>
 	</table>
-	
+	</div>
+	<%@ include file="/common/foot.jspf" %>	
 	
 </body>
 </html>

@@ -18,8 +18,6 @@
 <link href="/savanna/css/savanna.css" rel="stylesheet">
 <link href="/savanna/css/member.css" rel="stylesheet">
 <title>탈퇴 확인</title>
-
-</head>
 <script>
 
 var id = '${user.id }';
@@ -55,6 +53,21 @@ $(function (){
 
 	
 </script>
+<style>
+footer {
+   width:100%;
+   position:relative;
+   bottom:0;
+}
+
+#wrapper{
+	height: 500px;
+}
+</style>
+
+
+</head>
+
 <body>
 	<%@ include file="/common/menu.jspf" %>
 <br>
@@ -70,11 +83,12 @@ $(function (){
                 <!-- PW -->
                 <div>
                     <h3 class="join_title"><label for="pw">비밀번호</label></h3>
-                    <span class="box int_pass" style="margin-bottom: 20px">
+                    <span class="box int_signpass" style="margin-bottom: 20px">
                         <input type="password" id="pwdchk" name="pwd" class="int" maxlength="12">
                     </span>
                     <span id="error"></span>
                 </div>
+                <br>
                 
                 <!-- OK BTN-->
                 <div class="btn_area" style="margin: 20px 0 0 0">
@@ -85,8 +99,9 @@ $(function (){
                 
               </div>
             </div>
+            </div>
            </form>
 
-
+	<%@ include file="/common/foot.jspf" %>
 </body>
 </html>

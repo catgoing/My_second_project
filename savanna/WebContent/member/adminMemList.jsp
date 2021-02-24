@@ -30,8 +30,12 @@
 	tr > td{
 	text-align : center;
 	height : 50px;
- 	border: 1px solid lightgray;
 	} 
+	
+	tr{
+	border: 1px lightgray;
+	border-style : solid none none none;
+	}
 	
 	tr > th{
 	height : 40px;
@@ -79,7 +83,7 @@ function isAdmin(){
 
 <table>
 		<thead>
-			<tr class="title">
+			<tr class="title" style="border-top:none;">
 				<th class="no">회원번호</th>
 				<th class="id">아이디</th>
 				<th class="pwd">패스워드</th>
@@ -130,7 +134,7 @@ function isAdmin(){
 	</table>
 
 </c:if>
-	
+	<%@ include file="/common/foot2.jspf" %>
 
 </body>
 </html>

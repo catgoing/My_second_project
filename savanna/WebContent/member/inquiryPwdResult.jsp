@@ -18,6 +18,18 @@
 <link href="/savanna/css/savanna.css" rel="stylesheet">
 <link href="/savanna/css/member.css" rel="stylesheet">
 <title>패스워드 찾기 결과</title>
+<style>
+footer {
+   width:100%;
+   position:relative;
+   bottom:0;
+}
+
+#wrapper{
+	height: 500px;
+}
+
+</style>
 </head>
 <body>
 	<%@ include file="/common/menu.jspf" %>
@@ -46,6 +58,6 @@
 		</div>
 
 	</div>
-
+	<%@ include file="/common/foot.jspf" %>
 </body>
 </html>

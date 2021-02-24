@@ -17,6 +17,7 @@
 <title>리뷰 게시판</title>
 <link rel="stylesheet" type="text/css" href="/savanna/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="/savanna/css/savanna.css">
+<link rel="stylesheet" href="/savanna/css/sidebar.css" >
 <style>
 	#container { width: 70%; margin: 0 auto; /* 가로로 중앙에 배치 */
 				 padding-top: 5%;
@@ -73,7 +74,7 @@
 
 </head>
 <%@ include file="/common/menu.jspf" %>
-
+<%@ include file="/common/memberSidebar.jspf" %>
 <div id="container">
 	<div id="list">
 		<b><h3 style="font-weight : bold;">리뷰 게시판</h3></b>

@@ -23,22 +23,21 @@
 <title>:: 찜목록 ::</title>
 </head>
 <style>
-	ul, ol{
-	list-style: none;
+	#wishtitle{
+		margin-right: 100px;
+		text-align: center;
+		font-weight: bold;
 	}
-
-	.center {
-	text-align: center;
+	ul, ol{
+		list-style: none;
 	}
 	.wish {
         width: 800px;
         margin: auto;
+        height:700px;
+        min-height:100%;
+        position: relative;
     }
-    h1{
-		margin-right: 100px;
-		text-align: center;
-		font-weight: bold;
-	}	
     table {
         max-width: 700px;
         margin:auto;
@@ -46,15 +45,26 @@
     .title {
     	text-align: center;
     }
-    .btn {
-    	border: 1px solid #ff4aa5;
-		padding: 3px 7px;
+    #cartbtn,#delbtn {
+	    font-size: 14px;
+		font-weight: normal;
+	    line-height: 1.42857143;
+	    margin-bottom: 0;
+		padding: 6px 12px;
+	    text-align: center;
+	    white-space: nowrap;
+	    vertical-align: middle;
+		border-radius: 4px;
     }
-    .btn:hover {
-		background-color: #292929;
+    #cartbtn:hover, #delbtn:hover {
 		color: white;
+		background-color: #292929;
 	}
-	
+	.footer {
+	   width:100%;
+	   position:absolute;
+	   bottom:0;
+	}
 
 
 /*부트스트랩css의 table td의 border-top속성을 일부td에서 무효화하고 width="%"를 주기위해 inline으로 style을 적용함*/
@@ -77,7 +87,8 @@
 	<%@ include file="/common/menu.jspf" %>
 	<%@ include file="/common/memberSidebar.jspf" %>
 	<br>
-	<h1>위시리스트</h1>
+	<h1 id="wishtitle">위시리스트</h1>
+	<br>
 	<div class="wish">
 	<table class="table">
 		<thead>
@@ -92,11 +103,11 @@
 			<c:forEach var="vo" items="${list }">
 				<tr class="list">
              		<td class="img-container" rowspan="2" width="25%">표지이미지</td>
-			        <td colspan="2" width="45%"><a href="controller?type=EnterDetail&book_no=${vo.book_no }">${vo.book_name }</td>
+			        <td colspan="2" width="45%"><a href="controller?type=EnterDetail&book_no=${vo.book_no }">${vo.book_name }</a></td>
 			        <td rowspan="2" width="20%"><fmt:formatNumber value="${vo.price }" pattern="###,###"/>원</td>
 			        <td>
 			        <form>
-			        	<input type="button" class="btn" value="장바구니" onclick="input_cart(this.form)">
+			        	<input type="button" class="btn" id="cartbtn" value="장바구니" onclick="input_cart(this.form)">
 			        	<input type="hidden" name="book_no" value="${vo.book_no }">
 		        	</form>
 		        	</td>
@@ -106,7 +117,7 @@
 			        <td style="border-top:none">${vo.publisher }</td>
 			        <td style="border-top:none">
 			        <form>
-			        	<input type="submit" class="btn" value="삭제" onclick="delete_wish(this.form)">
+			        	<input type="submit" class="btn" id="delbtn" value="삭제" onclick="delete_wish(this.form)">
 			        	<input type="hidden" name="book_no" value="${vo.book_no }">
 		        	</form>
 		        	</td>        
@@ -129,6 +140,8 @@
 	</table>
 	</form>
 	</div>
+
+	<%@ include file="/common/foot.jspf"%>
 
 </body>
 </html>

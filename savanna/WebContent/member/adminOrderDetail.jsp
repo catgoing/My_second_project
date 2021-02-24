@@ -34,6 +34,18 @@
 	}
 
 </script>
+<style>
+footer {
+   width:100%;
+   position:relative;
+   bottom:0;
+}
+
+#wrapper{
+	height: 1100px;
+}
+
+</style>
 </head>
 <body onload="isAdmin();">
 	<%@ include file="/common/menu.jspf" %>
@@ -170,6 +182,7 @@
               </div>
             </div>
 	</form>
-  </c:if>             
+  </c:if>   
+	<%@ include file="/common/foot.jspf" %>          
 </body>
 </html>

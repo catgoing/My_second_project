@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <style>
 .cardList {
-	position: absolute;
+	position: relative;
 	left: 150px;
 }
 .container {

@@ -97,6 +97,8 @@
         </div>
 
     </form>
-
+    
+    <br><br><br><br>
+	<%@ include file="/common/foot.jspf" %>
 </body>
 </html>

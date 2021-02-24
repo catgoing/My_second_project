@@ -118,6 +118,7 @@ function isAdmin(){
 		</tfoot>
 		</table>
 	</div>
-</c:if>	
+</c:if>
+	<%@ include file="/common/foot.jspf" %>	
 </body>
 </html>

@@ -18,6 +18,18 @@
 <link href="/savanna/css/savanna.css" rel="stylesheet">
 <link href="/savanna/css/member.css" rel="stylesheet">
 <title>패스워드 찾기</title>
+<style>
+footer {
+   width:100%;
+   position:relative;
+   bottom:0;
+}
+
+#wrapper{
+	height: 500px;
+}
+
+</style>
 </head>
 <body>
 	<%@ include file="/common/menu.jspf" %>
@@ -44,7 +56,7 @@
                     </span>
                 </div>
 
-                
+                <br>
                 <!-- SIGNIN BTN-->
                 <div class="btn_area" style="margin: 20px 0 0 0">
                   <button type="submit" id="signinbtn" style="margin: 0">
@@ -54,5 +66,6 @@
               </div>
             </div>
            </form>
+	<%@ include file="/common/foot.jspf" %>
 </body>
 </html>

@@ -87,6 +87,7 @@ $(function (){
             </div>
            </form>
 
-
+	<hr>
+	<%@ include file="/common/foot.jspf" %>
 </body>
 </html>

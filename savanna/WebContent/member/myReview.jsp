@@ -53,6 +53,12 @@ h1{
 	text-align: center;
 	font-weight: bold;
 }
+
+footer {
+   width:100%;
+   position:absolute;
+   bottom:0;
+}
 </style>
 </head>
 <body>
@@ -100,6 +106,6 @@ h1{
 		</tfoot>
 	</table>
 	
-
+	<%@ include file="/common/foot.jspf" %>
 </body>
 </html>

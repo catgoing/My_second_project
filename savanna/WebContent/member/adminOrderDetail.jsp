@@ -170,6 +170,8 @@
               </div>
             </div>
 	</form>
-  </c:if>             
+  </c:if>   
+	<hr>
+	<%@ include file="/common/foot.jspf" %>          
 </body>
 </html>

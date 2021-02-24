@@ -34,13 +34,16 @@
 	.wish {
         width: 800px;
         margin: auto;
-        height:700px;
+        height:100%;
         min-height:100%;
         position: relative;
     }
     table {
         max-width: 700px;
         margin:auto;
+    }
+    td{
+    	text-align: center;
     }
     .title {
     	text-align: center;
@@ -65,8 +68,13 @@
 	   position:absolute;
 	   bottom:0;
 	}
-
-
+	 
+    img {
+	  max-width: 100%;
+	}
+	#left{
+		text-align: left;
+	}
 /*부트스트랩css의 table td의 border-top속성을 일부td에서 무효화하고 width="%"를 주기위해 inline으로 style을 적용함*/
 
 
@@ -102,9 +110,9 @@
 			<c:if test="${not empty list }">
 			<c:forEach var="vo" items="${list }">
 				<tr class="list">
-             		<td class="img-container" rowspan="2" width="25%">표지이미지</td>
-			        <td colspan="2" width="45%"><a href="controller?type=EnterDetail&book_no=${vo.book_no }">${vo.book_name }</a></td>
-			        <td rowspan="2" width="20%"><fmt:formatNumber value="${vo.price }" pattern="###,###"/>원</td>
+             		<td rowspan="2" width="10%"><img src="images/${vo.book_no}.jpg" alt="제품이미지"></td>
+			        <td id="left" colspan="2" width="45%"><a href="controller?type=EnterDetail&book_no=${vo.book_no }">${vo.book_name }</a></td>
+			        <td rowspan="2" width="20%" ><fmt:formatNumber value="${vo.price }" pattern="###,###"/>원</td>
 			        <td>
 			        <form>
 			        	<input type="button" class="btn" id="cartbtn" value="장바구니" onclick="input_cart(this.form)">
@@ -113,8 +121,8 @@
 		        	</td>
 			    </tr>
 			    <tr>
-			        <td width="20%" style="border-top:none">${vo.writer }</td>
-			        <td style="border-top:none">${vo.publisher }</td>
+			        <td id="left" width="20%" style="border-top:none">${vo.writer }</td>
+			        <td id="left" style="border-top:none">${vo.publisher }</td>
 			        <td style="border-top:none">
 			        <form>
 			        	<input type="submit" class="btn" id="delbtn" value="삭제" onclick="delete_wish(this.form)">

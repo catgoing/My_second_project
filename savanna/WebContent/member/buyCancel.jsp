@@ -105,6 +105,6 @@
 		</tfoot>
 		</table>
 	</div>
-	
+	<%@ include file="/common/foot.jspf" %>
 </body>
 </html>

@@ -21,6 +21,13 @@
 <link href="/savanna/css/member.css" rel="stylesheet">
 <link href="/savanna/css/sidebar.css" rel="stylesheet">
 <title>패스워드 확인</title> 
+<style>
+footer {
+   width:100%;
+   position:absolute;
+   bottom:0;
+}
+</style>
 </head>
 <script>
 
@@ -84,9 +91,10 @@ $(function (){
                 
               </div>
             </div>
+            </div>
            </form>
 
 
-
+	<%@ include file="/common/foot.jspf" %>
 </body>
 </html>

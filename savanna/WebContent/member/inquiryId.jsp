@@ -18,6 +18,13 @@
 <link href="/savanna/css/savanna.css" rel="stylesheet">
 <link href="/savanna/css/member.css" rel="stylesheet">
 <title>아이디 찾기</title>
+<style>
+footer {
+   width:100%;
+   position:absolute;
+   bottom:0;
+}
+</style>
 </head>
 <body>
 	<%@ include file="/common/menu.jspf" %>
@@ -56,6 +63,6 @@
             </div>
            </form>
 
-
+	<%@ include file="/common/foot.jspf" %>
 </body>
 </html>

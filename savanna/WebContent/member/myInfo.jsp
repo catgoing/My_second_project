@@ -19,7 +19,13 @@
 <link href="/savanna/css/member.css" rel="stylesheet">
 <link href="/savanna/css/sidebar.css" rel="stylesheet">
 <title>내정보</title>
-
+<style>
+footer {
+   width:100%;
+   position:absolute;
+   bottom:0;
+}
+</style>
 </head>
 <script>
 	var sel_accept = '${user.sel_accept }';
@@ -286,6 +292,7 @@
               </div>
             </div>
           </form>
-
+          
+	<%@ include file="/common/foot.jspf" %>
 </body>
 </html>

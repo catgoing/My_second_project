@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -263,98 +263,114 @@
 	  
 	
 </script>
+<style>
+.footer {
+	width:100%;
+	position: relative;
+	bottom: 0;
+}
+</style>
 </head>
-<body id="body">
+<body id="body" style="overflow: auto;">
 
-	<%@ include file="/common/menu.jspf" %>
-	
-	
-   <h1>SAVANNA</h1>
-  	<form action="/savanna/controller?type=doSignUp" method="post" name="fr" onsubmit="return null_check()">
-          <!-- wrapper -->
-          <div id="wrapper">
-            <!-- content-->
-            <div id="content">
-            
-                <!-- ID -->
-                <div>
-                    <h3 class="join_title">
-                        <label for="id">아이디</label>
-                    </h3>
-                    <span class="box int_id">
-                        <input type="text" id="id" name="id" class="int" maxlength="12">
-                        <span id="alertTxt">사용불가</span>
-                    </span>
-                    <span id="id_check"></span>
-                </div>
+	<%@ include file="/common/menu.jspf"%>
 
-                <!-- PW1 -->
-                <div>
-                    <h3 class="join_title"><label for="pw">비밀번호</label></h3>
-                    <span class="box int_pass">
-                        <input type="password" id="pw" name="pwd" class="int" maxlength="12" onchange="check_pw()">
-                        <span id="alertTxtpw">사용불가</span>
-                    </span>
-                    <span id="check1"></span>
-                </div>
 
-                <!-- PW2 -->
-                <div>
-                    <h3 class="join_title"><label for="pw2">비밀번호 재확인</label></h3>
-                    <span class="box int_pass_check">
-                        <input type="password" id="pw2" class="int" maxlength="12" onchange="check_pw()">
-                    </span>
-                    <span id="check2"></span>
-                </div>
 
-                <!-- NAME -->
-                <div>
-                    <h3 class="join_title"><label for="name">이름</label></h3>
-                    <span class="box int_name">
-                        <input type="text" id="name" name="name" class="int" maxlength="5">
-                    </span>
-                    <span class="error_next_box"></span>
-                </div>
+		<div id="wrapper" style="overflow: auto;">
+	<form action="/savanna/controller?type=doSignUp" method="post"
+		name="fr" onsubmit="return null_check()">
+		<!-- wrapper -->
+			<h1>SAVANNA</h1>
+			<!-- content-->
+			<div id="content">
+				<section>
+					<!-- ID -->
+					<div>
+						<h3 class="join_title">
+							<label for="id">아이디</label>
+						</h3>
+						<span class="box int_id"> <input type="text" id="id"
+							name="id" class="int" maxlength="12"> <span id="alertTxt">사용불가</span>
+						</span> <span id="id_check"></span>
+					</div>
 
-                <!-- PHONE -->
-                <div>
-                  <h3 class="join_title"><label for="phone">휴대전화</label></h3>
-                  <span class="box int_phone">
-                      <input type="text" id="phone" name="phone" class="int" maxlength="11" placeholder="-제외 숫자만 입력">
-                  </span>
-                  <span class="error_next_box"></span>
-                      <span id="phone_check"></span>
-                 </div>
+					<!-- PW1 -->
+					<div>
+						<h3 class="join_title">
+							<label for="pw">비밀번호</label>
+						</h3>
+						<span class="box int_pass"> <input type="password" id="pw"
+							name="pwd" class="int" maxlength="12" onchange="check_pw()">
+							<span id="alertTxtpw">사용불가</span>
+						</span> <span id="check1"></span>
+					</div>
 
-                <!-- EMIAL -->
-                <div>
-                  <h3 class="join_title"><label for="email">이메일</label></h3>
-                  <span class="box int_email">
-                      <input type="email" id="email" name="email" class="int" maxlength="20">
-                  </span>
-                  <span class="error_next_box"></span>
-                 </div>
+					<!-- PW2 -->
+					<div>
+						<h3 class="join_title">
+							<label for="pw2">비밀번호 재확인</label>
+						</h3>
+						<span class="box int_pass_check"> <input type="password"
+							id="pw2" class="int" maxlength="12" onchange="check_pw()">
+						</span> <span id="check2"></span>
+					</div>
 
-                <!-- ADDRESS -->
-                <div>
-                  <h3 class="join_title"><label for="addr">주소</label></h3>
-                  <span class="box int_addr">
-                      <input type="text" id="addr" name="addr" class="int" maxlength="50">
-                  </span>
-                  <span class="error_next_box"></span>
-                 </div>
-                 
-                 
-                <!-- JOIN BTN-->
-                <div class="btn_area">
-                <input type="hidden" name="sel_accept" value="<%=sel_accept %>">
-                  <button type="submit" id="btnJoin">
-                      <span>가입하기</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-        </form>
+					<!-- NAME -->
+					<div>
+						<h3 class="join_title">
+							<label for="name">이름</label>
+						</h3>
+						<span class="box int_name"> <input type="text" id="name"
+							name="name" class="int" maxlength="5">
+						</span> <span class="error_next_box"></span>
+					</div>
+
+					<!-- PHONE -->
+					<div>
+						<h3 class="join_title">
+							<label for="phone">휴대전화</label>
+						</h3>
+						<span class="box int_phone"> <input type="text" id="phone"
+							name="phone" class="int" maxlength="11" placeholder="-제외 숫자만 입력">
+						</span> <span class="error_next_box"></span> <span id="phone_check"></span>
+					</div>
+
+					<!-- EMIAL -->
+					<div>
+						<h3 class="join_title">
+							<label for="email">이메일</label>
+						</h3>
+						<span class="box int_email"> <input type="email" id="email"
+							name="email" class="int" maxlength="20">
+						</span> <span class="error_next_box"></span>
+					</div>
+
+					<!-- ADDRESS -->
+					<div>
+						<h3 class="join_title">
+							<label for="addr">주소</label>
+						</h3>
+						<span class="box int_addr"> <input type="text" id="addr"
+							name="addr" class="int" maxlength="50">
+						</span> <span class="error_next_box"></span>
+					</div>
+
+
+					<!-- JOIN BTN-->
+					<div class="btn_area">
+						<input type="hidden" name="sel_accept" value="<%=sel_accept %>">
+						<button type="submit" id="btnJoin">
+							<span>가입하기</span>
+						</button>
+					</div>
+				</section>
+		</div>
+	</form>
+		</div>
+	<div class="footer">
+					<%@ include file="/common/foot.jspf"%>
+	</div>
 
 </body>
 </html>

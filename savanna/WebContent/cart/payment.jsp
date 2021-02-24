@@ -86,53 +86,13 @@
     	frm.submit();
     }
 	
-    /*$(function(){ 
-        $(':input:radio[name=paymentmethod]:checked').on("click", function(){
-            var check = $(this).val();
-            
-            if(check == 'deposit'){
-                $(".paymentselect").siblings(".payment_card").css("display", "none");
-                $(".paymentselect").siblings(".payment_deposit").css("display", "block");
-
-                $("select#set_bank").removeProp("disabled");
-				$("select#set_card").prop("disabled");
-
-            } else if(check == 'card'){
-                $(".paymentselect").siblings(".payment_deposit").css("display", "none");
-                $(".paymentselect").siblings(".payment_card").css("display", "block");
-                
-                $("select#set_card").removeProp("disabled");
-                $("select#set_bank").prop("disabled");
-            }
-        });
-    });*/
     $(function() {
     	$("#set_card").click(function(){
     		$("#cardinfo").show();
     	});
 	});
     
-    /* function set_paymentmethod(frm){
-    	if(!$(':input:radio[name=paymentmethod]:checked').val()){
-    		alert("결제수단을 선택하세요");
-    		return false;
-    	} else{
-	    	if(frm.paymentmethod.value == 'card'){
-	    		if($('select option:selected').val()=='disable'){
-	    			alert("카드를 선택하세요");
-	    			return false;
-	    		} else {
-		    		$("#cardinfo").css("display","block");
-	    		}
-	    	} else if(frm.paymentmethod.value == 'deposit'){
-	 	    	frm.action = "/savanna/controller?type=GoOrder";
-	    		frm.method="post";
-	       		frm.submit();
-	    	}    		
-    	}
-    } */
-    
- // 입력하고 다음 입력폼으로 커서 옮기기
+ 	// 입력하고 다음 입력폼으로 커서 옮기기
 	$(function(){ 
 		$('.cardinfo1').keyup (function(){
 			var maxlen = $(this).attr("maxlength");
@@ -153,7 +113,12 @@
 			}
 		});
 	});
-	
+ 	//숫자만 입력
+	$(function(){
+		$("input:text[numberOnly]").keyup(function(){
+			$(this).val($(this).val().replace(/[^0-9]/gi,"") );
+		});
+	});
 	function set_paymentmethod(frm){
 		var querytext = $("input.cardinfo1").val();
 		if (querytext == "") {
@@ -283,19 +248,19 @@
             <tfoot id="cardinfo" style="display :none ">
         		<tr>
 					<td style="width: 30%">카드번호</td>
-					<td><input type="text" name="cardnumber1" class="cardinfo1" maxlength="4" style="width:40px"  pattern="[0-9]+">
-					<input type="text" name="cardnumber2" class="cardinfo1" maxlength="4" style="width:40px"  pattern="[0-9]+">
-					<input type="text" name="cardnumber3" class="cardinfo1" maxlength="4" style="width:40px"  pattern="[0-9]+">
-					<input type="text" name="cardnumber4" class="cardinfo1" maxlength="4" style="width:40px"  pattern="[0-9]+"></td>
+					<td><input type="text" name="cardnumber1" class="cardinfo1" maxlength="4" style="width:40px"  pattern="[0-9]+" numberOnly>
+					<input type="text" name="cardnumber2" class="cardinfo1" maxlength="4" style="width:40px"  pattern="[0-9]+" numberOnly>
+					<input type="text" name="cardnumber3" class="cardinfo1" maxlength="4" style="width:40px"  pattern="[0-9]+" numberOnly>
+					<input type="text" name="cardnumber4" class="cardinfo1" maxlength="4" style="width:40px"  pattern="[0-9]+" numberOnly></td>
 				</tr>
 				<tr>
 					<td style="width: 30%">유효기간</td>
-					<td><input type="text" name="valid" class="cardinfo2" maxlength="2" style="width:40px" placeholder="MM"  pattern="[0-9]+">
-					<input type="text" name="valid" class="cardinfo2" maxlength="2" style="width:40px" placeholder="YY"  pattern="[0-9]+"></td>
+					<td><input type="text" name="valid" class="cardinfo2" maxlength="2" style="width:40px" placeholder="MM"  pattern="[0-9]+" numberOnly>
+					<input type="text" name="valid" class="cardinfo2" maxlength="2" style="width:40px" placeholder="YY"  pattern="[0-9]+" numberOnly></td>
 				</tr>
 				<tr>
 					<td style="width: 30%">CVC</td>
-					<td><input type="text" name="cvc" class="cardinfo3" maxlength="3" style="width:40px"  pattern="[0-9]+"></td>
+					<td><input type="text" name="cvc" class="cardinfo3" maxlength="3" style="width:40px"  pattern="[0-9]+" numberOnly></td>
 				</tr>
             </tfoot>
         </table>
@@ -309,8 +274,8 @@
             </td>
             <td>
                 <input type="button" value="확인" class="btn" onclick="set_paymentmethod(this.form)">
-                <input type="hidden" name="addr" value="${addr }">
-            </td>   
+                <input type="hidden" name="totprice" value="${totprice }">
+            </td>
         </tr> 
     </table>
     </div>

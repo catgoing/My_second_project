@@ -24,13 +24,6 @@ import com.savanna.model.command.book.UpdateBookCommand;
 import com.savanna.model.command.book.viewDispatchCommand.EnterBookDetailCommand;
 import com.savanna.model.command.book.viewDispatchCommand.EnterCreateBookViewCommand;
 import com.savanna.model.command.book.viewDispatchCommand.EnterUpdateBookViewCommand;
-import com.savanna.model.command.cart.CartInsertCommand;
-import com.savanna.model.command.cart.CartListCommand;
-import com.savanna.model.command.cart.ClearCartCommand;
-import com.savanna.model.command.cart.DeleteInCartCommand;
-import com.savanna.model.command.cart.EditQuantCommand;
-import com.savanna.model.command.cart.OrderGoCommand;
-import com.savanna.model.command.cart.TempBookInsertCommand;
 import com.savanna.model.command.member.*;
 import com.savanna.model.command.wish.DeleteWishCommand;
 import com.savanna.model.command.wish.InsertWishCommand;
@@ -151,6 +144,8 @@ public class FrontController extends HttpServlet {
 			command = new CartInsertCommand();
 		} else if("deleteInCart".equals(type)){ //장바구니에서 삭제
 			command = new DeleteInCartCommand();
+		} else if("checkDelete".equals(type)){ //장바구니에서 삭제
+			command = new CheckDeleteInCartCommand();
 		} else if("clearCart".equals(type)){ //장바구니 비우기
 			command = new ClearCartCommand();
 		} else if("orderPayment".equals(type)){ //구매step1

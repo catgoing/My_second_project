@@ -23,7 +23,7 @@ public class EditQuantCommand implements Command {
 		//id, 책번호, 수량을 가져옴
 		MemberVO mvo = (MemberVO)session.getAttribute("user");
 		String id = mvo.getId();
-		System.out.println(id);
+
 		int book_no = Integer.parseInt(request.getParameter("book_no"));
 		int quant = Integer.parseInt(request.getParameter("quant"));
 		

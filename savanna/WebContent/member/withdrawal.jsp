@@ -9,7 +9,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script type="text/javascript" src="js/bootstrap.js"></script>
+<script type="text/javascript" src="/js/bootstrap.js"></script>
 
 <!-- Bootstrap core CSS -->
 <link href="/savanna/css/bootstrap.min.css" rel="stylesheet">
@@ -41,7 +41,7 @@ $(function (){
 					 
 				} else {
 					var form = document.forms[0];
-					form.action = "/savanna/controller?type=withdrawal"
+					form.action = '/savanna/controller?type=withdrawal&id='+'${user.id}';
 					form.submit();
 				}
 				
@@ -73,7 +73,7 @@ footer {
 <br>
 <h1>탈퇴확인</h1>
 
-<form method="post" name="fr">
+<form action="/savanna/controller?type=withdrawal" method="post" name="fr">
 
 	<h3>탈퇴하시려면 비밀번호를 입력해주세요</h3>
           <div id="wrapper">

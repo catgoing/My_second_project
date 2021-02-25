@@ -34,7 +34,7 @@ public class BuyCancelListCommand implements Command{
 
 		HttpSession session = request.getSession();
 		MemberVO vo = (MemberVO)session.getAttribute("user");
-		String command = "buyList";
+		String command = "buyCancelList";
 		if( null != vo ) {
 
 			String id = vo.getId();

@@ -100,22 +100,29 @@
 	}
 </style>
 <script>
+
+	var values = new Array;
+		
+	$(function(){
+		$(".quant").each(function(){
+			values.push($(this).attr("value"));
+			console.log(values);
+		});
+	});
+		   
 	//전체구입
 	function order_go(frm){
-		var len = $('.quant').length
-        
-		var values = [];
-        values.push($('.quant').val());
-        
+		var len = values.length;
 		for(var i = 0; i < len; i++){
+			console.log(values[i]);
 			if(values[i] == 0){
 				alert("품절/절판 상품은 구매하실 수 없습니다");
 				return false;
 			}
-			if(values[i]!=0){
-                frm.action = "/savanna/controller?type=orderPayment";
+			if(i == len && values[i]!=0){
+				frm.action = "/savanna/controller?type=orderPayment";
                 frm.method = "post";
-                frm.submit();  
+                frm.submit();
             }
 		}
 	}
@@ -251,7 +258,7 @@
 				<td>
 					<input type="checkbox" name="check" class="cb" value="${cvo.book_no}">
 				</td>
-				<td class="productcol">${cvo.book_name  }</td>
+				<td class="productcol"><a href="controller?type=EnterDetail&book_no=${cvo.book_no }">${cvo.book_name  }</td>
 				<td class="pricecol"><fmt:formatNumber value="${cvo.cart_price  }" pattern="###,###"/>원</td>
 				<td class="quantcol" >
 				<c:if test="${cvo.cart_quan > 0 }">
@@ -263,7 +270,7 @@
 				</form>
 				</c:if>
 				<c:if test="${cvo.cart_quan == 0 }">
-					<input type="txet" name="quant" class="quant" size="12" value="품절/절판" disabled>
+					<input type="text" name="quant" class="quant" size="3" value="0" disabled> 품절/절판
 				</c:if>
 				</td>
 				<td class="deletecol" >

@@ -27,6 +27,7 @@
         margin: auto;
     }
     table {
+
         max-width: 700px;
         margin:auto;
     }
@@ -42,6 +43,11 @@
 	
 	tbody > tr:hover{
 	cursor: pointer;
+	}
+	
+      
+    img {
+  	max-width: 100%;
 	}
 </style>
 
@@ -68,8 +74,10 @@
 			<c:if test="${not empty buylist }">
 			<c:forEach var="vo" items="${buylist }">
 				<tr class="list" onclick="location.href = '/savanna/controller?type=EnterDetail&book_no=${vo.book_no }'">
-              <td rowspan="2" width="20%">표지이미지</td>
-			        <td colspan="2" width="40%">${vo.book_name }</td>
+              		<td rowspan="2" width="10%">
+						<img src="images/${vo.book_no}.jpg" alt="제품이미지">
+						</td>
+			        <td colspan="2" width="50%">${vo.book_name }</td>
 			        <td width="10%" style="text-align:center;">${vo.quan }</td>
 			        <td rowspan="2" width="10%" style="text-align:center;"><fmt:formatNumber value="${vo.price }" pattern="###,###"/>원</td>
 			        <td rowspan="2" width="10%" style="text-align:center;">${vo.pur_date }</td>
@@ -77,7 +85,7 @@
 			              
 			    </tr>
 			    <tr onclick="location.href = '/savanna/controller?type=EnterDetail&book_no=${vo.book_no }'">
-			        <td colspan="7" style="border-top:none">${vo.addr }</td>
+			        <td colspan="3" style="border-top:none">${vo.addr }</td>
 		    	</tr>
 			</c:forEach>
 			</c:if>

@@ -196,7 +196,8 @@ footer {
 	<%@ include file="/common/memberSidebar.jspf" %>
 	
 	<br>	
-	<h1 style="margin-right:150px;">내정보</h1>
+	<h1 style="margin-right:0;">내정보</h1>
+	<br>
 	
 	<form action="/savanna/controller?type=update" method="post" id="fr_info" name="fr" onsubmit="return null_check()">
        <div id="wrapper">

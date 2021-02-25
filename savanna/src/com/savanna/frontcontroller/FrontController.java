@@ -163,8 +163,10 @@ public class FrontController extends HttpServlet {
 		} else if("payCreditCard".equals(type)){ //카드결제완료
 			command = new PayCreditCardCommand();
 		} else if("MainPage".equals(type)) {
-			System.out.print("expect:MainPage");
-			command = new MainPageCommand();
+			System.out.println("expect:MainPage" + request.getParameter("keyword"));
+			command = request.getParameter("keyword")==null
+					? new MainPageCommand()
+					: new MainPageCommand(request.getParameter("keyword"));
 		} else if("wishList".equals(type)) { //찜목록
 			command = new WishListCommand();
 		} else if("insertWishList".equals(type)) { //찜목록 입력

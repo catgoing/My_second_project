@@ -271,7 +271,7 @@
 }
 </style>
 </head>
-<body id="body">
+<body id="body" style="overflow: auto;">
 
 	<%@ include file="/common/menu.jspf"%>
 

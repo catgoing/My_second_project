@@ -28,7 +28,12 @@
 			frm.pwd.focus();
 		}
 	}
-
+	
+	function adminUpdate_go(frm) {
+		frm.action = "../controller?type=reviewUpdate";
+		frm.submit();
+	}
+	
 	function list_go(frm) {
 		frm.action = "../controller?type=reviewPage";
 		frm.submit();
@@ -43,24 +48,16 @@
 			<section>
 				<div class="box">
 					<div class="content">
-						<h2 class="align-center" style="font-weight: bold;">리뷰 수정하기</h2>
-						<form action="/savanna/controller?type=reviewUpdate" method="post">
+							<c:choose>
+							<c:when test="${user.id == rvo.id }">
+							<h2 class="align-center" style="font-weight: bold;">리뷰 수정하기</h2>
+							<form action="/savanna/controller?type=reviewUpdate" method="post">							
 							<div class="field half first">
 								<label for="name">작성자</label>
 								<input name="id" id="id" type="text" value="${user.id}" readonly>
 							</div>
 							<div class="field half">
 								<label for="book">책번호</label>
-								<!--
-								<div class="select-wrapper">
-									  
-									<select name="book" id="book">
-									<c:forEach var="bvo" items="${list }">
-										<option value="1">${bvo.book_no }</option>
-									</c:forEach>	
-									</select>
-								</div>
-								-->
 								<input type="text" name="book_no" title="책번호" value="${rvo.book_no }">
 							</div>
 							<div class="field">
@@ -76,6 +73,29 @@
 								<li><input value="다시 작성" class="button" type="reset"></li>
 								<li><input value="목록" class="button" type="submit" onclick="list_go(this.form)"></li>
 							</ul>
+							</c:when>
+							<c:when test="${user.id == 'a' }">
+							<h2 class="align-center" style="font-weight: bold;">회원 리뷰 수정하기</h2>
+							<form action="/savanna/controller?type=reviewUpdate" method="post">
+							<div class="field half first">
+								<label for="name">작성자</label>
+								<input name="id" id="id" type="text" value="${rvo.id}" readonly>
+							</div>
+							<div class="field half">
+								<label for="book">책번호</label>
+								<input type="text" name="book_no" title="책번호" value="${rvo.book_no }">
+							</div>
+							<div class="field">
+								<label for="message">리뷰 내용</label>
+								<textarea name="rev_content" id="message" rows="6">${rvo.rev_content }</textarea>
+							</div>							
+							<ul class="actions align-center">
+								<li><input value="수정하기" class="button special" type="button" onclick="adminUpdate_go(this.form)"></li>
+								<li><input value="다시 작성" class="button" type="reset"></li>
+								<li><input value="목록" class="button" type="submit" onclick="list_go(this.form)"></li>
+							</ul>
+							</c:when>							
+							</c:choose>
 							<div>
 								<input type="hidden" id="rev_no" name="rev_no" value="${rvo.rev_no }">
 								<input type="hidden" id="id" name="id" value="${vo.id }">

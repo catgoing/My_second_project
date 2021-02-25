@@ -38,11 +38,18 @@
 		}
 	}
 
+	function adminDelete_go(frm) {
+		frm.action = "../controller?type=reviewDelete";
+		frm.submit();
+	}
+	
 </script>
 <%@ include file="/common/menu.jspf" %>
 <%@ include file="/common/memberSidebar.jspf" %>
 
 <body>
+	<c:choose>
+	<c:when test="${user.id == rvo.id }">
 	<form action="../controller?type=reviewDelete" method="post" name="fr">
 		<h1>패스워드 확인</h1>
 	    <div id="wrapper">
@@ -66,6 +73,26 @@
                 </div>
         	</div>
         </div>
+       </c:when>
+       <c:when test="${user.id == 'a' }">
+		<form action="../controller?type=reviewDelete" method="post" name="fr">
+			<h1>${rvo.id} 님의 리뷰를 삭제하시겠습니까?</h1>
+		    <div id="wrapper">
+	           <!-- content-->
+	           <div id="content">
+	               <!-- PW -->
+	                <!-- OKBTN-->
+	                <div class="btn_area" style="margin: 20px 0 0 0">
+	                  <button type="button" id="okbtn" style="margin: 0" onclick="adminDelete_go(this.form)">
+	                      <span>확인</span>
+	                  </button>
+	                  <input type="hidden" id="rev_no" name="rev_no" value="${rvo.rev_no }">
+	              </div>
+	                </div>
+	        	</div>
+	        </div> 
+       		</c:when>	              
+        </c:choose>
     </form>		
 
 		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>

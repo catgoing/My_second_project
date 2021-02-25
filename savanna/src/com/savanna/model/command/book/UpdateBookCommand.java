@@ -28,6 +28,7 @@ public class UpdateBookCommand implements Command {
 							, Integer.parseInt(request.getParameter("stock"))
 							, request.getParameter("category")
 							);
+		System.out.println(vo.getPub_date());
 		int result = BookDAO.updateBook(vo);
 		System.out.println(result);
 		return "controller?type=StockManagerPage";

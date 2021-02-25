@@ -54,6 +54,12 @@
 		frm.action = "../controller?type=reviewPage";
 		frm.submit();
 	}
+	
+	function delete_go(frm) {
+		frm.action = "../controller?type=reviewDelete";
+		frm.submit();
+	}
+	
 	function commInsert_go(frm) {
 		frm.action = "../controller?type=commInsert";
 		frm.submit();
@@ -84,16 +90,6 @@
 							</div>							
 							<div class="field">
 								<label for="book">책번호</label>
-								<!--
-								<div class="select-wrapper">
-									  
-									<select name="book" id="book">
-									<c:forEach var="bvo" items="${list }">
-										<option value="1">${bvo.book_no }</option>
-									</c:forEach>	
-									</select>
-								</div>
-								-->
 								<input type="text" name="book_no" title="책번호" value="${rvo.book_no }" readonly>
 							</div>
 							<div class="field">
@@ -102,12 +98,12 @@
 							</div>
 							<ul class="actions align-center">
 								<c:choose>
-									<c:when test="${user.id == rvo.id }">
+									<c:when test="${user.id == rvo.id or user.id == 'a'}">
 										<li><input value="수정하기" type="button" onclick="javascript:location.href='update.jsp'"></li>
 										<li><input value="삭제하기" type="button" onclick="javascript:location.href='delete.jsp'"></li>
 										<li><input value="목록" type="button" onclick="list_go(this.form)"></li>
 									</c:when>
-									<c:when test="${user.id != rvo.id }">
+								<c:when test="${user.id != rvo.id }">
 										<li><input value="목록" type="button" onclick="list_go(this.form)"></li>
 									</c:when>
 								</c:choose>
@@ -158,7 +154,7 @@
 									<p>이름 : ${cvo.id} &nbsp; 날짜 : ${cvo.comm_date }</p>
 									<p>내용 : ${cvo.comm_content }</p>
 								<c:choose>
-									<c:when test="${user.id == cvo.id }">
+									<c:when test="${user.id == cvo.id or user.id == 'a'}">
 										<input value="삭제하기" type="button" onclick="commDelete_go(this.form)">
 										<input type="hidden" name="comm_no" value="${cvo.comm_no }">
 										<input type="hidden" name="rev_no" value="${rvo.rev_no }">

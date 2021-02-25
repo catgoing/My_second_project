@@ -112,20 +112,21 @@
 		   
 	//전체구입
 	function order_go(frm){
-		var len = values.length;
-		for(var i = 0; i < len; i++){
-			console.log(values[i]);
-			if(values[i] == 0){
-				alert("품절/절판 상품은 구매하실 수 없습니다");
-				return false;
-			}
-			if(i == len && values[i]!=0){
-				frm.action = "/savanna/controller?type=orderPayment";
+      var len = values.length;
+      for(var i = 0; i < len; i++){
+         console.log(values[i]);
+         if(values[i] == 0){
+            alert("품절/절판 상품은 구매하실 수 없습니다");
+            return false;
+         }
+         if(i == len-1 && values[i]!=0){
+            frm.action = "/savanna/controller?type=orderPayment";
                 frm.method = "post";
                 frm.submit();
             }
-		}
-	}
+      }
+   }
+	
 	//수량변경
 	function editQuan(frm){
 		if(frm.quant.value <= 0  ){
@@ -133,7 +134,13 @@
 			alert("최소 수량은 1개입니다.");
 			frm.quant.value = 1;
 			return false;
-		}else{
+		}else if(frm.quant.value > 10  ){
+			console.log(frm.quant.value);
+			alert("최대 수량은 10개입니다.");
+			frm.quant.value = 1;
+			return false;
+		}
+			else{
 			frm.action = "/savanna/controller?type=editQuan";
 			frm.method = "post";
 			frm.submit();	

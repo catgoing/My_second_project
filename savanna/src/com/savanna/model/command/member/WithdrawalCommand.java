@@ -22,7 +22,7 @@ public class WithdrawalCommand implements Command{
 		MemberVO vo = new MemberVO();
 		vo.setId(request.getParameter("id"));
 
-//		System.out.println(vo);
+		System.out.println(vo);
 		MemberDAO.withdrawal1(vo); // 회원정보 탈퇴테이블에 복사
 		MemberDAO.withdrawal2(vo); // 회원정보 삭제
 

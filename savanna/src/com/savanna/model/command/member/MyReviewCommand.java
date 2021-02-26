@@ -18,14 +18,9 @@ import com.savanna.model.vo.MemberVO;
 import com.savanna.model.vo.ReviewVO;
 
 public class MyReviewCommand implements Command {
-	String cPage;
 	
 	public MyReviewCommand() {
 	
-	}
-	
-	public MyReviewCommand(String cPage) {
-		this.cPage = cPage; // cPage는 jsp에서 get 방식으로 frontcontroller를 통해 전달받음
 	}
 
 	@Override
@@ -34,6 +29,7 @@ public class MyReviewCommand implements Command {
 
 		HttpSession session = request.getSession();
 		MemberVO vo = (MemberVO)session.getAttribute("user");
+		String cPage = request.getParameter("cPage");
 		String command = "myReview";
 		if( null != vo ) {
 			

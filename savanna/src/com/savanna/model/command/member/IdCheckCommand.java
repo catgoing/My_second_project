@@ -14,11 +14,9 @@ import com.savanna.model.vo.MemberVO;
 
 public class IdCheckCommand implements Command{
 	
-	String id;
 	
-	public IdCheckCommand(String id) {
+	public IdCheckCommand() {
 		
-		this.id = id;
 	}
 	
 
@@ -29,8 +27,8 @@ public class IdCheckCommand implements Command{
 		resp.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = resp.getWriter();
 		
-//		String id = req.getParameter("id");
-		System.out.println("id: " + id);
+		String id = req.getParameter("id");
+
 		MemberVO vo1 = new MemberVO();
 		vo1.setId(id);
 		

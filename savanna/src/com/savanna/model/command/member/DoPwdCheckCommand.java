@@ -13,38 +13,25 @@ import com.savanna.model.command.Command;
 import com.savanna.model.dao.MemberDAO;
 import com.savanna.model.vo.MemberVO;
 
+import oracle.security.o3logon.a;
+
 
 public class DoPwdCheckCommand implements Command{
-	
-	String id;
-	String pwd;
-	String type;
-	
+		
 	
 	public DoPwdCheckCommand() {
 	
 	}
 	
-	public DoPwdCheckCommand(String id, String pwd) {
-		this.id = id;
-		this.pwd = pwd;
-	}
-	
-	public DoPwdCheckCommand(String id, String pwd, String type) {
-		this.id = id;
-		this.pwd = pwd;
-		this.type = type;
-	}
-	
-
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		resp.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = resp.getWriter();
 
-		System.out.println("do pwd id: " + id);
-		System.out.println("do pwd pwd: " + pwd);
+		String id = req.getParameter("id");
+		String pwd = req.getParameter("pwd");
+		String type = req.getParameter("type");
 		
 		int result = 0;
 		

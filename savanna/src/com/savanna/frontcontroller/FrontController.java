@@ -35,9 +35,7 @@ import com.savanna.model.command.cart.*;
 public class FrontController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println(">> FrontController.doGet() 실행~~");
 		String type = request.getParameter("type");
-		System.out.println("> type : "+ type);
 
 		Command command = null;
 		if ("signUp".equals(type)) {
@@ -189,7 +187,6 @@ public class FrontController extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println(">> FrontController.doPost() 실행~~");
 		request.setCharacterEncoding("UTF-8");
 		doGet(request, response);
 	}

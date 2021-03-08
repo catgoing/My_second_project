@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.savanna.model.command.Command;
 import com.savanna.model.dao.MemberDAO;
 import com.savanna.model.vo.BuyVO;
-import com.savanna.model.vo.MemberVO;
 
 public class AdminOrderDetailCommand implements Command{
 
@@ -18,10 +17,8 @@ public class AdminOrderDetailCommand implements Command{
 			throws ServletException, IOException {
 		
 		String buylist_no = request.getParameter("buylist_no");
-		System.out.println("detail: " + buylist_no);
 		
 		BuyVO vo = MemberDAO.orderDetail(buylist_no);
-//		System.out.println(vo);
 		request.setAttribute("vo", vo);
 		
 		return "member/adminOrderDetail.jsp";

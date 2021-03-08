@@ -32,9 +32,7 @@ public class IdCheckCommand implements Command{
 		MemberVO vo1 = new MemberVO();
 		vo1.setId(id);
 		
-		
 		int result = MemberDAO.idCheck(vo1);
-//		System.out.println(result);
 
 		
 		req.setAttribute("result", result);	

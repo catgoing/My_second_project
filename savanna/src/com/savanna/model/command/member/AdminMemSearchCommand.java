@@ -1,7 +1,6 @@
 package com.savanna.model.command.member;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,10 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.savanna.model.command.Command;
-import com.savanna.model.command.paging.ListPaging;
 import com.savanna.model.dao.MemberDAO;
-import com.savanna.model.vo.BuyVO;
-import com.savanna.model.vo.MemPagingVO;
 import com.savanna.model.vo.MemPagingVO2;
 import com.savanna.model.vo.MemberVO;
 
@@ -28,13 +24,11 @@ public class AdminMemSearchCommand implements Command {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-//		System.out.println(">> SearchController doGet() 실행~~~");
 		
 		String idx = request.getParameter("idx");
 		String keyword = request.getParameter("keyword");
 		String cPage = request.getParameter("cPage");
 		String command = "memsearch";
-		System.out.println("> idx: "+ idx + ", keyword: " + keyword + ", cpage: " + cPage);
 		
 		String path = "";
 		if (keyword == null || keyword.equals("")) { 
@@ -54,7 +48,6 @@ public class AdminMemSearchCommand implements Command {
 		
 			// 현재 페이지에 표시할 데이터 조회
 			List<MemberVO> list = MemberDAO.getsearchList(map);
-//			System.out.println("> 현재 페이지 글목록(list) : " + list);
 
 			request.setAttribute("list", list); // 최종 데이터 리스트
 			request.setAttribute("pvo", p); // 페이지 정보

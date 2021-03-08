@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.savanna.model.command.Command;
 import com.savanna.model.dao.MemberDAO;
 import com.savanna.model.vo.BuyVO;
-import com.savanna.model.vo.MemPagingVO;
 import com.savanna.model.vo.MemPagingVO2;
 
 public class AdminOrderListCommand implements Command{
@@ -26,10 +25,9 @@ public class AdminOrderListCommand implements Command{
 			throws ServletException, IOException {
 
 		String command = "adminOrderList";
+		String cPage = request.getParameter("cPage");
 
 			request.setCharacterEncoding("UTF-8");
-			String cPage = request.getParameter("cPage");
-			
 			response.setContentType("text/html;charset=UTF-8");
 			
 			MemPagingVO2 p = new MemPagingVO2();

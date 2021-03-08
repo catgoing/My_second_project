@@ -23,7 +23,6 @@ public class AdminMemDetailCommand implements Command{
 		String id = request.getParameter("id");
 		
 		MemberVO vo = MemberDAO.memDetail(id);
-//		System.out.println(vo);
 		request.setAttribute("vo", vo);
 		
 		return "member/adminMemDetail.jsp";

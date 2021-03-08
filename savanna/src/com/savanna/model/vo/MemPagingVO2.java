@@ -11,7 +11,7 @@ public class MemPagingVO2 {
 	private int numPerPage = 10; //하나의 페이지에 표시할 리스트 수
 	private int pagePerBlock = 5; //블록당 표시하는 페이지 개수
 	
-	private int totalCount = 0; //총 회원수
+	private int totalCount = 0; //총 데이터 수
 	private int totalPage = 0; //전체 페이지 개수
 	private int totalBlock = 0; //전체 블록 개수
 	
@@ -49,8 +49,8 @@ public class MemPagingVO2 {
 		p.setBegin(p.getEnd() - p.getNumPerPage() + 1); 
 		
 		// 끝 번호가 데이터 건수보다 많은 경우 총 데이터 수와 일치화
-		if (p.getEnd() > p.getTotalMember()) {
-			p.setEnd(p.getTotalMember());
+		if (p.getEnd() > p.getTotalCount()) {
+			p.setEnd(p.getTotalCount());
 		}
 		
 		//----- 블록(block) 계산하기 -----------
@@ -71,9 +71,7 @@ public class MemPagingVO2 {
 		
 //		System.out.println(">>시작페이지(beginPage) : " + p.getBeginPage());
 //		System.out.println(">>끝페이지(endPage) : " + p.getEndPage());
-		
-
-		
+	
 		
 		return p;
 	}
@@ -140,7 +138,7 @@ public class MemPagingVO2 {
 	public void setPagePerBlock(int pagePerBlock) {
 		this.pagePerBlock = pagePerBlock;
 	}
-	public int getTotalMember() {
+	public int getTotalCount() {
 		return totalCount;
 	}
 	public void setTotalCount(int totalCount) {

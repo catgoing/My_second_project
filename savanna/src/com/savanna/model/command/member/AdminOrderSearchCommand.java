@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.savanna.model.command.Command;
 import com.savanna.model.dao.MemberDAO;
 import com.savanna.model.vo.BuyVO;
-import com.savanna.model.vo.MemPagingVO;
 import com.savanna.model.vo.MemPagingVO2;
 
 public class AdminOrderSearchCommand implements Command{
@@ -25,7 +24,6 @@ public class AdminOrderSearchCommand implements Command{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-//		System.out.println(">> SearchController doGet() 실행~~~");
 		
 		String idx = request.getParameter("idx");
 		String keyword = request.getParameter("keyword");

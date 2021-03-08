@@ -13,8 +13,6 @@ import javax.servlet.http.HttpSession;
 import com.savanna.model.command.Command;
 import com.savanna.model.dao.MemberDAO;
 import com.savanna.model.vo.BuyVO;
-import com.savanna.model.vo.CommVO;
-import com.savanna.model.vo.MemPagingVO;
 import com.savanna.model.vo.MemPagingVO2;
 import com.savanna.model.vo.MemberVO;
 
@@ -33,6 +31,7 @@ public class MyBuyListCommand implements Command{
 		MemberVO vo = (MemberVO)session.getAttribute("user");
 		String cPage = request.getParameter("cPage");
 		String command = "buyList";
+		
 		if( null != vo ) {
 			
 			String id = vo.getId();
@@ -47,8 +46,7 @@ public class MyBuyListCommand implements Command{
 			map = p.begin_end_id(p, id);
 		
 			// 현재 페이지에 표시할 데이터 조회
-			List<BuyVO> list = MemberDAO.myBuyList(map); /*******************************/
-//			System.out.println("> 현재 페이지 글목록(list) : " + list);
+			List<BuyVO> list = MemberDAO.myBuyList(map); 
 
 			request.setAttribute("buylist", list); // 최종 데이터 리스트
 			request.setAttribute("pvo", p); // 페이지 정보
@@ -57,8 +55,6 @@ public class MyBuyListCommand implements Command{
 			request.setAttribute("command", command); // idx값 유지를 위해 jsp 페이지로 전달
 			
 
-			
-			
 			
 		}
 		

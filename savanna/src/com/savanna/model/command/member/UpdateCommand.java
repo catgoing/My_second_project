@@ -1,7 +1,6 @@
 package com.savanna.model.command.member;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -17,8 +16,7 @@ public class UpdateCommand implements Command{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-//		System.out.println("update 실행");
+	
 		
 		request.setCharacterEncoding("UTF-8");
 		

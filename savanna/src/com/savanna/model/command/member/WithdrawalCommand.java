@@ -1,7 +1,6 @@
 package com.savanna.model.command.member;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -24,8 +23,7 @@ public class WithdrawalCommand implements Command{
 
 		System.out.println(vo);
 		MemberDAO.withdrawal1(vo); // 회원정보 탈퇴테이블에 복사
-		MemberDAO.withdrawal2(vo); // 회원정보 삭제
-
+		MemberDAO.withdrawal2(vo);// 회원정보 삭제
 		// 세션 초기화
 		HttpSession httpSession = request.getSession(true);
 		httpSession.invalidate();

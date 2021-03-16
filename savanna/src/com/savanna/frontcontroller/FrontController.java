@@ -35,12 +35,7 @@ import com.savanna.model.command.cart.*;
 public class FrontController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println(">> FrontController.doGet() 실행~~");
 		String type = request.getParameter("type");
-		String id = request.getParameter("id");
-		String pwd = request.getParameter("pwd");
-		String cPage = request.getParameter("cPage");
-		System.out.println("> type : "+ type);
 
 		Command command = null;
 		if ("signUp".equals(type)) {
@@ -72,37 +67,37 @@ public class FrontController extends HttpServlet {
 		} else if ("inquiryPwd".equals(type)) {
 			command = new InquiryPwdCommand();
 		} else if ("memDetail".equals(type)) {
-			command = new AdminMemDetailCommand(id);
+			command = new AdminMemDetailCommand();
 		} else if ("idCheck".equals(type)) {
-			command = new IdCheckCommand(id);
+			command = new IdCheckCommand();
 		} else if ("doPwdCheck".equals(type)) {
-			command = new DoPwdCheckCommand(id, pwd);
+			command = new DoPwdCheckCommand();
 		} else if ("doPwdCheckwithdrawal".equals(type)) {
-			command = new DoPwdCheckCommand(id, pwd, type.substring(10));
+			command = new DoPwdCheckCommand();
 		} else if ("adminUpdate".equals(type)) {
 			command = new AdminUpdateCommand();
 		} else if ("adminWithdrawal".equals(type)) {
 			command = new AdminWithdrawalCommand();
 		} else if ("memsearch".equals(type)) {
-			command = new AdminMemSearchCommand(cPage);
+			command = new AdminMemSearchCommand();
 		} else if ("myComm".equals(type)) {
-			command = new MyCommCommand(cPage);
+			command = new MyCommCommand();
 		} else if ("myReview".equals(type)) {
-			command = new MyReviewCommand(cPage);
+			command = new MyReviewCommand();
 		} else if ("buyList".equals(type)) {
-			command = new MyBuyListCommand(cPage);
+			command = new MyBuyListCommand();
 		} else if ("buyCancelList".equals(type)) {
-			command = new BuyCancelListCommand(cPage);
+			command = new BuyCancelListCommand();
 		} else if ("buyCancel".equals(type)) {
 			command = new BuyCancelCommand();
 		} else if ("adminOrderList".equals(type)) {
-			command = new AdminOrderListCommand(cPage);
+			command = new AdminOrderListCommand();
 		} else if ("orderdetail".equals(type)) {
 			command = new AdminOrderDetailCommand();
 		} else if ("adminOrderUpdate".equals(type)) {
 			command = new AdminOrderUpdate();
 		} else if ("adminordersearch".equals(type)) {
-			command = new AdminOrderSearchCommand(cPage);
+			command = new AdminOrderSearchCommand();
 		} else if("StockList".equals(type)) {
 			command = new EnterCardListCommand();
 		} else if("StockManagerPage".equals(type)) {
@@ -192,7 +187,6 @@ public class FrontController extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println(">> FrontController.doPost() 실행~~");
 		request.setCharacterEncoding("UTF-8");
 		doGet(request, response);
 	}

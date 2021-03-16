@@ -12,8 +12,8 @@ public class MemPagingVO {
 	private int totalPage = 0; //전체 페이지 개수
 	private int totalBlock = 0; //전체 블록 개수
 	
-	private int begin = 0; //현재 페이지상의 시작 회원번호
-	private int end = 0; //현재 페이지상의 마지막 회원번호
+	private int begin = 0; //현재 페이지 상의 시작 회원번호
+	private int end = 0; //현재 페이지 상의 마지막 회원번호
 	
 	private int beginPage = 0; //현재 블록의 시작 페이지 번호
 	private int endPage = 0; //현재 블록의 끝 페이지 번호
